@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
@@ -13,6 +14,10 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        User::create([
+            'name'      => 'Administrator',
+            'email'     => 'admin@estagio.com',
+            'password'  => bcrypt('12345678'),
+        ]);
     }
 }
