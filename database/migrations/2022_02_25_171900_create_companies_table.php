@@ -23,6 +23,9 @@ class CreateCompaniesTable extends Migration
             $table->string('alias_name')->nullable();
             $table->string('document_company')->nullable();
             $table->string('document_company_secondary')->nullable();
+            /** contact */
+            $table->string('telephone')->nullable();
+            $table->string('cell')->nullable();
             /** address */
             $table->string('zipcode')->nullable();
             $table->string('street')->nullable();
@@ -31,6 +34,8 @@ class CreateCompaniesTable extends Migration
             $table->string('neighborhood')->nullable();
             $table->string('state')->nullable();
             $table->string('city')->nullable();
+            /*pattern*/
+            $table->softDeletes();
             $table->timestamps();
         });
     }

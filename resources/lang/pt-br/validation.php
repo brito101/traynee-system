@@ -160,7 +160,7 @@ return [
         'date'      => 'data',
         'day'       => 'dia',
         'excerpt'   => 'resumo',
-        'first_name'=> 'primeiro nome',
+        'first_name' => 'primeiro nome',
         'gender'    => 'gênero',
         'hour'      => 'hora',
         'last_name' => 'sobrenome',
@@ -186,6 +186,13 @@ return [
         'description' => 'descrição',
         'password_confirmation' => 'confirmação da senha',
         'current_password' => 'senha atual',
+        'social_name' => 'Nome da Empresa',
+        'alias_name' => 'Nome Fantasia',
+        'telephone'     => 'telefone',
+        'document_company' => 'CNPJ',
+        'document_company_secondary' => 'inscrição estadual',
+        'zipcode' => 'CEP',
+        'complement' => 'complemento',
     ],
 
 ];

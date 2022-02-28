@@ -21,6 +21,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('admin', [AdminController::class, 'index'])->name('admin.home');
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
+        Route::get('/companies/create', [CompanyController::class, 'create'])->name('companies.create');
+        Route::post('/companies/create', [CompanyController::class, 'store'])->name('companies.store');
+        Route::get('/companies/destroy/{id}', [CompanyController::class, 'destroy'])->name('companies.destroy');
     });
 });
 
