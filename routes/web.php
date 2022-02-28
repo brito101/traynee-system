@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Site\SiteController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('admin', [AdminController::class, 'index'])->name('admin.home');
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
+    });
 });
 
-Auth::routes();
+Route::get('/', [SiteController::class, 'index'])->name('home');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes();
