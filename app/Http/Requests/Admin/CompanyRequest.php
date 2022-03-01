@@ -26,17 +26,18 @@ class CompanyRequest extends FormRequest
         return [
             'social_name' => 'required|min:3|max:100',
             'alias_name' => 'required|min:3|max:100',
-            // 'document_company' => 'required|min:14|max:18',
-            // 'document_company_secondary' => 'min:5|max:100',
+            'document_company' => (!empty($this->id)) ?  'required|min:14|max:18|unique:companies,document_company,' . $this->id : 'required|min:14|max:18|unique:companies,document_company',
+            'document_company_secondary' => 'max:100',
             'telephone' => 'required|min:8|max:25',
             'cell' => 'min:8|max:25',
-            // 'zipcode' => 'required|min:8|max:13',
-            // 'street' => 'required|min:3|max:100',
-            // 'number' => 'required|min:1|max:100',
-            // 'complement' => 'min:3|max:100',
-            // 'neighborhood' => 'min:3|max:100',
-            // 'state' => 'required|min:2|max:3',
-            // 'city' => 'required|min:2|max:100'
+            'zipcode' => 'required|min:8|max:13',
+            'street' => 'required|min:3|max:100',
+            'number' => 'required|min:1|max:100',
+            'complement' => 'max:100',
+            'neighborhood' => 'required|min:3|max:100',
+            'state' => 'required|min:2|max:3',
+            'city' => 'required|min:2|max:100',
+            'logo' => 'image|mimes:jpg,png,jpeg,gif,svg,webp|max:1024|dimensions:max_width=1800,max_height=1800',
         ];
     }
 }

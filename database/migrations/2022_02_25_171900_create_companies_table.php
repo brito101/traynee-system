@@ -34,6 +34,8 @@ class CreateCompaniesTable extends Migration
             $table->string('neighborhood')->nullable();
             $table->string('state')->nullable();
             $table->string('city')->nullable();
+            /** logo */
+            $table->string('logo', 100)->nullable();
             /*pattern*/
             $table->softDeletes();
             $table->timestamps();

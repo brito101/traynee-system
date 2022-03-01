@@ -27,5 +27,6 @@ class Company extends Model
         'neighborhood',
         'state',
         'city',
+        'logo'
     ];
 }

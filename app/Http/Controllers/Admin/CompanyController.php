@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CompanyRequest;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class CompanyController extends Controller
 {
@@ -39,31 +41,29 @@ class CompanyController extends Controller
     public function store(CompanyRequest $request)
     {
         $data = $request->all();
+        $data['user_id'] = auth()->user()->id;
         $companies = Company::all();
-        $company = Company::create([
-            'user_id' => $user = auth()->user()->id,
-            'social_name' => $data['social_name'],
-            'alias_name' => $data['alias_name'],
-            'telephone' => $data['telephone'],
-            'cell' => $data['cell'],
-            // 'document_company' => $data['document_company'],
-            // 'document_company_secondary' => $data['document_company_secondary'],
-            // 'telephone' => $data['telephone'],
-            // 'cell' => $data['cell'],
-            // 'zipcode' => $data['zipcode'],
-            // 'street' => $data['street'],
-            // 'number' => $data['number'],
-            // 'complement' => $data['complement'],
-            // 'neighborhood' => $data['neighborhood'],
-            // 'state' => $data['state'],
-            // 'city' => $data['city'],
-        ]);
+
+        if ($request->hasFile('logo') && $request->file('logo')->isValid()) {
+            $name = $data['document_company'] . Str::of($data['alias_name'])->kebab();
+            $extenstion = $request->logo->extension();
+            $nameFile = "{$name}.{$extenstion}";
+            $data['logo'] = $nameFile;
+            $upload = $request->logo->storeAs('companies', $nameFile);
+
+            if (!$upload)
+                return redirect()
+                    ->back()
+                    ->with('error', 'Falha ao fazer o upload da imagem');
+        }
+
+        $company = Company::create($data);
 
         if ($company->save()) {
             return redirect()
                 ->route('admin.companies.index')
                 ->with(compact('companies'))
-                ->with('success', 'Cadastro realizado com sucesso!');
+                ->with('success', 'Cadastro realizado!');
         } else {
             return redirect()
                 ->back()
@@ -79,7 +79,6 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -90,7 +89,8 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $company = Company::where('id', $id)->first();
+        return view('admin.companies.edit', compact('company'));
     }
 
     /**
@@ -100,9 +100,45 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CompanyRequest $request, $id)
     {
-        //
+        $data = $request->all();
+        $companies = Company::all();
+        $company = Company::where('id', $id)->first();
+
+        $data['logo'] = $company->logo;
+
+        if ($request->hasFile('logo') && $request->file('logo')->isValid()) {
+            $name = $company->document_company . Str::of($company->alias_name)->kebab();
+
+            $imagePath = storage_path() . '/app/public/companies/' . $company->logo;
+            if (Storage::exists($imagePath)) {
+                unlink($imagePath);
+            }
+
+            $extenstion = $request->logo->extension();
+            $nameFile = "{$name}.{$extenstion}";
+
+            $data['logo'] = $nameFile;
+
+            $upload = $request->logo->storeAs('companies', $nameFile);
+
+            if (!$upload)
+                return redirect()
+                    ->back()
+                    ->with('error', 'Falha ao fazer o upload da imagem');
+        }
+
+        if ($company->update($data)) {
+            return redirect()
+                ->route('admin.companies.index')
+                ->with(compact('companies'))
+                ->with('success', 'Atualização realizada!');
+        } else {
+            return redirect()
+                ->back()
+                ->with('error', 'Erro ao atualizar!');
+        }
     }
 
     /**
@@ -121,7 +157,7 @@ class CompanyController extends Controller
             return redirect()
                 ->route('admin.companies.index')
                 ->with(compact('companies'))
-                ->with('success', 'Exclusão realizada com sucesso!');
+                ->with('success', 'Exclusão realizada!');
         } else {
             return redirect()
                 ->back()

@@ -2,24 +2,22 @@
 
 @section('title', '- Empresas')
 @section('plugins.Datatables', true)
+@section('plugins.DatatablesPlugins', true)
 
 @section('content')
     @php
-    $heads = ['ID', 'Nome', ['label' => 'Telefone', 'width' => 40], ['label' => 'Ações', 'no-export' => true, 'width' => 5]];
-    $btnEdit = '<button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar"><i class="fa fa-lg fa-fw fa-pen"></i></button>';
-    $btnDelete = '<button class="btn btn-xs btn-default text-danger mx-1 shadow delete-item" title="Excluir"><i class="fa fa-lg fa-fw fa-trash"></i></button>';
-    $btnDetails = '<button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Detalhes"><i class="fa fa-lg fa-fw fa-search"></i></button>';
+    $heads = ['ID', 'Nome', 'CNPJ', ['label' => 'Telefone', 'width' => 40], ['label' => 'Editar', 'no-export' => true, 'width' => 5]];
 
     $list = [];
 
     foreach ($companies as $company) {
-        $list[] = [$company->id, $company->alias_name, $company->telephone, '<nobr>' . $btnEdit . '<a class="btn btn-xs btn-default text-danger mx-1 shadow delete-item" title="Excluir" href="companies/destroy/' . $company->id . '"><i class="fa fa-lg fa-fw fa-trash"></i></a>' . $btnDetails];
+        $list[] = [$company->id, $company->alias_name, $company->document_company, $company->telephone, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="companies/edit/' . $company->id . '"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="companies/destroy/' . $company->id . '" onclick="return confirm(\'Confirma a exclusão desta empresa?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
     }
 
     $config = [
         'data' => $list,
         'order' => [[0, 'asc']],
-        'columns' => [null, null, null, ['orderable' => false]],
+        'columns' => [null, null, null, null, ['orderable' => false]],
         'language' => ['url' => asset('vendor/datatables/js/pt-BR.json')],
     ];
     @endphp
@@ -48,7 +46,11 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Empresas Cadastradas</h3>
+                            <div class="d-flex flex-wrap justify-content-between col-12 align-content-center">
+                                <h3 class="card-title align-self-center">Empresas Cadastradas</h3>
+                                <a href="{{ route('admin.companies.create') }}" title="Nova Empresa"
+                                    class="btn btn-success"><i class="fas fa-fw fa-plus"></i>Cadastrar Empresa</a>
+                            </div>
                         </div>
                         <div class="card-body">
                             <x-adminlte-datatable id="table1" :heads="$heads" :heads="$heads" head-theme="light"

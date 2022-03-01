@@ -254,7 +254,7 @@ return [
                 [
                     'text' => 'Cadastro de Empresa',
                     'url'  => 'admin/companies/create',
-                ],
+                ]
             ]
 
         ],
@@ -389,7 +389,7 @@ return [
             ],
         ],
         'DatatablesPlugins' => [
-            'active' => true,
+            'active' => false,
             'files' => [
                 [
                     'type' => 'js',
