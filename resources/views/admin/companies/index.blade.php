@@ -49,7 +49,7 @@
                             <div class="d-flex flex-wrap justify-content-between col-12 align-content-center">
                                 <h3 class="card-title align-self-center">Empresas Cadastradas</h3>
                                 <a href="{{ route('admin.companies.create') }}" title="Nova Empresa"
-                                    class="btn btn-success"><i class="fas fa-fw fa-plus"></i>Cadastrar Empresa</a>
+                                    class="btn btn-success"><i class="fas fa-fw fa-plus"></i>Nova Empresa</a>
                             </div>
                         </div>
                         <div class="card-body">

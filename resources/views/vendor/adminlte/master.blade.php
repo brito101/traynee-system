@@ -79,7 +79,7 @@
     {{-- Body Content --}}
     @yield('body')
 
-    <footer class="main-footer fixed-bottom">
+    <footer class="main-footer">
         <strong>Copyright © 2022-{{ date('Y') }} <a href="https://www.rodrigobrito.dev.br" target="_blank"
                 rel="noreferrer" title="Rodrigo Brito Desenvolvedor Web">rodrigobrito.dev.br</a>.</strong>
         todos os direitos Reservados.
