@@ -43,7 +43,6 @@ class CompanyController extends Controller
     {
         $data = $request->all();
         $data['user_id'] = auth()->user()->id;
-        $companies = Company::all();
 
         if ($request->hasFile('logo') && $request->file('logo')->isValid()) {
             $name = Str::slug($data['alias_name']) . time();
@@ -55,6 +54,7 @@ class CompanyController extends Controller
             if (!$upload) {
                 return redirect()
                     ->back()
+                    ->withInput()
                     ->with('error', 'Falha ao fazer o upload da imagem');
             }
         }
@@ -64,11 +64,11 @@ class CompanyController extends Controller
         if ($company->save()) {
             return redirect()
                 ->route('admin.companies.index')
-                ->with(compact('companies'))
                 ->with('success', 'Cadastro realizado!');
         } else {
             return redirect()
                 ->back()
+                ->withInput()
                 ->with('error', 'Erro ao cadastrar!');
         }
     }
@@ -105,7 +105,6 @@ class CompanyController extends Controller
     public function update(CompanyRequest $request, $id)
     {
         $data = $request->all();
-        $companies = Company::all();
         $company = Company::where('id', $id)->first();
 
         if ($request->hasFile('logo') && $request->file('logo')->isValid()) {
@@ -126,17 +125,18 @@ class CompanyController extends Controller
             if (!$upload)
                 return redirect()
                     ->back()
+                    ->withInput()
                     ->with('error', 'Falha ao fazer o upload da imagem');
         }
 
         if ($company->update($data)) {
             return redirect()
                 ->route('admin.companies.index')
-                ->with(compact('companies'))
                 ->with('success', 'Atualização realizada!');
         } else {
             return redirect()
                 ->back()
+                ->withInput()
                 ->with('error', 'Erro ao atualizar!');
         }
     }
@@ -149,7 +149,6 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        $companies = Company::all();
         $company = Company::where('id', $id)->first();
         $imagePath = storage_path() . '/app/public/companies/' . $company->logo;
 
@@ -162,7 +161,6 @@ class CompanyController extends Controller
 
             return redirect()
                 ->route('admin.companies.index')
-                ->with(compact('companies'))
                 ->with('success', 'Exclusão realizada!');
         } else {
             return redirect()

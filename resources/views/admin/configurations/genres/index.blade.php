@@ -6,7 +6,7 @@
 
 @section('content')
     @php
-    $heads = ['ID', 'Nome', 'Sigla', ['label' => 'Editar', 'no-export' => true, 'width' => 5]];
+    $heads = ['ID', 'Nome', 'Sigla', ['label' => 'Ações', 'no-export' => true, 'width' => 5]];
 
     $list = [];
 

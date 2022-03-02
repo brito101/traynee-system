@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\ACL;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\GenreRequest;
-use App\Models\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Validation\UnauthorizedException;
+use Spatie\Permission\Models\Permission;
 
-class GenreController extends Controller
+class PermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,10 @@ class GenreController extends Controller
      */
     public function index()
     {
-        $genres = Genre::all();
-        return view('admin.configurations.genres.index', compact('genres'));
+        $permissions = Permission::all();
+        return view('admin.acl.permissions.index', [
+            'permissions' => $permissions
+        ]);
     }
 
     /**
@@ -27,7 +29,7 @@ class GenreController extends Controller
      */
     public function create()
     {
-        return view('admin.configurations.genres.create');
+        return view('admin.acl.permissions.create');
     }
 
     /**
@@ -36,21 +38,26 @@ class GenreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(GenreRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->all();
-        $data['user_id'] = auth()->user()->id;
-        $genre = Genre::create($data);
-
-        if ($genre->save()) {
-            return redirect()
-                ->route('admin.genres.index')
-                ->with('success', 'Cadastro realizado!');
-        } else {
+        $check = Permission::where('name', $request->name)->get();
+        if ($check->count() > 0) {
             return redirect()
                 ->back()
                 ->withInput()
-                ->with('error', 'Erro ao cadastrar!');
+                ->with('error', 'Nome da permissão já está em uso!');
+        }
+        $data = $request->all();
+        $permission = Permission::create($data);
+        if ($permission->save()) {
+            return redirect()
+                ->route('admin.permission.index')
+                ->with('success', 'Permissão cadastrada!');
+        } else {
+            return redirect()
+                ->route('admin.permission.index')
+                ->withInput()
+                ->with('error', 'Falha ao cadastrar a permissão!');
         }
     }
 
@@ -73,8 +80,13 @@ class GenreController extends Controller
      */
     public function edit($id)
     {
-        $genre = Genre::where('id', $id)->first();
-        return view('admin.configurations.genres.edit', compact('genre'));
+        $permission = Permission::where('id', $id)->first();
+        if (empty($permission->id)) {
+            throw new UnauthorizedException('403', 'You do not have the required authorization.');
+        }
+        return view('admin.acl.permissions.edit', [
+            'permission' => $permission
+        ]);
     }
 
     /**
@@ -84,14 +96,20 @@ class GenreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(GenreRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $data = $request->all();
-        $genre = Genre::where('id', $id)->first();
-
-        if ($genre->update($data)) {
+        $check = Permission::where('name', $request->name)->where('id', '!=', $id)->get();
+        if ($check->count() > 0) {
             return redirect()
-                ->route('admin.genres.index')
+                ->back()
+                ->withInput()
+                ->with('error', 'O nome desta permissão já está em uso!');
+        }
+        $data = $request->all();
+        $permission = Permission::where('id', $id)->first();
+        if ($permission->update($data)) {
+            return redirect()
+                ->route('admin.permission.index')
                 ->with('success', 'Atualização realizada!');
         } else {
             return redirect()
@@ -109,11 +127,11 @@ class GenreController extends Controller
      */
     public function destroy($id)
     {
-        $genre = Genre::where('id', $id)->first();
+        $permission = Permission::where('id', $id)->first();
 
-        if ($genre->delete()) {
+        if ($permission->delete()) {
             return redirect()
-                ->route('admin.genres.index')
+                ->route('admin.permission.index')
                 ->with('success', 'Exclusão realizada!');
         } else {
             return redirect()

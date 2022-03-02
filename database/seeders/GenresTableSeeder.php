@@ -23,7 +23,7 @@ class GenresTableSeeder extends Seeder
                     'user_id' => 1
                 ],
                 [
-                    'name' => 'Masculio',
+                    'name' => 'Masculino',
                     'acronym' => 'M',
                     'user_id' => 1
                 ],

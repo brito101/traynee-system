@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\ACL\PermissionController;
+use App\Http\Controllers\Admin\ACL\RoleController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\GenreController;
@@ -28,6 +30,15 @@ Route::group(['middleware' => ['auth']], function () {
         /** Genre */
         Route::get('/config/genres/destroy/{id}', [GenreController::class, 'destroy']);
         Route::resource('config/genres', GenreController::class);
+        /** ACL */
+        /** Permissions */
+        Route::get('/permission/destroy/{id}', [PermissionController::class, 'destroy']);
+        Route::resource('permission', PermissionController::class);
+        /** Roles */
+        Route::get('/role/destroy/{id}', [RoleController::class, 'destroy']);
+        Route::get('role/{role}/permission', [RoleController::class, 'permissions'])->name('role.permissions');
+        Route::put('role/{role}/permission/sync', [RoleController::class, 'permissionsSync'])->name('role.permissionsSync');
+        Route::resource('role', RoleController::class);
     });
 });
 

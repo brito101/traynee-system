@@ -250,10 +250,12 @@ return [
                 [
                     'text' => 'Listagem de Empresas',
                     'url'  => 'admin/companies',
+                    'icon'    => 'fas fa-fw fa-chevron-right',
                 ],
                 [
                     'text' => 'Cadastro de Empresa',
                     'url'  => 'admin/companies/create',
+                    'icon'    => 'fas fa-fw fa-chevron-right',
                 ]
             ]
 
@@ -268,9 +270,51 @@ return [
                     'icon'    => 'fas fa-fw fa-genderless',
                     'submenu' => [
                         [
-                            'text' => 'Listagem de gêneros',
+                            'text' => 'Listagem de Gêneros',
                             'url'  => 'admin/config/genres',
                             'icon'    => 'fas fa-fw fa-chevron-right',
+                        ],
+                        [
+                            'text' => 'Cadastro de Gêneros',
+                            'url'  => 'admin/config/genres/create',
+                            'icon'    => 'fas fa-fw fa-chevron-right',
+                        ],
+                    ]
+                ]
+            ]
+        ],
+        [
+            'text'    => 'ACL',
+            'icon'    => 'fas fa-fw fa-user-shield',
+            'can'     => 'Listar Permissões',
+            'submenu' => [
+                [
+                    'text' => 'Permissões',
+                    'url'  => '#',
+                    'icon'    => 'fas fa-fw fa-lock',
+                    'submenu' => [
+                        [
+                            'text' => 'Listagem de Permissões',
+                            'url'  => 'admin/permission',
+                            'icon'    => 'fas fa-fw fa-chevron-right',
+                        ],
+                        [
+                            'text' => 'Cadastro de Permissões',
+                            'url'  => 'admin/permission/create',
+                            'icon'    => 'fas fa-fw fa-chevron-right',
+                            'can'     => 'Criar Permissões',
+                        ],
+                        [
+                            'text' => 'Listagem de Perfis',
+                            'url'  => 'admin/role',
+                            'icon'    => 'fas fa-fw fa-chevron-right',
+                            'can'     => 'Listar Perfis',
+                        ],
+                        [
+                            'text' => 'Cadastro de Perfil',
+                            'url'  => 'admin/role/create',
+                            'icon'    => 'fas fa-fw fa-chevron-right',
+                            'can'     => 'Criar Perfis',
                         ],
                     ]
                 ]

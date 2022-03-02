@@ -13,7 +13,7 @@
 @endif
 
 @if (session('error'))
-    <x-adminlte-callout theme="danger" title="Erro" icon="fas fa-lg fa-exclamation-triangle" removable>
+    <x-adminlte-card theme="danger" title="Erro" icon="fas fa-lg fa-exclamation-triangle" removable>
         {{ session('error') }}
-    </x-adminlte-callout>
+    </x-adminlte-card>
 @endif

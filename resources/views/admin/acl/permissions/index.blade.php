@@ -1,23 +1,23 @@
 @extends('adminlte::page')
 
-@section('title', '- Empresas')
+@section('title', '- Permissões')
 @section('plugins.Datatables', true)
 @section('plugins.DatatablesPlugins', true)
 
 @section('content')
     @php
-    $heads = ['ID', 'Nome', 'CNPJ', ['label' => 'Telefone', 'width' => 40], ['label' => 'Ações', 'no-export' => true, 'width' => 5]];
+    $heads = [['label' => 'ID', 'width' => 10], 'Nome', ['label' => 'Ações', 'no-export' => true, 'width' => 5]];
 
     $list = [];
 
-    foreach ($companies as $company) {
-        $list[] = [$company->id, $company->alias_name, $company->document_company, $company->telephone, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="companies/' . $company->id . '/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="companies/destroy/' . $company->id . '" onclick="return confirm(\'Confirma a exclusão desta empresa?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
+    foreach ($permissions as $permission) {
+        $list[] = [$permission->id, $permission->name, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="permission/' . $permission->id . '/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="permission/destroy/' . $permission->id . '" onclick="return confirm(\'Confirma a exclusão desta permissão?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
     }
 
     $config = [
         'data' => $list,
         'order' => [[0, 'asc']],
-        'columns' => [null, null, null, null, ['orderable' => false]],
+        'columns' => [null, null, ['orderable' => false]],
         'language' => ['url' => asset('vendor/datatables/js/pt-BR.json')],
     ];
     @endphp
@@ -26,12 +26,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1><i class="far fa-fw fa-building"></i> Empresas</h1>
+                    <h1><i class="fas fa-fw fa-user-shield"></i> Permissões</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Empresas</li>
+                        <li class="breadcrumb-item"><a href="#">ACL</a></li>
+                        <li class="breadcrumb-item active">Permissões</li>
                     </ol>
                 </div>
             </div>
@@ -47,9 +48,9 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex flex-wrap justify-content-between col-12 align-content-center">
-                                <h3 class="card-title align-self-center">Empresas Cadastradas</h3>
-                                <a href="{{ route('admin.companies.create') }}" title="Nova Empresa"
-                                    class="btn btn-success"><i class="fas fa-fw fa-plus"></i>Nova Empresa</a>
+                                <h3 class="card-title align-self-center">Permissões Cadastradas</h3>
+                                <a href="{{ route('admin.permission.create') }}" title="Nova Permissão"
+                                    class="btn btn-success"><i class="fas fa-fw fa-plus"></i>Nova Permissão</a>
                             </div>
                         </div>
                         <div class="card-body">
