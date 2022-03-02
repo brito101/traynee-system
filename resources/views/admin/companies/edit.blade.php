@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', '- Editar de Empresa')
+@section('title', '- Editar Empresa')
 
 @section('content')
 
@@ -33,8 +33,9 @@
                             <h3 class="card-title">Dados Cadastrais da Empresa</h3>
                         </div>
 
-                        <form method="POST" action="{{ route('admin.companies.update', ['id' => $company->id]) }}"
+                        <form method="POST" action="{{ route('admin.companies.update', ['company' => $company->id]) }}"
                             enctype="multipart/form-data">
+                            @method('PUT')
                             @csrf
                             <div class="card-body">
                                 <input type="hidden" name="id" value="{{ $company->id }}">

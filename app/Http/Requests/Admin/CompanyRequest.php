@@ -26,10 +26,10 @@ class CompanyRequest extends FormRequest
         return [
             'social_name' => 'required|min:3|max:100',
             'alias_name' => 'required|min:3|max:100',
-            'document_company' => (!empty($this->id)) ?  'required|min:14|max:18|unique:companies,document_company,' . $this->id : 'required|min:14|max:18|unique:companies,document_company',
+            'document_company' => "required|min:14|max:18|unique:companies,document_company,{$this->id},id,deleted_at,NULL",
             'document_company_secondary' => 'max:100',
             'telephone' => 'required|min:8|max:25',
-            'cell' => 'min:8|max:25',
+            'cell' => 'max:25',
             'zipcode' => 'required|min:8|max:13',
             'street' => 'required|min:3|max:100',
             'number' => 'required|min:1|max:100',

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CompanyRequest;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -45,16 +46,17 @@ class CompanyController extends Controller
         $companies = Company::all();
 
         if ($request->hasFile('logo') && $request->file('logo')->isValid()) {
-            $name = $data['document_company'] . Str::of($data['alias_name'])->kebab();
+            $name = Str::slug($data['alias_name']) . time();
             $extenstion = $request->logo->extension();
             $nameFile = "{$name}.{$extenstion}";
             $data['logo'] = $nameFile;
             $upload = $request->logo->storeAs('companies', $nameFile);
 
-            if (!$upload)
+            if (!$upload) {
                 return redirect()
                     ->back()
                     ->with('error', 'Falha ao fazer o upload da imagem');
+            }
         }
 
         $company = Company::create($data);
@@ -106,13 +108,11 @@ class CompanyController extends Controller
         $companies = Company::all();
         $company = Company::where('id', $id)->first();
 
-        $data['logo'] = $company->logo;
-
         if ($request->hasFile('logo') && $request->file('logo')->isValid()) {
-            $name = $company->document_company . Str::of($company->alias_name)->kebab();
-
+            $name = Str::slug($company->alias_name) . time();
             $imagePath = storage_path() . '/app/public/companies/' . $company->logo;
-            if (Storage::exists($imagePath)) {
+
+            if (File::isFile($imagePath)) {
                 unlink($imagePath);
             }
 
@@ -149,11 +149,17 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-
         $companies = Company::all();
-        $company = Company::where('id', $id);
+        $company = Company::where('id', $id)->first();
+        $imagePath = storage_path() . '/app/public/companies/' . $company->logo;
 
         if ($company->delete()) {
+            if (File::isFile($imagePath)) {
+                unlink($imagePath);
+                $company->logo = null;
+                $company->update();
+            }
+
             return redirect()
                 ->route('admin.companies.index')
                 ->with(compact('companies'))

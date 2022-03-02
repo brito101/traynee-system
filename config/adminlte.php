@@ -226,11 +226,11 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
-        ],
+        // [
+        //     'type'         => 'navbar-search',
+        //     'text'         => 'search',
+        //     'topnav_right' => true,
+        // ],
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
@@ -258,6 +258,25 @@ return [
             ]
 
         ],
+        [
+            'text'    => 'Configurações',
+            'icon'    => 'fas fa-fw fa-cogs',
+            'submenu' => [
+                [
+                    'text' => 'Gêneros',
+                    'url'  => '#',
+                    'icon'    => 'fas fa-fw fa-genderless',
+                    'submenu' => [
+                        [
+                            'text' => 'Listagem de gêneros',
+                            'url'  => 'admin/config/genres',
+                            'icon'    => 'fas fa-fw fa-chevron-right',
+                        ],
+                    ]
+                ]
+            ]
+        ]
+
         //End custom menus
         // [
         //     'text'        => 'pages',

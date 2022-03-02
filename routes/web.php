@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Admin\GenreController;
 use App\Http\Controllers\Site\SiteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -21,12 +22,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('admin', [AdminController::class, 'index'])->name('admin.home');
     Route::prefix('admin')->name('admin.')->group(function () {
         /** Companies */
-        Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
-        Route::get('/companies/create', [CompanyController::class, 'create'])->name('companies.create');
-        Route::post('/companies/create', [CompanyController::class, 'store'])->name('companies.store');
-        Route::get('/companies/edit/{id}', [CompanyController::class, 'edit'])->name('companies.edit');
-        Route::post('/companies/update/{id}', [CompanyController::class, 'update'])->name('companies.update');
-        Route::get('/companies/destroy/{id}', [CompanyController::class, 'destroy'])->name('companies.destroy');
+        Route::get('/companies/destroy/{id}', [CompanyController::class, 'destroy']);
+        Route::resource('companies', CompanyController::class);
+        /**Configurations */
+        /** Genre */
+        Route::get('/config/genres/destroy/{id}', [GenreController::class, 'destroy']);
+        Route::resource('config/genres', GenreController::class);
     });
 });
 

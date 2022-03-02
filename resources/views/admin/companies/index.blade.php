@@ -11,7 +11,7 @@
     $list = [];
 
     foreach ($companies as $company) {
-        $list[] = [$company->id, $company->alias_name, $company->document_company, $company->telephone, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="companies/edit/' . $company->id . '"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="companies/destroy/' . $company->id . '" onclick="return confirm(\'Confirma a exclusão desta empresa?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
+        $list[] = [$company->id, $company->alias_name, $company->document_company, $company->telephone, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="companies/' . $company->id . '/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="companies/destroy/' . $company->id . '" onclick="return confirm(\'Confirma a exclusão desta empresa?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
     }
 
     $config = [

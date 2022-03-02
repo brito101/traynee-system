@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'genre_id',
     ];
 
     /**
@@ -41,4 +42,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**Relationships */
+    public function genre()
+    {
+        return $this->hasOne(Genre::class);
+    }
 }

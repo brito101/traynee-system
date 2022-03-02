@@ -79,15 +79,6 @@
     {{-- Body Content --}}
     @yield('body')
 
-    <footer class="main-footer">
-        <strong>Copyright © 2022-{{ date('Y') }} <a href="https://www.rodrigobrito.dev.br" target="_blank"
-                rel="noreferrer" title="Rodrigo Brito Desenvolvedor Web">rodrigobrito.dev.br</a>.</strong>
-        todos os direitos Reservados.
-        <div class="float-right d-none d-sm-inline-block">
-            <b>Versão</b> 1.0.0
-        </div>
-    </footer>
-
     {{-- Base Scripts --}}
     @if (!config('adminlte.enabled_laravel_mix'))
         <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>

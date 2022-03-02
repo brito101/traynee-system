@@ -14,11 +14,7 @@ class CreateCompaniesTable extends Migration
     public function up()
     {
         Schema::create('companies', function (Blueprint $table) {
-            $table->increments('id');
-            $table->foreignId('user_id')
-                ->constrained()
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+            $table->bigIncrements('id');
             $table->string('social_name');
             $table->string('alias_name')->nullable();
             $table->string('document_company')->nullable();
@@ -37,6 +33,11 @@ class CreateCompaniesTable extends Migration
             /** logo */
             $table->string('logo', 100)->nullable();
             /*pattern*/
+            $table->foreignId('user_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade')
+                ->comment('Último editor');
             $table->softDeletes();
             $table->timestamps();
         });
