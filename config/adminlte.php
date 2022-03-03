@@ -246,16 +246,19 @@ return [
             'text'        => 'companies',
             'url'         => '#',
             'icon'        => 'far fa-fw fa-building',
+            'can'         => 'Acessar Empresas',
             'submenu' => [
                 [
                     'text' => 'Listagem de Empresas',
                     'url'  => 'admin/companies',
-                    'icon'    => 'fas fa-fw fa-chevron-right',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                    'can'  => 'Listar Empresas',
                 ],
                 [
                     'text' => 'Cadastro de Empresa',
                     'url'  => 'admin/companies/create',
-                    'icon'    => 'fas fa-fw fa-chevron-right',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                    'can'  => 'Criar Empresas',
                 ]
             ]
 

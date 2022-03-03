@@ -17,7 +17,7 @@ class PermissionsTableSeeder extends Seeder
     {
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
         DB::table('permissions')->insert([
-            /**ACL */
+            /** ACL */
             [
                 'name' => 'Acessar ACL',
                 'guard_name' => 'web',
@@ -97,6 +97,32 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Excluir Gêneros',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            /** Empresas */
+            [
+                'name' => 'Acessar Empresas',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Listar Empresas',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Criar Empresas',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Editar Empresas',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Excluir Empresas',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],

@@ -54,7 +54,7 @@
                         <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">Estagiários</span>
-                            <span class="info-box-number">{{ $interns }}</span>
+                            <span class="info-box-number">{{ $trainee }}</span>
                         </div>
                     </div>
                 </div>

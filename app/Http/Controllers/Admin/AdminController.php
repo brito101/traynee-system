@@ -15,8 +15,8 @@ class AdminController extends Controller
         $onlineUsers = User::online()->get()->count();
         $administrators = User::role('Administrador')->get()->count();
         $companies = Company::all()->count();
-        $businessmen = User::role('Estagiário')->get()->count();
-        $interns = User::role('Empresário')->get()->count();
+        $businessmen = User::role('Empresário')->get()->count();
+        $trainee = User::role('Estagiário')->get()->count();
 
         $access = Visit::where('created_at', '>=', date("Y-m-d"))->get();
         $accessYesterday = Visit::where('created_at', '=', Carbon::now()->subDays(1))->get();
@@ -45,7 +45,7 @@ class AdminController extends Controller
             'administrators',
             'companies',
             'businessmen',
-            'interns',
+            'trainee',
             'onlineUsers',
             'access',
             'chart',

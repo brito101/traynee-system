@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CompanyRequest;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -19,6 +20,9 @@ class CompanyController extends Controller
      */
     public function index()
     {
+        if (!Auth::user()->hasPermissionTo('Listar Empresas')) {
+            abort(403, 'Acesso não autorizado');
+        }
         $companies = Company::all();
         return view('admin.companies.index', compact('companies'));
     }
@@ -30,6 +34,9 @@ class CompanyController extends Controller
      */
     public function create()
     {
+        if (!Auth::user()->hasPermissionTo('Criar Empresas')) {
+            abort(403, 'Acesso não autorizado');
+        }
         return view('admin.companies.create');
     }
 
@@ -41,6 +48,9 @@ class CompanyController extends Controller
      */
     public function store(CompanyRequest $request)
     {
+        if (!Auth::user()->hasPermissionTo('Criar Empresas')) {
+            abort(403, 'Acesso não autorizado');
+        }
         $data = $request->all();
         $data['user_id'] = auth()->user()->id;
 
@@ -74,16 +84,6 @@ class CompanyController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -91,6 +91,9 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
+        if (!Auth::user()->hasPermissionTo('Editar Empresas')) {
+            abort(403, 'Acesso não autorizado');
+        }
         $company = Company::where('id', $id)->first();
         return view('admin.companies.edit', compact('company'));
     }
@@ -104,6 +107,9 @@ class CompanyController extends Controller
      */
     public function update(CompanyRequest $request, $id)
     {
+        if (!Auth::user()->hasPermissionTo('Editar Empresas')) {
+            abort(403, 'Acesso não autorizado');
+        }
         $data = $request->all();
         $company = Company::where('id', $id)->first();
 
@@ -149,6 +155,9 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
+        if (!Auth::user()->hasPermissionTo('Excluir Empresas')) {
+            abort(403, 'Acesso não autorizado');
+        }
         $company = Company::where('id', $id)->first();
         $imagePath = storage_path() . '/app/public/companies/' . $company->logo;
 
