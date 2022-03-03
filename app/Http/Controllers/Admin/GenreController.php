@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\GenreRequest;
 use App\Models\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GenreController extends Controller
 {
@@ -16,6 +17,9 @@ class GenreController extends Controller
      */
     public function index()
     {
+        if (!Auth::user()->hasPermissionTo('Listar Gêneros')) {
+            abort(403, 'Acesso não autorizado');
+        }
         $genres = Genre::all();
         return view('admin.configurations.genres.index', compact('genres'));
     }
@@ -27,6 +31,9 @@ class GenreController extends Controller
      */
     public function create()
     {
+        if (!Auth::user()->hasPermissionTo('Criar Gêneros')) {
+            abort(403, 'Acesso não autorizado');
+        }
         return view('admin.configurations.genres.create');
     }
 
@@ -38,6 +45,9 @@ class GenreController extends Controller
      */
     public function store(GenreRequest $request)
     {
+        if (!Auth::user()->hasPermissionTo('Criar Gêneros')) {
+            abort(403, 'Acesso não autorizado');
+        }
         $data = $request->all();
         $data['user_id'] = auth()->user()->id;
         $genre = Genre::create($data);
@@ -55,17 +65,6 @@ class GenreController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -73,6 +72,9 @@ class GenreController extends Controller
      */
     public function edit($id)
     {
+        if (!Auth::user()->hasPermissionTo('Editar Gêneros')) {
+            abort(403, 'Acesso não autorizado');
+        }
         $genre = Genre::where('id', $id)->first();
         return view('admin.configurations.genres.edit', compact('genre'));
     }
@@ -86,6 +88,9 @@ class GenreController extends Controller
      */
     public function update(GenreRequest $request, $id)
     {
+        if (!Auth::user()->hasPermissionTo('Editar Gêneros')) {
+            abort(403, 'Acesso não autorizado');
+        }
         $data = $request->all();
         $genre = Genre::where('id', $id)->first();
 
@@ -109,6 +114,9 @@ class GenreController extends Controller
      */
     public function destroy($id)
     {
+        if (!Auth::user()->hasPermissionTo('Excluir Gêneros')) {
+            abort(403, 'Acesso não autorizado');
+        }
         $genre = Genre::where('id', $id)->first();
 
         if ($genre->delete()) {

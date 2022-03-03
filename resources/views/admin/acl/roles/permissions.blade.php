@@ -38,13 +38,16 @@
                             autocomplete="off">
                             @csrf
                             @method('PUT')
-                            <div class="card-body">
+                            <div class="card-body d-flex flex-wrap">
                                 @foreach ($permissions as $permission)
-                                    <div class="col-12 col-md-6 form-group px-0 pr-md-2">
-                                        <input type="checkbox" id="{{ $permission->id }}" name="{{ $permission->id }}"
-                                            {{ $permission->can == '1' ? 'checked' : '' }}>
-                                        <label for="name">{{ $permission->name }}</label>
-                                        </label>
+                                    <div class="col-12 col-md-4 card">
+                                        <div class="card-body p-2">
+                                            <input type="checkbox" style="cursor: pointer" id="{{ $permission->id }}"
+                                                name="{{ $permission->id }}"
+                                                {{ $permission->can == '1' ? 'checked' : '' }}>
+                                            <label for="name" class="my-0 ml-2">{{ $permission->name }}</label>
+                                            </label>
+                                        </div>
                                     </div>
                                 @endforeach
                             </div>

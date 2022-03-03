@@ -14,7 +14,9 @@ class RolesHasPermissionTableSeeder extends Seeder
      */
     public function run()
     {
+        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
         DB::table('role_has_permissions')->insert([
+            /** ACL */
             [
                 'permission_id' => 1,
                 'role_id' => 1
@@ -50,6 +52,60 @@ class RolesHasPermissionTableSeeder extends Seeder
             [
                 'permission_id' => 9,
                 'role_id' => 1
+            ],
+            [
+                'permission_id' => 10,
+                'role_id' => 1
+            ],
+            /**Configurações */
+            [
+                'permission_id' => 11,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 11,
+                'role_id' => 2
+            ],
+            /** Gêneros */
+            [
+                'permission_id' => 12,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 12,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 13,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 13,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 14,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 14,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 15,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 15,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 16,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 16,
+                'role_id' => 2
             ],
         ]);
     }

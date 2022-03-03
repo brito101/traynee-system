@@ -5,23 +5,42 @@
 @section('plugins.DatatablesPlugins', true)
 
 @section('content')
-    @php
-    $heads = [['label' => 'ID', 'width' => 10], 'Nome', ['label' => 'Ações', 'no-export' => true, 'width' => 5]];
+    @if (auth()->user()->can('Editar Permissões') &&
+    auth()->user()->can('Excluir Permissões'))
+        @php
+            $heads = [['label' => 'ID', 'width' => 10], 'Nome', ['label' => 'Ações', 'no-export' => true, 'width' => 5]];
 
-    $list = [];
+            $list = [];
 
-    foreach ($permissions as $permission) {
-        $list[] = [$permission->id, $permission->name, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="permission/' . $permission->id . '/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="permission/destroy/' . $permission->id . '" onclick="return confirm(\'Confirma a exclusão desta permissão?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
-    }
+            foreach ($permissions as $permission) {
+                $list[] = [$permission->id, $permission->name, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="permission/' . $permission->id . '/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="permission/destroy/' . $permission->id . '" onclick="return confirm(\'Confirma a exclusão desta permissão?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
+            }
 
-    $config = [
-        'data' => $list,
-        'order' => [[0, 'asc']],
-        'columns' => [null, null, ['orderable' => false]],
-        'language' => ['url' => asset('vendor/datatables/js/pt-BR.json')],
-    ];
-    @endphp
+            $config = [
+                'data' => $list,
+                'order' => [[0, 'asc']],
+                'columns' => [null, null, ['orderable' => false]],
+                'language' => ['url' => asset('vendor/datatables/js/pt-BR.json')],
+            ];
+        @endphp
+    @else
+        @php
+            $heads = [['label' => 'ID', 'width' => 10], 'Nome'];
 
+            $list = [];
+
+            foreach ($permissions as $permission) {
+                $list[] = [$permission->id, $permission->name];
+            }
+
+            $config = [
+                'data' => $list,
+                'order' => [[0, 'asc']],
+                'columns' => [null, null],
+                'language' => ['url' => asset('vendor/datatables/js/pt-BR.json')],
+            ];
+        @endphp
+    @endif
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -49,8 +68,10 @@
                         <div class="card-header">
                             <div class="d-flex flex-wrap justify-content-between col-12 align-content-center">
                                 <h3 class="card-title align-self-center">Permissões Cadastradas</h3>
-                                <a href="{{ route('admin.permission.create') }}" title="Nova Permissão"
-                                    class="btn btn-success"><i class="fas fa-fw fa-plus"></i>Nova Permissão</a>
+                                @can('Criar Permissões')
+                                    <a href="{{ route('admin.permission.create') }}" title="Nova Permissão"
+                                        class="btn btn-success"><i class="fas fa-fw fa-plus"></i>Nova Permissão</a>
+                                @endcan
                             </div>
                         </div>
                         <div class="card-body">

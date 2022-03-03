@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\ACL;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\UnauthorizedException;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -17,6 +18,9 @@ class RoleController extends Controller
      */
     public function index()
     {
+        if (!Auth::user()->hasPermissionTo('Listar Perfis')) {
+            abort(403, 'Acesso não autorizado');
+        }
         $roles = Role::all();
         return view('admin.acl.roles.index', [
             'roles' => $roles
@@ -30,6 +34,9 @@ class RoleController extends Controller
      */
     public function create()
     {
+        if (!Auth::user()->hasPermissionTo('Criar Perfis')) {
+            abort(403, 'Acesso não autorizado');
+        }
         return view('admin.acl.roles.create');
     }
 
@@ -41,6 +48,9 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        if (!Auth::user()->hasPermissionTo('Criar Perfis')) {
+            abort(403, 'Acesso não autorizado');
+        }
         $check = Role::where('name', $request->name)->get();
         if ($check->count() > 0) {
             return redirect()
@@ -63,17 +73,6 @@ class RoleController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -81,6 +80,9 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
+        if (!Auth::user()->hasPermissionTo('Editar Perfis')) {
+            abort(403, 'Acesso não autorizado');
+        }
         $role = Role::where('id', $id)->first();
         if (empty($role->id)) {
             throw new UnauthorizedException('403', 'You do not have the required authorization.');
@@ -99,6 +101,9 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (!Auth::user()->hasPermissionTo('Editar Perfis')) {
+            abort(403, 'Acesso não autorizado');
+        }
         $check = Role::where('name', $request->name)->where('id', '!=', $id)->get();
         if ($check->count() > 0) {
             return redirect()
@@ -128,6 +133,9 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
+        if (!Auth::user()->hasPermissionTo('Excluir Perfis')) {
+            abort(403, 'Acesso não autorizado');
+        }
         $role = Role::where('id', $id)->first();
 
         if ($role->delete()) {
@@ -143,9 +151,11 @@ class RoleController extends Controller
 
     public function permissions($role)
     {
+        if (!Auth::user()->hasPermissionTo('Sincronizar Perfis')) {
+            abort(403, 'Acesso não autorizado');
+        }
         $role = Role::where('id', $role)->first();
         $permissions = Permission::all();
-
 
         foreach ($permissions as $permission) {
 
@@ -164,6 +174,9 @@ class RoleController extends Controller
 
     public function permissionsSync(Request $request, $role)
     {
+        if (!Auth::user()->hasPermissionTo('Sincronizar Perfis')) {
+            abort(403, 'Acesso não autorizado');
+        }
         $permissionsRequest = $request->except(['_token', '_method']);
         foreach ($permissionsRequest as $key => $value) {
             $permissions[] = Permission::where('id', $key)->first();

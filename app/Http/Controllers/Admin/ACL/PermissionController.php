@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\ACL;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\UnauthorizedException;
 use Spatie\Permission\Models\Permission;
 
@@ -16,6 +17,9 @@ class PermissionController extends Controller
      */
     public function index()
     {
+        if (!Auth::user()->hasPermissionTo('Listar Permissões')) {
+            abort(403, 'Acesso não autorizado');
+        }
         $permissions = Permission::all();
         return view('admin.acl.permissions.index', [
             'permissions' => $permissions
@@ -29,6 +33,9 @@ class PermissionController extends Controller
      */
     public function create()
     {
+        if (!Auth::user()->hasPermissionTo('Criar Permissões')) {
+            abort(403, 'Acesso não autorizado');
+        }
         return view('admin.acl.permissions.create');
     }
 
@@ -40,6 +47,9 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
+        if (!Auth::user()->hasPermissionTo('Criar Permissões')) {
+            abort(403, 'Acesso não autorizado');
+        }
         $check = Permission::where('name', $request->name)->get();
         if ($check->count() > 0) {
             return redirect()
@@ -62,17 +72,6 @@ class PermissionController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -80,6 +79,9 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
+        if (!Auth::user()->hasPermissionTo('Editar Permissões')) {
+            abort(403, 'Acesso não autorizado');
+        }
         $permission = Permission::where('id', $id)->first();
         if (empty($permission->id)) {
             throw new UnauthorizedException('403', 'You do not have the required authorization.');
@@ -98,6 +100,9 @@ class PermissionController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (!Auth::user()->hasPermissionTo('Editar Permissões')) {
+            abort(403, 'Acesso não autorizado');
+        }
         $check = Permission::where('name', $request->name)->where('id', '!=', $id)->get();
         if ($check->count() > 0) {
             return redirect()
@@ -127,6 +132,9 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
+        if (!Auth::user()->hasPermissionTo('Excluir Permissões')) {
+            abort(403, 'Acesso não autorizado');
+        }
         $permission = Permission::where('id', $id)->first();
 
         if ($permission->delete()) {

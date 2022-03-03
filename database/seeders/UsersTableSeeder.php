@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use DateTime;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UsersTableSeeder extends Seeder
 {
@@ -14,10 +15,19 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-            'name'      => 'Administrator',
-            'email'     => 'admin@estagio.com',
-            'password'  => bcrypt('12345678'),
+        DB::table('users')->insert([
+            [
+                'name'      => 'Programador',
+                'email'     => env('PROGRAMMER_EMAIL'),
+                'password'  => bcrypt(env('PROGRAMMER_PASSWD')),
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name'      => 'Administrator',
+                'email'     => env('ADMIN_EMAIL'),
+                'password'  => bcrypt(env('ADMIN_PASSWD')),
+                'created_at' => new DateTime('now')
+            ]
         ]);
     }
 }
