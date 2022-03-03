@@ -8,7 +8,7 @@
     @if (auth()->user()->can('Editar Permissões') &&
     auth()->user()->can('Excluir Permissões'))
         @php
-            $heads = [['label' => 'ID', 'width' => 10], 'Nome', ['label' => 'Ações', 'no-export' => true, 'width' => 5]];
+            $heads = [['label' => 'ID', 'width' => 5], 'Nome', ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
 
             $list = [];
 

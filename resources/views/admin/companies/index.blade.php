@@ -8,35 +8,35 @@
     @if (auth()->user()->can('Editar Empresas') &&
     auth()->user()->can('Excluir Empresas'))
         @php
-            $heads = ['ID', 'Nome', 'CNPJ', ['label' => 'Telefone', 'width' => 40], ['label' => 'Ações', 'no-export' => true, 'width' => 5]];
+            $heads = [['label' => 'ID', 'width' => 5], 'Nome', 'CNPJ', 'E-mail', ['label' => 'Telefone', 'width' => 20], ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
 
             $list = [];
 
             foreach ($companies as $company) {
-                $list[] = [$company->id, $company->alias_name, $company->document_company, $company->telephone, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="companies/' . $company->id . '/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="companies/destroy/' . $company->id . '" onclick="return confirm(\'Confirma a exclusão desta empresa?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
+                $list[] = [$company->id, $company->alias_name, $company->document_company, $company->email, $company->telephone, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="companies/' . $company->id . '/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="companies/destroy/' . $company->id . '" onclick="return confirm(\'Confirma a exclusão desta empresa?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
             }
 
             $config = [
                 'data' => $list,
                 'order' => [[0, 'asc']],
-                'columns' => [null, null, null, null, ['orderable' => false]],
+                'columns' => [null, null, null, null, null, ['orderable' => false]],
                 'language' => ['url' => asset('vendor/datatables/js/pt-BR.json')],
             ];
         @endphp
     @else
         @php
-            $heads = ['ID', 'Nome', 'CNPJ', ['label' => 'Telefone', 'width' => 40]];
+            $heads = [['label' => 'ID', 'width' => 5], 'Nome', 'CNPJ', 'E-mail', ['label' => 'Telefone', 'width' => 20]];
 
             $list = [];
 
             foreach ($companies as $company) {
-                $list[] = [$company->id, $company->alias_name, $company->document_company, $company->telephone];
+                $list[] = [$company->id, $company->alias_name, $company->document_company, $company->email, $company->telephone];
             }
 
             $config = [
                 'data' => $list,
                 'order' => [[0, 'asc']],
-                'columns' => [null, null, null, null],
+                'columns' => [null, null, null, null, null],
                 'language' => ['url' => asset('vendor/datatables/js/pt-BR.json')],
             ];
         @endphp

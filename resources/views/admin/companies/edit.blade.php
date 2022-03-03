@@ -71,6 +71,14 @@
 
                                 <div class="d-flex flex-wrap justify-content-between">
                                     <div class="col-12 col-md-6 form-group px-0 pr-md-2">
+                                        <label for="email">E-mail</label>
+                                        <input type="email" class="form-control" id="email" placeholder="E-mail"
+                                            name="email" value="{{ old('email') ?? $company->email }}" required>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-wrap justify-content-between">
+                                    <div class="col-12 col-md-6 form-group px-0 pr-md-2">
                                         <label for="telephone">Telefone</label>
                                         <input type="tel" class="form-control" id="telephone" placeholder="Telefone"
                                             name="telephone" value="{{ old('telephone') ?? $company->telephone }}"
@@ -129,15 +137,20 @@
                                         <input type="text" class="form-control" id="city" placeholder="Cidade" name="city"
                                             value="{{ old('city') ?? $company->city }}" required>
                                     </div>
-                                    <div class="col-12 col-md-6 form-group px-0 pl-md-2">
+                                    <div class="col-12 col-md-6 form-group px-0 pl-md-2 d-flex flex-wrap">
+
                                         @if ($company->logo != null)
-                                            <img src="{{ url('storage/companies/' . $company->logo) }}"
-                                                alt="{{ $company->alias_name }}" style="max-width: 50px;"
-                                                class="img-thumbnail d-block">
+                                            <div class='col-12 col-md-2 align-self-center mt-3'>
+                                                <img src="{{ url('storage/companies/' . $company->logo) }}"
+                                                    alt="{{ $company->alias_name }}" style="max-width: 50px;"
+                                                    class="img-thumbnail d-block">
+                                            </div>
                                         @endif
 
-                                        <label for="logo">Logotipo:</label>
-                                        <input type="file" name="logo" class="form-control">
+                                        <div class="{{ $company->logo != null ? 'col-md-10' : 'col-md-12' }}">
+                                            <x-adminlte-input-file name="logo" label="Logotipo"
+                                                placeholder="Selecione um arquivo..." legend="Selecionar" />
+                                        </div>
                                     </div>
                                 </div>
 

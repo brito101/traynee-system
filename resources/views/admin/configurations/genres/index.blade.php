@@ -8,7 +8,7 @@
     @if (auth()->user()->can('Editar Gêneros') &&
     auth()->user()->can('Excluir Gêneros'))
         @php
-            $heads = ['ID', 'Nome', 'Sigla', ['label' => 'Ações', 'no-export' => true, 'width' => 5]];
+            $heads = [['label' => 'ID', 'width' => 5], 'Nome', 'Sigla', ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
 
             $list = [];
 
@@ -25,7 +25,7 @@
         @endphp
     @else
         @php
-            $heads = ['ID', 'Nome', 'Sigla'];
+            $heads = [['label' => 'ID', 'width' => 5], 'Nome', 'Sigla'];
 
             $list = [];
 

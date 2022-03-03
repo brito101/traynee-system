@@ -95,6 +95,9 @@ class CompanyController extends Controller
             abort(403, 'Acesso não autorizado');
         }
         $company = Company::where('id', $id)->first();
+        if (empty($company->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
         return view('admin.companies.edit', compact('company'));
     }
 
@@ -112,6 +115,9 @@ class CompanyController extends Controller
         }
         $data = $request->all();
         $company = Company::where('id', $id)->first();
+        if (empty($company->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
 
         if ($request->hasFile('logo') && $request->file('logo')->isValid()) {
             $name = Str::slug($company->alias_name) . time();
@@ -159,6 +165,9 @@ class CompanyController extends Controller
             abort(403, 'Acesso não autorizado');
         }
         $company = Company::where('id', $id)->first();
+        if (empty($company->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
         $imagePath = storage_path() . '/app/public/companies/' . $company->logo;
 
         if ($company->delete()) {

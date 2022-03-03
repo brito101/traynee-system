@@ -9,7 +9,7 @@
     auth()->user()->can('Sincronizar Perfis') &&
     auth()->user()->can('Excluir Perfis'))
         @php
-            $heads = [['label' => 'ID', 'width' => 10], 'Nome', ['label' => 'Ações', 'no-export' => true, 'width' => 5]];
+            $heads = [['label' => 'ID', 'width' => 5], 'Nome', ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
 
             $list = [];
 

@@ -18,6 +18,7 @@ class Company extends Model
         'alias_name',
         'document_company',
         'document_company_secondary',
+        'email',
         'telephone',
         'cell',
         'zipcode',

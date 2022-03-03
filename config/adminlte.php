@@ -243,7 +243,24 @@ return [
         ],
         //Custom menus
         [
-            'text'        => 'companies',
+            'text'        => 'Usuários',
+            'url'         => '#',
+            'icon'        => 'fas fa-fw fa-users',
+            'submenu' => [
+                [
+                    'text' => 'Listagem de Usuários',
+                    'url'  => 'admin/users',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                ],
+                [
+                    'text' => 'Cadastro de Usuários',
+                    'url'  => 'admin/users/create',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                ],
+            ],
+        ],
+        [
+            'text'        => 'Empresas',
             'url'         => '#',
             'icon'        => 'far fa-fw fa-building',
             'can'         => 'Acessar Empresas',
@@ -549,6 +566,36 @@ return [
                     'type' => 'js',
                     'asset' => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
+                ],
+            ],
+        ],
+        'BsCustomFileInput' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/bs-custom-file-input/bs-custom-file-input.min.js',
+                ],
+            ],
+        ],
+        'select2' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/select2/js/select2.full.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/select2/css/select2.min.css',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/select2-bootstrap4-theme/select2-bootstrap4.min.css',
                 ],
             ],
         ],

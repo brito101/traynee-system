@@ -28,6 +28,7 @@ class CompanyRequest extends FormRequest
             'alias_name' => 'required|min:3|max:100',
             'document_company' => "required|min:14|max:18|unique:companies,document_company,{$this->id},id,deleted_at,NULL",
             'document_company_secondary' => 'max:100',
+            'email' => "required|min:6|max:100|unique:companies,email,{$this->id},id,deleted_at,NULL",
             'telephone' => 'required|min:8|max:25',
             'cell' => 'max:25',
             'zipcode' => 'required|min:8|max:13',

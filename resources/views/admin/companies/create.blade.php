@@ -1,4 +1,5 @@
 @extends('adminlte::page')
+@section('plugins.BsCustomFileInput', true)
 
 @section('title', '- Cadastro de Empresa')
 
@@ -68,6 +69,14 @@
 
                                 <div class="d-flex flex-wrap justify-content-between">
                                     <div class="col-12 col-md-6 form-group px-0 pr-md-2">
+                                        <label for="email">E-mail</label>
+                                        <input type="email" class="form-control" id="email" placeholder="E-mail"
+                                            name="email" value="{{ old('email') }}" required>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-wrap justify-content-between">
+                                    <div class="col-12 col-md-6 form-group px-0 pr-md-2">
                                         <label for="telephone">Telefone</label>
                                         <input type="tel" class="form-control" id="telephone" placeholder="Telefone"
                                             name="telephone" value="{{ old('telephone') }}" required>
@@ -125,8 +134,8 @@
                                             value="{{ old('city') }}" required>
                                     </div>
                                     <div class="col-12 col-md-6 form-group px-0 pl-md-2">
-                                        <label for="logo">Logotipo:</label>
-                                        <input type="file" name="logo" class="form-control">
+                                        <x-adminlte-input-file name="logo" label="Logotipo"
+                                            placeholder="Selecione um arquivo..." legend="Selecionar" />
                                     </div>
                                 </div>
 

@@ -76,6 +76,9 @@ class GenreController extends Controller
             abort(403, 'Acesso não autorizado');
         }
         $genre = Genre::where('id', $id)->first();
+        if (empty($genre->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
         return view('admin.configurations.genres.edit', compact('genre'));
     }
 
@@ -93,7 +96,9 @@ class GenreController extends Controller
         }
         $data = $request->all();
         $genre = Genre::where('id', $id)->first();
-
+        if (empty($genre->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
         if ($genre->update($data)) {
             return redirect()
                 ->route('admin.genres.index')
@@ -118,7 +123,9 @@ class GenreController extends Controller
             abort(403, 'Acesso não autorizado');
         }
         $genre = Genre::where('id', $id)->first();
-
+        if (empty($genre->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
         if ($genre->delete()) {
             return redirect()
                 ->route('admin.genres.index')

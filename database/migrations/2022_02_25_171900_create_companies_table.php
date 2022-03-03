@@ -20,6 +20,7 @@ class CreateCompaniesTable extends Migration
             $table->string('document_company')->nullable();
             $table->string('document_company_secondary')->nullable();
             /** contact */
+            $table->string('email')->nullable();
             $table->string('telephone')->nullable();
             $table->string('cell')->nullable();
             /** address */
