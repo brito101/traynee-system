@@ -18,7 +18,7 @@
             </div>
             <div class="info">
                 <a href="{{ Auth::user()->hasPermissionTo('Editar Usuários')? route('admin.users.edit', ['user' => Auth::user()->id]): (Auth::user()->hasPermissionTo('Editar Usuário')? route('admin.user.edit'): '#') }}"
-                    class="d-block" title="Editar usuário">{{ Auth::user()->name }}</a>
+                    class="d-block" title="Editar usuário">{{ Str::words(Auth::user()->name, 1, '') }}</a>
             </div>
         </div>
 

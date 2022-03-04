@@ -111,7 +111,8 @@
                                             <x-adminlte-select2 name="company_id">
                                                 <option value="">Não Informado</option>
                                                 @foreach ($companies as $company)
-                                                    <option {{ old('company_id') == $company->id ? 'selected' : '' }}
+                                                    <option
+                                                        {{ old('company_id') == $company->id ? 'selected' : ($user->company_id == $company->id ? 'selected' : '') }}
                                                         value="{{ $company->id }}">{{ $company->alias_name }}
                                                     </option>
                                                 @endforeach
