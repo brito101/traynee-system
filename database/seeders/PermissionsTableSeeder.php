@@ -68,13 +68,13 @@ class PermissionsTableSeeder extends Seeder
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
-            /** Acessar Configurações */
+            /** Settings Access */
             [
                 'name' => 'Acessar Configurações',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
-            /** Gêneros */
+            /** Genres */
             [
                 'name' => 'Acessar Gêneros',
                 'guard_name' => 'web',
@@ -100,7 +100,7 @@ class PermissionsTableSeeder extends Seeder
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
-            /** Empresas */
+            /** Companies */
             [
                 'name' => 'Acessar Empresas',
                 'guard_name' => 'web',
@@ -123,6 +123,32 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Excluir Empresas',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            /** Users */
+            [
+                'name' => 'Acessar Usuários',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Listar Usuários',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Criar Usuários',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Editar Usuários',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Excluir Usuários',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],

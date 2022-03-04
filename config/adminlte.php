@@ -246,16 +246,19 @@ return [
             'text'        => 'Usuários',
             'url'         => '#',
             'icon'        => 'fas fa-fw fa-users',
+            'can'         => 'Acessar Usuários',
             'submenu' => [
                 [
                     'text' => 'Listagem de Usuários',
                     'url'  => 'admin/users',
                     'icon' => 'fas fa-fw fa-chevron-right',
+                    'can'  => 'Listar Usuários',
                 ],
                 [
                     'text' => 'Cadastro de Usuários',
                     'url'  => 'admin/users/create',
                     'icon' => 'fas fa-fw fa-chevron-right',
+                    'can'  => 'Criar Usuários',
                 ],
             ],
         ],

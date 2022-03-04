@@ -8,7 +8,6 @@ use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class CompanyController extends Controller
@@ -55,7 +54,7 @@ class CompanyController extends Controller
         $data['user_id'] = auth()->user()->id;
 
         if ($request->hasFile('logo') && $request->file('logo')->isValid()) {
-            $name = Str::slug($data['alias_name']) . time();
+            $name = Str::slug(mb_substr($data['alias_name'], 0, 100)) . time();
             $extenstion = $request->logo->extension();
             $nameFile = "{$name}.{$extenstion}";
             $data['logo'] = $nameFile;
@@ -120,7 +119,7 @@ class CompanyController extends Controller
         }
 
         if ($request->hasFile('logo') && $request->file('logo')->isValid()) {
-            $name = Str::slug($company->alias_name) . time();
+            $name = Str::slug(mb_substr($company->alias_name, 0, 10)) . time();
             $imagePath = storage_path() . '/app/public/companies/' . $company->logo;
 
             if (File::isFile($imagePath)) {

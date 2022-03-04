@@ -54,6 +54,14 @@
                                         </x-adminlte-select2>
                                     </div>
                                 </div>
+
+                                <div class="d-flex flex-wrap justify-content-between">
+                                    <div class="col-12 col-md-6 form-group px-0 pr-md-2">
+                                        <x-adminlte-input-file name="photo" label="Foto"
+                                            placeholder="Selecione uma imagem..." legend="Selecionar" />
+                                    </div>
+                                </div>
+
                                 <div class="d-flex flex-wrap justify-content-between">
                                     <div class="col-12 col-md-6 form-group px-0 pr-md-2">
                                         <label for="email">E-mail</label>

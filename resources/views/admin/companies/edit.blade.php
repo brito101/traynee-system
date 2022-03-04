@@ -137,20 +137,24 @@
                                         <input type="text" class="form-control" id="city" placeholder="Cidade" name="city"
                                             value="{{ old('city') ?? $company->city }}" required>
                                     </div>
-                                    <div class="col-12 col-md-6 form-group px-0 pl-md-2 d-flex flex-wrap">
+                                </div>
+
+                                <div class="d-flex flex-wrap justify-content-between">
+                                    <div class="col-12 col-md-6 form-group px-0 pr-md-2 d-flex flex-wrap">
+
+                                        <div class="{{ $company->logo != null ? 'col-md-9' : 'col-md-12' }} px-0">
+                                            <x-adminlte-input-file name="logo" label="Logotipo"
+                                                placeholder="Selecione uma imagem..." legend="Selecionar" />
+                                        </div>
 
                                         @if ($company->logo != null)
-                                            <div class='col-12 col-md-2 align-self-center mt-3'>
+                                            <div
+                                                class='col-12 col-md-3 align-self-center mt-3 d-flex justify-content-center justify-content-md-end px-0'>
                                                 <img src="{{ url('storage/companies/' . $company->logo) }}"
-                                                    alt="{{ $company->alias_name }}" style="max-width: 50px;"
+                                                    alt="{{ $company->alias_name }}" style="max-width: 80%;"
                                                     class="img-thumbnail d-block">
                                             </div>
                                         @endif
-
-                                        <div class="{{ $company->logo != null ? 'col-md-10' : 'col-md-12' }}">
-                                            <x-adminlte-input-file name="logo" label="Logotipo"
-                                                placeholder="Selecione um arquivo..." legend="Selecionar" />
-                                        </div>
                                     </div>
                                 </div>
 

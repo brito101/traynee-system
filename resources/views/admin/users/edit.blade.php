@@ -57,6 +57,26 @@
                                         </x-adminlte-select2>
                                     </div>
                                 </div>
+
+                                <div class="d-flex flex-wrap justify-content-between">
+                                    <div class="col-12 col-md-6 form-group px-0 pr-md-2 d-flex flex-wrap">
+
+                                        <div class="{{ $user->photo != null ? 'col-md-9' : 'col-md-12' }} px-0">
+                                            <x-adminlte-input-file name="photo" label="Foto"
+                                                placeholder="Selecione uma imagem..." legend="Selecionar" />
+                                        </div>
+
+                                        @if ($user->photo != null)
+                                            <div
+                                                class='col-12 col-md-3 align-self-center mt-3 d-flex justify-content-center justify-content-md-end px-0'>
+                                                <img src="{{ url('storage/users/' . $user->photo) }}"
+                                                    alt="{{ $user->name }}" style="max-width: 80%;"
+                                                    class="img-thumbnail d-block">
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+
                                 <div class="d-flex flex-wrap justify-content-between">
                                     <div class="col-12 col-md-6 form-group px-0 pr-md-2">
                                         <label for="email">E-mail</label>
@@ -67,6 +87,18 @@
                                         <label for="password">Senha</label>
                                         <input type="password" class="form-control" id="password" placeholder="Senha"
                                             minlength="8" name="password" value="">
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-wrap justify-content-between">
+                                    <div class="col-12 col-md-6 form-group px-0 pr-md-2">
+                                        <label for="role">Tipo de Usuário</label>
+                                        <x-adminlte-select2 name="role">
+                                            @foreach ($roles as $role)
+                                                <option {{ $user->roles->first()->id == $role->id ? 'selected' : '' }}
+                                                    value="{{ $role->name }}">{{ $role->name }}</option>
+                                            @endforeach
+                                        </x-adminlte-select2>
                                     </div>
                                 </div>
 

@@ -19,6 +19,9 @@ class AlterTableUser extends Migration
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            /** photo */
+            $table->string('photo', 100)->nullable();
+            /** pattern */
             $table->softDeletes();
         });
     }
@@ -33,6 +36,7 @@ class AlterTableUser extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->dropForeign(['genre_id']);
             $table->dropColumn('genre_id');
+            $table->dropColumn('photo');
             $table->dropColumn('deleted_at');
         });
     }

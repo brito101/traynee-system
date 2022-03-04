@@ -133,9 +133,12 @@
                                         <input type="text" class="form-control" id="city" placeholder="Cidade" name="city"
                                             value="{{ old('city') }}" required>
                                     </div>
-                                    <div class="col-12 col-md-6 form-group px-0 pl-md-2">
+                                </div>
+
+                                <div class="d-flex flex-wrap justify-content-between">
+                                    <div class="col-12 col-md-6 form-group px-0 pr-md-2">
                                         <x-adminlte-input-file name="logo" label="Logotipo"
-                                            placeholder="Selecione um arquivo..." legend="Selecionar" />
+                                            placeholder="Selecione uma imagem..." legend="Selecionar" />
                                     </div>
                                 </div>
 
