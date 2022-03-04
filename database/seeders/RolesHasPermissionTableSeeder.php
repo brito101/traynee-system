@@ -57,25 +57,25 @@ class RolesHasPermissionTableSeeder extends Seeder
                 'permission_id' => 10,
                 'role_id' => 1
             ],
-            /** Settings */
             [
                 'permission_id' => 11,
                 'role_id' => 1
             ],
             [
                 'permission_id' => 11,
+                'role_id' => 2
+            ],
+            /** Settings */
+            [
+                'permission_id' => 12,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 12,
                 'role_id' => 2
             ],
             /** Genres */
             [
-                'permission_id' => 12,
-                'role_id' => 1
-            ],
-            [
-                'permission_id' => 12,
-                'role_id' => 2
-            ],
-            [
                 'permission_id' => 13,
                 'role_id' => 1
             ],
@@ -105,18 +105,18 @@ class RolesHasPermissionTableSeeder extends Seeder
             ],
             [
                 'permission_id' => 16,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 17,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 17,
                 'role_id' => 2
             ],
             /** Companies */
             [
-                'permission_id' => 17,
-                'role_id' => 1
-            ],
-            [
-                'permission_id' => 17,
-                'role_id' => 2
-            ],
-            [
                 'permission_id' => 18,
                 'role_id' => 1
             ],
@@ -146,26 +146,26 @@ class RolesHasPermissionTableSeeder extends Seeder
             ],
             [
                 'permission_id' => 21,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 22,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 22,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 23,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 23,
                 'role_id' => 2
             ],
             /** Users */
             [
-                'permission_id' => 22,
-                'role_id' => 1
-            ],
-            [
-                'permission_id' => 22,
-                'role_id' => 2
-            ],
-            [
-                'permission_id' => 23,
-                'role_id' => 1
-            ],
-            [
-                'permission_id' => 23,
-                'role_id' => 2
-            ],
-            [
                 'permission_id' => 24,
                 'role_id' => 1
             ],
@@ -188,6 +188,35 @@ class RolesHasPermissionTableSeeder extends Seeder
             [
                 'permission_id' => 26,
                 'role_id' => 2
+            ],
+            [
+                'permission_id' => 27,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 27,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 28,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 28,
+                'role_id' => 2
+            ],
+            /** Businessmen */
+            [
+                'permission_id' => 29,
+                'role_id' => 3
+            ],
+            [
+                'permission_id' => 30,
+                'role_id' => 3
+            ],
+            [
+                'permission_id' => 31,
+                'role_id' => 3
             ],
         ]);
     }

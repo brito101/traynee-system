@@ -25,9 +25,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('admin', [AdminController::class, 'index'])->name('admin.home');
     Route::prefix('admin')->name('admin.')->group(function () {
         /** Users */
+        Route::get('/user/edit', [UserController::class, 'edit'])->name('user.edit');
         Route::get('/users/destroy/{id}', [UserController::class, 'destroy']);
         Route::resource('users', UserController::class);
         /** Companies */
+        Route::get('/company/edit', [CompanyController::class, 'edit'])->name('company.edit');
         Route::get('/companies/destroy/{id}', [CompanyController::class, 'destroy']);
         Route::resource('companies', CompanyController::class);
         /**Configurations */

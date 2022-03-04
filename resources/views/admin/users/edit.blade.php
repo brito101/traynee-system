@@ -14,7 +14,9 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('admin.users.index') }}">Usuários</a></li>
+                        @can('Listar Usuários')
+                            <li class="breadcrumb-item"><a href="{{ route('admin.users.index') }}">Usuários</a></li>
+                        @endcan
                         <li class="breadcrumb-item active">Editar Usuário</li>
                     </ol>
                 </div>
@@ -49,6 +51,7 @@
                                     <div class="col-12 col-md-6 form-group px-0 pl-md-2">
                                         <label for="genre_id">Gênero</label>
                                         <x-adminlte-select2 name="genre_id">
+                                            <option value="">Não Informado</option>
                                             @foreach ($genres as $genre)
                                                 <option
                                                     {{ old('genre_id') == $genre->id ? 'selected' : ($user->genre_id == $genre->id ? 'selected' : '') }}
@@ -89,18 +92,34 @@
                                             minlength="8" name="password" value="">
                                     </div>
                                 </div>
-
                                 <div class="d-flex flex-wrap justify-content-between">
-                                    <div class="col-12 col-md-6 form-group px-0 pr-md-2">
-                                        <label for="role">Tipo de Usuário</label>
-                                        <x-adminlte-select2 name="role">
-                                            @foreach ($roles as $role)
-                                                <option {{ $user->roles->first()->id == $role->id ? 'selected' : '' }}
-                                                    value="{{ $role->name }}">{{ $role->name }}</option>
-                                            @endforeach
-                                        </x-adminlte-select2>
-                                    </div>
+                                    @can('Atribuir Perfis')
+                                        <div class="col-12 col-md-6 form-group px-0 pr-md-2">
+                                            <label for="role">Tipo de Usuário</label>
+                                            <x-adminlte-select2 name="role">
+                                                @foreach ($roles as $role)
+                                                    <option
+                                                        {{ old('role') == $role->name ? 'selected' : ($user->roles->first()->id == $role->id ? 'selected' : '') }}
+                                                        value="{{ $role->name }}">{{ $role->name }}</option>
+                                                @endforeach
+                                            </x-adminlte-select2>
+                                        </div>
+                                    @endcan
+                                    @can('Atribuir Empresas')
+                                        <div class="col-12 col-md-6 form-group px-0 pl-md-2">
+                                            <label for="role">Empresa</label>
+                                            <x-adminlte-select2 name="company_id">
+                                                <option value="">Não Informado</option>
+                                                @foreach ($companies as $company)
+                                                    <option {{ old('company_id') == $company->id ? 'selected' : '' }}
+                                                        value="{{ $company->id }}">{{ $company->alias_name }}
+                                                    </option>
+                                                @endforeach
+                                            </x-adminlte-select2>
+                                        </div>
+                                    @endcan
                                 </div>
+
 
                             </div>
 

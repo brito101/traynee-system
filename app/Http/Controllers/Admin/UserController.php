@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserRequest;
+use App\Models\Company;
 use App\Models\Genre;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -43,8 +44,18 @@ class UserController extends Controller
         if (!Auth::user()->hasPermissionTo('Criar Usuários')) {
             abort(403, 'Acesso não autorizado');
         }
+        if (Auth::user()->hasRole('Programador')) {
+            $roles = Role::all();
+            $companies = Company::all();
+        } elseif (Auth::user()->hasRole('Administrador')) {
+            $roles = Role::where('name', '!=', 'Programador')->get();
+            $companies = Company::all();
+        } else {
+            $roles = [];
+            $companies = [];
+        }
         $genres = Genre::all();
-        return view('admin.users.create', compact('genres'));
+        return view('admin.users.create', compact('genres', 'roles', 'companies'));
     }
 
     /**
@@ -82,8 +93,6 @@ class UserController extends Controller
         if ($user->save()) {
             if (!empty($request->role)) {
                 $user->syncRoles($request->role);
-            } else {
-                $user->syncRoles('Estagiário');
             }
             return redirect()
                 ->route('admin.users.index')
@@ -102,19 +111,38 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id = null)
     {
-        if (!Auth::user()->hasPermissionTo('Editar Usuários')) {
+        if ($id && !Auth::user()->hasPermissionTo('Editar Usuários')) {
             abort(403, 'Acesso não autorizado');
         }
 
+        if (is_null($id) && !Auth::user()->hasPermissionTo('Editar Usuário')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        if (is_null($id)) {
+            $id = Auth::user()->id;
+        }
+
         $genres = Genre::all();
-        $roles = Role::all();
+
+        if (Auth::user()->hasRole('Programador')) {
+            $roles = Role::all();
+            $companies = Company::all();
+        } elseif (Auth::user()->hasRole('Administrador')) {
+            $roles = Role::where('name', '!=', 'Programador')->get();
+            $companies = Company::all();
+        } else {
+            $roles = [];
+            $companies = [];
+        }
+
         $user = User::where('id', $id)->first();
         if (empty($user->id)) {
             abort(403, 'Acesso não autorizado');
         }
-        return view('admin.users.edit', compact('user', 'genres', 'roles'));
+        return view('admin.users.edit', compact('user', 'genres', 'roles', 'companies'));
     }
 
     /**
@@ -126,12 +154,20 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
-        if (!Auth::user()->hasPermissionTo('Editar Usuários')) {
+        if (!Auth::user()->hasAnyPermission(['Editar Usuários', 'Editar Usuário'])) {
             abort(403, 'Acesso não autorizado');
         }
 
         $data = $request->all();
-        $user = User::where('id', $id)->first();
+
+        if (Auth::user()->hasPermissionTo('Editar Usuários')) {
+            $user = User::where('id', $id)->first();
+        }
+
+        if (Auth::user()->hasPermissionTo('Editar Usuário')) {
+            $user = Auth::user();
+        }
+
         if (empty($user->id)) {
             abort(403, 'Acesso não autorizado');
         }
@@ -167,9 +203,15 @@ class UserController extends Controller
             if (!empty($request->role)) {
                 $user->syncRoles($request->role);
             }
-            return redirect()
-                ->route('admin.users.index')
-                ->with('success', 'Atualização realizada!');
+            if (Auth::user()->hasPermissionTo('Editar Usuário')) {
+                return redirect()
+                    ->route('admin.user.edit')
+                    ->with('success', 'Atualização realizada!');
+            } else {
+                return redirect()
+                    ->route('admin.users.index')
+                    ->with('success', 'Atualização realizada!');
+            }
         } else {
             return redirect()
                 ->back()

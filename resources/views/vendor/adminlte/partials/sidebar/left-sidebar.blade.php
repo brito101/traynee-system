@@ -9,6 +9,19 @@
 
     {{-- Sidebar menu --}}
     <div class="sidebar">
+
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="{{ Auth::user()->photo? url('storage/users/' . Auth::user()->photo): asset('vendor/adminlte/dist/img/avatar.png') }}"
+                    class="img-circle elevation-2" style="width: 33.6px; height: 33.6px;"
+                    alt="{{ Auth::user()->name }}">
+            </div>
+            <div class="info">
+                <a href="{{ Auth::user()->hasPermissionTo('Editar Usuários')? route('admin.users.edit', ['user' => Auth::user()->id]): (Auth::user()->hasPermissionTo('Editar Usuário')? route('admin.user.edit'): '#') }}"
+                    class="d-block" title="Editar usuário">{{ Auth::user()->name }}</a>
+            </div>
+        </div>
+
         <nav class="pt-2">
             <ul class="nav nav-pills nav-sidebar flex-column {{ config('adminlte.classes_sidebar_nav', '') }}"
                 data-widget="treeview" role="menu"

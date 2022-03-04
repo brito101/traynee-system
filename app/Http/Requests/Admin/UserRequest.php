@@ -27,7 +27,8 @@ class UserRequest extends FormRequest
         return [
             'name' => 'required|min:3|max:100',
             'email' => "required|min:6|max:100|unique:users,email,{$this->id},id,deleted_at,NULL",
-            'genre_id' => "required",
+            'genre_id' => "nullable|max:1",
+            'company_id' => "nullable|max:1",
             'password' => "max:100",
             'photo' => 'image|mimes:jpg,png,jpeg,gif,svg,webp|max:1024|dimensions:max_width=1800,max_height=1800',
         ];

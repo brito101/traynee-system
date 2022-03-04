@@ -88,11 +88,20 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id = null)
     {
-        if (!Auth::user()->hasPermissionTo('Editar Empresas')) {
+        if ($id && !Auth::user()->hasPermissionTo('Editar Empresas')) {
             abort(403, 'Acesso não autorizado');
         }
+
+        if (is_null($id) && !Auth::user()->hasPermissionTo('Editar Empresa')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        if (is_null($id)) {
+            $id = Auth::user()->company_id;
+        }
+
         $company = Company::where('id', $id)->first();
         if (empty($company->id)) {
             abort(403, 'Acesso não autorizado');
@@ -109,11 +118,20 @@ class CompanyController extends Controller
      */
     public function update(CompanyRequest $request, $id)
     {
-        if (!Auth::user()->hasPermissionTo('Editar Empresas')) {
+        if (!Auth::user()->hasAnyPermission(['Editar Empresas', 'Editar Empresa'])) {
             abort(403, 'Acesso não autorizado');
         }
+
         $data = $request->all();
-        $company = Company::where('id', $id)->first();
+
+        if (Auth::user()->hasPermissionTo('Editar Empresas')) {
+            $company = Company::where('id', $id)->first();
+        }
+
+        if (Auth::user()->hasPermissionTo('Editar Empresa')) {
+            $company = Company::where('id', Auth::user()->company_id)->first();
+        }
+
         if (empty($company->id)) {
             abort(403, 'Acesso não autorizado');
         }
@@ -141,9 +159,15 @@ class CompanyController extends Controller
         }
 
         if ($company->update($data)) {
-            return redirect()
-                ->route('admin.companies.index')
-                ->with('success', 'Atualização realizada!');
+            if (Auth::user()->hasPermissionTo('Editar Empresa')) {
+                return redirect()
+                    ->route('admin.company.edit')
+                    ->with('success', 'Atualização realizada!');
+            } else {
+                return redirect()
+                    ->route('admin.companies.index')
+                    ->with('success', 'Atualização realizada!');
+            }
         } else {
             return redirect()
                 ->back()

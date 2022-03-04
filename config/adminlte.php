@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+
 return [
 
     /*
@@ -46,7 +48,7 @@ return [
     */
 
     'logo' => env('APP_NAME'),
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'vendor/adminlte/dist/img/logo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -340,7 +342,27 @@ return [
                     'can'     => 'Criar Permissões',
                 ],
             ]
-        ]
+        ],
+        /** Empresários */
+        [
+            'text'        => 'Editar Usuário',
+            'url'         => 'admin/user/edit',
+            'icon'        => 'fas fa-fw fa-user',
+            'can'         => 'Editar Usuário',
+        ],
+        [
+            'text'        => 'Empresa',
+            'icon'        => 'far fa-fw fa-building',
+            'can'         => 'Acessar Empresa',
+            'submenu' => [
+                [
+                    'text'        => 'Editar Empresa',
+                    'url'         => 'admin/company/edit',
+                    'icon'        => 'fas fa-fw fa-chevron-right',
+                    'can'         => 'Editar Empresa'
+                ]
+            ]
+        ],
 
         //End custom menus
         // [

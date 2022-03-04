@@ -68,6 +68,11 @@ class PermissionsTableSeeder extends Seeder
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
+            [
+                'name' => 'Atribuir Perfis',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
             /** Settings Access */
             [
                 'name' => 'Acessar Configurações',
@@ -126,6 +131,11 @@ class PermissionsTableSeeder extends Seeder
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
+            [
+                'name' => 'Atribuir Empresas',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
             /** Users */
             [
                 'name' => 'Acessar Usuários',
@@ -149,6 +159,22 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Excluir Usuários',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            /** Businessmen */
+            [
+                'name' => 'Editar Usuário',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Acessar Empresa',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Editar Empresa',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],

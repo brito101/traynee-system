@@ -33,6 +33,17 @@ class CreateCompaniesTable extends Migration
             $table->string('city')->nullable();
             /** logo */
             $table->string('logo', 100)->nullable();
+            /** resume */
+            $table->text('resume')->nullable();
+            /** social networks */
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('youtube')->nullable();
+            $table->string('whatsapp')->nullable();
+            $table->string('telegram')->nullable();
+            $table->string('discord')->nullable();
             /*pattern*/
             $table->foreignId('user_id')
                 ->constrained()

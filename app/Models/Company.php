@@ -28,6 +28,15 @@ class Company extends Model
         'neighborhood',
         'state',
         'city',
-        'logo'
+        'logo',
+        'resume',
+        'facebook',
+        'instagram',
+        'twitter',
+        'linkedin',
+        'youtube',
+        'whatsapp',
+        'telegram',
+        'discord',
     ];
 }

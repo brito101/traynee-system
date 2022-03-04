@@ -13,7 +13,9 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('admin.companies.index') }}">Empresas</a></li>
+                        @can('Editar Empresas')
+                            <li class="breadcrumb-item"><a href="{{ route('admin.companies.index') }}">Empresas</a></li>
+                        @endcan
                         <li class="breadcrumb-item active">Editar Empresa</li>
                     </ol>
                 </div>

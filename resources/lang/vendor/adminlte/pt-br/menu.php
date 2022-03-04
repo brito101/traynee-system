@@ -16,5 +16,5 @@ return [
     'Important'                     => 'Importante',
     'Warning'                       => 'Aviso',
     'Information'                   => 'Informação',
-    'companies' => 'Empresas'
+    'companies'                     => 'Empresas'
 ];

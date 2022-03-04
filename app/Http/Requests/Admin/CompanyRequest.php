@@ -39,6 +39,15 @@ class CompanyRequest extends FormRequest
             'state' => 'required|min:2|max:3',
             'city' => 'required|min:2|max:100',
             'logo' => 'image|mimes:jpg,png,jpeg,gif,svg,webp|max:1024|dimensions:max_width=1800,max_height=1800',
+            'resume' => 'nullable',
+            'facebook' => 'nullable|max:150',
+            'instagram' => 'nullable|max:150',
+            'twitter' => 'nullable|max:150',
+            'linkedin' => 'nullable|max:150',
+            'youtube' => 'nullable|max:150',
+            'whatsapp' => 'nullable|max:150',
+            'telegram' => 'nullable|max:150',
+            'discord' => 'nullable|max:150',
         ];
     }
 }

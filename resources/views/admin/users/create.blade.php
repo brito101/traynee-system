@@ -47,6 +47,7 @@
                                     <div class="col-12 col-md-6 form-group px-0 pl-md-2">
                                         <label for="genre_id">Gênero</label>
                                         <x-adminlte-select2 name="genre_id">
+                                            <option value="">Não Informado</option>
                                             @foreach ($genres as $genre)
                                                 <option {{ old('genre_id') == $genre->id ? 'selected' : '' }}
                                                     value="{{ $genre->id }}">{{ $genre->name }}</option>
@@ -74,7 +75,31 @@
                                             minlength="8" name="password" value="{{ old('password') }}" required>
                                     </div>
                                 </div>
+                                <div class="d-flex flex-wrap justify-content-between">
+                                    @can('Atribuir Perfis')
+                                        <div class="col-12 col-md-6 form-group px-0 pr-md-2">
+                                            <label for="role">Tipo de Usuário</label>
+                                            <x-adminlte-select2 name="role">
+                                                @foreach ($roles as $role)
+                                                    <option {{ old('role') == $role->name ? 'selected' : '' }}
+                                                        value="{{ $role->name }}">{{ $role->name }}</option>
+                                                @endforeach
+                                            </x-adminlte-select2>
+                                        </div>
 
+                                    @endcan
+                                    <div class="col-12 col-md-6 form-group px-0 pl-md-2">
+                                        <label for="role">Empresa</label>
+                                        <x-adminlte-select2 name="company_id">
+                                            <option value="">Não Informado</option>
+                                            @foreach ($companies as $company)
+                                                <option {{ old('company_id') == $company->id ? 'selected' : '' }}
+                                                    value="{{ $company->id }}">{{ $company->alias_name }}
+                                                </option>
+                                            @endforeach
+                                        </x-adminlte-select2>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="card-footer">

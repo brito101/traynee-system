@@ -8,45 +8,61 @@
     @if (auth()->user()->can('Editar Usuários') &&
     auth()->user()->can('Excluir Usuários'))
         @php
-            $heads = [['label' => 'ID', 'width' => 5], 'Nome', 'E-mail', 'Gênero', 'Tipo', ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
+            $heads = [['label' => 'ID', 'width' => 5], 'Nome', 'E-mail', 'Gênero', 'Tipo', 'Empresa', ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
 
             $list = [];
 
             foreach ($users as $user) {
+                /** Genre */
                 if (isset($user->genre['name'])) {
                     $genre = $user->genre['name'];
                 } else {
                     $genre = 'Não informado';
                 }
-                $list[] = [$user->id, $user->name, $user->email, $genre, $user->getRoleNames(), '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="users/' . $user->id . '/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="users/destroy/' . $user->id . '" onclick="return confirm(\'Confirma a exclusão desta usuário?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
+                /** Company */
+                if (isset($user->company['alias_name'])) {
+                    $company = $user->company['alias_name'];
+                } else {
+                    $company = '';
+                }
+
+                $list[] = [$user->id, $user->name, $user->email, $genre, $user->getRoleNames(), $company, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="users/' . $user->id . '/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="users/destroy/' . $user->id . '" onclick="return confirm(\'Confirma a exclusão desta usuário?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
             }
 
             $config = [
                 'data' => $list,
                 'order' => [[0, 'asc']],
-                'columns' => [null, null, null, null, null, ['orderable' => false]],
+                'columns' => [null, null, null, null, null, null, ['orderable' => false]],
                 'language' => ['url' => asset('vendor/datatables/js/pt-BR.json')],
             ];
         @endphp
     @else
         @php
-            $heads = [['label' => 'ID', 'width' => 5], 'Nome', 'E-mail', 'Gênero', 'Tipo'];
+            $heads = [['label' => 'ID', 'width' => 5], 'Nome', 'E-mail', 'Gênero', 'Tipo', 'Empresa'];
 
             $list = [];
 
             foreach ($users as $user) {
+                /** Genre */
                 if (isset($user->genre['name'])) {
                     $genre = $user->genre['name'];
                 } else {
                     $genre = 'Não informado';
                 }
-                $list[] = [$user->id, $user->name, $user->email, $genre, $user->getRoleNames()];
+                /** Company */
+                if (isset($user->company['alias_name'])) {
+                    $company = $user->company['alias_name'];
+                } else {
+                    $company = '';
+                }
+
+                $list[] = [$user->id, $user->name, $user->email, $genre, $user->getRoleNames(), $company];
             }
 
             $config = [
                 'data' => $list,
                 'order' => [[0, 'asc']],
-                'columns' => [null, null, null, null, null],
+                'columns' => [null, null, null, null, null, null],
                 'language' => ['url' => asset('vendor/datatables/js/pt-BR.json')],
             ];
         @endphp
