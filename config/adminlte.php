@@ -356,8 +356,26 @@ return [
             'can'         => 'Acessar Empresa',
             'submenu' => [
                 [
-                    'text'        => 'Editar Empresa',
+                    'text'        => 'Dados da Empresa',
                     'url'         => 'admin/company/edit',
+                    'icon'        => 'fas fa-fw fa-chevron-right',
+                    'can'         => 'Editar Empresa'
+                ],
+                [
+                    'text'        => 'Redes Sociais',
+                    'url'         => 'admin/company/edit/social-network',
+                    'icon'        => 'fas fa-fw fa-chevron-right',
+                    'can'         => 'Editar Empresa'
+                ],
+                [
+                    'text'        => 'Perfil Institucional',
+                    'url'         => 'admin/company/edit/resume',
+                    'icon'        => 'fas fa-fw fa-chevron-right',
+                    'can'         => 'Editar Empresa'
+                ],
+                [
+                    'text'        => 'Brand',
+                    'url'         => 'admin/company/edit/brand-images',
                     'icon'        => 'fas fa-fw fa-chevron-right',
                     'can'         => 'Editar Empresa'
                 ]
@@ -621,6 +639,21 @@ return [
                     'type' => 'css',
                     'asset' => true,
                     'location' => 'vendor/select2-bootstrap4-theme/select2-bootstrap4.min.css',
+                ],
+            ],
+        ],
+        'Summernote' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/summernote/summernote-bs4.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/summernote/summernote-bs4.min.css',
                 ],
             ],
         ],

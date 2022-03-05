@@ -38,5 +38,8 @@ class Company extends Model
         'whatsapp',
         'telegram',
         'discord',
+        'brand_facebook',
+        'brand_instagram',
+        'brand_twitter'
     ];
 }

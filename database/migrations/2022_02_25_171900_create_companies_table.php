@@ -34,7 +34,7 @@ class CreateCompaniesTable extends Migration
             /** logo */
             $table->string('logo', 100)->nullable();
             /** resume */
-            $table->text('resume')->nullable();
+            $table->longText('resume')->nullable();
             /** social networks */
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
@@ -44,6 +44,10 @@ class CreateCompaniesTable extends Migration
             $table->string('whatsapp')->nullable();
             $table->string('telegram')->nullable();
             $table->string('discord')->nullable();
+            /** brand images */
+            $table->string('brand_facebook', 100)->nullable();
+            $table->string('brand_instagram', 100)->nullable();
+            $table->string('brand_twitter', 100)->nullable();
             /*pattern*/
             $table->foreignId('user_id')
                 ->constrained()

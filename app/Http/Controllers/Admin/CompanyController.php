@@ -176,6 +176,190 @@ class CompanyController extends Controller
         }
     }
 
+    public function socialNetwork()
+    {
+        if (!Auth::user()->hasPermissionTo('Editar Empresa')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $company = Company::where('id', Auth::user()->company_id)->first();
+        if (empty($company->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
+        return view('admin.companies.social', compact('company'));
+    }
+
+    public function socialNetworkStore(CompanyRequest $request)
+    {
+        $data = $request->all();
+
+        if (!Auth::user()->hasPermissionTo('Editar Empresa')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $company = Company::where('id', Auth::user()->company_id)->first();
+        if (empty($company->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        if ($company->update($data)) {
+            return redirect()
+                ->route('admin.company.social')
+                ->with('success', 'Atualização realizada!');
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', 'Erro ao atualizar!');
+        }
+    }
+
+    public function resume()
+    {
+        if (!Auth::user()->hasPermissionTo('Editar Empresa')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $company = Company::where('id', Auth::user()->company_id)->first();
+        if (empty($company->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
+        return view('admin.companies.resume', compact('company'));
+    }
+
+
+    public function resumeStore(CompanyRequest $request)
+    {
+        $data = $request->all();
+
+        if (!Auth::user()->hasPermissionTo('Editar Empresa')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $company = Company::where('id', Auth::user()->company_id)->first();
+        if (empty($company->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        if ($company->update($data)) {
+            return redirect()
+                ->route('admin.company.resume')
+                ->with('success', 'Edição realizada!');
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', 'Erro ao atualizar!');
+        }
+    }
+
+    public function brandImages()
+    {
+        if (!Auth::user()->hasPermissionTo('Editar Empresa')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $company = Company::where('id', Auth::user()->company_id)->first();
+        if (empty($company->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
+        return view('admin.companies.brand', compact('company'));
+    }
+
+    public function brandImagesStore(CompanyRequest $request)
+    {
+        $data = $request->all();
+
+        if (!Auth::user()->hasPermissionTo('Editar Empresa')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $company = Company::where('id', Auth::user()->company_id)->first();
+        if (empty($company->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        /** Facebook */
+        if ($request->hasFile('brand_facebook') && $request->file('brand_facebook')->isValid()) {
+            $name = Str::slug(mb_substr($company->alias_name, 0, 10)) . '-facebook' . time();
+            $imagePath = storage_path() . '/app/public/companies/' . $company->brand_facebook;
+
+            if (File::isFile($imagePath)) {
+                unlink($imagePath);
+            }
+
+            $extenstion = $request->brand_facebook->extension();
+            $nameFile = "{$name}.{$extenstion}";
+
+            $data['brand_facebook'] = $nameFile;
+
+            $upload = $request->brand_facebook->storeAs('companies', $nameFile);
+
+            if (!$upload)
+                return redirect()
+                    ->back()
+                    ->withInput()
+                    ->with('error', 'Falha ao fazer o upload da imagem');
+        }
+
+        /** Instagram */
+        if ($request->hasFile('brand_instagram') && $request->file('brand_instagram')->isValid()) {
+            $name = Str::slug(mb_substr($company->alias_name, 0, 10))  . '-instagram' . time();
+            $imagePath = storage_path() . '/app/public/companies/' . $company->brand_instagram;
+
+            if (File::isFile($imagePath)) {
+                unlink($imagePath);
+            }
+
+            $extenstion = $request->brand_instagram->extension();
+            $nameFile = "{$name}.{$extenstion}";
+
+            $data['brand_instagram'] = $nameFile;
+
+            $upload = $request->brand_instagram->storeAs('companies', $nameFile);
+
+            if (!$upload)
+                return redirect()
+                    ->back()
+                    ->withInput()
+                    ->with('error', 'Falha ao fazer o upload da imagem');
+        }
+
+        /** Twitter */
+        if ($request->hasFile('brand_twitter') && $request->file('brand_twitter')->isValid()) {
+            $name = Str::slug(mb_substr($company->alias_name, 0, 10)) . '-twitter' . time();
+            $imagePath = storage_path() . '/app/public/companies/' . $company->brand_twitter;
+
+            if (File::isFile($imagePath)) {
+                unlink($imagePath);
+            }
+
+            $extenstion = $request->brand_twitter->extension();
+            $nameFile = "{$name}.{$extenstion}";
+
+            $data['brand_twitter'] = $nameFile;
+
+            $upload = $request->brand_twitter->storeAs('companies', $nameFile);
+
+            if (!$upload)
+                return redirect()
+                    ->back()
+                    ->withInput()
+                    ->with('error', 'Falha ao fazer o upload da imagem');
+        }
+
+        if ($company->update($data)) {
+            return redirect()
+                ->route('admin.company.brand')
+                ->with('success', 'Edição realizada!');
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', 'Erro ao atualizar!');
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -192,11 +376,32 @@ class CompanyController extends Controller
             abort(403, 'Acesso não autorizado');
         }
         $imagePath = storage_path() . '/app/public/companies/' . $company->logo;
+        $imagePathFacebook = storage_path() . '/app/public/companies/' . $company->brand_facebook;
+        $imagePathInstagram = storage_path() . '/app/public/companies/' . $company->brand_instagram;
+        $imagePathTwitter = storage_path() . '/app/public/companies/' . $company->brand_twitter;
 
         if ($company->delete()) {
             if (File::isFile($imagePath)) {
                 unlink($imagePath);
                 $company->logo = null;
+                $company->update();
+            }
+
+            if (File::isFile($imagePathFacebook)) {
+                unlink($imagePathFacebook);
+                $company->brand_facebook = null;
+                $company->update();
+            }
+
+            if (File::isFile($imagePathInstagram)) {
+                unlink($imagePathInstagram);
+                $company->brand_instagram = null;
+                $company->update();
+            }
+
+            if (File::isFile($imagePathTwitter)) {
+                unlink($imagePathTwitter);
+                $company->brand_twitter = null;
                 $company->update();
             }
 

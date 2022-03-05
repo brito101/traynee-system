@@ -193,7 +193,10 @@ return [
         'document_company_secondary' => 'inscrição estadual',
         'zipcode' => 'CEP',
         'complement' => 'complemento',
-        'logo' => 'logotipo'
+        'logo' => 'logotipo',
+        'brand_facebook' => 'Imagem para o Facebook',
+        'brand_instagram' => 'Imagem para o Instagram',
+        'brand_twitter' => 'Imagem para o Twitter',
     ],
 
 ];

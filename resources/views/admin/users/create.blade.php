@@ -2,6 +2,7 @@
 
 @section('title', '- Cadastro de Usuário')
 @section('plugins.select2', true)
+@section('plugins.BsCustomFileInput', true)
 
 @section('content')
 

@@ -30,6 +30,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('users', UserController::class);
         /** Companies */
         Route::get('/company/edit', [CompanyController::class, 'edit'])->name('company.edit');
+        Route::get('/company/edit/social-network', [CompanyController::class, 'socialNetwork'])->name('company.social');
+        Route::put('/company/edit/social-network', [CompanyController::class, 'socialNetworkStore'])->name('company.social.store');
+        Route::get('/company/edit/resume', [CompanyController::class, 'resume'])->name('company.resume');
+        Route::put('/company/edit/resume', [CompanyController::class, 'resumeStore'])->name('company.resume.store');
+        Route::get('/company/edit/brand-images', [CompanyController::class, 'brandImages'])->name('company.brand');
+        Route::put('/company/edit/brand-images', [CompanyController::class, 'brandImagesStore'])->name('company.brand.store');
         Route::get('/companies/destroy/{id}', [CompanyController::class, 'destroy']);
         Route::resource('companies', CompanyController::class);
         /**Configurations */
