@@ -1,42 +1,42 @@
 @extends('adminlte::page')
 
-@section('title', '- Empresas')
+@section('title', '- Escolaridade')
 @section('plugins.Datatables', true)
 @section('plugins.DatatablesPlugins', true)
 
 @section('content')
-    @if (auth()->user()->can('Editar Empresas') &&
-    auth()->user()->can('Excluir Empresas'))
+    @if (auth()->user()->can('Editar Escolaridade') &&
+    auth()->user()->can('Excluir Escolaridade'))
         @php
-            $heads = [['label' => 'ID', 'width' => 5], 'Nome', 'CNPJ', 'E-mail', ['label' => 'Telefone', 'width' => 20], ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
+            $heads = [['label' => 'ID', 'width' => 5], 'Nome', 'Sigla', ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
 
             $list = [];
 
-            foreach ($companies as $company) {
-                $list[] = [$company->id, $company->alias_name, $company->document_company, $company->email, $company->telephone, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="companies/' . $company->id . '/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="companies/destroy/' . $company->id . '" onclick="return confirm(\'Confirma a exclusão desta empresa?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
+            foreach ($scholarities as $scholarity) {
+                $list[] = [$scholarity->id, $scholarity->name, $scholarity->acronym, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="scholarities/' . $scholarity->id . '/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="scholarities/destroy/' . $scholarity->id . '" onclick="return confirm(\'Confirma a exclusão desta escolaridade?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
             }
 
             $config = [
                 'data' => $list,
                 'order' => [[0, 'asc']],
-                'columns' => [null, null, null, null, null, ['orderable' => false]],
+                'columns' => [null, null, null, ['orderable' => false]],
                 'language' => ['url' => asset('vendor/datatables/js/pt-BR.json')],
             ];
         @endphp
     @else
         @php
-            $heads = [['label' => 'ID', 'width' => 5], 'Nome', 'CNPJ', 'E-mail', ['label' => 'Telefone', 'width' => 20]];
+            $heads = [['label' => 'ID', 'width' => 5], 'Nome', 'Sigla'];
 
             $list = [];
 
-            foreach ($companies as $company) {
-                $list[] = [$company->id, $company->alias_name, $company->document_company, $company->email, $company->telephone];
+            foreach ($scholarities as $scholarity) {
+                $list[] = [$scholarity->id, $scholarity->name, $scholarity->acronym];
             }
 
             $config = [
                 'data' => $list,
                 'order' => [[0, 'asc']],
-                'columns' => [null, null, null, null, null],
+                'columns' => [null, null, null],
                 'language' => ['url' => asset('vendor/datatables/js/pt-BR.json')],
             ];
         @endphp
@@ -46,12 +46,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1><i class="far fa-fw fa-building"></i> Empresas</h1>
+                    <h1><i class="fas fa-fw fa-graduation-cap"></i> Escolaridade</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Empresas</li>
+                        <li class="breadcrumb-item"><a href="#">Configurações</a></li>
+                        <li class="breadcrumb-item active">Escolaridade</li>
                     </ol>
                 </div>
             </div>
@@ -67,10 +68,10 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex flex-wrap justify-content-between col-12 align-content-center">
-                                <h3 class="card-title align-self-center">Empresas Cadastradas</h3>
-                                @can('Criar Empresas')
-                                    <a href="{{ route('admin.companies.create') }}" title="Nova Empresa"
-                                        class="btn btn-success"><i class="fas fa-fw fa-plus"></i>Nova Empresa</a>
+                                <h3 class="card-title align-self-center">Escolaridade Cadastradas</h3>
+                                @can('Criar Escolaridade')
+                                    <a href="{{ route('admin.scholarities.create') }}" title="Nova Escolaridade"
+                                        class="btn btn-success"><i class="fas fa-fw fa-plus"></i>Nova Escolaridade</a>
                                 @endcan
                             </div>
                         </div>

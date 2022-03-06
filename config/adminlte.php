@@ -309,6 +309,26 @@ return [
                             'can'     => 'Criar Gêneros',
                         ],
                     ]
+                ],
+                [
+                    'text' => 'Escolaridade',
+                    'url'  => '#',
+                    'icon'    => 'fas fa-fw fa-graduation-cap',
+                    'can'     => 'Acessar Escolaridade',
+                    'submenu' => [
+                        [
+                            'text' => 'Listagem de Escolaridade',
+                            'url'  => 'admin/config/scholarities',
+                            'icon'    => 'fas fa-fw fa-chevron-right',
+                            'can'     => 'Listar Escolaridade',
+                        ],
+                        [
+                            'text' => 'Cadastro de Escolaridade',
+                            'url'  => 'admin/config/scholarities/create',
+                            'icon'    => 'fas fa-fw fa-chevron-right',
+                            'can'     => 'Criar Escolaridade',
+                        ],
+                    ]
                 ]
             ]
         ],

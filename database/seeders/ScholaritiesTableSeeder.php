@@ -2,12 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Genre;
 use DateTime;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class GenresTableSeeder extends Seeder
+class ScholaritiesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,41 +15,29 @@ class GenresTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('genres')->insert(
+        DB::table('scholarities')->insert(
             [
                 [
-                    'name' => 'Cisgênero',
-                    'acronym' => 'C',
-                    'user_id' => 1,
-                    'created_at' => new DateTime('now')
-                ],
-                [
-                    'name' => 'Feminino',
-                    'acronym' => 'F',
-                    'user_id' => 1,
-                    'created_at' => new DateTime('now')
-                ],
-                [
-                    'name' => 'Masculino',
+                    'name' => 'Médio',
                     'acronym' => 'M',
                     'user_id' => 1,
                     'created_at' => new DateTime('now')
                 ],
                 [
-                    'name' => 'Não-Binário',
-                    'acronym' => 'NB',
-                    'user_id' => 1,
-                    'created_at' => new DateTime('now')
-                ],
-                [
-                    'name' => 'Outros',
-                    'acronym' => 'O',
-                    'user_id' => 1,
-                    'created_at' => new DateTime('now')
-                ],
-                [
-                    'name' => 'Transgênero',
+                    'name' => 'Técnico',
                     'acronym' => 'T',
+                    'user_id' => 1,
+                    'created_at' => new DateTime('now')
+                ],
+                [
+                    'name' => 'Superior',
+                    'acronym' => 'S',
+                    'user_id' => 1,
+                    'created_at' => new DateTime('now')
+                ],
+                [
+                    'name' => 'EJA',
+                    'acronym' => 'E',
                     'user_id' => 1,
                     'created_at' => new DateTime('now')
                 ],

@@ -101,8 +101,8 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <x-adminlte-datatable id="table1" :heads="$heads" :heads="$heads" head-theme="light"
-                                theme="dark" :config="$config" striped hoverable beautify with-buttons />
+                            <x-adminlte-datatable id="table1" :heads="$heads" :heads="$heads" :config="$config" striped
+                                hoverable beautify with-buttons />
                         </div>
                     </div>
                 </div>

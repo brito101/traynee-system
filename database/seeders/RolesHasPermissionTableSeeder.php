@@ -115,107 +115,148 @@ class RolesHasPermissionTableSeeder extends Seeder
                 'permission_id' => 17,
                 'role_id' => 2
             ],
+            /** Scholarities */
+            [
+                'permission_id' => 18,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 18,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 19,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 19,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 20,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 20,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 21,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 21,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 22,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 22,
+                'role_id' => 2
+            ],
             /** Companies */
             [
-                'permission_id' => 18,
-                'role_id' => 1
-            ],
-            [
-                'permission_id' => 18,
-                'role_id' => 2
-            ],
-            [
-                'permission_id' => 19,
-                'role_id' => 1
-            ],
-            [
-                'permission_id' => 19,
-                'role_id' => 2
-            ],
-            [
-                'permission_id' => 20,
-                'role_id' => 1
-            ],
-            [
-                'permission_id' => 20,
-                'role_id' => 2
-            ],
-            [
-                'permission_id' => 21,
-                'role_id' => 1
-            ],
-            [
-                'permission_id' => 21,
-                'role_id' => 2
-            ],
-            [
-                'permission_id' => 22,
-                'role_id' => 1
-            ],
-            [
-                'permission_id' => 22,
-                'role_id' => 2
-            ],
-            [
                 'permission_id' => 23,
                 'role_id' => 1
             ],
             [
                 'permission_id' => 23,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 24,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 24,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 25,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 25,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 26,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 26,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 27,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 27,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 28,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 28,
                 'role_id' => 2
             ],
             /** Users */
             [
-                'permission_id' => 24,
+                'permission_id' => 29,
                 'role_id' => 1
             ],
             [
-                'permission_id' => 24,
+                'permission_id' => 29,
                 'role_id' => 2
             ],
             [
-                'permission_id' => 25,
+                'permission_id' => 30,
                 'role_id' => 1
             ],
             [
-                'permission_id' => 25,
+                'permission_id' => 30,
                 'role_id' => 2
             ],
             [
-                'permission_id' => 26,
+                'permission_id' => 31,
                 'role_id' => 1
             ],
             [
-                'permission_id' => 26,
+                'permission_id' => 31,
                 'role_id' => 2
             ],
             [
-                'permission_id' => 27,
+                'permission_id' => 32,
                 'role_id' => 1
             ],
             [
-                'permission_id' => 27,
+                'permission_id' => 32,
                 'role_id' => 2
             ],
             [
-                'permission_id' => 28,
+                'permission_id' => 33,
                 'role_id' => 1
             ],
             [
-                'permission_id' => 28,
+                'permission_id' => 33,
                 'role_id' => 2
             ],
             /** Businessmen */
             [
-                'permission_id' => 29,
+                'permission_id' => 34,
                 'role_id' => 3
             ],
             [
-                'permission_id' => 30,
+                'permission_id' => 35,
                 'role_id' => 3
             ],
             [
-                'permission_id' => 31,
+                'permission_id' => 36,
                 'role_id' => 3
             ],
         ]);

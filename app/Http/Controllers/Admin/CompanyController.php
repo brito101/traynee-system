@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CompanyBrandRequest;
 use App\Http\Requests\Admin\CompanyRequest;
 use App\Models\Company;
 use Illuminate\Http\Request;
@@ -189,7 +190,7 @@ class CompanyController extends Controller
         return view('admin.companies.social', compact('company'));
     }
 
-    public function socialNetworkStore(CompanyRequest $request)
+    public function socialNetworkStore(CompanyBrandRequest $request)
     {
         $data = $request->all();
 
@@ -228,7 +229,7 @@ class CompanyController extends Controller
     }
 
 
-    public function resumeStore(CompanyRequest $request)
+    public function resumeStore(CompanyBrandRequest $request)
     {
         $data = $request->all();
 
@@ -266,7 +267,7 @@ class CompanyController extends Controller
         return view('admin.companies.brand', compact('company'));
     }
 
-    public function brandImagesStore(CompanyRequest $request)
+    public function brandImagesStore(CompanyBrandRequest $request)
     {
         $data = $request->all();
 

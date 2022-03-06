@@ -41,8 +41,8 @@
                             <div class="card-body">
                                 <div class="d-flex flex-wrap justify-content-between">
                                     <div class="col-12 col-md-6 form-group px-0 pr-md-2">
-                                        <label for="name">Nome da Gênero</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Nome da Gênero"
+                                        <label for="name">Nome do Gênero</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Nome do Gênero"
                                             name="name" value="{{ old('name') ?? $genre->name }}" required>
                                     </div>
                                     <div class="col-12 col-md-6 form-group px-0 pl-md-2">
