@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserRequest;
 use App\Models\Company;
+use App\Models\Franchise;
 use App\Models\Genre;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -47,15 +48,22 @@ class UserController extends Controller
         if (Auth::user()->hasRole('Programador')) {
             $roles = Role::all();
             $companies = Company::all();
+            $franchises = Franchise::all();
         } elseif (Auth::user()->hasRole('Administrador')) {
             $roles = Role::where('name', '!=', 'Programador')->get();
             $companies = Company::all();
+            $franchises = Franchise::all();
+        } elseif (Auth::user()->hasRole('Franqueado')) {
+            $roles = Role::where('name', '!=', 'Programador')->get();
+            $companies = Company::all();
+            $franchises = [];
         } else {
             $roles = [];
             $companies = [];
+            $franchises = [];
         }
         $genres = Genre::all();
-        return view('admin.users.create', compact('genres', 'roles', 'companies'));
+        return view('admin.users.create', compact('genres', 'roles', 'companies', 'franchises'));
     }
 
     /**
@@ -130,19 +138,26 @@ class UserController extends Controller
         if (Auth::user()->hasRole('Programador')) {
             $roles = Role::all();
             $companies = Company::all();
+            $franchises = Franchise::all();
         } elseif (Auth::user()->hasRole('Administrador')) {
             $roles = Role::where('name', '!=', 'Programador')->get();
             $companies = Company::all();
+            $franchises = Franchise::all();
+        } elseif (Auth::user()->hasRole('Franqueado')) {
+            $roles = Role::where('name', 'NOT IN', ['Programador', 'Administrador'])->get();
+            $companies = Company::all();
+            $franchises = [];
         } else {
             $roles = [];
             $companies = [];
+            $franchises = [];
         }
 
         $user = User::where('id', $id)->first();
         if (empty($user->id)) {
             abort(403, 'Acesso não autorizado');
         }
-        return view('admin.users.edit', compact('user', 'genres', 'roles', 'companies'));
+        return view('admin.users.edit', compact('user', 'genres', 'roles', 'companies', 'franchises'));
     }
 
     /**

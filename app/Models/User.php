@@ -27,6 +27,7 @@ class User extends Authenticatable
         'email',
         'password',
         'genre_id',
+        'franchise_id',
         'company_id',
         'photo',
         'scholarity_id'
@@ -55,6 +56,11 @@ class User extends Authenticatable
     public function genre()
     {
         return $this->belongsTo(Genre::class);
+    }
+
+    public function franchese()
+    {
+        return $this->belongsTo(Franchise::class);
     }
 
     public function company()

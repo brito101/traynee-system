@@ -131,6 +131,37 @@ class PermissionsTableSeeder extends Seeder
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
+            /** Franchises */
+            [
+                'name' => 'Acessar Franquias',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Listar Franquias',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Criar Franquias',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Editar Franquias',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Excluir Franquias',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Atribuir Franquias',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
             /** Companies */
             [
                 'name' => 'Acessar Empresas',
@@ -188,12 +219,24 @@ class PermissionsTableSeeder extends Seeder
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
-            /** Businessmen */
+            /** Franchisee / Businessmen */
             [
                 'name' => 'Editar Usuário',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
+            /** Franchisee */
+            [
+                'name' => 'Acessar Franquia',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Editar Franquia',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            /** Businessmen */
             [
                 'name' => 'Acessar Empresa',
                 'guard_name' => 'web',

@@ -265,6 +265,60 @@ return [
             ],
         ],
         [
+            'text'        => 'Franquias',
+            'url'         => '#',
+            'icon'        => 'far fa-fw fa-handshake',
+            'can'         => 'Acessar Franquias',
+            'submenu' => [
+                [
+                    'text' => 'Listagem de Franquias',
+                    'url'  => 'admin/franchises',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                    'can'  => 'Listar Franquias',
+                ],
+                [
+                    'text' => 'Cadastro de Franquia',
+                    'url'  => 'admin/franchises/create',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                    'can'  => 'Criar Franquias',
+                ]
+            ]
+
+        ],
+        /** Franquados */
+        [
+            'text'        => 'Franquia',
+            'icon'        => 'far fa-fw fa-handshake',
+            'can'         => 'Acessar Franquia',
+            'submenu' => [
+                [
+                    'text'        => 'Dados da Franquia',
+                    'url'         => 'admin/franchise/edit',
+                    'icon'        => 'fas fa-fw fa-chevron-right',
+                    'can'         => 'Editar Franquia'
+                ],
+                [
+                    'text'        => 'Redes Sociais',
+                    'url'         => 'admin/franchise/edit/social-network',
+                    'icon'        => 'fas fa-fw fa-chevron-right',
+                    'can'         => 'Editar Franquia'
+                ],
+                [
+                    'text'        => 'Perfil Institucional',
+                    'url'         => 'admin/franchise/edit/resume',
+                    'icon'        => 'fas fa-fw fa-chevron-right',
+                    'can'         => 'Editar Franquia'
+                ],
+                [
+                    'text'        => 'Brand',
+                    'url'         => 'admin/franchise/edit/brand-images',
+                    'icon'        => 'fas fa-fw fa-chevron-right',
+                    'can'         => 'Editar Franquia'
+                ]
+            ]
+        ],
+        /** Empresas */
+        [
             'text'        => 'Empresas',
             'url'         => '#',
             'icon'        => 'far fa-fw fa-building',
@@ -363,13 +417,15 @@ return [
                 ],
             ]
         ],
-        /** Empresários */
+        /** Franquados / Empresários */
         [
-            'text'        => 'Editar Usuário',
+            'text'        => 'Meu Usuário',
             'url'         => 'admin/user/edit',
             'icon'        => 'fas fa-fw fa-user',
             'can'         => 'Editar Usuário',
         ],
+
+        /** Empresários */
         [
             'text'        => 'Empresa',
             'icon'        => 'far fa-fw fa-building',

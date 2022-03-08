@@ -106,20 +106,36 @@
                                             </x-adminlte-select2>
                                         </div>
                                     @endcan
-                                    @can('Atribuir Empresas')
-                                        <div class="col-12 col-md-6 form-group px-0 pl-md-2">
-                                            <label for="role">Empresa</label>
-                                            <x-adminlte-select2 name="company_id">
-                                                <option value="">Não Informado</option>
-                                                @foreach ($companies as $company)
-                                                    <option
-                                                        {{ old('company_id') == $company->id ? 'selected' : ($user->company_id == $company->id ? 'selected' : '') }}
-                                                        value="{{ $company->id }}">{{ $company->alias_name }}
-                                                    </option>
-                                                @endforeach
-                                            </x-adminlte-select2>
-                                        </div>
-                                    @endcan
+                                    @if (Auth::user()->id != $user->id)
+                                        @can('Atribuir Empresas')
+                                            <div class="col-12 col-md-6 form-group px-0 pl-md-2">
+                                                <label for="role">Empresa</label>
+                                                <x-adminlte-select2 name="company_id">
+                                                    <option value="">Não Informado</option>
+                                                    @foreach ($companies as $company)
+                                                        <option
+                                                            {{ old('company_id') == $company->id ? 'selected' : ($user->company_id == $company->id ? 'selected' : '') }}
+                                                            value="{{ $company->id }}">{{ $company->alias_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </x-adminlte-select2>
+                                            </div>
+                                        @endcan
+                                        @can('Atribuir Empresas')
+                                            <div class="col-12 col-md-6 form-group px-0 pr-md-2">
+                                                <label for="role">Franquia</label>
+                                                <x-adminlte-select2 name="franchise_id">
+                                                    <option value="">Não Informado</option>
+                                                    @foreach ($franchises as $franchise)
+                                                        <option
+                                                            {{ old('franchise_id') == $franchise->id? 'selected': ($user->franchise_id == $franchise->id? 'selected': '') }}
+                                                            value="{{ $franchise->id }}">{{ $franchise->alias_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </x-adminlte-select2>
+                                            </div>
+                                        @endcan
+                                    @endif
                                 </div>
 
 

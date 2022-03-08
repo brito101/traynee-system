@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ACL\PermissionController;
 use App\Http\Controllers\Admin\ACL\RoleController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Admin\FranchiseController;
 use App\Http\Controllers\Admin\GenreController;
 use App\Http\Controllers\Admin\ScholarityController;
 use App\Http\Controllers\Admin\UserController;
@@ -25,11 +26,24 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['auth']], function () {
     Route::get('admin', [AdminController::class, 'index'])->name('admin.home');
     Route::prefix('admin')->name('admin.')->group(function () {
+        /** Chart home */
+        Route::get('/chart', [AdminController::class, 'chart'])->name('home.chart');
 
         /** Users */
         Route::get('/user/edit', [UserController::class, 'edit'])->name('user.edit');
         Route::get('/users/destroy/{id}', [UserController::class, 'destroy']);
         Route::resource('users', UserController::class);
+
+        /** Franchise */
+        Route::get('/franchise/edit', [FranchiseController::class, 'edit'])->name('franchise.edit');
+        Route::get('/franchise/edit/social-network', [FranchiseController::class, 'socialNetwork'])->name('franchise.social');
+        Route::put('/franchise/edit/social-network', [FranchiseController::class, 'socialNetworkStore'])->name('franchise.social.store');
+        Route::get('/franchise/edit/resume', [FranchiseController::class, 'resume'])->name('franchise.resume');
+        Route::put('/franchise/edit/resume', [FranchiseController::class, 'resumeStore'])->name('franchise.resume.store');
+        Route::get('/franchise/edit/brand-images', [FranchiseController::class, 'brandImages'])->name('franchise.brand');
+        Route::put('/franchise/edit/brand-images', [FranchiseController::class, 'brandImagesStore'])->name('franchise.brand.store');
+        Route::get('/franchises/destroy/{id}', [FranchiseController::class, 'destroy']);
+        Route::resource('franchises', FranchiseController::class);
 
         /** Companies */
         Route::get('/company/edit', [CompanyController::class, 'edit'])->name('company.edit');

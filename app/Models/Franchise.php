@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Company extends Model
+class Franchise extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -40,7 +40,6 @@ class Company extends Model
         'discord',
         'brand_facebook',
         'brand_instagram',
-        'brand_twitter',
-        'franchise_id'
+        'brand_twitter'
     ];
 }
