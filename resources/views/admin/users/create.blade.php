@@ -89,28 +89,45 @@
                                         </div>
 
                                     @endcan
-                                    <div class="col-12 col-md-6 form-group px-0 pl-md-2">
-                                        <label for="role">Empresa</label>
-                                        <x-adminlte-select2 name="company_id">
-                                            <option value="">Não Informado</option>
-                                            @foreach ($companies as $company)
-                                                <option {{ old('company_id') == $company->id ? 'selected' : '' }}
-                                                    value="{{ $company->id }}">{{ $company->alias_name }}
-                                                </option>
-                                            @endforeach
-                                        </x-adminlte-select2>
-                                    </div>
+                                    @can('Atribuir Empresas')
+                                        <div
+                                            class="col-12 col-md-6 form-group px-0 {{ Auth::user()->hasPermissionTo('Atribuir Perfis') ? 'pl-md-2' : 'pr-md-2' }}">
+                                            <label for="company_id">Empresa</label>
+                                            <x-adminlte-select2 name="company_id">
+                                                <option value="">Não Informado</option>
+                                                @foreach ($companies as $company)
+                                                    <option {{ old('company_id') == $company->id ? 'selected' : '' }}
+                                                        value="{{ $company->id }}">{{ $company->alias_name }}
+                                                    </option>
+                                                @endforeach
+                                            </x-adminlte-select2>
+                                        </div>
+                                    @endcan
+                                    @can('Atribuir Afiliações')
+                                        <div class="col-12 col-md-6 form-group px-0 pr-md-2">
+                                            <label for="affiliation_id">Afiliação</label>
+                                            <x-adminlte-select2 name="affiliation_id">
+                                                <option value="">Não Informado</option>
+                                                @foreach ($affiliations as $affiliation)
+                                                    <option {{ old('affiliation_id') == $affiliation->id ? 'selected' : '' }}
+                                                        value="{{ $affiliation->id }}">{{ $affiliation->alias_name }}
+                                                    </option>
+                                                @endforeach
+                                            </x-adminlte-select2>
+                                        </div>
+                                    @endcan
                                 </div>
                             </div>
-
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Enviar</button>
-                            </div>
-                        </form>
-
                     </div>
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                    </form>
+
                 </div>
             </div>
+        </div>
         </div>
     </section>
 @endsection

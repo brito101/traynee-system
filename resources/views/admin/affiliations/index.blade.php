@@ -1,19 +1,19 @@
 @extends('adminlte::page')
 
-@section('title', '- Franquias')
+@section('title', '- Afiliações')
 @section('plugins.Datatables', true)
 @section('plugins.DatatablesPlugins', true)
 
 @section('content')
-    @if (auth()->user()->can('Editar Franquias') &&
-    auth()->user()->can('Excluir Franquias'))
+    @if (auth()->user()->can('Editar Afiliações') &&
+    auth()->user()->can('Excluir Afiliações'))
         @php
             $heads = [['label' => 'ID', 'width' => 5], 'Nome', 'CNPJ', 'E-mail', ['label' => 'Telefone', 'width' => 20], ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
 
             $list = [];
 
-            foreach ($franchises as $franchise) {
-                $list[] = [$franchise->id, $franchise->alias_name, $franchise->document_company, $franchise->email, $franchise->telephone, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="franchises/' . $franchise->id . '/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="franchises/destroy/' . $franchise->id . '" onclick="return confirm(\'Confirma a exclusão desta franquia?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
+            foreach ($affiliations as $affiliation) {
+                $list[] = [$affiliation->id, $affiliation->alias_name, $affiliation->document_company, $affiliation->email, $affiliation->telephone, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="affiliations/' . $affiliation->id . '/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="affiliations/destroy/' . $affiliation->id . '" onclick="return confirm(\'Confirma a exclusão desta afiliação?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
             }
 
             $config = [
@@ -29,8 +29,8 @@
 
             $list = [];
 
-            foreach ($franchises as $franchise) {
-                $list[] = [$franchise->id, $franchise->alias_name, $franchise->document_company, $franchise->email, $comfranchisepany->telephone];
+            foreach ($affiliations as $affiliation) {
+                $list[] = [$affiliation->id, $affiliation->alias_name, $affiliation->document_company, $affiliation->email, $affiliation->telephone];
             }
 
             $config = [
@@ -46,12 +46,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1><i class="far fa-fw fa-handshake"></i> Franquias</h1>
+                    <h1><i class="far fa-fw fa-handshake"></i> Afiliações</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Franquias</li>
+                        <li class="breadcrumb-item active">Afiliações</li>
                     </ol>
                 </div>
             </div>
@@ -67,10 +67,10 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex flex-wrap justify-content-between col-12 align-content-center">
-                                <h3 class="card-title align-self-center">Franquias Cadastradas</h3>
-                                @can('Criar Franquias')
-                                    <a href="{{ route('admin.franchises.create') }}" title="Nova Empresa"
-                                        class="btn btn-success"><i class="fas fa-fw fa-plus"></i>Nova Franquia</a>
+                                <h3 class="card-title align-self-center">Afiliações Cadastradas</h3>
+                                @can('Criar Afiliações')
+                                    <a href="{{ route('admin.affiliations.create') }}" title="Nova Afiliação"
+                                        class="btn btn-success"><i class="fas fa-fw fa-plus"></i>Nova Afiliação</a>
                                 @endcan
                             </div>
                         </div>

@@ -265,55 +265,55 @@ return [
             ],
         ],
         [
-            'text'        => 'Franquias',
+            'text'        => 'Afiliações',
             'url'         => '#',
             'icon'        => 'far fa-fw fa-handshake',
-            'can'         => 'Acessar Franquias',
+            'can'         => 'Acessar Afiliações',
             'submenu' => [
                 [
-                    'text' => 'Listagem de Franquias',
-                    'url'  => 'admin/franchises',
+                    'text' => 'Listagem de Afiliações',
+                    'url'  => 'admin/affiliations',
                     'icon' => 'fas fa-fw fa-chevron-right',
-                    'can'  => 'Listar Franquias',
+                    'can'  => 'Listar Afiliações',
                 ],
                 [
-                    'text' => 'Cadastro de Franquia',
-                    'url'  => 'admin/franchises/create',
+                    'text' => 'Cadastro de Afiliação',
+                    'url'  => 'admin/affiliations/create',
                     'icon' => 'fas fa-fw fa-chevron-right',
-                    'can'  => 'Criar Franquias',
+                    'can'  => 'Criar Afiliações',
                 ]
             ]
 
         ],
-        /** Franquados */
+        /** Afiliados */
         [
-            'text'        => 'Franquia',
+            'text'        => 'Afiliação',
             'icon'        => 'far fa-fw fa-handshake',
-            'can'         => 'Acessar Franquia',
+            'can'         => 'Acessar Afiliação',
             'submenu' => [
                 [
-                    'text'        => 'Dados da Franquia',
-                    'url'         => 'admin/franchise/edit',
+                    'text'        => 'Dados da Afiliação',
+                    'url'         => 'admin/affiliation/edit',
                     'icon'        => 'fas fa-fw fa-chevron-right',
-                    'can'         => 'Editar Franquia'
+                    'can'         => 'Editar Afiliação'
                 ],
                 [
                     'text'        => 'Redes Sociais',
-                    'url'         => 'admin/franchise/edit/social-network',
+                    'url'         => 'admin/affiliation/edit/social-network',
                     'icon'        => 'fas fa-fw fa-chevron-right',
-                    'can'         => 'Editar Franquia'
+                    'can'         => 'Editar Afiliação'
                 ],
                 [
                     'text'        => 'Perfil Institucional',
-                    'url'         => 'admin/franchise/edit/resume',
+                    'url'         => 'admin/affiliation/edit/resume',
                     'icon'        => 'fas fa-fw fa-chevron-right',
-                    'can'         => 'Editar Franquia'
+                    'can'         => 'Editar Afiliação'
                 ],
                 [
                     'text'        => 'Brand',
-                    'url'         => 'admin/franchise/edit/brand-images',
+                    'url'         => 'admin/affiliation/edit/brand-images',
                     'icon'        => 'fas fa-fw fa-chevron-right',
-                    'can'         => 'Editar Franquia'
+                    'can'         => 'Editar Afiliação'
                 ]
             ]
         ],
@@ -344,6 +344,26 @@ return [
             'icon'    => 'fas fa-fw fa-cogs',
             'can'     => 'Acessar Configurações',
             'submenu' => [
+                [
+                    'text' => 'Cursos',
+                    'url'  => '#',
+                    'icon'    => 'fas fa-fw fa-book',
+                    'can'     => 'Acessar Cursos',
+                    'submenu' => [
+                        [
+                            'text' => 'Listagem de Cursos',
+                            'url'  => 'admin/config/courses',
+                            'icon'    => 'fas fa-fw fa-chevron-right',
+                            'can'     => 'Listar Cursos',
+                        ],
+                        [
+                            'text' => 'Cadastro de Cursos',
+                            'url'  => 'admin/config/courses/create',
+                            'icon'    => 'fas fa-fw fa-chevron-right',
+                            'can'     => 'Criar Cursos',
+                        ],
+                    ]
+                ],
                 [
                     'text' => 'Gêneros',
                     'url'  => '#',
@@ -417,7 +437,7 @@ return [
                 ],
             ]
         ],
-        /** Franquados / Empresários */
+        /** Afiliados / Empresários */
         [
             'text'        => 'Meu Usuário',
             'url'         => 'admin/user/edit',

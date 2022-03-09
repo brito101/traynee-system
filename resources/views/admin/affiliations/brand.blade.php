@@ -33,26 +33,26 @@
                             <h3 class="card-title">Imagens de compartilhamento da Empresa</h3>
                         </div>
 
-                        <form method="POST" action="{{ route('admin.franchise.brand.store') }}"
+                        <form method="POST" action="{{ route('admin.affiliation.brand.store') }}"
                             enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
                             <div class=" card-body">
-                                <input type="hidden" name="id" value="{{ $franchise->id }}">
+                                <input type="hidden" name="id" value="{{ $affiliation->id }}">
 
                                 <div class="d-flex flex-wrap justify-content-between">
                                     <div class="col-12 form-group px-0 d-flex flex-wrap">
                                         <div
-                                            class="{{ $franchise->brand_facebook != null ? 'col-md-9' : 'col-md-12' }} px-0">
+                                            class="{{ $affiliation->brand_facebook != null ? 'col-md-9' : 'col-md-12' }} px-0">
                                             <x-adminlte-input-file name="brand_facebook"
                                                 label="Compartilhamento para Facebook (recomendável 1200 x 630 pixels)"
                                                 placeholder="Selecione uma imagem..." legend="Selecionar" />
                                         </div>
 
-                                        @if ($franchise->brand_facebook != null)
+                                        @if ($affiliation->brand_facebook != null)
                                             <div
                                                 class='col-12 col-md-3 align-self-center mt-3 d-flex justify-content-center justify-content-md-end px-0'>
-                                                <img src="{{ url('storage/companies/' . $franchise->brand_facebook) }}"
+                                                <img src="{{ url('storage/companies/' . $affiliation->brand_facebook) }}"
                                                     alt="Imagem para o Facebook" style="max-width: 80%;"
                                                     class="img-thumbnail d-block">
                                             </div>
@@ -61,16 +61,16 @@
 
                                     <div class="col-12 form-group px-0 d-flex flex-wrap">
                                         <div
-                                            class="{{ $franchise->brand_instagram != null ? 'col-md-9' : 'col-md-12' }} px-0">
+                                            class="{{ $affiliation->brand_instagram != null ? 'col-md-9' : 'col-md-12' }} px-0">
                                             <x-adminlte-input-file name="brand_instagram"
                                                 label="Compartilhamento para Instagram (recomendável 1080 x 1080 pixels, quadrada)"
                                                 placeholder="Selecione uma imagem..." legend="Selecionar" />
                                         </div>
 
-                                        @if ($franchise->brand_instagram != null)
+                                        @if ($affiliation->brand_instagram != null)
                                             <div
                                                 class='col-12 col-md-3 align-self-center mt-3 d-flex justify-content-center justify-content-md-end px-0'>
-                                                <img src="{{ url('storage/companies/' . $franchise->brand_instagram) }}"
+                                                <img src="{{ url('storage/companies/' . $affiliation->brand_instagram) }}"
                                                     alt="Imagem para o Instagram" style="max-width: 80%;"
                                                     class="img-thumbnail d-block">
                                             </div>
@@ -79,13 +79,13 @@
 
                                     <div class="col-12 form-group px-0 d-flex flex-wrap">
                                         <div
-                                            class="{{ $franchise->brand_twitter != null ? 'col-md-9' : 'col-md-12' }} px-0">
+                                            class="{{ $affiliation->brand_twitter != null ? 'col-md-9' : 'col-md-12' }} px-0">
                                             <x-adminlte-input-file name="brand_twitter"
                                                 label="Compartilhamento para Twitter (recomendável 1.1600 x 900  pixels ou proporção 16:9)"
                                                 placeholder="Selecione uma imagem..." legend="Selecionar" />
                                         </div>
 
-                                        @if ($franchise->brand_twitter != null)
+                                        @if ($affiliation->brand_twitter != null)
                                             <div
                                                 class='col-12 col-md-3 align-self-center mt-3 d-flex justify-content-center justify-content-md-end px-0'>
                                                 <img src="{{ url('storage/companies/' . $company->brand_twitter) }}"

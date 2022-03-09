@@ -41,6 +41,6 @@ class Company extends Model
         'brand_facebook',
         'brand_instagram',
         'brand_twitter',
-        'franchise_id'
+        'affiliation_id'
     ];
 }

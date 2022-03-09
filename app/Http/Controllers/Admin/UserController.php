@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserRequest;
 use App\Models\Company;
-use App\Models\Franchise;
+use App\Models\Affiliation;
 use App\Models\Genre;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -28,8 +28,15 @@ class UserController extends Controller
         }
         if (Auth::user()->hasRole('Programador')) {
             $users = User::all();
+        } elseif (Auth::user()->hasRole('Administrador')) {
+            $users = User::role(['Administrador', 'Afiliado', 'Empresário', 'Estagiário'])->get();
+        } elseif (Auth::user()->hasRole('Afiliado')) {
+            $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->pluck('id')->toArray();
+            $users = User::where('affiliation_id', Auth::user()->affiliation_id)
+                ->orWhereIn('company_id', $companies)
+                ->get();
         } else {
-            $users = User::role(['Administrador', 'Empresário', 'Estagiário'])->get();
+            $users = null;
         }
 
         return view('admin.users.index', compact('users'));
@@ -48,22 +55,22 @@ class UserController extends Controller
         if (Auth::user()->hasRole('Programador')) {
             $roles = Role::all();
             $companies = Company::all();
-            $franchises = Franchise::all();
+            $affiliations = Affiliation::all();
         } elseif (Auth::user()->hasRole('Administrador')) {
             $roles = Role::where('name', '!=', 'Programador')->get();
             $companies = Company::all();
-            $franchises = Franchise::all();
-        } elseif (Auth::user()->hasRole('Franqueado')) {
-            $roles = Role::where('name', '!=', 'Programador')->get();
-            $companies = Company::all();
-            $franchises = [];
+            $affiliations = Affiliation::all();
+        } elseif (Auth::user()->hasRole('Afiliado')) {
+            $roles = Role::whereIn('name', ['Afiliado', 'Empresário', 'Estagiário'])->get();
+            $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
+            $affiliations = [];
         } else {
             $roles = [];
             $companies = [];
-            $franchises = [];
+            $affiliations = [];
         }
         $genres = Genre::all();
-        return view('admin.users.create', compact('genres', 'roles', 'companies', 'franchises'));
+        return view('admin.users.create', compact('genres', 'roles', 'companies', 'affiliations'));
     }
 
     /**
@@ -80,6 +87,10 @@ class UserController extends Controller
 
         $data = $request->all();
         $data['password'] = bcrypt($request->password);
+
+        if (Auth::user()->hasRole('Afiliado')) {
+            $data['affiliation_id'] = auth()->user()->affiliation_id;
+        }
 
         if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
             $name = Str::slug(mb_substr($data['name'], 0, 100)) . time();
@@ -138,29 +149,34 @@ class UserController extends Controller
         if (Auth::user()->hasRole('Programador')) {
             $roles = Role::all();
             $companies = Company::all();
-            $franchises = Franchise::all();
+            $affiliations = Affiliation::all();
+            $user = User::where('id', $id)->first();
         } elseif (Auth::user()->hasRole('Administrador')) {
             $roles = Role::where('name', '!=', 'Programador')->get();
             $companies = Company::all();
-            $franchises = Franchise::all();
-        } elseif (Auth::user()->hasRole('Franqueado')) {
-            $roles = Role::where('name', 'NOT IN', ['Programador', 'Administrador'])->get();
-            $companies = Company::all();
-            $franchises = [];
+            $affiliations = Affiliation::all();
+            $user = User::where('id', $id)->first();
+        } elseif (Auth::user()->hasRole('Afiliado')) {
+            $roles = Role::whereIn('name', ['Afiliado', 'Empresário', 'Estagiário'])->get();
+            $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
+            $affiliations = [];
+            $user = User::where('id', $id)
+                ->where('affiliation_id', Auth::user()->affiliation_id)
+                ->first();
         } else {
             $roles = [];
             $companies = [];
-            $franchises = [];
+            $affiliations = [];
+            $user = null;
         }
 
-        $user = User::where('id', $id)->first();
         if (empty($user->id)) {
             abort(403, 'Acesso não autorizado');
         }
-        return view('admin.users.edit', compact('user', 'genres', 'roles', 'companies', 'franchises'));
+        return view('admin.users.edit', compact('user', 'genres', 'roles', 'companies', 'affiliations'));
     }
 
-    /**
+    /**affiliations
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -186,6 +202,14 @@ class UserController extends Controller
         if (empty($user->id)) {
             abort(403, 'Acesso não autorizado');
         }
+
+        if (Auth::user()->hasRole('Afiliado')) {
+            $user = User::where('id', $id)
+                ->where('affiliation_id', Auth::user()->affiliation_id)
+                ->first();
+            $data['affiliation_id'] = auth()->user()->affiliation_id;
+        }
+
         if (!empty($data['password'])) {
             $data['password'] = bcrypt($request->password);
         } else {
@@ -248,9 +272,17 @@ class UserController extends Controller
         }
 
         $user = User::where('id', $id)->first();
+
+        if (Auth::user()->hasRole('Afiliado')) {
+            $user = User::where('id', $id)
+                ->where('affiliation_id', Auth::user()->affiliation_id)
+                ->first();
+        }
+
         if (empty($user->id)) {
             abort(403, 'Acesso não autorizado');
         }
+
         $imagePath = storage_path() . '/app/public/users/' . $user->photo;
         if ($user->delete()) {
             if (File::isFile($imagePath)) {

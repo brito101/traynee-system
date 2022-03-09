@@ -30,14 +30,14 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Perfil Institucional da Empresa</h3>
+                            <h3 class="card-title">Perfil Institucional da Afiliação</h3>
                         </div>
 
-                        <form method="POST" action="{{ route('admin.franchise.resume.store') }}">
+                        <form method="POST" action="{{ route('admin.affiliation.resume.store') }}">
                             @method('PUT')
                             @csrf
                             <div class="card-body">
-                                <input type="hidden" name="id" value="{{ $franchise->id }}">
+                                <input type="hidden" name="id" value="{{ $affiliation->id }}">
                                 <div class="d-flex flex-wrap justify-content-between">
                                     <div class="col-12 col-md-12 form-group px-0">
                                         @php
@@ -58,8 +58,8 @@
                                             ];
                                         @endphp
                                         <x-adminlte-text-editor name="resume" label="" igroup-size="sm"
-                                            placeholder="Escreva a descrição da empresa aqui..." :config="$config">
-                                            {{ $franchise->resume ?? '' }}
+                                            placeholder="Escreva a descrição da afiliação aqui..." :config="$config">
+                                            {{ $affiliation->resume ?? '' }}
                                         </x-adminlte-text-editor>
                                     </div>
                                 </div>

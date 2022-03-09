@@ -3,8 +3,9 @@
 use App\Http\Controllers\Admin\ACL\PermissionController;
 use App\Http\Controllers\Admin\ACL\RoleController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AffiliationController;
 use App\Http\Controllers\Admin\CompanyController;
-use App\Http\Controllers\Admin\FranchiseController;
+use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\GenreController;
 use App\Http\Controllers\Admin\ScholarityController;
 use App\Http\Controllers\Admin\UserController;
@@ -34,16 +35,16 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/users/destroy/{id}', [UserController::class, 'destroy']);
         Route::resource('users', UserController::class);
 
-        /** Franchise */
-        Route::get('/franchise/edit', [FranchiseController::class, 'edit'])->name('franchise.edit');
-        Route::get('/franchise/edit/social-network', [FranchiseController::class, 'socialNetwork'])->name('franchise.social');
-        Route::put('/franchise/edit/social-network', [FranchiseController::class, 'socialNetworkStore'])->name('franchise.social.store');
-        Route::get('/franchise/edit/resume', [FranchiseController::class, 'resume'])->name('franchise.resume');
-        Route::put('/franchise/edit/resume', [FranchiseController::class, 'resumeStore'])->name('franchise.resume.store');
-        Route::get('/franchise/edit/brand-images', [FranchiseController::class, 'brandImages'])->name('franchise.brand');
-        Route::put('/franchise/edit/brand-images', [FranchiseController::class, 'brandImagesStore'])->name('franchise.brand.store');
-        Route::get('/franchises/destroy/{id}', [FranchiseController::class, 'destroy']);
-        Route::resource('franchises', FranchiseController::class);
+        /** Affiliation */
+        Route::get('/affiliation/edit', [AffiliationController::class, 'edit'])->name('affiliation.edit');
+        Route::get('/affiliation/edit/social-network', [AffiliationController::class, 'socialNetwork'])->name('affiliation.social');
+        Route::put('/affiliation/edit/social-network', [AffiliationController::class, 'socialNetworkStore'])->name('affiliation.social.store');
+        Route::get('/affiliation/edit/resume', [AffiliationController::class, 'resume'])->name('affiliation.resume');
+        Route::put('/affiliation/edit/resume', [AffiliationController::class, 'resumeStore'])->name('affiliation.resume.store');
+        Route::get('/affiliation/edit/brand-images', [AffiliationController::class, 'brandImages'])->name('affiliation.brand');
+        Route::put('/affiliations/edit/brand-images', [AffiliationController::class, 'brandImagesStore'])->name('affiliation.brand.store');
+        Route::get('/affiliations/destroy/{id}', [AffiliationController::class, 'destroy']);
+        Route::resource('affiliations', AffiliationController::class);
 
         /** Companies */
         Route::get('/company/edit', [CompanyController::class, 'edit'])->name('company.edit');
@@ -59,6 +60,9 @@ Route::group(['middleware' => ['auth']], function () {
         /**
          * Configurations
          * */
+        /** Courses */
+        Route::get('/config/courses/destroy/{id}', [CourseController::class, 'destroy']);
+        Route::resource('config/courses', CourseController::class);
         /** Genres */
         Route::get('/config/genres/destroy/{id}', [GenreController::class, 'destroy']);
         Route::resource('config/genres', GenreController::class);

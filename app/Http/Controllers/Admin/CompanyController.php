@@ -23,7 +23,13 @@ class CompanyController extends Controller
         if (!Auth::user()->hasPermissionTo('Listar Empresas')) {
             abort(403, 'Acesso não autorizado');
         }
+
         $companies = Company::all();
+
+        if (Auth::user()->hasRole('Afiliado')) {
+            $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
+        }
+
         return view('admin.companies.index', compact('companies'));
     }
 
@@ -53,6 +59,10 @@ class CompanyController extends Controller
         }
         $data = $request->all();
         $data['user_id'] = auth()->user()->id;
+
+        if (Auth::user()->hasRole('Afiliado')) {
+            $data['affiliation_id'] = auth()->user()->affiliation_id;
+        }
 
         if ($request->hasFile('logo') && $request->file('logo')->isValid()) {
             $name = Str::slug(mb_substr($data['alias_name'], 0, 100)) . time();
@@ -104,6 +114,12 @@ class CompanyController extends Controller
         }
 
         $company = Company::where('id', $id)->first();
+
+        if (Auth::user()->hasRole('Afiliado')) {
+            $company = Company::where('id', $id)
+                ->where('affiliation_id', Auth::user()->affiliation_id)->first();
+        }
+
         if (empty($company->id)) {
             abort(403, 'Acesso não autorizado');
         }
@@ -131,6 +147,12 @@ class CompanyController extends Controller
 
         if (Auth::user()->hasPermissionTo('Editar Empresa')) {
             $company = Company::where('id', Auth::user()->company_id)->first();
+        }
+
+        if (Auth::user()->hasRole('Afiliado')) {
+            $company = Company::where('id', $id)
+                ->where('affiliation_id', Auth::user()->affiliation_id)->first();
+            $data['affiliation_id'] = auth()->user()->affiliation_id;
         }
 
         if (empty($company->id)) {
@@ -373,6 +395,12 @@ class CompanyController extends Controller
             abort(403, 'Acesso não autorizado');
         }
         $company = Company::where('id', $id)->first();
+
+        if (Auth::user()->hasRole('Afiliado')) {
+            $company = Company::where('id', $id)
+                ->where('affiliation_id', Auth::user()->affiliation_id)->first();
+        }
+
         if (empty($company->id)) {
             abort(403, 'Acesso não autorizado');
         }

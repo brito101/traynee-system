@@ -131,34 +131,60 @@ class PermissionsTableSeeder extends Seeder
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
-            /** Franchises */
+            /** Courses */
             [
-                'name' => 'Acessar Franquias',
+                'name' => 'Acessar Cursos',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
             [
-                'name' => 'Listar Franquias',
+                'name' => 'Listar Cursos',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
             [
-                'name' => 'Criar Franquias',
+                'name' => 'Criar Cursos',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
             [
-                'name' => 'Editar Franquias',
+                'name' => 'Editar Cursos',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
             [
-                'name' => 'Excluir Franquias',
+                'name' => 'Excluir Cursos',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            /** Affiliations */
+            [
+                'name' => 'Acessar Afiliações',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
             [
-                'name' => 'Atribuir Franquias',
+                'name' => 'Listar Afiliações',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Criar Afiliações',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Editar Afiliações',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Excluir Afiliações',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Atribuir Afiliações',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
@@ -219,20 +245,20 @@ class PermissionsTableSeeder extends Seeder
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
-            /** Franchisee / Businessmen */
+            /** Affiliate / Businessmen */
             [
                 'name' => 'Editar Usuário',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
-            /** Franchisee */
+            /** Affiliate */
             [
-                'name' => 'Acessar Franquia',
+                'name' => 'Acessar Afiliação',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
             [
-                'name' => 'Editar Franquia',
+                'name' => 'Editar Afiliação',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],

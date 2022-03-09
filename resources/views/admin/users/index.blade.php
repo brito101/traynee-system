@@ -7,7 +7,7 @@
 @section('content')
     @if (Auth::user()->hasRole('Programador|Administrador'))
         @php
-            $heads = [['label' => 'ID', 'width' => 5], 'Nome', 'E-mail', 'Gênero', 'Tipo', 'Franquia', 'Empresa', ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
+            $heads = [['label' => 'ID', 'width' => 5], 'Nome', 'E-mail', 'Gênero', 'Tipo', 'Afiliação', 'Empresa', ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
 
             $list = [];
 
@@ -18,11 +18,11 @@
                 } else {
                     $genre = 'Não informado';
                 }
-                /** Franchise */
-                if (isset($user->franchise['alias_name'])) {
-                    $franchise = $user->franchise['alias_name'];
+                /** Affiliation */
+                if (isset($user->affiliation['alias_name'])) {
+                    $affiliation = $user->affiliation['alias_name'];
                 } else {
-                    $franchise = '';
+                    $affiliation = '';
                 }
                 /** Company */
                 if (isset($user->company['alias_name'])) {
@@ -31,7 +31,7 @@
                     $company = '';
                 }
 
-                $list[] = [$user->id, $user->name, $user->email, $genre, $user->getRoleNames(), $franchise, $company, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="users/' . $user->id . '/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="users/destroy/' . $user->id . '" onclick="return confirm(\'Confirma a exclusão desta usuário?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
+                $list[] = [$user->id, $user->name, $user->email, $genre, $user->getRoleNames(), $affiliation, $company, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="users/' . $user->id . '/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="users/destroy/' . $user->id . '" onclick="return confirm(\'Confirma a exclusão desta usuário?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
             }
 
             $config = [
@@ -41,7 +41,7 @@
                 'language' => ['url' => asset('vendor/datatables/js/pt-BR.json')],
             ];
         @endphp
-    @elseif (Auth::user()->hasRole('Franqueado'))
+    @elseif (Auth::user()->hasRole('Afiliado'))
         @php
             $heads = [['label' => 'ID', 'width' => 5], 'Nome', 'E-mail', 'Gênero', 'Tipo', 'Empresa', ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
 
@@ -73,7 +73,7 @@
         @endphp
     @else
         @php
-            $heads = [['label' => 'ID', 'width' => 5], 'Nome', 'E-mail', 'Gênero', 'Tipo', 'Franquia', 'Empresa'];
+            $heads = [['label' => 'ID', 'width' => 5], 'Nome', 'E-mail', 'Gênero', 'Tipo', 'Afiliação', 'Empresa'];
 
             $list = [];
 

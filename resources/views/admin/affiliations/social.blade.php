@@ -29,26 +29,26 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Redes Sociais da Empresa</h3>
+                            <h3 class="card-title">Redes Sociais da Afiliação</h3>
                         </div>
 
-                        <form method="POST" action="{{ route('admin.franchise.social.store') }}">
+                        <form method="POST" action="{{ route('admin.affiliation.social.store') }}">
                             @method('PUT')
                             @csrf
                             <div class="card-body">
-                                <input type="hidden" name="id" value="{{ $franchise->id }}">
+                                <input type="hidden" name="id" value="{{ $affiliation->id }}">
                                 <div class="d-flex flex-wrap justify-content-between">
                                     <div class="col-12 col-md-6 form-group px-0 pr-md-2">
                                         <label for="facebook">Facebook</label>
                                         <input type="url" class="form-control" id="facebook"
                                             placeholder="https://www.facebook.com/..." name="facebook"
-                                            value="{{ old('facebook') ?? ($franchise->facebook ? $franchise->facebook : '') }}">
+                                            value="{{ old('facebook') ?? ($affiliation->facebook ? $affiliation->facebook : '') }}">
                                     </div>
                                     <div class="col-12 col-md-6 form-group px-0 pl-md-2">
                                         <label for="instagram">Instagram</label>
                                         <input type="url" class="form-control" id="instagram"
                                             placeholder="https://www.instagram.com/..." name="instagram"
-                                            value="{{ old('instagram') ?? ($franchise->instagram ? $franchise->instagram : '') }}">
+                                            value="{{ old('instagram') ?? ($affiliation->instagram ? $affiliation->instagram : '') }}">
                                     </div>
                                 </div>
 
@@ -57,13 +57,13 @@
                                         <label for="twitter">Twitter</label>
                                         <input type="url" class="form-control" id="twitter"
                                             placeholder="https://www.twitter.com/..." name="twitter"
-                                            value="{{ old('twitter') ?? ($franchise->twitter ? $franchise->twitter : '') }}">
+                                            value="{{ old('twitter') ?? ($affiliation->twitter ? $affiliation->twitter : '') }}">
                                     </div>
                                     <div class="col-12 col-md-6 form-group px-0 pl-md-2">
                                         <label for="linkedin">Linkedin</label>
                                         <input type="url" class="form-control" id="linkedin"
                                             placeholder="https://www.linkedin.com/in/..." name="linkedin"
-                                            value="{{ old('linkedin') ?? ($franchise->linkedin ? $franchise->linkedin : '') }}">
+                                            value="{{ old('linkedin') ?? ($affiliation->linkedin ? $affiliation->linkedin : '') }}">
                                     </div>
                                 </div>
 
@@ -72,13 +72,13 @@
                                         <label for="youtube">YouTube</label>
                                         <input type="url" class="form-control" id="youtube"
                                             placeholder="https://www.youtube.com/c/..." name="youtube"
-                                            value="{{ old('youtube') ?? ($franchise->youtube ? $franchise->youtube : '') }}">
+                                            value="{{ old('youtube') ?? ($affiliation->youtube ? $affiliation->youtube : '') }}">
                                     </div>
                                     <div class="col-12 col-md-6 form-group px-0 pl-md-2">
                                         <label for="whatsapp">WhatsApp</label>
                                         <input type="url" class="form-control" id="whatsapp"
                                             placeholder="https://api.whatsapp.com/send?phone=..." name="whatsapp"
-                                            value="{{ old('whatsapp') ?? ($franchise->whatsapp ? $franchise->whatsapp : '') }}">
+                                            value="{{ old('whatsapp') ?? ($affiliation->whatsapp ? $affiliation->whatsapp : '') }}">
                                     </div>
                                 </div>
 
@@ -87,13 +87,13 @@
                                         <label for="telegram">Telegram</label>
                                         <input type="url" class="form-control" id="telegram"
                                             placeholder="https://t.me/@..." name="telegram"
-                                            value="{{ old('telegram') ?? ($franchise->telegram ? $franchise->telegram : '') }}">
+                                            value="{{ old('telegram') ?? ($affiliation->telegram ? $affiliation->telegram : '') }}">
                                     </div>
                                     <div class="col-12 col-md-6 form-group px-0 pl-md-2">
                                         <label for="discord">Discord</label>
                                         <input type="url" class="form-control" id="discord"
                                             placeholder="https://discord.com/channels/..." name="discord"
-                                            value="{{ old('discord') ?? ($franchise->discord ? $franchise->discord : '') }}">
+                                            value="{{ old('discord') ?? ($affiliation->discord ? $affiliation->discord : '') }}">
                                     </div>
                                 </div>
 

@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Company;
-use App\Models\Franchise;
+use App\Models\Affiliation;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Shetabit\Visitor\Models\Visit;
 
 class AdminController extends Controller
@@ -15,10 +16,15 @@ class AdminController extends Controller
     {
         $onlineUsers = User::online()->get()->count();
         $administrators = User::role('Administrador')->get()->count();
-        $franchisee = User::role('Franqueado')->get()->count();
+        $affiliates = User::role('Afiliado')->get()->count();
         $companies = Company::all()->count();
-        $franchises = Franchise::all()->count();
-        $businessmen = User::role('Empresário')->get()->count();
+
+        $affiliations = Affiliation::all()->count();
+        $businessmen = User::role('Empresário')->count();
+        if (Auth::user()->hasRole('Afiliado')) {
+            $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->count();
+            $businessmen = User::role('Empresário')->where('affiliation_id', Auth::user()->affiliation_id)->count();
+        }
         $trainee = User::role('Estagiário')->get()->count();
 
         $access = Visit::where('created_at', '>=', date("Y-m-d"))
@@ -50,8 +56,8 @@ class AdminController extends Controller
 
         return view('admin.home.index', compact(
             'administrators',
-            'franchises',
-            'franchisee',
+            'affiliates',
+            'affiliations',
             'companies',
             'businessmen',
             'trainee',

@@ -65,6 +65,10 @@ class RolesHasPermissionTableSeeder extends Seeder
                 'permission_id' => 11,
                 'role_id' => 2
             ],
+            [
+                'permission_id' => 11,
+                'role_id' => 3
+            ],
             /** Settings */
             [
                 'permission_id' => 12,
@@ -156,7 +160,7 @@ class RolesHasPermissionTableSeeder extends Seeder
                 'permission_id' => 22,
                 'role_id' => 2
             ],
-            /** Franchises */
+            /** Courses */
             [
                 'permission_id' => 23,
                 'role_id' => 1
@@ -197,76 +201,57 @@ class RolesHasPermissionTableSeeder extends Seeder
                 'permission_id' => 27,
                 'role_id' => 2
             ],
+            /** Affiliations */
             [
                 'permission_id' => 28,
                 'role_id' => 1
             ],
             [
                 'permission_id' => 28,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 29,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 29,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 30,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 30,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 31,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 31,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 32,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 32,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 33,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 33,
                 'role_id' => 2
             ],
             /** Companies */
             [
-                'permission_id' => 29,
-                'role_id' => 1
-            ],
-            [
-                'permission_id' => 29,
-                'role_id' => 2
-            ],
-            [
-                'permission_id' => 29,
-                'role_id' => 3
-            ],
-            [
-                'permission_id' => 30,
-                'role_id' => 1
-            ],
-            [
-                'permission_id' => 30,
-                'role_id' => 2
-            ],
-            [
-                'permission_id' => 30,
-                'role_id' => 3
-            ],
-            [
-                'permission_id' => 31,
-                'role_id' => 1
-            ],
-            [
-                'permission_id' => 31,
-                'role_id' => 2
-            ],
-            [
-                'permission_id' => 31,
-                'role_id' => 3
-            ],
-            [
-                'permission_id' => 32,
-                'role_id' => 1
-            ],
-            [
-                'permission_id' => 32,
-                'role_id' => 2
-            ],
-            [
-                'permission_id' => 32,
-                'role_id' => 3
-            ],
-            [
-                'permission_id' => 33,
-                'role_id' => 1
-            ],
-            [
-                'permission_id' => 33,
-                'role_id' => 2
-            ],
-            [
-                'permission_id' => 33,
-                'role_id' => 3
-            ],
-            [
                 'permission_id' => 34,
                 'role_id' => 1
             ],
@@ -276,94 +261,154 @@ class RolesHasPermissionTableSeeder extends Seeder
             ],
             [
                 'permission_id' => 34,
+                'role_id' => 3
+            ],
+            [
+                'permission_id' => 35,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 35,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 35,
+                'role_id' => 3
+            ],
+            [
+                'permission_id' => 36,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 36,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 36,
+                'role_id' => 3
+            ],
+            [
+                'permission_id' => 37,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 37,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 37,
+                'role_id' => 3
+            ],
+            [
+                'permission_id' => 38,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 38,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 38,
+                'role_id' => 3
+            ],
+            [
+                'permission_id' => 39,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 39,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 39,
                 'role_id' => 3
             ],
             /** Users */
             [
-                'permission_id' => 35,
+                'permission_id' => 40,
                 'role_id' => 1
             ],
             [
-                'permission_id' => 35,
+                'permission_id' => 40,
                 'role_id' => 2
             ],
-            [
-                'permission_id' => 35,
-                'role_id' => 3
-            ],
-            [
-                'permission_id' => 36,
-                'role_id' => 1
-            ],
-            [
-                'permission_id' => 36,
-                'role_id' => 2
-            ],
-            [
-                'permission_id' => 36,
-                'role_id' => 3
-            ],
-            [
-                'permission_id' => 37,
-                'role_id' => 1
-            ],
-            [
-                'permission_id' => 37,
-                'role_id' => 2
-            ],
-            [
-                'permission_id' => 37,
-                'role_id' => 3
-            ],
-            [
-                'permission_id' => 38,
-                'role_id' => 1
-            ],
-            [
-                'permission_id' => 38,
-                'role_id' => 2
-            ],
-            [
-                'permission_id' => 38,
-                'role_id' => 3
-            ],
-            [
-                'permission_id' => 39,
-                'role_id' => 1
-            ],
-            [
-                'permission_id' => 39,
-                'role_id' => 2
-            ],
-            [
-                'permission_id' => 39,
-                'role_id' => 3
-            ],
-            /** Franchisee / Businessmen */
             [
                 'permission_id' => 40,
                 'role_id' => 3
             ],
             [
-                'permission_id' => 40,
-                'role_id' => 4
+                'permission_id' => 41,
+                'role_id' => 1
             ],
-            /** Franchisee */
+            [
+                'permission_id' => 41,
+                'role_id' => 2
+            ],
             [
                 'permission_id' => 41,
                 'role_id' => 3
             ],
             [
                 'permission_id' => 42,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 42,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 42,
+                'role_id' => 3
+            ],
+            [
+                'permission_id' => 43,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 43,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 43,
+                'role_id' => 3
+            ],
+            [
+                'permission_id' => 44,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 44,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 44,
+                'role_id' => 3
+            ],
+            /** Affiliate / Businessmen */
+            [
+                'permission_id' => 45,
+                'role_id' => 3
+            ],
+            [
+                'permission_id' => 45,
+                'role_id' => 4
+            ],
+            /** Affiliate */
+            [
+                'permission_id' => 46,
+                'role_id' => 3
+            ],
+            [
+                'permission_id' => 47,
                 'role_id' => 3
             ],
             /** Businessmen */
             [
-                'permission_id' => 43,
+                'permission_id' => 48,
                 'role_id' => 4
             ],
             [
-                'permission_id' => 44,
+                'permission_id' => 49,
                 'role_id' => 4
             ],
         ]);

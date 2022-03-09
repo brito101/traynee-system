@@ -28,7 +28,7 @@ class RolesTableSeeder extends Seeder
                 'created_at' => new DateTime('now')
             ],
             [
-                'name' => 'Franqueado',
+                'name' => 'Afiliado',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],

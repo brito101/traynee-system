@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterTableUserAddFranchise extends Migration
+class AlterTableUserAddaffiliation extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AlterTableUserAddFranchise extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('franchise_id')
+            $table->foreignId('affiliation_id')
                 ->nullable()
                 ->constrained()
                 ->onUpdate('cascade')
@@ -30,8 +30,8 @@ class AlterTableUserAddFranchise extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign(['franchise_id']);
-            $table->dropColumn('franchise_id');
+            $table->dropForeign(['affiliation_id']);
+            $table->dropColumn('affiliation_id');
         });
     }
 }
