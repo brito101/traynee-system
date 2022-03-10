@@ -25,6 +25,7 @@ class AdminController extends Controller
             $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->count();
             $businessmen = User::role('Empresário')->where('affiliation_id', Auth::user()->affiliation_id)->count();
         }
+
         $trainee = User::role('Estagiário')->get()->count();
 
         $access = Visit::where('created_at', '>=', date("Y-m-d"))

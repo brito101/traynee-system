@@ -160,7 +160,7 @@ class CompanyController extends Controller
         }
 
         if ($request->hasFile('logo') && $request->file('logo')->isValid()) {
-            $name = Str::slug(mb_substr($company->alias_name, 0, 10)) . time();
+            $name = Str::slug(mb_substr($data['alias_name'], 0, 10)) . time();
             $imagePath = storage_path() . '/app/public/companies/' . $company->logo;
 
             if (File::isFile($imagePath)) {
@@ -174,11 +174,12 @@ class CompanyController extends Controller
 
             $upload = $request->logo->storeAs('companies', $nameFile);
 
-            if (!$upload)
+            if (!$upload) {
                 return redirect()
                     ->back()
                     ->withInput()
                     ->with('error', 'Falha ao fazer o upload da imagem');
+            }
         }
 
         if ($company->update($data)) {
@@ -318,11 +319,12 @@ class CompanyController extends Controller
 
             $upload = $request->brand_facebook->storeAs('companies', $nameFile);
 
-            if (!$upload)
+            if (!$upload) {
                 return redirect()
                     ->back()
                     ->withInput()
                     ->with('error', 'Falha ao fazer o upload da imagem');
+            }
         }
 
         /** Instagram */
@@ -341,11 +343,12 @@ class CompanyController extends Controller
 
             $upload = $request->brand_instagram->storeAs('companies', $nameFile);
 
-            if (!$upload)
+            if (!$upload) {
                 return redirect()
                     ->back()
                     ->withInput()
                     ->with('error', 'Falha ao fazer o upload da imagem');
+            }
         }
 
         /** Twitter */
@@ -364,11 +367,12 @@ class CompanyController extends Controller
 
             $upload = $request->brand_twitter->storeAs('companies', $nameFile);
 
-            if (!$upload)
+            if (!$upload) {
                 return redirect()
                     ->back()
                     ->withInput()
                     ->with('error', 'Falha ao fazer o upload da imagem');
+            }
         }
 
         if ($company->update($data)) {

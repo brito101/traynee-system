@@ -477,6 +477,27 @@ return [
                 ]
             ]
         ],
+        [
+            'text'        => 'Blog',
+            'url'         => '#',
+            'icon'        => 'fas fa-fw fa-blog',
+            'can'         => 'Acessar Posts',
+            'submenu' => [
+                [
+                    'text' => 'Listagem de Posts',
+                    'url'  => 'admin/posts',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                    'can'  => 'Listar Posts',
+                ],
+                [
+                    'text' => 'Cadastro de Posts',
+                    'url'  => 'admin/posts/create',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                    'can'  => 'Criar Posts',
+                ]
+            ]
+
+        ],
 
         //End custom menus
         // [

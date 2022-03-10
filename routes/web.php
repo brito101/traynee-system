@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AffiliationController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\GenreController;
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ScholarityController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Site\SiteController;
@@ -56,6 +57,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/company/edit/brand-images', [CompanyController::class, 'brandImagesStore'])->name('company.brand.store');
         Route::get('/companies/destroy/{id}', [CompanyController::class, 'destroy']);
         Route::resource('companies', CompanyController::class);
+
+        /** Blog */
+        Route::get('/posts/destroy/{id}', [PostController::class, 'destroy']);
+        Route::resource('posts', PostController::class);
 
         /**
          * Configurations

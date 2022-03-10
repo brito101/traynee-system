@@ -61,7 +61,7 @@ class UserController extends Controller
             $companies = Company::all();
             $affiliations = Affiliation::all();
         } elseif (Auth::user()->hasRole('Afiliado')) {
-            $roles = Role::whereIn('name', ['Afiliado', 'Empresário', 'Estagiário'])->get();
+            $roles = Role::whereIn('name', ['Afiliado', 'Empresário'])->get();
             $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
             $affiliations = [];
         } else {
@@ -132,6 +132,7 @@ class UserController extends Controller
      */
     public function edit($id = null)
     {
+
         if ($id && !Auth::user()->hasPermissionTo('Editar Usuários')) {
             abort(403, 'Acesso não autorizado');
         }
@@ -157,7 +158,7 @@ class UserController extends Controller
             $affiliations = Affiliation::all();
             $user = User::where('id', $id)->first();
         } elseif (Auth::user()->hasRole('Afiliado')) {
-            $roles = Role::whereIn('name', ['Afiliado', 'Empresário', 'Estagiário'])->get();
+            $roles = Role::whereIn('name', ['Afiliado', 'Empresários'])->get();
             $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
             $affiliations = [];
             $user = User::where('id', $id)
@@ -167,7 +168,7 @@ class UserController extends Controller
             $roles = [];
             $companies = [];
             $affiliations = [];
-            $user = null;
+            $user = User::where('id', $id)->first();
         }
 
         if (empty($user->id)) {
@@ -217,7 +218,7 @@ class UserController extends Controller
         }
 
         if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
-            $name = Str::slug(mb_substr($user->name, 0, 10)) . time();
+            $name = Str::slug(mb_substr($data['name'], 0, 10)) . time();
             $imagePath = storage_path() . '/app/public/users/' . $user->photo;
 
             if (File::isFile($imagePath)) {

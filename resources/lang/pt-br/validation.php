@@ -197,6 +197,7 @@ return [
         'brand_facebook' => 'Imagem para o Facebook',
         'brand_instagram' => 'Imagem para o Instagram',
         'brand_twitter' => 'Imagem para o Twitter',
+        'content' => 'de conteúdo'
     ],
 
 ];

@@ -138,7 +138,7 @@ class AffiliationController extends Controller
         }
 
         if ($request->hasFile('logo') && $request->file('logo')->isValid()) {
-            $name = Str::slug(mb_substr($affiliation->alias_name, 0, 10)) . time();
+            $name = Str::slug(mb_substr($data['alias_name'], 0, 10)) . time();
             $imagePath = storage_path() . '/app/public/affiliations/' . $affiliation->logo;
 
             if (File::isFile($imagePath)) {

@@ -52,24 +52,26 @@
                         </div>
                     </div>
                 @endif
-                <div class="col-12 col-sm-6 col-md-4">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-building"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Empresas</span>
-                            <span class="info-box-number">{{ $companies }}</span>
+                @if (Auth::user()->hasRole('Programador|Administrador|Afiliado'))
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-building"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Empresas</span>
+                                <span class="info-box-number">{{ $companies }}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4">
-                    <div class="info-box mb-3">
-                        <span class="info-box-icon bg-teal elevation-1"><i class="fas fa-briefcase"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Empresários</span>
-                            <span class="info-box-number">{{ $businessmen }}</span>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="info-box mb-3">
+                            <span class="info-box-icon bg-teal elevation-1"><i class="fas fa-briefcase"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Empresários</span>
+                                <span class="info-box-number">{{ $businessmen }}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
                 <div class="col-12 col-sm-6 col-md-4">
                     <div class="info-box mb-3">
                         <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
@@ -128,67 +130,69 @@
     </section>
 @endsection
 
-@section('adminlte_js')
-    <script>
-        const ctx = document.getElementById('visitors-chart');
-        if (ctx) {
-            ctx.getContext('2d');
-            const myChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ({!! json_encode($chart->labels) !!}),
-                    datasets: [{
-                        label: 'Acessos por horário',
-                        data: {!! json_encode($chart->dataset) !!},
-                        borderWidth: 1,
-                        borderColor: '#007bff',
-                        backgroundColor: 'transparent'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
+@if (Auth::user()->hasRole('Programador|Administrador'))
+    @section('adminlte_js')
+        <script>
+            const ctx = document.getElementById('visitors-chart');
+            if (ctx) {
+                ctx.getContext('2d');
+                const myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ({!! json_encode($chart->labels) !!}),
+                        datasets: [{
+                            label: 'Acessos por horário',
+                            data: {!! json_encode($chart->dataset) !!},
+                            borderWidth: 1,
+                            borderColor: '#007bff',
+                            backgroundColor: 'transparent'
+                        }]
                     },
-                    legend: {
-                        labels: {
-                            boxWidth: 0,
-                        }
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        },
+                        legend: {
+                            labels: {
+                                boxWidth: 0,
+                            }
+                        },
                     },
-                },
-            });
-
-            let getData = function() {
-
-                $.ajax({
-                    url: "{{ route('admin.home.chart') }}",
-                    type: "GET",
-                    success: function(data) {
-                        myChart.data.labels = data.chart.labels;
-                        myChart.data.datasets[0].data = data.chart.dataset;
-                        myChart.update();
-                        $("#onlineusers").text(data.onlineUsers);
-                        $("#accessdaily").text(data.access);
-                        $("#percentvalue").text(data.percent);
-                        const percentclass = $("#percentclass");
-                        const percenticon = $("#percenticon");
-                        percentclass.removeClass('text-success');
-                        percentclass.removeClass('text-danger');
-                        percenticon.removeClass('fa-arrow-up');
-                        percenticon.removeClass('fa-arrow-down');
-                        if (data.percent > 0) {
-                            percentclass.addClass('text-success');
-                            percenticon.addClass('fa-arrow-up');
-                        } else {
-                            percentclass.addClass('text-danger');
-                            percenticon.addClass('fa-arrow-down');
-                        }
-                    }
                 });
-            };
-            setInterval(getData, 10000);
-        }
-    </script>
-@endsection
+
+                let getData = function() {
+
+                    $.ajax({
+                        url: "{{ route('admin.home.chart') }}",
+                        type: "GET",
+                        success: function(data) {
+                            myChart.data.labels = data.chart.labels;
+                            myChart.data.datasets[0].data = data.chart.dataset;
+                            myChart.update();
+                            $("#onlineusers").text(data.onlineUsers);
+                            $("#accessdaily").text(data.access);
+                            $("#percentvalue").text(data.percent);
+                            const percentclass = $("#percentclass");
+                            const percenticon = $("#percenticon");
+                            percentclass.removeClass('text-success');
+                            percentclass.removeClass('text-danger');
+                            percenticon.removeClass('fa-arrow-up');
+                            percenticon.removeClass('fa-arrow-down');
+                            if (data.percent > 0) {
+                                percentclass.addClass('text-success');
+                                percenticon.addClass('fa-arrow-up');
+                            } else {
+                                percentclass.addClass('text-danger');
+                                percenticon.addClass('fa-arrow-down');
+                            }
+                        }
+                    });
+                };
+                setInterval(getData, 10000);
+            }
+        </script>
+    @endsection
+@endif

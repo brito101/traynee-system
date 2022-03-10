@@ -72,4 +72,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Scholarity::class);
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
