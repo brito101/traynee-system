@@ -143,8 +143,8 @@
                                 </div>
                                 <div class="col-12 col-md-6 form-group px-0 pl-md-2">
                                     <label for="state">Estado</label>
-                                    <input type="text" class="form-control" id="state" placeholder="Estado"
-                                        name="state" value="{{ old('state') ?? $affiliation->state }}">
+                                    <input type="text" class="form-control" id="state" placeholder="UF" name="state"
+                                        value="{{ old('state') ?? $affiliation->state }}">
                                 </div>
                             </div>
 
@@ -189,7 +189,7 @@
 </section>
 @endsection
 
-@section('adminlte_js')
+@section('custom_js')
 <script src="{{ asset('vendor/jquery/jquery.inputmask.bundle.min.js') }}"></script>
 <script src="{{ asset('js/company.js') }}"></script>
 @endsection

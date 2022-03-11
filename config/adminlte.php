@@ -498,6 +498,27 @@ return [
             ]
 
         ],
+        [
+            'text'        => 'Vagas',
+            'url'         => '#',
+            'icon'        => 'fas fa-fw fa-briefcase',
+            'can'         => 'Acessar Vagas',
+            'submenu' => [
+                [
+                    'text' => 'Listagem de Vagas',
+                    'url'  => 'admin/vacancies',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                    'can'  => 'Listar Vagas',
+                ],
+                [
+                    'text' => 'Cadastro de Vagas',
+                    'url'  => 'admin/vacancies/create',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                    'can'  => 'Criar Posts',
+                ]
+            ]
+
+        ],
 
         //End custom menus
         // [

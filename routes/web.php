@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\GenreController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ScholarityController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\VacancyController;
 use App\Http\Controllers\Site\SiteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -61,6 +62,10 @@ Route::group(['middleware' => ['auth']], function () {
         /** Blog */
         Route::get('/posts/destroy/{id}', [PostController::class, 'destroy']);
         Route::resource('posts', PostController::class);
+
+        /** Vacancies */
+        Route::get('/vacancies/destroy/{id}', [VacancyController::class, 'destroy']);
+        Route::resource('vacancies', VacancyController::class);
 
         /**
          * Configurations
