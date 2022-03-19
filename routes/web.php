@@ -48,8 +48,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/user/address', [AddressController::class, 'edit'])->name('address.edit');
         Route::put('/user/address', [AddressController::class, 'store'])->name('address.store');
         /** Social network */
-        Route::get('/user/social-network', [UserNetworkController::class, 'edit'])->name('networkNetwork.edit');
-        Route::put('/user/social-network', [UserNetworkController::class, 'store'])->name('networkNetwork.store');
+        Route::get('/user/social-network', [UserNetworkController::class, 'edit'])->name('userNetwork.edit');
+        Route::put('/user/social-network', [UserNetworkController::class, 'store'])->name('userNetwork.store');
 
         /** Francheeses */
         Route::get('/franchise/edit', [AffiliationController::class, 'edit'])->name('franchise.edit');

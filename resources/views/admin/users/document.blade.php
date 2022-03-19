@@ -30,7 +30,7 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Dados Cadastrais do Usuário</h3>
+                            <h3 class="card-title">Dados Cadastrais de Documentação</h3>
                         </div>
 
                         <form method="POST" action="{{ route('admin.document.store', ['user' => $user->id]) }}"
