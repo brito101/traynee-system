@@ -7,7 +7,7 @@
 @section('content')
     @if (Auth::user()->hasRole('Programador|Administrador'))
         @php
-            $heads = [['label' => 'ID', 'width' => 5], 'Nome', 'E-mail', 'Gênero', 'Tipo', 'Afiliação', 'Empresa', ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
+            $heads = [['label' => 'ID', 'width' => 5], 'Nome', 'E-mail', 'Gênero', 'Tipo', 'Franquia', 'Empresa', ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
 
             $list = [];
 
@@ -41,7 +41,7 @@
                 'language' => ['url' => asset('vendor/datatables/js/pt-BR.json')],
             ];
         @endphp
-    @elseif (Auth::user()->hasRole('Afiliado'))
+    @elseif (Auth::user()->hasRole('Franquiado'))
         @php
             $heads = [['label' => 'ID', 'width' => 5], 'Nome', 'E-mail', 'Gênero', 'Tipo', 'Empresa', ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
 
@@ -73,7 +73,7 @@
         @endphp
     @else
         @php
-            $heads = [['label' => 'ID', 'width' => 5], 'Nome', 'E-mail', 'Gênero', 'Tipo', 'Afiliação', 'Empresa'];
+            $heads = [['label' => 'ID', 'width' => 5], 'Nome', 'E-mail', 'Gênero', 'Tipo', 'Franquia', 'Empresa'];
 
             $list = [];
 

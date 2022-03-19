@@ -36,7 +36,7 @@
                         <div class="info-box mb-3">
                             <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-handshake"></i></span>
                             <div class="info-box-content">
-                                <span class="info-box-text">Afiliações</span>
+                                <span class="info-box-text">Franquias</span>
                                 <span class="info-box-number">{{ $affiliations }}</span>
                             </div>
                         </div>
@@ -46,13 +46,13 @@
                         <div class="info-box mb-3">
                             <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
                             <div class="info-box-content">
-                                <span class="info-box-text">Afiliados</span>
+                                <span class="info-box-text">Franquiados</span>
                                 <span class="info-box-number">{{ $affiliates }}</span>
                             </div>
                         </div>
                     </div>
                 @endif
-                @if (Auth::user()->hasRole('Programador|Administrador|Afiliado'))
+                @if (Auth::user()->hasRole('Programador|Administrador|Franquiado'))
                     <div class="col-12 col-sm-6 col-md-4">
                         <div class="info-box">
                             <span class="info-box-icon bg-success elevation-1"><i class="fas fa-building"></i></span>

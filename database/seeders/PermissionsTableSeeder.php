@@ -157,34 +157,34 @@ class PermissionsTableSeeder extends Seeder
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
-            /** Affiliations */
+            /** Francheeses */
             [
-                'name' => 'Acessar Afiliações',
+                'name' => 'Acessar Franquias',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
             [
-                'name' => 'Listar Afiliações',
+                'name' => 'Listar Franquias',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
             [
-                'name' => 'Criar Afiliações',
+                'name' => 'Criar Franquias',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
             [
-                'name' => 'Editar Afiliações',
+                'name' => 'Editar Franquias',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
             [
-                'name' => 'Excluir Afiliações',
+                'name' => 'Excluir Franquias',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
             [
-                'name' => 'Atribuir Afiliações',
+                'name' => 'Atribuir Franquias',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
@@ -245,20 +245,20 @@ class PermissionsTableSeeder extends Seeder
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
-            /** Affiliate / Businessmen */
+            /** Francheese / Businessmen */
             [
                 'name' => 'Editar Usuário',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
-            /** Affiliate */
+            /** Francheese */
             [
-                'name' => 'Acessar Afiliação',
+                'name' => 'Acessar Franquia',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
             [
-                'name' => 'Editar Afiliação',
+                'name' => 'Editar Franquia',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],

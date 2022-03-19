@@ -2,9 +2,9 @@
 @section('plugins.BsCustomFileInput', true)
 
 @can('Editar Empresas')
-    @section('title', '- Editar Afiliação')
+    @section('title', '- Editar Franquia')
 @else
-@section('title', '- Dados da Afiliação')
+@section('title', '- Dados da Franquia')
 @endcan
 
 @section('content')
@@ -13,20 +13,20 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                @can('Editar Afiliações')
-                    <h1><i class="far fa-fw fa-handshake"></i> Editar Afiliação</h1>
+                @can('Editar Franquias')
+                    <h1><i class="far fa-fw fa-handshake"></i> Editar Franquia</h1>
                 @else
-                    <h1><i class="far fa-fw fa-handshake"></i> Dados da Afiliação</h1>
+                    <h1><i class="far fa-fw fa-handshake"></i> Dados da Franquia</h1>
                 @endcan
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                    @can('Editar Afiliações')
-                        <li class="breadcrumb-item"><a href="{{ route('admin.affiliations.index') }}">Afiliações</a></li>
-                        <li class="breadcrumb-item active">Editar Afiliação</li>
+                    @can('Editar Franquias')
+                        <li class="breadcrumb-item"><a href="{{ route('admin.franchisees.index') }}">Franquias</a></li>
+                        <li class="breadcrumb-item active">Editar Franquia</li>
                     @else
-                        <li class="breadcrumb-item active">Dados da Afiliação</li>
+                        <li class="breadcrumb-item active">Dados da Franquia</li>
                     @endcan
                 </ol>
             </div>
@@ -43,11 +43,11 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Dados Cadastrais da Afiliação</h3>
+                        <h3 class="card-title">Dados Cadastrais da Franquia</h3>
                     </div>
 
                     <form method="POST"
-                        action="{{ route('admin.affiliations.update', ['affiliation' => $affiliation->id]) }}"
+                        action="{{ route('admin.franchisees.update', ['franchisee' => $affiliation->id]) }}"
                         enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
@@ -55,9 +55,9 @@
                             <input type="hidden" name="id" value="{{ $affiliation->id }}">
                             <div class="d-flex flex-wrap justify-content-between">
                                 <div class="col-12 col-md-6 form-group px-0 pr-md-2">
-                                    <label for="social_name">Nome da Afiliação</label>
+                                    <label for="social_name">Nome da Franquia</label>
                                     <input type="text" class="form-control" id="social_name"
-                                        placeholder="Nome da Afiliação" name="social_name"
+                                        placeholder="Nome da Franquia" name="social_name"
                                         value="{{ old('social_name') ?? $affiliation->social_name }}" required>
                                 </div>
                                 <div class="col-12 col-md-6 form-group px-0 pl-md-2">

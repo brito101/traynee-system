@@ -27,6 +27,25 @@ class UsersTableSeeder extends Seeder
                 'email'     => env('ADMIN_EMAIL'),
                 'password'  => bcrypt(env('ADMIN_PASSWD')),
                 'created_at' => new DateTime('now')
+            ],
+            /** Testes */
+            [
+                'name'      => 'Franquiado 1',
+                'email'     => 'franquia1@estagio.com',
+                'password'  => bcrypt(12345678),
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name'      => 'Franquiado 2',
+                'email'     => 'franquia2@estagio.com',
+                'password'  => bcrypt(12345678),
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name'      => 'Franquiado 3',
+                'email'     => 'franquia3@estagio.com',
+                'password'  => bcrypt(12345678),
+                'created_at' => new DateTime('now')
             ]
         ]);
     }

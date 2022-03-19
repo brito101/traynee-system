@@ -33,7 +33,7 @@
                             <h3 class="card-title">Imagens de compartilhamento da Empresa</h3>
                         </div>
 
-                        <form method="POST" action="{{ route('admin.affiliation.brand.store') }}"
+                        <form method="POST" action="{{ route('admin.franchise.brand.store') }}"
                             enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
@@ -52,7 +52,7 @@
                                         @if ($affiliation->brand_facebook != null)
                                             <div
                                                 class='col-12 col-md-3 align-self-center mt-3 d-flex justify-content-center justify-content-md-end px-0'>
-                                                <img src="{{ url('storage/companies/' . $affiliation->brand_facebook) }}"
+                                                <img src="{{ url('storage/affiliations/' . $affiliation->brand_facebook) }}"
                                                     alt="Imagem para o Facebook" style="max-width: 80%;"
                                                     class="img-thumbnail d-block">
                                             </div>
@@ -70,7 +70,7 @@
                                         @if ($affiliation->brand_instagram != null)
                                             <div
                                                 class='col-12 col-md-3 align-self-center mt-3 d-flex justify-content-center justify-content-md-end px-0'>
-                                                <img src="{{ url('storage/companies/' . $affiliation->brand_instagram) }}"
+                                                <img src="{{ url('storage/affiliations/' . $affiliation->brand_instagram) }}"
                                                     alt="Imagem para o Instagram" style="max-width: 80%;"
                                                     class="img-thumbnail d-block">
                                             </div>
@@ -88,7 +88,7 @@
                                         @if ($affiliation->brand_twitter != null)
                                             <div
                                                 class='col-12 col-md-3 align-self-center mt-3 d-flex justify-content-center justify-content-md-end px-0'>
-                                                <img src="{{ url('storage/companies/' . $company->brand_twitter) }}"
+                                                <img src="{{ url('storage/affiliations/' . $affiliation->brand_twitter) }}"
                                                     alt="Imagem para o twitter" style="max-width: 80%;"
                                                     class="img-thumbnail d-block">
                                             </div>

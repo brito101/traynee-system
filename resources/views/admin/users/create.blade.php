@@ -103,9 +103,9 @@
                                             </x-adminlte-select2>
                                         </div>
                                     @endcan
-                                    @can('Atribuir Afiliações')
+                                    @can('Atribuir Franquias')
                                         <div class="col-12 col-md-6 form-group px-0 pr-md-2">
-                                            <label for="affiliation_id">Afiliação</label>
+                                            <label for="affiliation_id">Franquia</label>
                                             <x-adminlte-select2 name="affiliation_id">
                                                 <option value="">Não Informado</option>
                                                 @foreach ($affiliations as $affiliation)

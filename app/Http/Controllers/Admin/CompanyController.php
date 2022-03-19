@@ -26,7 +26,7 @@ class CompanyController extends Controller
 
         $companies = Company::all();
 
-        if (Auth::user()->hasRole('Afiliado')) {
+        if (Auth::user()->hasRole('Franquiado')) {
             $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
         }
 
@@ -60,7 +60,7 @@ class CompanyController extends Controller
         $data = $request->all();
         $data['user_id'] = auth()->user()->id;
 
-        if (Auth::user()->hasRole('Afiliado')) {
+        if (Auth::user()->hasRole('Franquiado')) {
             $data['affiliation_id'] = auth()->user()->affiliation_id;
         }
 
@@ -115,7 +115,7 @@ class CompanyController extends Controller
 
         $company = Company::where('id', $id)->first();
 
-        if (Auth::user()->hasRole('Afiliado')) {
+        if (Auth::user()->hasRole('Franquiado')) {
             $company = Company::where('id', $id)
                 ->where('affiliation_id', Auth::user()->affiliation_id)->first();
         }
@@ -149,7 +149,7 @@ class CompanyController extends Controller
             $company = Company::where('id', Auth::user()->company_id)->first();
         }
 
-        if (Auth::user()->hasRole('Afiliado')) {
+        if (Auth::user()->hasRole('Franquiado')) {
             $company = Company::where('id', $id)
                 ->where('affiliation_id', Auth::user()->affiliation_id)->first();
             $data['affiliation_id'] = auth()->user()->affiliation_id;
@@ -400,7 +400,7 @@ class CompanyController extends Controller
         }
         $company = Company::where('id', $id)->first();
 
-        if (Auth::user()->hasRole('Afiliado')) {
+        if (Auth::user()->hasRole('Franquiado')) {
             $company = Company::where('id', $id)
                 ->where('affiliation_id', Auth::user()->affiliation_id)->first();
         }

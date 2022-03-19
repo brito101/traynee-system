@@ -30,10 +30,10 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Perfil Institucional da Afiliação</h3>
+                            <h3 class="card-title">Perfil Institucional da Franquia</h3>
                         </div>
 
-                        <form method="POST" action="{{ route('admin.affiliation.resume.store') }}">
+                        <form method="POST" action="{{ route('admin.franchise.resume.store') }}">
                             @method('PUT')
                             @csrf
                             <div class="card-body">

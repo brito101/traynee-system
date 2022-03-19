@@ -29,8 +29,8 @@ class UserController extends Controller
         if (Auth::user()->hasRole('Programador')) {
             $users = User::all();
         } elseif (Auth::user()->hasRole('Administrador')) {
-            $users = User::role(['Administrador', 'Afiliado', 'Empresário', 'Estagiário'])->get();
-        } elseif (Auth::user()->hasRole('Afiliado')) {
+            $users = User::role(['Administrador', 'Franquiado', 'Empresário', 'Estagiário'])->get();
+        } elseif (Auth::user()->hasRole('Franquiado')) {
             $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->pluck('id')->toArray();
             $users = User::where('affiliation_id', Auth::user()->affiliation_id)
                 ->orWhereIn('company_id', $companies)
@@ -60,8 +60,8 @@ class UserController extends Controller
             $roles = Role::where('name', '!=', 'Programador')->get();
             $companies = Company::all();
             $affiliations = Affiliation::all();
-        } elseif (Auth::user()->hasRole('Afiliado')) {
-            $roles = Role::whereIn('name', ['Afiliado', 'Empresário'])->get();
+        } elseif (Auth::user()->hasRole('Franquiado')) {
+            $roles = Role::whereIn('name', ['Franquiado', 'Empresário'])->get();
             $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
             $affiliations = [];
         } else {
@@ -88,7 +88,7 @@ class UserController extends Controller
         $data = $request->all();
         $data['password'] = bcrypt($request->password);
 
-        if (Auth::user()->hasRole('Afiliado')) {
+        if (Auth::user()->hasRole('Franquiado')) {
             $data['affiliation_id'] = auth()->user()->affiliation_id;
         }
 
@@ -157,8 +157,8 @@ class UserController extends Controller
             $companies = Company::all();
             $affiliations = Affiliation::all();
             $user = User::where('id', $id)->first();
-        } elseif (Auth::user()->hasRole('Afiliado')) {
-            $roles = Role::whereIn('name', ['Afiliado', 'Empresários'])->get();
+        } elseif (Auth::user()->hasRole('Franquiado')) {
+            $roles = Role::whereIn('name', ['Franquiado', 'Empresários'])->get();
             $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
             $affiliations = [];
             $user = User::where('id', $id)
@@ -204,7 +204,7 @@ class UserController extends Controller
             abort(403, 'Acesso não autorizado');
         }
 
-        if (Auth::user()->hasRole('Afiliado')) {
+        if (Auth::user()->hasRole('Franquiado')) {
             $user = User::where('id', $id)
                 ->where('affiliation_id', Auth::user()->affiliation_id)
                 ->first();
@@ -274,7 +274,7 @@ class UserController extends Controller
 
         $user = User::where('id', $id)->first();
 
-        if (Auth::user()->hasRole('Afiliado')) {
+        if (Auth::user()->hasRole('Franquiado')) {
             $user = User::where('id', $id)
                 ->where('affiliation_id', Auth::user()->affiliation_id)
                 ->first();

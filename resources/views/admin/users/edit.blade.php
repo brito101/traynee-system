@@ -107,9 +107,9 @@
                                         </div>
                                     @endcan
                                     @if (Auth::user()->id != $user->id)
-                                        @can('Atribuir Afiliações')
-                                            <div class="col-12 col-md-6 form-group px-0 pr-md-2">
-                                                <label for="affiliation_id">Afiliação</label>
+                                        @can('Atribuir Franquias')
+                                            <div class="col-12 col-md-6 form-group px-0 pl-md-2">
+                                                <label for="affiliation_id">Franquia</label>
                                                 <x-adminlte-select2 name="affiliation_id">
                                                     <option value="">Não Informado</option>
                                                     @foreach ($affiliations as $affiliation)
@@ -123,7 +123,7 @@
                                         @endcan
                                         @can('Atribuir Empresas')
                                             <div
-                                                class="col-12 col-md-6 form-group px-0 {{ Auth::user()->hasPermissionTo('Atribuir Perfis') ? 'pl-md-2' : 'pr-md-2' }}">
+                                                class="col-12 col-md-6 form-group px-0 {{ Auth::user()->hasPermissionTo('Atribuir Perfis') ? 'pr-md-2' : 'pl-md-2' }}">
                                                 <label for="company_id">Empresa</label>
                                                 <x-adminlte-select2 name="company_id">
                                                     <option value="">Não Informado</option>

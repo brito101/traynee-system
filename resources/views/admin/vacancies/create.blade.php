@@ -43,7 +43,7 @@
                                 <div class="d-flex flex-wrap justify-content-between">
                                     <div class="col-12 col-md-6 form-group px-0 pr-md-2">
                                         <label for="title">Título</label>
-                                        <input type="text" class="form-control" id="title" placeholder="Título do Post"
+                                        <input type="text" class="form-control" id="title" placeholder="Título da Vaga"
                                             name="title" value="{{ old('title') }}" required>
                                     </div>
 
@@ -121,7 +121,7 @@
 
                                 <div class="d-flex flex-wrap justify-content-between">
                                     <div class="col-12 col-md-6 form-group px-0 pr-md-2">
-                                        <label for="requirements">Requerimentos</label>
+                                        <label for="requirements">Requisitos</label>
                                         <input type="text" class="form-control" id="requirements"
                                             placeholder="Boa comunicação, trabalho em equipe etc" name="requirements"
                                             value="{{ old('requirements') }}">

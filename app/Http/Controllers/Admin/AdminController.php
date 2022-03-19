@@ -16,12 +16,12 @@ class AdminController extends Controller
     {
         $onlineUsers = User::online()->get()->count();
         $administrators = User::role('Administrador')->get()->count();
-        $affiliates = User::role('Afiliado')->get()->count();
+        $affiliates = User::role('Franquiado')->get()->count();
         $companies = Company::all()->count();
 
         $affiliations = Affiliation::all()->count();
         $businessmen = User::role('Empresário')->count();
-        if (Auth::user()->hasRole('Afiliado')) {
+        if (Auth::user()->hasRole('Franquiado')) {
             $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->count();
             $businessmen = User::role('Empresário')->where('affiliation_id', Auth::user()->affiliation_id)->count();
         }

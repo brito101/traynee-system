@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 @section('plugins.BsCustomFileInput', true)
 
-@section('title', '- Cadastro de Afiliação')
+@section('title', '- Cadastro de Franquia')
 
 @section('content')
 
@@ -9,13 +9,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1><i class="far fa-fw fa-handshake"></i> Nova Afiliação</h1>
+                    <h1><i class="far fa-fw fa-handshake"></i> Nova Franquia</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('admin.affiliations.index') }}">Afiliações</a></li>
-                        <li class="breadcrumb-item active">Nova Afiliação</li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.franchisees.index') }}">Franquias</a></li>
+                        <li class="breadcrumb-item active">Nova Franquia</li>
                     </ol>
                 </div>
             </div>
@@ -31,19 +31,18 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Dados Cadastrais da Afiliação</h3>
+                            <h3 class="card-title">Dados Cadastrais da Franquia</h3>
                         </div>
 
-                        <form method="POST" action="{{ route('admin.affiliations.store') }}"
-                            enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('admin.franchisees.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
 
                                 <div class="d-flex flex-wrap justify-content-between">
                                     <div class="col-12 col-md-6 form-group px-0 pr-md-2">
-                                        <label for="social_name">Nome da Afiliação</label>
+                                        <label for="social_name">Nome da Franquia</label>
                                         <input type="text" class="form-control" id="social_name"
-                                            placeholder="Nome da Afiliação" name="social_name"
+                                            placeholder="Nome da Franquia" name="social_name"
                                             value="{{ old('social_name') }}" required>
                                     </div>
                                     <div class="col-12 col-md-6 form-group px-0 pl-md-2">

@@ -265,55 +265,55 @@ return [
             ],
         ],
         [
-            'text'        => 'Afiliações',
+            'text'        => 'Franquias',
             'url'         => '#',
             'icon'        => 'far fa-fw fa-handshake',
-            'can'         => 'Acessar Afiliações',
+            'can'         => 'Acessar Franquias',
             'submenu' => [
                 [
-                    'text' => 'Listagem de Afiliações',
-                    'url'  => 'admin/affiliations',
+                    'text' => 'Listagem de Franquias',
+                    'url'  => 'admin/franchisees',
                     'icon' => 'fas fa-fw fa-chevron-right',
-                    'can'  => 'Listar Afiliações',
+                    'can'  => 'Listar Franquias',
                 ],
                 [
-                    'text' => 'Cadastro de Afiliação',
-                    'url'  => 'admin/affiliations/create',
+                    'text' => 'Cadastro de Franquia',
+                    'url'  => 'admin/franchisees/create',
                     'icon' => 'fas fa-fw fa-chevron-right',
-                    'can'  => 'Criar Afiliações',
+                    'can'  => 'Criar Franquias',
                 ]
             ]
 
         ],
-        /** Afiliados */
+        /** Franquiado */
         [
-            'text'        => 'Afiliação',
+            'text'        => 'Franquia',
             'icon'        => 'far fa-fw fa-handshake',
-            'can'         => 'Acessar Afiliação',
+            'can'         => 'Acessar Franquia',
             'submenu' => [
                 [
-                    'text'        => 'Dados da Afiliação',
-                    'url'         => 'admin/affiliation/edit',
+                    'text'        => 'Dados da Franquia',
+                    'url'         => 'admin/franchise/edit',
                     'icon'        => 'fas fa-fw fa-chevron-right',
-                    'can'         => 'Editar Afiliação'
+                    'can'         => 'Editar Franquia'
                 ],
                 [
                     'text'        => 'Redes Sociais',
-                    'url'         => 'admin/affiliation/edit/social-network',
+                    'url'         => 'admin/franchise/edit/social-network',
                     'icon'        => 'fas fa-fw fa-chevron-right',
-                    'can'         => 'Editar Afiliação'
+                    'can'         => 'Editar Franquia'
                 ],
                 [
                     'text'        => 'Perfil Institucional',
-                    'url'         => 'admin/affiliation/edit/resume',
+                    'url'         => 'admin/franchise/edit/resume',
                     'icon'        => 'fas fa-fw fa-chevron-right',
-                    'can'         => 'Editar Afiliação'
+                    'can'         => 'Editar Franquia'
                 ],
                 [
                     'text'        => 'Brand',
-                    'url'         => 'admin/affiliation/edit/brand-images',
+                    'url'         => 'admin/franchise/edit/brand-images',
                     'icon'        => 'fas fa-fw fa-chevron-right',
-                    'can'         => 'Editar Afiliação'
+                    'can'         => 'Editar Franquia'
                 ]
             ]
         ],
@@ -437,7 +437,7 @@ return [
                 ],
             ]
         ],
-        /** Afiliados / Empresários */
+        /** Franquiado / Empresários */
         [
             'text'        => 'Meu Usuário',
             'url'         => 'admin/user/edit',

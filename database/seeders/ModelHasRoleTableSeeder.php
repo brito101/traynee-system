@@ -26,6 +26,23 @@ class ModelHasRoleTableSeeder extends Seeder
                 'model_type' => 'App\Models\User',
                 'model_id' => 2,
             ],
+            /** Teste */
+            /** Franquia */
+            [
+                'role_id' => 3,
+                'model_type' => 'App\Models\User',
+                'model_id' => 3,
+            ],
+            [
+                'role_id' => 3,
+                'model_type' => 'App\Models\User',
+                'model_id' => 4,
+            ],
+            [
+                'role_id' => 3,
+                'model_type' => 'App\Models\User',
+                'model_id' => 5,
+            ],
         ]);
     }
 }

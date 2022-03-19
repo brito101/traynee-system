@@ -29,7 +29,7 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Redes Sociais da Afiliação</h3>
+                            <h3 class="card-title">Redes Sociais da Franquia</h3>
                         </div>
 
                         <form method="POST" action="{{ route('admin.affiliation.social.store') }}">

@@ -20,11 +20,11 @@ class AffiliationController extends Controller
      */
     public function index()
     {
-        if (!Auth::user()->hasPermissionTo('Listar Afiliações')) {
+        if (!Auth::user()->hasPermissionTo('Listar Franquias')) {
             abort(403, 'Acesso não autorizado');
         }
         $affiliations = Affiliation::all();
-        return view('admin.affiliations.index', compact('affiliations'));
+        return view('admin.franchisees.index', compact('affiliations'));
     }
 
     /**
@@ -34,10 +34,10 @@ class AffiliationController extends Controller
      */
     public function create()
     {
-        if (!Auth::user()->hasPermissionTo('Criar Afiliações')) {
+        if (!Auth::user()->hasPermissionTo('Criar Franquias')) {
             abort(403, 'Acesso não autorizado');
         }
-        return view('admin.affiliations.create');
+        return view('admin.franchisees.create');
     }
 
     /**
@@ -48,7 +48,7 @@ class AffiliationController extends Controller
      */
     public function store(AffiliationRequest $request)
     {
-        if (!Auth::user()->hasPermissionTo('Criar Afiliações')) {
+        if (!Auth::user()->hasPermissionTo('Criar Franquias')) {
             abort(403, 'Acesso não autorizado');
         }
         $data = $request->all();
@@ -73,7 +73,7 @@ class AffiliationController extends Controller
 
         if ($affiliation->save()) {
             return redirect()
-                ->route('admin.affiliations.index')
+                ->route('admin.franchisees.index')
                 ->with('success', 'Cadastro realizado!');
         } else {
             return redirect()
@@ -91,11 +91,11 @@ class AffiliationController extends Controller
      */
     public function edit($id = null)
     {
-        if ($id && !Auth::user()->hasPermissionTo('Editar Afiliações')) {
+        if ($id && !Auth::user()->hasPermissionTo('Editar Franquias')) {
             abort(403, 'Acesso não autorizado');
         }
 
-        if (is_null($id) && !Auth::user()->hasPermissionTo('Editar Afiliação')) {
+        if (is_null($id) && !Auth::user()->hasPermissionTo('Editar Franquia')) {
             abort(403, 'Acesso não autorizado');
         }
 
@@ -107,7 +107,7 @@ class AffiliationController extends Controller
         if (empty($affiliation->id)) {
             abort(403, 'Acesso não autorizado');
         }
-        return view('admin.affiliations.edit', compact('affiliation'));
+        return view('admin.franchisees.edit', compact('affiliation'));
     }
 
     /**
@@ -119,17 +119,17 @@ class AffiliationController extends Controller
      */
     public function update(AffiliationRequest $request, $id)
     {
-        if (!Auth::user()->hasAnyPermission(['Editar Afiliações', 'Editar Afiliação'])) {
+        if (!Auth::user()->hasAnyPermission(['Editar Franquias', 'Editar Franquia'])) {
             abort(403, 'Acesso não autorizado');
         }
 
         $data = $request->all();
 
-        if (Auth::user()->hasPermissionTo('Editar Afiliações')) {
+        if (Auth::user()->hasPermissionTo('Editar Franquias')) {
             $affiliation = Affiliation::where('id', $id)->first();
         }
 
-        if (Auth::user()->hasPermissionTo('Editar Afiliação')) {
+        if (Auth::user()->hasPermissionTo('Editar Franquia')) {
             $affiliation = Affiliation::where('id', Auth::user()->affiliation_id)->first();
         }
 
@@ -160,13 +160,13 @@ class AffiliationController extends Controller
         }
 
         if ($affiliation->update($data)) {
-            if (Auth::user()->hasPermissionTo('Editar Afiliação')) {
+            if (Auth::user()->hasPermissionTo('Editar Franquia')) {
                 return redirect()
-                    ->route('admin.affiliations.edit')
+                    ->route('admin.franchise.edit')
                     ->with('success', 'Atualização realizada!');
             } else {
                 return redirect()
-                    ->route('admin.affiliations.index')
+                    ->route('admin.franchisees.index')
                     ->with('success', 'Atualização realizada!');
             }
         } else {
@@ -179,7 +179,7 @@ class AffiliationController extends Controller
 
     public function socialNetwork()
     {
-        if (!Auth::user()->hasPermissionTo('Editar Afiliação')) {
+        if (!Auth::user()->hasPermissionTo('Editar Franquia')) {
             abort(403, 'Acesso não autorizado');
         }
 
@@ -187,14 +187,14 @@ class AffiliationController extends Controller
         if (empty($affiliation->id)) {
             abort(403, 'Acesso não autorizado');
         }
-        return view('admin.affiliations.social', compact('affiliation'));
+        return view('admin.franchisees.social', compact('affiliation'));
     }
 
     public function socialNetworkStore(AffiliationBrandRequest $request)
     {
         $data = $request->all();
 
-        if (!Auth::user()->hasPermissionTo('Editar Afiliação')) {
+        if (!Auth::user()->hasPermissionTo('Editar Franquia')) {
             abort(403, 'Acesso não autorizado');
         }
 
@@ -205,7 +205,7 @@ class AffiliationController extends Controller
 
         if ($affiliation->update($data)) {
             return redirect()
-                ->route('admin.affiliation.social')
+                ->route('admin.franchise.social')
                 ->with('success', 'Atualização realizada!');
         } else {
             return redirect()
@@ -217,7 +217,7 @@ class AffiliationController extends Controller
 
     public function resume()
     {
-        if (!Auth::user()->hasPermissionTo('Editar Afiliação')) {
+        if (!Auth::user()->hasPermissionTo('Editar Franquia')) {
             abort(403, 'Acesso não autorizado');
         }
 
@@ -225,7 +225,7 @@ class AffiliationController extends Controller
         if (empty($affiliation->id)) {
             abort(403, 'Acesso não autorizado');
         }
-        return view('admin.affiliations.resume', compact('affiliation'));
+        return view('admin.franchisees.resume', compact('affiliation'));
     }
 
 
@@ -233,7 +233,7 @@ class AffiliationController extends Controller
     {
         $data = $request->all();
 
-        if (!Auth::user()->hasPermissionTo('Editar Afiliação')) {
+        if (!Auth::user()->hasPermissionTo('Editar Franquia')) {
             abort(403, 'Acesso não autorizado');
         }
 
@@ -244,7 +244,7 @@ class AffiliationController extends Controller
 
         if ($affiliation->update($data)) {
             return redirect()
-                ->route('admin.affiliation.resume')
+                ->route('admin.franchise.resume')
                 ->with('success', 'Edição realizada!');
         } else {
             return redirect()
@@ -256,7 +256,7 @@ class AffiliationController extends Controller
 
     public function brandImages()
     {
-        if (!Auth::user()->hasPermissionTo('Editar Afiliação')) {
+        if (!Auth::user()->hasPermissionTo('Editar Franquia')) {
             abort(403, 'Acesso não autorizado');
         }
 
@@ -264,14 +264,14 @@ class AffiliationController extends Controller
         if (empty($affiliation->id)) {
             abort(403, 'Acesso não autorizado');
         }
-        return view('admin.affiliations.brand', compact('affiliation'));
+        return view('admin.franchisees.brand', compact('affiliation'));
     }
 
     public function brandImagesStore(AffiliationBrandRequest $request)
     {
         $data = $request->all();
 
-        if (!Auth::user()->hasPermissionTo('Editar Afiliação')) {
+        if (!Auth::user()->hasPermissionTo('Editar Franquia')) {
             abort(403, 'Acesso não autorizado');
         }
 
@@ -351,7 +351,7 @@ class AffiliationController extends Controller
 
         if ($affiliation->update($data)) {
             return redirect()
-                ->route('admin.affiliation.brand')
+                ->route('admin.franchise.brand')
                 ->with('success', 'Edição realizada!');
         } else {
             return redirect()
@@ -369,7 +369,7 @@ class AffiliationController extends Controller
      */
     public function destroy($id)
     {
-        if (!Auth::user()->hasPermissionTo('Excluir Afiliação')) {
+        if (!Auth::user()->hasPermissionTo('Excluir Franquias')) {
             abort(403, 'Acesso não autorizado');
         }
         $affiliation = Affiliation::where('id', $id)->first();
@@ -407,7 +407,7 @@ class AffiliationController extends Controller
             }
 
             return redirect()
-                ->route('admin.affiliations.index')
+                ->route('admin.franchisees.index')
                 ->with('success', 'Exclusão realizada!');
         } else {
             return redirect()
