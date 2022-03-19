@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\AffiliationController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\DocumentController;
+use App\Http\Controllers\Admin\ExtraController;
 use App\Http\Controllers\Admin\GenreController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ScholarityController;
@@ -55,6 +56,9 @@ Route::group(['middleware' => ['auth']], function () {
         /** Courses */
         Route::get('/academics/destroy/{id}', [AcademicController::class, 'destroy']);
         Route::resource('academics', AcademicController::class);
+        /** Extra */
+        Route::get('/extras/destroy/{id}', [ExtraController::class, 'destroy']);
+        Route::resource('extras', ExtraController::class);
 
         /** Francheeses */
         Route::get('/franchise/edit', [AffiliationController::class, 'edit'])->name('franchise.edit');

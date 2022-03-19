@@ -288,7 +288,7 @@ return [
                 ],
                 [
                     'text' => 'Extracurricular',
-                    'url'  => '#',
+                    'url'  => 'admin/extras',
                     'icon' => 'fas fa-fw fa-chevron-right',
                 ]
             ]

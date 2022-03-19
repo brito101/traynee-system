@@ -90,7 +90,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /**Relationships */
+    /** Relationships */
     public function genre()
     {
         return $this->belongsTo(Genre::class);
