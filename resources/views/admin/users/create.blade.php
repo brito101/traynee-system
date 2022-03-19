@@ -59,6 +59,19 @@
 
                                 <div class="d-flex flex-wrap justify-content-between">
                                     <div class="col-12 col-md-6 form-group px-0 pr-md-2">
+                                        <label for="telephone">Telefone</label>
+                                        <input type="tel" class="form-control" id="telephone" placeholder="Telefone"
+                                            name="telephone" value="{{ old('telephone') }}" required>
+                                    </div>
+                                    <div class="col-12 col-md-6 form-group px-0 pl-md-2">
+                                        <label for="cell">Celular</label>
+                                        <input type="tel" class="form-control" id="cell" placeholder="Celular" name="cell"
+                                            value="{{ old('cell') }}">
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-wrap justify-content-between">
+                                    <div class="col-12 col-md-6 form-group px-0 pr-md-2">
                                         <x-adminlte-input-file name="photo" label="Foto"
                                             placeholder="Selecione uma imagem..." legend="Selecionar" />
                                     </div>
@@ -118,16 +131,21 @@
                                     @endcan
                                 </div>
                             </div>
-                    </div>
 
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Enviar</button>
-                    </div>
-                    </form>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Enviar</button>
+                            </div>
+                        </form>
 
+                    </div>
                 </div>
             </div>
         </div>
-        </div>
     </section>
+@endsection
+
+@section('custom_js')
+    <script src="{{ asset('vendor/jquery/jquery.inputmask.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/address.js') }}"></script>
+    <script src="{{ asset('js/phone.js') }}"></script>
 @endsection

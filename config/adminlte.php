@@ -244,6 +244,37 @@ return [
             'text' => 'search',
         ],
         //Custom menus
+        /** Franchisees / Companies / Trainess */
+        [
+            'text'        => 'Meu Usuário',
+            'url'         => 'admin/user/edit',
+            'icon'        => 'fas fa-fw fa-user',
+            'can'         => 'Editar Usuário',
+        ],
+        /** Trainess */
+        [
+            'text'        => 'Dados Pessoais',
+            'url'         => '#',
+            'icon'        => 'fas fa-fw fa-file',
+            'can'         => 'Editar Dados Pessoais',
+            'submenu' => [
+                [
+                    'text' => 'Documentação',
+                    'url'  => 'admin/user/document',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                ],
+                [
+                    'text' => 'Endereço',
+                    'url'  => 'admin/user/address',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                ],
+                [
+                    'text' => 'Redes Sociais',
+                    'url'  => 'admin/user/social-network',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                ],
+            ]
+        ],
         [
             'text'        => 'Usuários',
             'url'         => '#',
@@ -436,13 +467,6 @@ return [
                     'can'     => 'Criar Permissões',
                 ],
             ]
-        ],
-        /** Franquiado / Empresários */
-        [
-            'text'        => 'Meu Usuário',
-            'url'         => 'admin/user/edit',
-            'icon'        => 'fas fa-fw fa-user',
-            'can'         => 'Editar Usuário',
         ],
 
         /** Empresários */

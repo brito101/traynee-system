@@ -33,6 +33,8 @@ class UserRequest extends FormRequest
             'password' => "max:100",
             'photo' => 'image|mimes:jpg,png,jpeg,gif,svg,webp|max:1024|dimensions:max_width=1800,max_height=1800',
             'scholarity_id' => "nullable|max:1",
+            'telephone' => 'nullable|min:8|max:25',
+            'cell' => 'nullable|min:8|max:25',
         ];
     }
 }

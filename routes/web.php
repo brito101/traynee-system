@@ -2,14 +2,17 @@
 
 use App\Http\Controllers\Admin\ACL\PermissionController;
 use App\Http\Controllers\Admin\ACL\RoleController;
+use App\Http\Controllers\Admin\AddressController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AffiliationController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\DocumentController;
 use App\Http\Controllers\Admin\GenreController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ScholarityController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\UserNetworkController;
 use App\Http\Controllers\Admin\VacancyController;
 use App\Http\Controllers\Site\SiteController;
 use Illuminate\Support\Facades\Auth;
@@ -36,6 +39,17 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/user/edit', [UserController::class, 'edit'])->name('user.edit');
         Route::get('/users/destroy/{id}', [UserController::class, 'destroy']);
         Route::resource('users', UserController::class);
+
+        /** Trainee */
+        /** Documents */
+        Route::get('/user/document', [DocumentController::class, 'edit'])->name('document.edit');
+        Route::put('/user/document', [DocumentController::class, 'store'])->name('document.store');
+        /** Address */
+        Route::get('/user/address', [AddressController::class, 'edit'])->name('address.edit');
+        Route::put('/user/address', [AddressController::class, 'store'])->name('address.store');
+        /** Social network */
+        Route::get('/user/social-network', [UserNetworkController::class, 'edit'])->name('networkNetwork.edit');
+        Route::put('/user/social-network', [UserNetworkController::class, 'store'])->name('networkNetwork.store');
 
         /** Francheeses */
         Route::get('/franchise/edit', [AffiliationController::class, 'edit'])->name('franchise.edit');

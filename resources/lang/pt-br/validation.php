@@ -198,7 +198,19 @@ return [
         'brand_instagram' => 'Imagem para o Instagram',
         'brand_twitter' => 'Imagem para o Twitter',
         'content' => 'de conteúdo',
-        'scholarity_id' => 'escolaridade'
+        'scholarity_id' => 'escolaridade',
+        'birth' => 'data de nascimento',
+        'first_parent' => 'primeiro parente',
+        'second_parent' => 'segundo parente',
+        'civil_status' => 'estado civil',
+        'children' => 'filhos',
+        'nationality' => 'nacionalidade',
+        'document_person' => "CPF",
+        'document_registry' => "RG",
+        'issuer' => 'emissor',
+        'date_issue' => 'data de emissão',
+        'work_card' => 'carteira de trabalho',
+        'serie' => 'número de série',
     ],
 
 ];

@@ -384,7 +384,7 @@ class RolesHasPermissionTableSeeder extends Seeder
                 'permission_id' => 44,
                 'role_id' => 3
             ],
-            /** Affiliate / Businessmen */
+            /** Affiliate / Businessmen / Trainee */
             [
                 'permission_id' => 45,
                 'role_id' => 3
@@ -392,6 +392,10 @@ class RolesHasPermissionTableSeeder extends Seeder
             [
                 'permission_id' => 45,
                 'role_id' => 4
+            ],
+            [
+                'permission_id' => 45,
+                'role_id' => 5
             ],
             /** Affiliate */
             [
@@ -450,6 +454,11 @@ class RolesHasPermissionTableSeeder extends Seeder
             [
                 'permission_id' => 59,
                 'role_id' => 4
+            ],
+            /** Trainees */
+            [
+                'permission_id' => 60,
+                'role_id' => 5
             ],
         ]);
     }
