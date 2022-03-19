@@ -32,7 +32,7 @@
                             <h3 class="card-title">Redes Sociais da Franquia</h3>
                         </div>
 
-                        <form method="POST" action="{{ route('admin.affiliation.social.store') }}">
+                        <form method="POST" action="{{ route('admin.franchise.social.store') }}">
                             @method('PUT')
                             @csrf
                             <div class="card-body">

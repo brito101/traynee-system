@@ -158,7 +158,7 @@ class UserController extends Controller
             $affiliations = Affiliation::all();
             $user = User::where('id', $id)->first();
         } elseif (Auth::user()->hasRole('Franquiado')) {
-            $roles = Role::whereIn('name', ['Franquiado', 'Empresários'])->get();
+            $roles = Role::whereIn('name', ['Franquiado', 'Empresário'])->get();
             $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
             $affiliations = [];
             $user = User::where('id', $id)
@@ -243,7 +243,7 @@ class UserController extends Controller
             if (!empty($request->role)) {
                 $user->syncRoles($request->role);
             }
-            if (Auth::user()->hasPermissionTo('Editar Usuário')) {
+            if (Auth::user()->hasPermissionTo('Editar Usuário') && $user->id === Auth::user()->id) {
                 return redirect()
                     ->route('admin.user.edit')
                     ->with('success', 'Atualização realizada!');

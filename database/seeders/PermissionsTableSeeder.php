@@ -316,7 +316,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => new DateTime('now')
             ],
             [
-                'name' => 'Editar Editar',
+                'name' => 'Editar Vagas',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],

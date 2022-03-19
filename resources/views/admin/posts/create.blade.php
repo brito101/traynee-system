@@ -102,18 +102,16 @@
                                             placeholder="Selecione uma imagem..." legend="Selecionar" />
                                     </div>
                                 </div>
-
                             </div>
-                    </div>
 
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Enviar</button>
-                    </div>
-                    </form>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Enviar</button>
+                            </div>
+                        </form>
 
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
     </section>
 @endsection

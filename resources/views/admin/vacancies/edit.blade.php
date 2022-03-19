@@ -127,7 +127,7 @@
                                         <label for="requirements">Requisitos</label>
                                         <input type="text" class="form-control" id="requirements"
                                             placeholder="Boa comunicação, trabalho em equipe etc" name="requirements"
-                                            value="{{ old('requirements') ?? $vacancy->requeriments }}">
+                                            value="{{ old('requirements') ?? $vacancy->requirements }}">
                                     </div>
 
                                     <div class="col-12 col-md-6 form-group px-0 pl-md-2">
