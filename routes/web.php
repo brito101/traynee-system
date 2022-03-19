@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AcademicController;
 use App\Http\Controllers\Admin\ACL\PermissionController;
 use App\Http\Controllers\Admin\ACL\RoleController;
 use App\Http\Controllers\Admin\AddressController;
@@ -50,6 +51,10 @@ Route::group(['middleware' => ['auth']], function () {
         /** Social network */
         Route::get('/user/social-network', [UserNetworkController::class, 'edit'])->name('userNetwork.edit');
         Route::put('/user/social-network', [UserNetworkController::class, 'store'])->name('userNetwork.store');
+        /** Academics Informations */
+        /** Courses */
+        Route::get('/academics/destroy/{id}', [AcademicController::class, 'destroy']);
+        Route::resource('academics', AcademicController::class);
 
         /** Francheeses */
         Route::get('/franchise/edit', [AffiliationController::class, 'edit'])->name('franchise.edit');

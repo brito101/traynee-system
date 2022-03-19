@@ -211,6 +211,11 @@ return [
         'date_issue' => 'data de emissão',
         'work_card' => 'carteira de trabalho',
         'serie' => 'número de série',
+
+        'scholarity_id' => 'escolaridade',
+        'institution' => 'instituição de ensino',
+        'graduation' => 'ano de conclusão',
+        'availability' => 'disponibilidade'
     ],
 
 ];

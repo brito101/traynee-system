@@ -276,6 +276,24 @@ return [
             ]
         ],
         [
+            'text'        => 'Info. Acadêmicas',
+            'url'         => '#',
+            'icon'        => 'fas fa-fw fa-graduation-cap',
+            'can'         => 'Editar Informações Acadêmicas',
+            'submenu' => [
+                [
+                    'text' => 'Cursos',
+                    'url'  => 'admin/academics',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                ],
+                [
+                    'text' => 'Extracurricular',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                ]
+            ]
+        ],
+        [
             'text'        => 'Usuários',
             'url'         => '#',
             'icon'        => 'fas fa-fw fa-users',
