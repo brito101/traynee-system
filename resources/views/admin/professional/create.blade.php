@@ -76,7 +76,7 @@
                                 <div class="col-12 px-0">
                                     <label for="activities">Atividades</label>
                                     <x-adminlte-textarea name="activities"
-                                        placeholder="Descrição das atividades desenpenhadas em no máximo 1500 caracteres...">
+                                        placeholder="Descrição das atividades desempenhadas em no máximo 1500 caracteres...">
                                         {{ old('activities') }}</x-adminlte-textarea>
                                 </div>
 

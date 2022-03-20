@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\ExtraController;
 use App\Http\Controllers\Admin\GenreController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfessionalController;
+use App\Http\Controllers\Admin\RequirimentController;
 use App\Http\Controllers\Admin\ScholarityController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserNetworkController;
@@ -62,6 +63,9 @@ Route::group(['middleware' => ['auth']], function () {
         /** Professionals */
         Route::get('/professionals/destroy/{id}', [ProfessionalController::class, 'destroy']);
         Route::resource('professionals', ProfessionalController::class);
+        /** Special Requiriments */
+        Route::get('/requiriments/destroy/{id}', [RequirimentController::class, 'destroy']);
+        Route::resource('requiriments', RequirimentController::class);
 
         /**
          * Francheeses
