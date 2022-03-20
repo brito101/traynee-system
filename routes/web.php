@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\DocumentController;
 use App\Http\Controllers\Admin\ExtraController;
 use App\Http\Controllers\Admin\GenreController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\ProfessionalController;
 use App\Http\Controllers\Admin\ScholarityController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserNetworkController;
@@ -52,15 +53,19 @@ Route::group(['middleware' => ['auth']], function () {
         /** Social network */
         Route::get('/user/social-network', [UserNetworkController::class, 'edit'])->name('userNetwork.edit');
         Route::put('/user/social-network', [UserNetworkController::class, 'store'])->name('userNetwork.store');
-        /** Academics Informations */
-        /** Courses */
+        /** Academics Informations - Courses */
         Route::get('/academics/destroy/{id}', [AcademicController::class, 'destroy']);
         Route::resource('academics', AcademicController::class);
-        /** Extra */
+        /** Academics Informations - Extra */
         Route::get('/extras/destroy/{id}', [ExtraController::class, 'destroy']);
         Route::resource('extras', ExtraController::class);
+        /** Professionals */
+        Route::get('/professionals/destroy/{id}', [ProfessionalController::class, 'destroy']);
+        Route::resource('professionals', ProfessionalController::class);
 
-        /** Francheeses */
+        /**
+         * Francheeses
+         * */
         Route::get('/franchise/edit', [AffiliationController::class, 'edit'])->name('franchise.edit');
         Route::get('/franchise/edit/social-network', [AffiliationController::class, 'socialNetwork'])->name('franchise.social');
         Route::put('/franchise/edit/social-network', [AffiliationController::class, 'socialNetworkStore'])->name('franchise.social.store');
@@ -71,7 +76,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/franchisees/destroy/{id}', [AffiliationController::class, 'destroy']);
         Route::resource('franchisees', AffiliationController::class);
 
-        /** Companies */
+        /**
+         * Companies
+         * */
         Route::get('/company/edit', [CompanyController::class, 'edit'])->name('company.edit');
         Route::get('/company/edit/social-network', [CompanyController::class, 'socialNetwork'])->name('company.social');
         Route::put('/company/edit/social-network', [CompanyController::class, 'socialNetworkStore'])->name('company.social.store');
@@ -81,11 +88,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/company/edit/brand-images', [CompanyController::class, 'brandImagesStore'])->name('company.brand.store');
         Route::get('/companies/destroy/{id}', [CompanyController::class, 'destroy']);
         Route::resource('companies', CompanyController::class);
-
         /** Blog */
         Route::get('/posts/destroy/{id}', [PostController::class, 'destroy']);
         Route::resource('posts', PostController::class);
-
         /** Vacancies */
         Route::get('/vacancies/destroy/{id}', [VacancyController::class, 'destroy']);
         Route::resource('vacancies', VacancyController::class);

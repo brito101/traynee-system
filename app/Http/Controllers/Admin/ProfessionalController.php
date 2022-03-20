@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\AcademicRequest;
-use App\Models\Academic;
-use App\Models\Scholarity;
-use App\Models\User;
+use App\Http\Requests\Admin\ProfessionalRequest;
+use App\Models\Professional;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AcademicController extends Controller
+class ProfessionalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,11 +17,11 @@ class AcademicController extends Controller
      */
     public function index()
     {
-        if (!Auth::user()->hasPermissionTo('Editar Informações Acadêmicas')) {
+        if (!Auth::user()->hasPermissionTo('Editar Experiências Profissionais')) {
             abort(403, 'Acesso não autorizado');
         }
-        $academics = Academic::where('user_id', Auth::user()->id)->get();
-        return view('admin.academics.index', compact('academics'));
+        $professionals = Professional::where('user_id', Auth::user()->id)->get();
+        return view('admin.professional.index', compact('professionals'));
     }
 
     /**
@@ -33,13 +31,11 @@ class AcademicController extends Controller
      */
     public function create()
     {
-        if (!Auth::user()->hasPermissionTo('Editar Informações Acadêmicas')) {
+        if (!Auth::user()->hasPermissionTo('Editar Experiências Profissionais')) {
             abort(403, 'Acesso não autorizado');
         }
 
-        $scholarities = Scholarity::all();
-
-        return view('admin.academics.create', compact('scholarities'));
+        return view('admin.professional.create');
     }
 
     /**
@@ -48,19 +44,19 @@ class AcademicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AcademicRequest $request)
+    public function store(ProfessionalRequest $request)
     {
-        if (!Auth::user()->hasPermissionTo('Editar Informações Acadêmicas')) {
+        if (!Auth::user()->hasPermissionTo('Editar Experiências Profissionais')) {
             abort(403, 'Acesso não autorizado');
         }
 
         $data = $request->all();
         $data['user_id'] = auth()->user()->id;
-        $academic = Academic::create($data);
+        $professional = Professional::create($data);
 
-        if ($academic->save()) {
+        if ($professional->save()) {
             return redirect()
-                ->route('admin.academics.index')
+                ->route('admin.professionals.index')
                 ->with('success', 'Cadastro realizado!');
         } else {
             return redirect()
@@ -70,6 +66,8 @@ class AcademicController extends Controller
         }
     }
 
+
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -78,18 +76,16 @@ class AcademicController extends Controller
      */
     public function edit($id)
     {
-        if (!Auth::user()->hasPermissionTo('Editar Informações Acadêmicas')) {
+        if (!Auth::user()->hasPermissionTo('Editar Experiências Profissionais')) {
             abort(403, 'Acesso não autorizado');
         }
 
-        $scholarities = Scholarity::all();
-
-        $academic = Academic::where('id', $id)->where('user_id', Auth::user()->id)->first();
-        if (empty($academic->id)) {
+        $professional = Professional::where('id', $id)->where('user_id', Auth::user()->id)->first();
+        if (empty($professional->id)) {
             abort(403, 'Acesso não autorizado');
         }
 
-        return view('admin.academics.edit', compact('scholarities', 'academic'));
+        return view('admin.professional.edit', compact('professional'));
     }
 
     /**
@@ -99,23 +95,23 @@ class AcademicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AcademicRequest $request, $id)
+    public function update(ProfessionalRequest $request, $id)
     {
-        if (!Auth::user()->hasPermissionTo('Editar Informações Acadêmicas')) {
+        if (!Auth::user()->hasPermissionTo('Editar Experiências Profissionais')) {
             abort(403, 'Acesso não autorizado');
         }
 
-        $academic = Academic::where('id', $id)->where('user_id', Auth::user()->id)->first();
+        $professional = Professional::where('id', $id)->where('user_id', Auth::user()->id)->first();
 
-        if (empty($academic->id)) {
+        if (empty($professional->id)) {
             abort(403, 'Acesso não autorizado');
         }
 
         $data = $request->all();
 
-        if ($academic->update($data)) {
+        if ($professional->update($data)) {
             return redirect()
-                ->route('admin.academics.index')
+                ->route('admin.professionals.index')
                 ->with('success', 'Atualização realizada!');
         } else {
             return redirect()
@@ -133,19 +129,19 @@ class AcademicController extends Controller
      */
     public function destroy($id)
     {
-        if (!Auth::user()->hasPermissionTo('Editar Informações Acadêmicas')) {
+        if (!Auth::user()->hasPermissionTo('Editar Experiências Profissionais')) {
             abort(403, 'Acesso não autorizado');
         }
 
-        $academic = Academic::where('id', $id)->where('user_id', Auth::user()->id)->first();
+        $professional = Professional::where('id', $id)->where('user_id', Auth::user()->id)->first();
 
-        if (empty($academic->id)) {
+        if (empty($professional->id)) {
             abort(403, 'Acesso não autorizado');
         }
 
-        if ($academic->delete()) {
+        if ($professional->delete()) {
             return redirect()
-                ->route('admin.academics.index')
+                ->route('admin.professionals.index')
                 ->with('success', 'Exclusão realizada!');
         } else {
             return redirect()

@@ -31,12 +31,13 @@ class AdminController extends Controller
         $access = Visit::where('created_at', '>=', date("Y-m-d"))
             ->where('url', '!=', route('admin.home.chart'))
             ->get();
-        $accessYesterday = Visit::where('created_at', '=', Carbon::now()->subDays(1))
+        $accessYesterday = Visit::where('created_at', '>=', Carbon::now()->subDays(1))
+            ->where('created_at', '<', Carbon::now())
             ->where('url', '!=', route('admin.home.chart'))
             ->get();
 
         if ($accessYesterday->count() > 0) {
-            $percent = ($access->count() - 200) / $access->count() * 100;
+            $percent = number_format((($access->count() - $accessYesterday->count()) / $access->count() * 100), 2, ",", ".");
         } else {
             $percent = 0;
         }
@@ -76,12 +77,13 @@ class AdminController extends Controller
         $access = Visit::where('created_at', '>=', date("Y-m-d"))
             ->where('url', '!=', route('admin.home.chart'))
             ->get();
-        $accessYesterday = Visit::where('created_at', '=', Carbon::now()->subDays(1))
+        $accessYesterday = Visit::where('created_at', '>=', Carbon::now()->subDays(1))
+            ->where('created_at', '<', Carbon::now())
             ->where('url', '!=', route('admin.home.chart'))
             ->get();
 
         if ($accessYesterday->count() > 0) {
-            $percent = ($access->count() - 200) / $access->count() * 100;
+            $percent = number_format((($access->count() - $accessYesterday->count()) / $access->count() * 100), 2, ",", ".");
         } else {
             $percent = 0;
         }

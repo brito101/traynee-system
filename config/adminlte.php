@@ -294,6 +294,24 @@ return [
             ]
         ],
         [
+            'text'        => 'Exp. Profissionais',
+            'url'         => '#',
+            'icon'        => 'fas fa-fw fa-briefcase',
+            'can'         => 'Editar Experiências Profissionais',
+            'submenu' => [
+                [
+                    'text' => 'Listagem de Experiências',
+                    'url'  => 'admin/professionals',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                ],
+                [
+                    'text' => 'Cadastro de Experiências',
+                    'url'  => 'admin/professionals/create',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                ],
+            ]
+        ],
+        [
             'text'        => 'Usuários',
             'url'         => '#',
             'icon'        => 'fas fa-fw fa-users',
