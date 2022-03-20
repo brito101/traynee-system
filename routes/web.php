@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AddressController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AffiliationController;
 use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Admin\ComposingController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\DocumentController;
 use App\Http\Controllers\Admin\ExtraController;
@@ -66,6 +67,9 @@ Route::group(['middleware' => ['auth']], function () {
         /** Special Requiriments */
         Route::get('/requiriments/destroy/{id}', [RequirimentController::class, 'destroy']);
         Route::resource('requiriments', RequirimentController::class);
+        /** Composing */
+        Route::get('/composing', [ComposingController::class, 'edit'])->name('composing.edit');
+        Route::put('/composing', [ComposingController::class, 'store'])->name('composing.store');
 
         /**
          * Francheeses

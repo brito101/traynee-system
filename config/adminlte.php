@@ -330,6 +330,12 @@ return [
             ]
         ],
         [
+            'text'        => 'Redação',
+            'url'         => 'admin/composing',
+            'icon'        => 'fas fa-fw fa-file-contract',
+            'can'         => 'Editar Redação',
+        ],
+        [
             'text'        => 'Usuários',
             'url'         => '#',
             'icon'        => 'fas fa-fw fa-users',
