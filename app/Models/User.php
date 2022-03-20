@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -119,5 +120,17 @@ class User extends Authenticatable
     public function vacancies()
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function acadmics()
+    {
+        return $this->hasMany(Academic::class);
+    }
+
+
+    /** Aux */
+    public function age()
+    {
+        return Carbon::parse($this->attributes['birth'])->age;
     }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\AffiliationController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\ComposingController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\CurriculumController;
 use App\Http\Controllers\Admin\DocumentController;
 use App\Http\Controllers\Admin\ExtraController;
 use App\Http\Controllers\Admin\GenreController;
@@ -70,6 +71,8 @@ Route::group(['middleware' => ['auth']], function () {
         /** Composing */
         Route::get('/composing', [ComposingController::class, 'edit'])->name('composing.edit');
         Route::put('/composing', [ComposingController::class, 'store'])->name('composing.store');
+        /** Curriculum */
+        Route::get('/curriculum', [CurriculumController::class, 'show'])->name('curriculum.show');
 
         /**
          * Francheeses

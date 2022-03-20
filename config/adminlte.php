@@ -336,6 +336,12 @@ return [
             'can'         => 'Editar Redação',
         ],
         [
+            'text'        => 'Visualizar Currículo',
+            'url'         => 'admin/curriculum',
+            'icon'        => 'fas fa-fw fa-file-alt',
+            'can'         => 'Visualizar Currículo',
+        ],
+        [
             'text'        => 'Usuários',
             'url'         => '#',
             'icon'        => 'fas fa-fw fa-users',

@@ -24,4 +24,9 @@ class Academic extends Model
         'availability',
         'user_id',
     ];
+
+    public function scholarity()
+    {
+        return $this->belongsTo(Scholarity::class);
+    }
 }
