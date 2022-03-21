@@ -127,6 +127,20 @@ class User extends Authenticatable
         return $this->hasMany(Academic::class);
     }
 
+    public function extra()
+    {
+        return $this->hasMany(Extra::class);
+    }
+
+    public function composing()
+    {
+        return $this->hasOne(Composing::class);
+    }
+
+    public function requiriment()
+    {
+        return $this->hasMany(Requiriment::class);
+    }
 
     /** Aux */
     public function age()
