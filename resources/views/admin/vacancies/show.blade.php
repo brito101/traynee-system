@@ -10,6 +10,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
+                        <li class="breadcrumb-item active">Vaga: {{ $vacancy->title }}</li>
                     </ol>
                 </div>
             </div>
@@ -23,13 +24,35 @@
 
                     @include('components.alert')
 
+                    @if (empty($candidate))
+                        <div class="card-footer">
+                            <form method="POST" action="{{ route('admin.candidate.store', ['id' => $vacancy->id]) }}"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="vacancy_id" value="{{ $vacancy->id }}">
+                                <button type="submit" class="btn btn-primary">Candidatar</button>
+                            </form>
+                        </div>
+                    @else
+                        <div class="card-footer">
+                            <form method="POST" action="{{ route('admin.candidate.cancel', ['id' => $vacancy->id]) }}"
+                                enctype="multipart/form-data">
+                                @method('PUT')
+                                @csrf
+                                <input type="hidden" name="vacancy_id" value="{{ $vacancy->id }}">
+                                <button type="submit" class="btn btn-danger">Cancelar Candidatura</button>
+                            </form>
+                        </div>
+                    @endif
+
                     <x-adminlte-profile-widget name="{{ $vacancy->company['alias_name'] }}" theme="lightblue"
                         desc="{{ $vacancy->company['city'] . '-' . $vacancy->company['state'] . '. Tel: ' . $vacancy->company['telephone'] }}"
-                        img="{{ !$vacancy->company['logo']? url('storage/companies/' . $vacancy->company['logo']): asset('/vendor/adminlte/dist/img/logo.png') }}"
+                        img="{{ $vacancy->company['logo']? url('storage/companies/' . $vacancy->company['logo']): asset('/vendor/adminlte/dist/img/logo.png') }}"
                         class="bg-with">
 
-                        <x-adminlte-profile-row-item icon="fas fa-fw fa-user-friends" title="Candidatos" text="125"
-                            class="border-bottom border-dark mt-n4 mb-4" url="#" badge="teal" />
+                        <x-adminlte-profile-row-item icon="fas fa-fw fa-user-friends" title="Candidatos"
+                            text=" {{ $vacancy->candidate->count() }}" class="border-bottom border-dark mt-n4 mb-4"
+                            url="#" badge="teal" />
                         <div class="d-flex flex-wrap justify-content-between col-12">
                             <div class="col-12 form-group px-0">
                                 <label>Cursos de interesse</label>

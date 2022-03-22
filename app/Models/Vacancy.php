@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Vacancy extends Model
 {
@@ -49,5 +50,22 @@ class Vacancy extends Model
     public function scholarity()
     {
         return $this->belongsTo(Scholarity::class);
+    }
+
+    public function candidate()
+    {
+        return $this->hasMany(Candidate::class);
+    }
+
+    /** Aux */
+    public function trainee()
+    {
+        $candidate = Candidate::where('vacancy_id', $this->id)
+            ->where('user_id', Auth::user()->id)->first();
+        if ($candidate) {
+            return '<i class="text-success fa fa-lg fa-thumbs-up"></i>';
+        } else {
+            return '<i class="text-danger fa fa-lg fa-thumbs-down"></i>';
+        }
     }
 }

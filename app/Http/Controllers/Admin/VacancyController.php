@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\VacancyRequest;
+use App\Models\Candidate;
 use App\Models\Scholarity;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
@@ -326,6 +327,9 @@ class VacancyController extends Controller
             abort(403, 'Acesso não autorizado');
         }
 
-        return view('admin.vacancies.show', compact('vacancy'));
+        $candidate = Candidate::where('vacancy_id', $vacancy->id)
+            ->where('user_id', Auth::user()->id)->first();
+
+        return view('admin.vacancies.show', compact('vacancy', 'candidate'));
     }
 }

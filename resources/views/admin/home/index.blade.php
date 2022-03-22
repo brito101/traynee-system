@@ -109,20 +109,30 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="info-box mb-3">
+                            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-check"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Candidaturas</span>
+                                <span
+                                    class="info-box-number">{{ $cadidates->where('user_id', Auth::user()->id)->count() }}</span>
+                            </div>
+                        </div>
+                    </div>
 
                     @php
-                        $heads = [['label' => 'ID', 'width' => 5], 'Título', 'Empresa', 'Nível', 'Período', 'Cidade', ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
+                        $heads = [['label' => 'ID', 'width' => 5], 'Título', 'Empresa', 'Nível', 'Período', 'Cidade', 'Candidatura', ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
 
                         $list = [];
 
                         foreach ($vacancies as $vacancy) {
-                            $list[] = [$vacancy->id, $vacancy->title, $vacancy->company['alias_name'], $vacancy->scholarity['name'], $vacancy->period, $vacancy->city . '-' . $vacancy->state, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Visualizar" href="admin/vacancies/' . $vacancy->id . '"><i class="fa fa-lg fa-fw fa-eye"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="vacancies/destroy/' . $vacancy->id . '" onclick="return confirm(\'Confirma a exclusão desta vaga?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
+                            $list[] = [$vacancy->id, $vacancy->title, $vacancy->company['alias_name'], $vacancy->scholarity['name'], $vacancy->period, $vacancy->city . '-' . $vacancy->state, $vacancy->trainee(), '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Visualizar" href="admin/vacancies/' . $vacancy->id . '"><i class="fa fa-lg fa-fw fa-eye"></i></a>'];
                         }
 
                         $config = [
                             'data' => $list,
                             'order' => [[0, 'asc']],
-                            'columns' => [null, null, null, null, null, null, ['orderable' => false]],
+                            'columns' => [null, null, null, null, null, null, null, ['orderable' => false]],
                             'language' => ['url' => asset('vendor/datatables/js/pt-BR.json')],
                         ];
                     @endphp

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ExtraRequest extends FormRequest
+class CandidateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,7 @@ class ExtraRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:100',
-            'institution' => 'required|max:100',
-            'level' => 'required|max:100',
-            'course_id' => 'required',
+            'vacancy_id' => 'required'
         ];
     }
 }

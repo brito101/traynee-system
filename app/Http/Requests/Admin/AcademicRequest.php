@@ -25,7 +25,7 @@ class AcademicRequest extends FormRequest
     {
         return [
             'name' => 'required|min:3|max:100',
-            'scholarity_id' => 'required|min:1|max:1',
+            'scholarity_id' => 'required',
             'institution' => 'required|min:3|max:100',
             'city' => 'required|min:3|max:100',
             'state' => 'required|min:2|max:100',

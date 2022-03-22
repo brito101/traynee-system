@@ -39,7 +39,7 @@ class CompanyRequest extends FormRequest
             'state' => 'required|min:2|max:3',
             'city' => 'required|min:2|max:100',
             'logo' => 'image|mimes:jpg,png,jpeg,gif,svg,webp|max:1024|dimensions:max_width=1800,max_height=1800',
-            'affiliation_id' => "nullable|max:1",
+            'affiliation_id' => "nullable",
         ];
     }
 }

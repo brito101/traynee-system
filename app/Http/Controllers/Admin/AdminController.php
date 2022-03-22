@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\Affiliation;
+use App\Models\Candidate;
 use App\Models\User;
 use App\Models\Vacancy;
 use Carbon\Carbon;
@@ -19,6 +20,7 @@ class AdminController extends Controller
         $administrators = User::role('Administrador')->get()->count();
         $affiliates = User::role('Franquiado')->get()->count();
         $companies = Company::all()->count();
+        $cadidates = Candidate::all();
         $vacancies = Vacancy::all();
 
         $affiliations = Affiliation::all()->count();
@@ -66,6 +68,7 @@ class AdminController extends Controller
             'businessmen',
             'trainee',
             'vacancies',
+            'cadidates',
             'onlineUsers',
             'access',
             'chart',
