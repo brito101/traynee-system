@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\Affiliation;
 use App\Models\User;
+use App\Models\Vacancy;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Shetabit\Visitor\Models\Visit;
@@ -18,6 +19,7 @@ class AdminController extends Controller
         $administrators = User::role('Administrador')->get()->count();
         $affiliates = User::role('Franquiado')->get()->count();
         $companies = Company::all()->count();
+        $vacancies = Vacancy::all();
 
         $affiliations = Affiliation::all()->count();
         $businessmen = User::role('Empresário')->count();
@@ -63,6 +65,7 @@ class AdminController extends Controller
             'companies',
             'businessmen',
             'trainee',
+            'vacancies',
             'onlineUsers',
             'access',
             'chart',

@@ -33,10 +33,21 @@ class Vacancy extends Model
         'views'
     ];
 
+    /** Relationships */
     public function user()
     {
         return $this->belongsTo(User::class)->withDefault([
             'name' => 'Anônimo',
         ]);
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    public function scholarity()
+    {
+        return $this->belongsTo(Scholarity::class);
     }
 }

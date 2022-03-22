@@ -59,7 +59,7 @@
 
                                 <div class="d-flex flex-wrap justify-content-between">
                                     <div class="col-12 col-md-6 form-group px-0 pr-md-2">
-                                        <label for="scholarity">Escolaridade</label>
+                                        <label for="scholarity_id">Escolaridade</label>
                                         <x-adminlte-select2 name="scholarity_id">
                                             <option value="">Não Informado</option>
                                             @foreach ($scholarities as $scholarity)
@@ -134,7 +134,7 @@
                                         <label for="neighborhood">Bairro</label>
                                         <input type="text" class="form-control" id="neighborhood" placeholder="Bairro"
                                             name="neighborhood"
-                                            value="{{ old('neighborhood') ?? $vacancy->neighborhood }}">
+                                            value="{{ old('neighborhood') ?? $vacancy->neighborhood }}" required>
                                     </div>
                                 </div>
 
@@ -142,13 +142,13 @@
                                     <div class="col-12 col-md-6 form-group px-0 pr-md-2">
                                         <label for="city">Cidade</label>
                                         <input type="text" class="form-control" id="city" placeholder="Cidade" name="city"
-                                            value="{{ old('city') ?? $vacancy->city }}">
+                                            value="{{ old('city') ?? $vacancy->city }}" required>
                                     </div>
 
                                     <div class="col-12 col-md-6 form-group px-0 pl-md-2">
                                         <label for="state">Estado</label>
                                         <input type="text" class="form-control" id="state" placeholder="UF" name="state"
-                                            value="{{ old('state') ?? $vacancy->state }}">
+                                            value="{{ old('state') ?? $vacancy->state }}" required>
                                     </div>
                                 </div>
 

@@ -1,7 +1,14 @@
 @extends('adminlte::page')
 
 @section('title', '- Dashboard')
-@section('plugins.Chartjs', true)
+@if (!Auth::user()->hasRole('Estagiário'))
+    @section('plugins.Chartjs', true)
+@endif
+
+@if (Auth::user()->hasRole('Estagiário'))
+    @section('plugins.Datatables', true)
+    @section('plugins.DatatablesPlugins', true)
+@endif
 
 @section('content')
     <div class="content-header">
@@ -83,7 +90,65 @@
                         </div>
                     </div>
                 @endif
+                @if (Auth::user()->hasRole('Estagiário'))
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="info-box mb-3">
+                            <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-building"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Empresas</span>
+                                <span class="info-box-number">{{ $companies }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="info-box mb-3">
+                            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-briefcase"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Vagas</span>
+                                <span class="info-box-number">{{ $vacancies->count() }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    @php
+                        $heads = [['label' => 'ID', 'width' => 5], 'Título', 'Empresa', 'Nível', 'Período', 'Cidade', ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
+
+                        $list = [];
+
+                        foreach ($vacancies as $vacancy) {
+                            $list[] = [$vacancy->id, $vacancy->title, $vacancy->company['alias_name'], $vacancy->scholarity['name'], $vacancy->period, $vacancy->city . '-' . $vacancy->state, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Visualizar" href="admin/vacancies/' . $vacancy->id . '"><i class="fa fa-lg fa-fw fa-eye"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="vacancies/destroy/' . $vacancy->id . '" onclick="return confirm(\'Confirma a exclusão desta vaga?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
+                        }
+
+                        $config = [
+                            'data' => $list,
+                            'order' => [[0, 'asc']],
+                            'columns' => [null, null, null, null, null, null, ['orderable' => false]],
+                            'language' => ['url' => asset('vendor/datatables/js/pt-BR.json')],
+                        ];
+                    @endphp
+
+                    <div class="col-12">
+                        @include('components.alert')
+
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="d-flex flex-wrap justify-content-between col-12 align-content-center">
+                                    <h3 class="card-title align-self-center">Vagas Cadastradas</h3>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <x-adminlte-datatable id="table1" :heads="$heads" :heads="$heads" :config="$config" striped
+                                    hoverable beautify with-buttons />
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
+
+
+
+
+
             <div class="row">
                 @if (Auth::user()->hasRole('Programador|Administrador'))
                     <div class="col-12 col-lg-6">

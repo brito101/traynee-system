@@ -313,4 +313,19 @@ class VacancyController extends Controller
                 ->with('error', 'Erro ao excluir!');
         }
     }
+
+    public function show($id)
+    {
+        if (!Auth::user()->hasRole('Estagiário')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $vacancy = Vacancy::where('id', $id)->first();
+
+        if (empty($vacancy->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        return view('admin.vacancies.show', compact('vacancy'));
+    }
 }
