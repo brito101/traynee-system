@@ -143,7 +143,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex flex-wrap justify-content-between col-12 align-content-center">
-                                    <h3 class="card-title align-self-center">Vagas Cadastradas</h3>
+                                    <h3 class="card-title align-self-center">Vagas Disponíveis</h3>
                                 </div>
                             </div>
                             <div class="card-body">

@@ -140,7 +140,7 @@
                                 </div>
 
                                 @if ($user->requiriment)
-                                    <div class="tab-pane active" id="requiriments">
+                                    <div class="tab-pane" id="requiriments">
                                         <div class="post">
                                             @foreach ($user->requiriment as $req)
                                                 <div class="post">
