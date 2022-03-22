@@ -85,7 +85,7 @@
                             <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
                             <div class="info-box-content">
                                 <span class="info-box-text">Estagiários</span>
-                                <span class="info-box-number">{{ $trainee }}</span>
+                                <span class="info-box-number">{{ $trainee->count() }}</span>
                             </div>
                         </div>
                     </div>
@@ -155,12 +155,108 @@
                 @endif
             </div>
 
+            <div class="row px-0">
+                {{-- Posts --}}
+                <div class="col-12 col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Posts Recentes</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
 
+                        <div class="card-body p-0">
+                            <ul class="products-list product-list-in-card pl-2 pr-2">
+                                @foreach ($posts as $post)
+                                    <li class="item">
+                                        <div class="product-img">
+                                            @if ($post->brand_facebook)
+                                                <img src="{{ url('storage/posts/' . $post->brand_facebook) }}"
+                                                    alt="{{ $post->title }}" class="img-size-50">
+                                            @elseif($post->brand_instagram)
+                                                <img src="{{ url('storage/posts/' . $post->brand_instagram) }}"
+                                                    alt="{{ $post->title }}" class="img-size-50">
+                                            @elseif($post->brand_twitter)
+                                                <img src="{{ url('storage/posts/' . $post->brand_twitter) }}"
+                                                    alt="{{ $post->title }}" class="img-size-50">
+                                            @else
+                                                <img src="{{ asset('vendor/adminlte/dist/img/logo.png') }}"
+                                                    alt="{{ $post->title }}" class="img-size-50">
+                                            @endif
+                                        </div>
+                                        <div class="product-info">
+                                            <a href="#" class="product-title">{{ $post->title }}
+                                                <span class="badge badge-info float-right"> Visualizações
+                                                    {{ $post->views }}</span></a>
+                                            <span class="product-description">
+                                                {{ Str::words($post->headline, 6, '...') }}
+                                            </span>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
 
+                        <div class="card-footer text-center">
+                            <a href="javascript:void(0)" target="_blank" class="uppercase">Ver Mais</a>
+                        </div>
+                    </div>
+                </div>
+                {{-- Last Members --}}
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Novos Estagiários</h3>
+                            <div class="card-tools">
+                                <span class="badge badge-danger">
+                                    {{ $trainee->where('created_at', '>=', date('Y-m-d'))->count() }} novos
+                                    membros</span>
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
 
+                        <div class="card-body p-0">
+                            <ul class="users-list clearfix">
+                                @foreach ($trainee->take(8) as $person)
+                                    <li>
+                                        @if ($person->photo)
+                                            <img src="{{ url('storage/users/' . $person->photo) }}"
+                                                alt="{{ $person->name }}">
+                                        @else
+                                        @endif
+                                        <a class="users-list-name" href="#">{{ $person->name }}</a>
+                                        <span
+                                            class="users-list-date">{{ date('d/m/Y', strtotime($person->created_at)) }}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
 
-            <div class="row">
-                @if (Auth::user()->hasRole('Programador|Administrador'))
+                        @if (!Auth::user()->hasRole('Estagiário'))
+                            <div class="card-footer text-center">
+                                <a href="#">Visualizar Todos</a>
+                            </div>
+                        @endif
+
+                    </div>
+
+                </div>
+            </div>
+
+            {{-- Chart --}}
+            @if (Auth::user()->hasRole('Programador|Administrador'))
+                <div class="row">
                     <div class="col-12 col-lg-6">
                         <div class="card">
                             <div class="card-header border-0">
@@ -201,8 +297,9 @@
                             </div>
                         </div>
                     </div>
-                @endif
-            </div>
+                </div>
+            @endif
+
         </div>
     </section>
 @endsection

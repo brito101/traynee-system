@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\Affiliation;
 use App\Models\Candidate;
+use App\Models\Post;
 use App\Models\User;
 use App\Models\Vacancy;
 use Carbon\Carbon;
@@ -19,22 +20,27 @@ class AdminController extends Controller
         $onlineUsers = User::online()->get()->count();
         $administrators = User::role('Administrador')->get()->count();
         $affiliates = User::role('Franquiado')->get()->count();
-        $companies = Company::all()->count();
-        $cadidates = Candidate::all();
-        $vacancies = Vacancy::all();
-
         $affiliations = Affiliation::all()->count();
-        $businessmen = User::role('Empresário')->count();
+
+
         if (Auth::user()->hasRole('Franquiado')) {
             $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->count();
             $businessmen = User::role('Empresário')->where('affiliation_id', Auth::user()->affiliation_id)->count();
+        } else {
+            $companies = Company::all()->count();
+            $businessmen = User::role('Empresário')->count();
         }
 
-        $trainee = User::role('Estagiário')->get()->count();
+        $cadidates = Candidate::all();
+        $vacancies = Vacancy::all();
+        $trainee = User::role('Estagiário')->orderBy('created_at', 'desc')->get();
+
+        $posts = Post::orderBy('created_at', 'desc')->take(6)->get();
 
         $access = Visit::where('created_at', '>=', date("Y-m-d"))
             ->where('url', '!=', route('admin.home.chart'))
             ->get();
+
         $accessYesterday = Visit::where('created_at', '>=', Carbon::now()->subDays(1))
             ->where('created_at', '<', Carbon::now())
             ->where('url', '!=', route('admin.home.chart'))
@@ -68,6 +74,7 @@ class AdminController extends Controller
             'businessmen',
             'trainee',
             'vacancies',
+            'posts',
             'cadidates',
             'onlineUsers',
             'access',
