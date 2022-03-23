@@ -43,4 +43,9 @@ class Company extends Model
         'brand_twitter',
         'affiliation_id'
     ];
+
+    public function vacancy()
+    {
+        return $this->hasMany(Vacancy::class);
+    }
 }

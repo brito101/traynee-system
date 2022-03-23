@@ -26,12 +26,15 @@ class AdminController extends Controller
         if (Auth::user()->hasRole('Franquiado')) {
             $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->count();
             $businessmen = User::role('Empresário')->where('affiliation_id', Auth::user()->affiliation_id)->count();
+        } elseif (Auth::user()->hasRole('Empresário')) {
+            $companies = Company::where('id', Auth::user()->company_id)->first();
+            $businessmen = null;
         } else {
             $companies = Company::all()->count();
             $businessmen = User::role('Empresário')->count();
         }
 
-        $cadidates = Candidate::all();
+        $candidates = Candidate::all();
         $vacancies = Vacancy::all();
         $trainee = User::role('Estagiário')->orderBy('created_at', 'desc')->get();
 
@@ -75,7 +78,7 @@ class AdminController extends Controller
             'trainee',
             'vacancies',
             'posts',
-            'cadidates',
+            'candidates',
             'onlineUsers',
             'access',
             'chart',

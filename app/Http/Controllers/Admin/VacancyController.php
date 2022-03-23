@@ -327,6 +327,9 @@ class VacancyController extends Controller
             abort(403, 'Acesso não autorizado');
         }
 
+        $vacancy->views += 1;
+        $vacancy->update();
+
         $candidate = Candidate::where('vacancy_id', $vacancy->id)
             ->where('user_id', Auth::user()->id)->first();
 

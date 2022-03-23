@@ -94,7 +94,9 @@ class User extends Authenticatable
     /** Relationships */
     public function genre()
     {
-        return $this->belongsTo(Genre::class);
+        return $this->belongsTo(Genre::class)->withDefault([
+            'name' => 'Não Informado',
+        ]);
     }
 
     public function affiliation()

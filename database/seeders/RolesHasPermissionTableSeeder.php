@@ -480,6 +480,11 @@ class RolesHasPermissionTableSeeder extends Seeder
                 'permission_id' => 65,
                 'role_id' => 5
             ],
+            /** Company */
+            [
+                'permission_id' => 66,
+                'role_id' => 4
+            ],
         ]);
     }
 }

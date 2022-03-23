@@ -568,6 +568,12 @@ return [
             ]
         ],
         [
+            'text'        => 'Estagiários',
+            'url'         => 'admin/trainees',
+            'icon'        => 'fas fa-fw fa-users',
+            'can'         => 'Visualizar Estagiários',
+        ],
+        [
             'text'        => 'Blog',
             'url'         => '#',
             'icon'        => 'fas fa-fw fa-blog',

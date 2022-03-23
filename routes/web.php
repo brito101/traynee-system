@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfessionalController;
 use App\Http\Controllers\Admin\RequirimentController;
 use App\Http\Controllers\Admin\ScholarityController;
+use App\Http\Controllers\Admin\TraineeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserNetworkController;
 use App\Http\Controllers\Admin\VacancyController;
@@ -77,6 +78,12 @@ Route::group(['middleware' => ['auth']], function () {
         /** Candidate */
         Route::post('/candidate/{id}', [CandidateController::class, 'candidateStore'])->name('candidate.store');
         Route::put('/candidate/{id}', [CandidateController::class, 'candidateCancel'])->name('candidate.cancel');
+
+        /** Company */
+        /** Trainees */
+        Route::get('/trainees', [TraineeController::class, 'index'])->name('trainees.index');
+        Route::get('/trainees/{id}', [TraineeController::class, 'vacancy'])->name('trainees.vacancy');
+        Route::get('/trainee/{id}', [TraineeController::class, 'show'])->name('trainee.show');
 
         /**
          * Francheeses
