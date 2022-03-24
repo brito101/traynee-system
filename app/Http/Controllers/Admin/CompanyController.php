@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CompanyBrandRequest;
 use App\Http\Requests\Admin\CompanyRequest;
+use App\Models\Affiliation;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,7 +44,10 @@ class CompanyController extends Controller
         if (!Auth::user()->hasPermissionTo('Criar Empresas')) {
             abort(403, 'Acesso não autorizado');
         }
-        return view('admin.companies.create');
+
+        $affiliates = Affiliation::all();
+
+        return view('admin.companies.create', compact('affiliates'));
     }
 
     /**
@@ -120,10 +124,12 @@ class CompanyController extends Controller
                 ->where('affiliation_id', Auth::user()->affiliation_id)->first();
         }
 
+        $affiliates = Affiliation::all();
+
         if (empty($company->id)) {
             abort(403, 'Acesso não autorizado');
         }
-        return view('admin.companies.edit', compact('company'));
+        return view('admin.companies.edit', compact('company', 'affiliates'));
     }
 
     /**

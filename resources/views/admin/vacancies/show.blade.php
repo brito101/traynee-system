@@ -26,21 +26,22 @@
 
                     @if (empty($candidate))
                         <div class="card-footer">
-                            <form method="POST" action="{{ route('admin.candidate.store', ['id' => $vacancy->id]) }}"
-                                enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('admin.candidate.store', ['id' => $vacancy->id]) }}">
                                 @csrf
                                 <input type="hidden" name="vacancy_id" value="{{ $vacancy->id }}">
-                                <button type="submit" class="btn btn-primary">Candidatar</button>
+                                <button type="submit" class="btn btn-success btn-lg"><i
+                                        class="fa fa-lg fa-thumbs-up mr-2"></i>Me Candidatar</button>
                             </form>
                         </div>
                     @else
                         <div class="card-footer">
-                            <form method="POST" action="{{ route('admin.candidate.cancel', ['id' => $vacancy->id]) }}"
-                                enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('admin.candidate.cancel', ['id' => $vacancy->id]) }}">
                                 @method('PUT')
                                 @csrf
                                 <input type="hidden" name="vacancy_id" value="{{ $vacancy->id }}">
-                                <button type="submit" class="btn btn-danger">Cancelar Candidatura</button>
+                                <button type="submit" class="btn btn-danger btn-lg"><i
+                                        class="fa fa-lg fa-thumbs-down mr-2"></i>Cancelar
+                                    minha Candidatura</button>
                             </form>
                         </div>
                     @endif
@@ -51,8 +52,8 @@
                         class="bg-with">
 
                         <x-adminlte-profile-row-item icon="fas fa-fw fa-user-friends" title="Candidatos"
-                            text=" {{ $vacancy->candidate->count() }}" class="border-bottom border-dark mt-n4 mb-4"
-                            url="#" badge="teal" />
+                            text="{{ $vacancy->candidate->count() }}" class="border-bottom border-dark mt-n4 mb-4"
+                            url="#" badge="warning" />
                         <div class="d-flex flex-wrap justify-content-between col-12">
                             <div class="col-12 form-group px-0">
                                 <label>Cursos de interesse</label>

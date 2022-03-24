@@ -66,4 +66,45 @@ class CandidateController extends Controller
                 ->with('error', 'Erro ao cancelar!');
         }
     }
+
+    public function candidateJson(CandidateRequest $request)
+    {
+        if (!Auth::user()->hasRole('Estagiário')) {
+            return response()->json(['status' => 'error', 'message' => 'Acesso não autorizado']);
+        }
+
+        $vacancy = Vacancy::where('id', $request->vacancy_id)->first();
+
+        if (empty($vacancy->id)) {
+            return response()->json(['status' => 'error', 'message' => 'Acesso não autorizado']);
+        }
+
+        $candidate = Candidate::where('vacancy_id', $vacancy->id)
+            ->where('user_id', Auth::user()->id)->first();
+
+        if ($request->option == 'cancel') {
+            if ($candidate->delete()) {
+                return response()->json([
+                    'status' => 'success',
+                    'message' => '<i data-vacancy="candidate" data-id="' . $vacancy->id . '" class="text-danger fa fa-lg fa-thumbs-down candidate" style="cursor: pointer" title="Clique para se candidatar"></i>'
+                ]);
+            } else {
+                return response()->json(['status' => 'error', 'message' => 'Acesso não autorizado']);
+            }
+        }
+
+        if ($request->option == 'candidate') {
+            $data = $request->all();
+            $data['user_id'] = Auth::user()->id;
+            $candidate = Candidate::create($data);
+            if ($candidate) {
+                return response()->json([
+                    'status' => 'success',
+                    'message' => '<i data-vacancy="cancel" data-id="' . $vacancy->id . '" class="text-success fa fa-lg fa-thumbs-up candidate" style="cursor: pointer" title="Clique para cancelar a candidatura"></i>'
+                ]);
+            } else {
+                return response()->json(['status' => 'error', 'message' => 'Acesso não autorizado']);
+            }
+        }
+    }
 }

@@ -78,6 +78,7 @@ Route::group(['middleware' => ['auth']], function () {
         /** Candidate */
         Route::post('/candidate/{id}', [CandidateController::class, 'candidateStore'])->name('candidate.store');
         Route::put('/candidate/{id}', [CandidateController::class, 'candidateCancel'])->name('candidate.cancel');
+        Route::post('/candidateJson', [CandidateController::class, 'candidateJson'])->name('candidate.json');
 
         /** Company */
         /** Trainees */

@@ -144,6 +144,11 @@ class User extends Authenticatable
         return $this->hasMany(Requiriment::class);
     }
 
+    public function professional()
+    {
+        return $this->hasMany(Professional::class);
+    }
+
     /** Aux */
     public function age()
     {

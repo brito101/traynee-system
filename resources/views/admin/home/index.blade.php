@@ -144,7 +144,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex flex-wrap justify-content-between col-12 align-content-center">
-                                    <h3 class="card-title align-self-center">Estagiários</h3>
+                                    <h3 class="card-title align-self-center">Estagiários Cadastrados</h3>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -213,7 +213,7 @@
                             </div>
                             <div class="card-body">
                                 <x-adminlte-datatable id="table1" :heads="$heads" :heads="$heads" :config="$config" striped
-                                    hoverable beautify with-buttons />
+                                    hoverable beautify with-buttons class="traineeGrid" />
                             </div>
                         </div>
                     </div>
@@ -280,8 +280,13 @@
                             <h3 class="card-title">Novos Estagiários</h3>
                             <div class="card-tools">
                                 <span class="badge badge-danger">
-                                    {{ $trainee->where('created_at', '>=', date('Y-m-d'))->count() }} membros
-                                    novos</span>
+                                    {{ $total = $trainee->where('created_at', '>=', date('Y-m-d'))->count() }}
+                                    @if ($total == 1)
+                                        membro novo
+                                    @else
+                                        membros novos
+                                    @endif
+                                </span>
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
                                 </button>
@@ -372,7 +377,7 @@
 @endsection
 
 @if (Auth::user()->hasRole('Programador|Administrador'))
-    @section('adminlte_js')
+    @section('custom_js')
         <script>
             const ctx = document.getElementById('visitors-chart');
             if (ctx) {
@@ -434,6 +439,37 @@
                 };
                 setInterval(getData, 10000);
             }
+        </script>
+    @endsection
+@endif
+
+@if (Auth::user()->hasRole('Estagiário'))
+    @section('custom_js')
+        <script>
+            $(window).on("load", function() {
+                $(".traineeGrid").on("click", function(e) {
+                    if ($(e.target).data('vacancy')) {
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            }
+                        });
+                        $.ajax({
+                            url: "{{ route('admin.candidate.json') }}",
+                            type: 'POST',
+                            data: {
+                                vacancy_id: $(e.target).data('id'),
+                                option: $(e.target).data('vacancy'),
+                            },
+                            success: function(data) {
+                                if (data.status == 'success') {
+                                    $(e.target)[0].outerHTML = data.message;
+                                }
+                            }
+                        });
+                    }
+                });
+            });
         </script>
     @endsection
 @endif

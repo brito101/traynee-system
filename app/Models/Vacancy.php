@@ -63,9 +63,9 @@ class Vacancy extends Model
         $candidate = Candidate::where('vacancy_id', $this->id)
             ->where('user_id', Auth::user()->id)->first();
         if ($candidate) {
-            return '<i class="text-success fa fa-lg fa-thumbs-up"></i>';
+            return '<i data-vacancy="cancel" data-id="' . $this->id . '" class="text-success fa fa-lg fa-thumbs-up candidate" style="cursor: pointer" title="Clique para cancelar a candidatura"></i>';
         } else {
-            return '<i class="text-danger fa fa-lg fa-thumbs-down"></i>';
+            return '<i data-vacancy="candidate" data-id="' . $this->id . '" class="text-danger fa fa-lg fa-thumbs-down candidate" style="cursor: pointer" title="Clique para se candidatar"></i>';
         }
     }
 }

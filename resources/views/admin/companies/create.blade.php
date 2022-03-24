@@ -1,4 +1,5 @@
 @extends('adminlte::page')
+@section('plugins.select2', true)
 @section('plugins.BsCustomFileInput', true)
 
 @section('title', '- Cadastro de Empresa')
@@ -141,6 +142,21 @@
                                             placeholder="Selecione uma imagem..." legend="Selecionar" />
                                     </div>
                                 </div>
+
+                                @if (Auth::user()->hasRole('Programador|Administrador'))
+                                    <div class="d-flex flex-wrap justify-content-between">
+                                        <div class="col-12 col-md-6 form-group px-0 pr-md-2">
+                                            <label for="affiliation_id">Franquia</label>
+                                            <x-adminlte-select2 name="affiliation_id" required>
+                                                @foreach ($affiliates as $affiliate)
+                                                    <option value="{{ $affiliate->id }}"
+                                                        {{ old('affiliation_id') == $affiliate->id ? 'selected' : '' }}>
+                                                        {{ $affiliate->alias_name }} </option>
+                                                @endforeach
+                                            </x-adminlte-select2>
+                                        </div>
+                                    </div>
+                                @endif
 
                             </div>
 
