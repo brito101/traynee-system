@@ -65,7 +65,7 @@
                             <span class="info-box-icon bg-success elevation-1"><i class="fas fa-building"></i></span>
                             <div class="info-box-content">
                                 <span class="info-box-text">Empresas</span>
-                                <span class="info-box-number">{{ $companies }}</span>
+                                <span class="info-box-number">{{ $companies->count() }}</span>
                             </div>
                         </div>
                     </div>
@@ -161,7 +161,7 @@
                             <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-building"></i></span>
                             <div class="info-box-content">
                                 <span class="info-box-text">Empresas</span>
-                                <span class="info-box-number">{{ $companies }}</span>
+                                <span class="info-box-number">{{ $companies->count() }}</span>
                             </div>
                         </div>
                     </div>
@@ -219,6 +219,76 @@
                     </div>
                 @endif
             </div>
+
+            @if (Auth::user()->hasRole('Programador|Administrador|Franquiado'))
+                <div class="row px-0">
+
+                    <div class="col-12 col-lg-6">
+                        <div class="card">
+                            <div class="card-header border-0">
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="card-title">Usuários Online: <span
+                                            id="onlineusers">{{ $onlineUsers }}</span></h3>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <p class="d-flex flex-column">
+                                        <span class="text-bold text-lg" id="accessdaily">{{ $access->count() }}</span>
+                                        <span>Acessos Diários</span>
+                                    </p>
+                                    <p class="ml-auto d-flex flex-column text-right">
+                                        <span id="percentclass"
+                                            class="{{ $percent > 0 ? 'text-success' : 'text-danger' }}">
+                                            <i id="percenticon"
+                                                class="fas {{ $percent > 0 ? 'fa-arrow-up' : 'fa-arrow-down' }}  mr-1"></i><span
+                                                id="percentvalue">{{ $percent }}</span>%
+                                        </span>
+                                        <span class="text-muted">em relação ao dia anterior</span>
+                                    </p>
+                                </div>
+
+                                <div class="position-relative mb-4">
+                                    <div class="chartjs-size-monitor" z>
+                                        <div class="chartjs-size-monitor-expand">
+                                            <div class=""></div>
+                                        </div>
+                                        <div class="chartjs-size-monitor-shrink">
+                                            <div class=""></div>
+                                        </div>
+                                    </div>
+                                    <canvas id="visitors-chart" style="display: block; width: 489px; height: 200px;"
+                                        class="chartjs-render-monitor" width="489" height="200"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="card">
+                            <div class="card-header border-0">
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="card-title">Vagas por Empresas</h3>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="position-relative mb-4">
+                                    <div class="chartjs-size-monitor" z>
+                                        <div class="chartjs-size-monitor-expand">
+                                            <div class=""></div>
+                                        </div>
+                                        <div class="chartjs-size-monitor-shrink">
+                                            <div class=""></div>
+                                        </div>
+                                    </div>
+                                    <canvas id="vacancy-chart" style="display: block; width: 489px; height: 200px;"
+                                        class="chartjs-render-monitor" width="489" height="270"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            @endif
 
             <div class="row px-0">
                 {{-- Posts --}}
@@ -320,64 +390,16 @@
                                 <a href="{{ route('admin.trainees.index') }}">Visualizar Todos</a>
                             </div>
                         @endif
-
                     </div>
-
                 </div>
             </div>
-
-            {{-- Chart --}}
-            @if (Auth::user()->hasRole('Programador|Administrador'))
-                <div class="row">
-                    <div class="col-12 col-lg-6">
-                        <div class="card">
-                            <div class="card-header border-0">
-                                <div class="d-flex justify-content-between">
-                                    <h3 class="card-title">Usuários Online: <span
-                                            id="onlineusers">{{ $onlineUsers }}</span></h3>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <p class="d-flex flex-column">
-                                        <span class="text-bold text-lg" id="accessdaily">{{ $access->count() }}</span>
-                                        <span>Acessos Diários</span>
-                                    </p>
-                                    <p class="ml-auto d-flex flex-column text-right">
-                                        <span id="percentclass"
-                                            class="{{ $percent > 0 ? 'text-success' : 'text-danger' }}">
-                                            <i id="percenticon"
-                                                class="fas {{ $percent > 0 ? 'fa-arrow-up' : 'fa-arrow-down' }}  mr-1"></i><span
-                                                id="percentvalue">{{ $percent }}</span>%
-                                        </span>
-                                        <span class="text-muted">Dia anterior</span>
-                                    </p>
-                                </div>
-
-                                <div class="position-relative mb-4">
-                                    <div class="chartjs-size-monitor" z>
-                                        <div class="chartjs-size-monitor-expand">
-                                            <div class=""></div>
-                                        </div>
-                                        <div class="chartjs-size-monitor-shrink">
-                                            <div class=""></div>
-                                        </div>
-                                    </div>
-                                    <canvas id="visitors-chart" style="display: block; width: 489px; height: 200px;"
-                                        class="chartjs-render-monitor" width="489" height="200"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endif
 
         </div>
     </section>
 @endsection
 
-@if (Auth::user()->hasRole('Programador|Administrador'))
-    @section('custom_js')
+@section('custom_js')
+    @if (Auth::user()->hasRole('Programador|Administrador|Franquiado'))
         <script>
             const ctx = document.getElementById('visitors-chart');
             if (ctx) {
@@ -439,12 +461,60 @@
                 };
                 setInterval(getData, 10000);
             }
-        </script>
-    @endsection
-@endif
 
-@if (Auth::user()->hasRole('Estagiário'))
-    @section('custom_js')
+            const vacancyChart = document.getElementById('vacancy-chart');
+            if (vacancyChart) {
+                const myChart = new Chart(vacancyChart, {
+                    type: 'bar',
+                    data: {
+                        labels: ({!! json_encode($chart->companiesLabel) !!}),
+                        datasets: [{
+                            label: 'Vagas por Empresas',
+                            data: {!! json_encode($chart->companiesData) !!},
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(255, 159, 64, 0.2)',
+                                'rgba(255, 205, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(201, 203, 207, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgb(255, 99, 132)',
+                                'rgb(255, 159, 64)',
+                                'rgb(255, 205, 86)',
+                                'rgb(75, 192, 192)',
+                                'rgb(54, 162, 235)',
+                                'rgb(153, 102, 255)',
+                                'rgb(201, 203, 207)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            },
+                            xAxes: [{
+                                barThickness: 50,
+                                maxBarThickness: 50
+                            }]
+                        },
+                        legend: {
+                            labels: {
+                                boxWidth: 0,
+                            }
+                        },
+                    },
+                });
+            }
+        </script>
+    @endif
+
+    @if (Auth::user()->hasRole('Estagiário'))
         <script>
             $(window).on("load", function() {
                 $(".traineeGrid").on("click", function(e) {
@@ -471,5 +541,5 @@
                 });
             });
         </script>
-    @endsection
-@endif
+    @endif
+@endsection

@@ -24,13 +24,13 @@ class AdminController extends Controller
 
 
         if (Auth::user()->hasRole('Franquiado')) {
-            $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->count();
+            $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
             $businessmen = User::role('Empresário')->where('affiliation_id', Auth::user()->affiliation_id)->count();
         } elseif (Auth::user()->hasRole('Empresário')) {
             $companies = Company::where('id', Auth::user()->company_id)->first();
             $businessmen = null;
         } else {
-            $companies = Company::all()->count();
+            $companies = Company::all();
             $businessmen = User::role('Empresário')->count();
         }
 
@@ -65,9 +65,16 @@ class AdminController extends Controller
             $dataList[$key . 'H'] = count($value);
         }
 
+        $companiesList = [];
+        foreach ($companies as $company) {
+            $companiesList[$company->alias_name] = $company->vacancy->count();
+        }
+
         $chart = new \stdClass();
         $chart->labels = (array_keys($dataList));
         $chart->dataset = (array_values($dataList));
+        $chart->companiesLabel = (array_keys($companiesList));
+        $chart->companiesData =  (array_values($companiesList));
 
         return view('admin.home.index', compact(
             'administrators',
