@@ -1,0 +1,20 @@
+$imgPath: "../img";
+
+@import "./global/global";
+@import "./utility/typography";
+@import "./utility/colors";
+@import "./utility/animations";
+
+/** Global */
+@import "./global/header";
+@import "./global/footer";
+
+/** Utility */
+@import "./utility/components";
+
+/* Home */
+@import "./home/introduction";
+
+/* Vacancies */
+@import "./vacancies/vacancy-list";
+@import "./vacancies/vacancy";

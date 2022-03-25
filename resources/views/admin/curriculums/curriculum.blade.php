@@ -69,11 +69,11 @@
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
                                 <li class="nav-item"><a class="nav-link active" href="#courses"
-                                        data-toggle="tab">Cursos de Formação</a></li>
+                                        data-toggle="tab">Info. Acadêmicas</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#extracourses"
                                         data-toggle="tab">Cursos Extracurriculares</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#experience"
-                                        data-toggle="tab">Experiência Profissional</a></li>
+                                        data-toggle="tab">Exp. Profissional</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#composing"
                                         data-toggle="tab">Redação</a></li>
                                 @if ($user->requiriment->count() > 0)
@@ -192,7 +192,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <h4>
-                                    <i class="fas fa-star"></i> {{ $user->name }}
+                                    <i class="fa fa-file-archive"></i> Dados Pessoais
                                     <small class="float-right">Data de Nascimento:
                                         {{ $user->birth ?? 'Não Informada' }}</small>
                                 </h4>
@@ -284,7 +284,7 @@
                                             </tr>
                                             <tr>
                                                 <th>Data de Emissão</th>
-                                                <td>${{ $user->date_issue ?? 'Não informado' }}</td>
+                                                <td>{{ $user->date_issue ?? 'Não informado' }}</td>
                                             </tr>
                                             <tr>
                                                 <th>Carteira de Trabalho</th>

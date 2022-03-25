@@ -145,6 +145,8 @@ Route::group(['middleware' => ['auth']], function () {
     });
 });
 
+/** Web */
+/** Home */
 Route::get('/', [SiteController::class, 'index'])->name('home');
 
 Auth::routes();
