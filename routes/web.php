@@ -75,6 +75,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/composing', [ComposingController::class, 'store'])->name('composing.store');
         /** Curriculum */
         Route::get('/curriculum', [CurriculumController::class, 'show'])->name('curriculum.show');
+        Route::get('/curriculum-pdf/{id}', [CurriculumController::class, 'curroculumPdf'])->name('curriculum.pdf');
         /** Candidate */
         Route::post('/candidate/{id}', [CandidateController::class, 'candidateStore'])->name('candidate.store');
         Route::put('/candidate/{id}', [CandidateController::class, 'candidateCancel'])->name('candidate.cancel');

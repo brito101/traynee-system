@@ -377,7 +377,15 @@
                                             <img src="{{ asset('vendor/adminlte/dist/img/avatar.png') }}"
                                                 alt="{{ $person->name }}">
                                         @endif
-                                        <a class="users-list-name" href="#">{{ $person->name }}</a>
+
+                                        @if (Auth::user()->hasRole('Empresário'))
+                                            <a class="users-list-name"
+                                                href="{{ route('admin.trainee.show', ['id' => $person->id]) }}">{{ $person->name }}</a>
+                                        @else
+                                            <a class="users-list-name" href="#">{{ $person->name }}</a>
+                                        @endif
+
+
                                         <span
                                             class="users-list-date">{{ date('d/m/Y', strtotime($person->created_at)) }}</span>
                                     </li>

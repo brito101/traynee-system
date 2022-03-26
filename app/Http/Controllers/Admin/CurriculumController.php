@@ -19,4 +19,19 @@ class CurriculumController extends Controller
 
         return view('admin.curriculums.curriculum', compact('user'));
     }
+
+    public function curroculumPdf(Request $request)
+    {
+        if (Auth::user()->hasRole('Estagiário')) {
+            $user = User::where('id', Auth::user()->id)->first();
+        } else {
+            $user = User::where('id', $request->id)->first();
+        }
+
+        if (empty($user->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        return view('admin.curriculums.pdf', compact('user'));
+    }
 }

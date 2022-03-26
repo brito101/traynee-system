@@ -19,6 +19,11 @@
         </div>
     </section>
 
+    <div class="row d-flex justify-content-end container py-2 px-0">
+        <a href="{{ route('admin.curriculum.pdf', ['id' => $user->id]) }}" target="_blank" class="btn btn-primary"><i
+                class="fa fa-print"></i> Imprimir Currículo</a>
+    </div>
+
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -175,7 +180,8 @@
                                                         <span class="username">Tipo:
                                                             <a href="#">{{ $req->type }}</a>
                                                         </span>
-                                                        <p class="description">Observações: {{ $req->details }}</p>
+                                                        <p class="description">Observações: {{ $req->details }}
+                                                        </p>
                                                     </div>
                                                 </div>
                                             @endforeach
