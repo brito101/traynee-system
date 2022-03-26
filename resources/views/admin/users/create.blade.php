@@ -70,11 +70,55 @@
                                     </div>
                                 </div>
 
+                                @if (Auth::user()->hasRole('Estagiário'))
+                                    <div class="d-flex flex-wrap justify-content-between">
+                                        <div class="col-12 col-md-6 form-group px-0 pr-md-2">
+                                            <label for="vehicle">Veículo</label>
+                                            <x-adminlte-select2 name="vehicle">
+                                                <option {{ old('vehicle') == 'Não possuo veículo' ? 'selected' : '' }}
+                                                    value="Não possuo veículo">Não possuo veículo</option>
+                                                <option {{ old('vehicle') == 'Possuo carro' ? 'selected' : '' }}
+                                                    value="Possuo carro">Possuo carro</option>
+                                                <option {{ old('vehicle') == 'Possuo moto' ? 'selected' : '' }}
+                                                    value="Possuo moto">Possuo moto</option>
+                                            </x-adminlte-select2>
+                                        </div>
+                                        <div class="col-12 col-md-6 form-group px-0 pl-md-2">
+                                            <label for="team_work">Trablho em Equipe</label>
+                                            <x-adminlte-select2 name="team_work">
+                                                <option {{ old('team_work') == 'Sou líder de equipe' ? 'selected' : '' }}
+                                                    value="Sou líder de equipe">Sou líder de equipe</option>
+                                                <option
+                                                    {{ old('team_work') == 'Trabalho muito bem em equipe' ? 'selected' : '' }}
+                                                    value="Trabalho muito bem em equipe">Trabalho muito bem em equipe
+                                                </option>
+                                                <option
+                                                    {{ old('team_work') == 'Sou bom em uma equipe' ? 'selected' : '' }}
+                                                    value="Sou bom em uma equipe">Sou bom em uma equipe</option>
+                                                <option
+                                                    {{ old('team_work') == 'Trabalho melhor sozinho' ? 'selected' : '' }}
+                                                    value="Trabalho melhor sozinho">Trabalho melhor sozinho</option>
+                                                <option {{ old('team_work') == 'Indiferente' ? 'selected' : '' }}
+                                                    value="Indiferente">Indiferente</option>
+                                            </x-adminlte-select2>
+                                        </div>
+                                    </div>
+                                @endif
+
                                 <div class="d-flex flex-wrap justify-content-between">
                                     <div class="col-12 col-md-6 form-group px-0 pr-md-2">
                                         <x-adminlte-input-file name="photo" label="Foto"
                                             placeholder="Selecione uma imagem..." legend="Selecionar" />
                                     </div>
+
+                                    @if (Auth::user()->hasRole('Estagiário'))
+                                        <div class="col-12 col-md-6 form-group px-0 pl-md-2">
+                                            <label for="instagram">Vídeo de apresentação do Youtube</label>
+                                            <input type="url" class="form-control" id="video"
+                                                placeholder="https://www.youtube.com/watch?v=..." name="video"
+                                                value="{{ old('video') }}">
+                                        </div>
+                                    @endif
                                 </div>
 
                                 <div class="d-flex flex-wrap justify-content-between">

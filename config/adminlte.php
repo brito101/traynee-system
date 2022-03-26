@@ -241,7 +241,7 @@ return [
         // Sidebar items:
         [
             'type' => 'sidebar-menu-search',
-            'text' => 'search',
+            'text' => 'Pesquisa',
         ],
         //Custom menus
         //Curriculo Trainee
@@ -341,6 +341,12 @@ return [
             'url'         => 'admin/composing',
             'icon'        => 'fas fa-fw fa-file-contract',
             'can'         => 'Editar Redação',
+        ],
+        [
+            'text'        => 'Doc. Comprobatórios',
+            'url'         => 'admin/documents',
+            'icon'        => 'fa fa-fw fa-file-upload',
+            'can'         => 'Enviar Documentos Comprobatórios',
         ],
         [
             'text'        => 'Usuários',

@@ -18,6 +18,12 @@ class CoursesTableSeeder extends Seeder
         DB::table('courses')->insert(
             [
                 [
+                    'name' => 'Eletrotécnica',
+                    'acronym' => 'ET',
+                    'user_id' => 1,
+                    'created_at' => new DateTime('now')
+                ],
+                [
                     'name' => 'Informática',
                     'acronym' => 'INFO',
                     'user_id' => 1,
@@ -30,8 +36,14 @@ class CoursesTableSeeder extends Seeder
                     'created_at' => new DateTime('now')
                 ],
                 [
-                    'name' => 'Atividade Complementar',
-                    'acronym' => 'AC',
+                    'name' => 'Licenciatura',
+                    'acronym' => 'Lic',
+                    'user_id' => 1,
+                    'created_at' => new DateTime('now')
+                ],
+                [
+                    'name' => 'Outros',
+                    'acronym' => 'Ot',
                     'user_id' => 1,
                     'created_at' => new DateTime('now')
                 ],

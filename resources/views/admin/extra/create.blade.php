@@ -64,8 +64,9 @@
                                     </div>
                                     <div class="col-12 col-md-6 form-group px-0 pl-md-2">
                                         <label for="level">Nível</label>
-                                        <input type="text" class="form-control" id="level" placeholder="Pleno, Fluente..."
-                                            name="level" value="{{ old('level') }}" required>
+                                        <input type="text" class="form-control" id="level"
+                                            placeholder="Pleno, Fluente, Avançado..." name="level"
+                                            value="{{ old('level') }}" required>
                                     </div>
                                 </div>
                             </div>

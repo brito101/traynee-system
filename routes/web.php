@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\ComposingController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CurriculumController;
 use App\Http\Controllers\Admin\DocumentController;
+use App\Http\Controllers\Admin\DocumentTrayneeController;
 use App\Http\Controllers\Admin\ExtraController;
 use App\Http\Controllers\Admin\GenreController;
 use App\Http\Controllers\Admin\PostController;
@@ -86,6 +87,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/trainees', [TraineeController::class, 'index'])->name('trainees.index');
         Route::get('/trainees/{id}', [TraineeController::class, 'vacancy'])->name('trainees.vacancy');
         Route::get('/trainee/{id}', [TraineeController::class, 'show'])->name('trainee.show');
+        Route::get('/documents', [DocumentTrayneeController::class, 'edit'])->name('documents.edit');
+        Route::put('/documents', [DocumentTrayneeController::class, 'store'])->name('documents.store');
 
         /**
          * Francheeses

@@ -122,6 +122,10 @@
                                         <label for="availability">Disponibilidade</label>
                                         <x-adminlte-select2 name="availability">
                                             <option
+                                                {{ old('availability') == 'Comercial' ? 'selected' : ($academic->availability == 'Comercial' ? 'selected' : '') }}
+                                                value="Comercial">
+                                                Comercial</option>
+                                            <option
                                                 {{ old('availability') == 'Manhã' ? 'selected' : ($academic->availability == 'Manhã' ? 'selected' : '') }}
                                                 value="Manhã">
                                                 Manhã</option>
@@ -130,9 +134,9 @@
                                                 value="Tarde">
                                                 Tarde</option>
                                             <option
-                                                {{ old('availability') == 'Integral' ? 'selected' : ($academic->availability == 'Integral' ? 'selected' : '') }}
-                                                value="Integral">
-                                                Integral</option>
+                                                {{ old('availability') == 'Noite' ? 'selected' : ($academic->availability == 'Noite' ? 'selected' : '') }}
+                                                value="Noite">
+                                                Noite</option>
                                         </x-adminlte-select2>
                                     </div>
                                 </div>

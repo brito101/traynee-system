@@ -75,23 +75,89 @@
                                     </div>
                                 </div>
 
+                                @if (Auth::user()->hasRole('Estagiário'))
+                                    <div class="d-flex flex-wrap justify-content-between">
+                                        <div class="col-12 col-md-6 form-group px-0 pr-md-2">
+                                            <label for="vehicle">Veículo</label>
+                                            <x-adminlte-select2 name="vehicle" required>
+                                                <option
+                                                    {{ old('vehicle') == 'Não possuo veículo'? 'selected': ($user->vehicle == 'Não possuo veículo'? 'selected': '') }}
+                                                    value="Não possuo veículo">Não possuo veículo</option>
+                                                <option
+                                                    {{ old('vehicle') == 'Possuo carro' ? 'selected' : ($user->vehicle == 'Possuo carro' ? 'selected' : '') }}
+                                                    value="Possuo carro">Possuo carro</option>
+                                                <option
+                                                    {{ old('vehicle') == 'Possuo moto' ? 'selected' : ($user->vehicle == 'Possuo moto' ? 'selected' : '') }}
+                                                    value="Possuo moto">Possuo moto</option>
+                                            </x-adminlte-select2>
+                                        </div>
+
+                                        <div class="col-12 col-md-6 form-group px-0 pl-md-2">
+                                            <label for="team_work">Trablho em Equipe</label>
+                                            <x-adminlte-select2 name="team_work" required>
+                                                <option
+                                                    {{ old('team_work') == 'Sou líder de equipe'? 'selected': ($user->team_work == 'Sou líder de equipe'? 'selected': '') }}
+                                                    value="Sou líder de equipe">Sou líder de equipe</option>
+                                                <option
+                                                    {{ old('team_work') == 'Trabalho muito bem em equipe'? 'selected': ($user->team_work == 'Trabalho muito bem em equipe'? 'selected': '') }}
+                                                    value="Trabalho muito bem em equipe">Trabalho muito bem em equipe
+                                                </option>
+                                                <option
+                                                    {{ old('team_work') == 'Sou bom em uma equipe'? 'selected': ($user->team_work == 'Sou bom em uma equipe'? 'selected': '') }}
+                                                    value="Sou bom em uma equipe">Sou bom em uma equipe</option>
+                                                <option
+                                                    {{ old('team_work') == 'Trabalho melhor sozinho'? 'selected': ($user->team_work == 'Trabalho melhor sozinho'? 'selected': '') }}
+                                                    value="Trabalho melhor sozinho">Trabalho melhor sozinho</option>
+                                                <option
+                                                    {{ old('team_work') == 'Indiferente' ? 'selected' : ($user->team_work == 'Indiferente' ? 'selected' : '') }}
+                                                    value="Indiferente">Indiferente</option>
+                                            </x-adminlte-select2>
+                                        </div>
+                                    </div>
+                                @endif
+
                                 <div class="d-flex flex-wrap justify-content-between">
                                     <div class="col-12 col-md-6 form-group px-0 pr-md-2 d-flex flex-wrap">
 
-                                        <div class="{{ $user->photo != null ? 'col-md-9' : 'col-md-12' }} px-0">
+                                        <div class="col-12 px-0">
                                             <x-adminlte-input-file name="photo" label="Foto"
                                                 placeholder="Selecione uma imagem..." legend="Selecionar" />
                                         </div>
 
                                         @if ($user->photo != null)
-                                            <div
-                                                class='col-12 col-md-3 align-self-center mt-3 d-flex justify-content-center justify-content-md-end px-0'>
+                                            <div class='col-12 d-flex justify-content-center align-items-center px-0'>
                                                 <img src="{{ url('storage/users/' . $user->photo) }}"
-                                                    alt="{{ $user->name }}" style="max-width: 80%;"
+                                                    alt="{{ $user->name }}" style="margin: auto; max-width: 50%;"
                                                     class="img-thumbnail d-block">
                                             </div>
                                         @endif
                                     </div>
+
+                                    @if (Auth::user()->hasRole('Estagiário'))
+                                        <div class="col-12 col-md-6 form-group px-0 pl-md-2 d-flex flex-wrap">
+                                            <div class="col-12 form-group px-0">
+                                                <label for="instagram">Vídeo de apresentação do Youtube</label>
+                                                <input type="url" class="form-control" id="video"
+                                                    placeholder="https://www.youtube.com/watch?v=..." name="video"
+                                                    value="{{ old('video') ?? ($user->video ? $user->video : '') }}">
+
+                                                @if ($user->video != null)
+                                                    <div class='col-12 align-self-center mt-3 mb-n3 d-flex px-0'>
+                                                        <div
+                                                            class=' embed-responsive
+                                                                                                                                                        embed-responsive-16by9'>
+                                                            <iframe class="embed-responsive-item rounded"
+                                                                src="{{ Str::replace('https://www.youtube.com/watch?v=', 'https://www.youtube.com/embed/', $user->video) }}"
+                                                                title="YouTube video player" frameborder="0"
+                                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                                allowfullscreen></iframe>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                    @endif
                                 </div>
 
                                 <div class="d-flex flex-wrap justify-content-between">

@@ -89,7 +89,7 @@ class UserController extends Controller
         $data['password'] = bcrypt($request->password);
 
         if (Auth::user()->hasRole('Franquiado')) {
-            $data['affiliation_id'] = auth()->user()->affiliation_id;
+            $data['affiliation_id'] = Auth::user()->affiliation_id;
         }
 
         if ($request->hasFile('photo') && $request->file('photo')->isValid()) {

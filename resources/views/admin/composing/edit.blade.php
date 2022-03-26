@@ -1,6 +1,7 @@
 @extends('adminlte::page')
+@section('plugins.Summernote', true)
 
-@section('title', '- Editar Endereço')
+@section('title', '- Editar Redação')
 
 @section('content')
 
@@ -50,9 +51,11 @@
 
                                 <div class="col-12 form-group px-0 pr-md-2">
                                     <label for="content">Texto</label>
-                                    <x-adminlte-textarea name="content" rows="30" placeholder="Escreva sua redação aqui...">
+
+                                    <x-adminlte-text-editor name="content" rows="30"
+                                        placeholder="Escreva sua redação aqui...">
                                         {{ old('content') ?? (isset($composing->content) ? $composing->content : '') }}
-                                    </x-adminlte-textarea>
+                                    </x-adminlte-text-editor>
                                 </div>
 
 

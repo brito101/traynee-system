@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UserRequest extends FormRequest
 {
@@ -23,7 +24,6 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-
         return [
             'name' => 'required|min:3|max:100',
             'email' => "required|min:6|max:100|unique:users,email,{$this->id},id,deleted_at,NULL",
@@ -35,6 +35,9 @@ class UserRequest extends FormRequest
             'scholarity_id' => "nullable",
             'telephone' => 'nullable|min:8|max:25',
             'cell' => 'nullable|min:8|max:25',
+            'video' => 'nullable|url|max:150',
+            'team_work' => "required_if:{Auth::user()->hasRole('Estagiário'),true}|min:2|max:100",
+            'vehicle' => "required_if:{Auth::user()->hasRole('Estagiário'),true}|min:2|max:100",
         ];
     }
 }

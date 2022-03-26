@@ -70,6 +70,9 @@ class User extends Authenticatable
         'date_issue',
         'work_card',
         'serie',
+        'video',
+        'team_work',
+        'vehicle',
     ];
 
     /**

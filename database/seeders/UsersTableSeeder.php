@@ -46,6 +46,12 @@ class UsersTableSeeder extends Seeder
                 'email'     => 'franquia3@estagio.com',
                 'password'  => bcrypt(12345678),
                 'created_at' => new DateTime('now')
+            ],
+            [
+                'name'      => 'Estagiário',
+                'email'     => 'estagiario@estagio.com',
+                'password'  => bcrypt(12345678),
+                'created_at' => new DateTime('now')
             ]
         ]);
     }

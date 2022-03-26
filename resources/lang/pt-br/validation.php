@@ -221,6 +221,12 @@ return [
         'end' => 'término',
         'contract' => 'regime contratual',
         'activities' => 'atividades',
+        'team_work' => 'trabalho em equipe',
+        'vehicle' => 'veículo',
+        'registration' => 'atestado de matrícula',
+        'historic' => 'histórico escolar',
+        'declaration' => 'declaração da instituição de ensino',
+        'residence' => 'comprovante de residência',
     ],
 
 ];

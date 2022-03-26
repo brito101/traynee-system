@@ -18,19 +18,19 @@ class ScholaritiesTableSeeder extends Seeder
         DB::table('scholarities')->insert(
             [
                 [
-                    'name' => 'Médio',
+                    'name' => 'Ensino Médio',
                     'acronym' => 'M',
                     'user_id' => 1,
                     'created_at' => new DateTime('now')
                 ],
                 [
-                    'name' => 'Técnico',
+                    'name' => 'Ensino Técnico',
                     'acronym' => 'T',
                     'user_id' => 1,
                     'created_at' => new DateTime('now')
                 ],
                 [
-                    'name' => 'Superior',
+                    'name' => 'Graduação',
                     'acronym' => 'S',
                     'user_id' => 1,
                     'created_at' => new DateTime('now')

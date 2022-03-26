@@ -32,8 +32,8 @@
                                     alt="{{ $user->name }}">
                             </div>
                             <h3 class="profile-username text-center">{{ $user->name }}</h3>
+                            <p class="text-muted text-center">Tenho {{ $user->age() }} anos</p>
                             <p class="text-muted text-center">Gênero: {{ $user->genre['name'] }}</p>
-                            <p class="text-muted text-center">{{ $user->age() }} anos</p>
                         </div>
                     </div>
 
@@ -42,6 +42,16 @@
                             <h3 class="card-title">Sobre mim</h3>
                         </div>
                         <div class="card-body">
+                            @if (!empty($user->team_work))
+                                <strong><i class="fa fa-users mr-1"></i> Trabalho em equipe</strong>
+                                <p class="text-muted">{{ $user->team_work }}</p>
+                                <hr>
+                            @endif
+                            @if (!empty($user->vehicle))
+                                <strong><i class="fa fa-car mr-1"></i> Veículo</strong>
+                                <p class="text-muted">{{ $user->vehicle }}</p>
+                                <hr>
+                            @endif
                             @if (!empty($user->city))
                                 <strong><i class="fas fa-map-marker-alt mr-1"></i> Localização</strong>
                                 <p class="text-muted">{{ $user->city }}-{{ $user->state }}</p>
@@ -158,7 +168,7 @@
                                     </span>
                                 </div>
                                 <div class="col-12">
-                                    {{ $user->composing['content'] }}
+                                    {!! $user->composing['content'] !!}
                                 </div>
                             @endisset
                         </div>
@@ -311,6 +321,7 @@
 @section('custom_js')
     <script>
         window.onload = function() {
+            $(".main-footer").remove();
             window.print();
             window.close();
         }

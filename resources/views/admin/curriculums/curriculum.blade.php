@@ -37,8 +37,8 @@
                                     alt="{{ $user->name }}">
                             </div>
                             <h3 class="profile-username text-center">{{ $user->name }}</h3>
+                            <p class="text-muted text-center">Tenho {{ $user->age() }} anos</p>
                             <p class="text-muted text-center">Gênero: {{ $user->genre['name'] }}</p>
-                            <p class="text-muted text-center">{{ $user->age() }} anos</p>
                         </div>
                     </div>
 
@@ -47,6 +47,16 @@
                             <h3 class="card-title">Sobre mim</h3>
                         </div>
                         <div class="card-body">
+                            @if (!empty($user->team_work))
+                                <strong><i class="fa fa-users mr-1"></i> Trabalho em equipe</strong>
+                                <p class="text-muted">{{ $user->team_work }}</p>
+                                <hr>
+                            @endif
+                            @if (!empty($user->vehicle))
+                                <strong><i class="fa fa-car mr-1"></i> Veículo</strong>
+                                <p class="text-muted">{{ $user->vehicle }}</p>
+                                <hr>
+                            @endif
                             @if (!empty($user->city))
                                 <strong><i class="fas fa-map-marker-alt mr-1"></i> Localização</strong>
                                 <p class="text-muted">{{ $user->city }}-{{ $user->state }}</p>
@@ -159,13 +169,13 @@
                                 <div class="tab-pane" id="composing">
                                     <div class="post">
                                         @isset($user->composing)
-                                            <div class="user-block ml-n5 mr-5">
+                                            <div class="user-block ml-n5 mr-5 text-center">
                                                 <span class="username">
                                                     <a href="#">{{ $user->composing['title'] }}</a>
                                                 </span>
                                             </div>
                                             <div>
-                                                {{ $user->composing['content'] }}
+                                                {!! $user->composing['content'] !!}
                                             </div>
                                         @endisset
                                     </div>
@@ -270,6 +280,19 @@
                                             title="{{ $user->name }} no Discord"><i class="fab fa-discord"></i></a>
                                     @endif
                                 </p>
+                                @if ($user->video != null)
+                                    <div class='col-12 align-self-center mt-3 mb-n3 d-flex px-0'>
+                                        <div
+                                            class=' embed-responsive
+                                                                                                                                                                            embed-responsive-16by9'>
+                                            <iframe class="embed-responsive-item rounded"
+                                                src="{{ Str::replace('https://www.youtube.com/watch?v=', 'https://www.youtube.com/embed/', $user->video) }}"
+                                                title="YouTube video player" frameborder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowfullscreen></iframe>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
 
                             <div class="col-6">

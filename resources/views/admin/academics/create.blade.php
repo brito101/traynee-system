@@ -108,13 +108,15 @@
                                     <div class="col-12 col-md-6 form-group px-0 pl-md-2">
                                         <label for="availability">Disponibilidade</label>
                                         <x-adminlte-select2 name="availability">
+                                            <option {{ old('availability') == 'Comercial' ? 'selected' : '' }}
+                                                value="Comercial">
+                                                Comercial</option>
                                             <option {{ old('availability') == 'Manhã' ? 'selected' : '' }} value="Manhã">
                                                 Manhã</option>
                                             <option {{ old('availability') == 'Tarde' ? 'selected' : '' }} value="Tarde">
                                                 Tarde</option>
-                                            <option {{ old('availability') == 'Integral' ? 'selected' : '' }}
-                                                value="Integral">
-                                                Integral</option>
+                                            <option {{ old('availability') == 'Noite' ? 'selected' : '' }} value="Noite">
+                                                Noite</option>
                                         </x-adminlte-select2>
                                     </div>
                                 </div>
