@@ -10,6 +10,7 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Vacancy;
 use Carbon\Carbon;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Shetabit\Visitor\Models\Visit;
 
@@ -66,8 +67,11 @@ class AdminController extends Controller
         }
 
         $companiesList = [];
+
         foreach ($companies as $company) {
-            $companiesList[$company->alias_name] = $company->vacancy->count();
+            if (Arr::accessible($company)) {
+                $companiesList[$company->alias_name] = $company->vacancy->count();
+            }
         }
 
         $chart = new \stdClass();

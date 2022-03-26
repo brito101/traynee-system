@@ -7,6 +7,10 @@
     margin-right: auto;
 }
 
+.button-center {
+    margin: 0 auto;
+}
+
 .button {
     display: inline-block;
     padding: 16px 32px;
@@ -25,21 +29,21 @@
     background: linear-gradient(#ffb60d, #e59317);
 }
 
-.botao.secundario {
+.button.secondary {
     background: var(--color-10);
     color: var(--color-2);
 }
 
-.botao.secundario:hover {
+.button.secondary:hover {
     background: var(--color-9);
 }
 
-.botao.seta {
+.button.arrow {
     display: flex;
     align-items: center;
 }
 
-.botao.seta::after {
+.button.arrow::after {
     content: "";
     display: inline-block;
     width: 18px;
@@ -49,12 +53,12 @@
     transition: transform 0.2s;
 }
 
-.botao.seta:hover::after {
+.button.arrow:hover::after {
     transform: translateX(4px);
 }
 
 @media (max-width: 600px) {
-    .botao {
+    .button {
         padding: 12px 16px;
         font-size: 1rem;
     }
@@ -80,26 +84,26 @@
 }
 
 /* titulo internas */
-.titulo-bg {
+.title-bg {
     padding-top: 60px;
     padding-bottom: 60px;
     background-color: var(--color-11);
 }
 
-.titulo {
+.title {
     background: url("../../img/dec/top-right.svg") no-repeat top right 20px;
 }
 
-.titulo p {
+.title p {
     margin-bottom: 4px;
 }
 
 @media (max-width: 800px) {
-    .titulo-bg {
+    .title-bg {
         padding-top: 40px;
         padding-bottom: 40px;
     }
-    .titulo p {
+    .title p {
         font-size: 1rem;
         text-transform: lowercase;
         font-weight: 400;

@@ -14,7 +14,13 @@ $imgPath: "../img";
 
 /* Home */
 @import "./home/introduction";
+@import "./home/description";
+@import "./home/partners";
+@import "./home/testimonial";
 
 /* Vacancies */
 @import "./vacancies/vacancy-list";
 @import "./vacancies/vacancy";
+
+/* Blog */
+@import "./blog/blog";

@@ -44,9 +44,8 @@
             <div class="footer-contact">
                 <h3 class="font-2-l-b color-0">Contato</h3>
                 <ul class="font-2-m color-3">
-                    <li><a href="tel:+552199999999">+55 21 9999-9999</a></li>
-                    <li><a href="mailto:contato@bikcraft.com">contato@bikcraft.com</a></li>
-                    <li>Rua Ali Perto, 42 - Botafogo</li>
+                    <li><a href="tel:+5521992247968">+55 21 9922479-68-9999</a></li>
+                    <li><a href="mailto:contato@trayneesystem.com.br">contato@trayneesystem.com.br</a></li>
                     <li>Rio de Janeiro - RJ</li>
                 </ul>
                 <div class="footer-network">
@@ -70,7 +69,7 @@
                     </ul>
                 </nav>
             </div>
-            <p class="footer-copy font-2-m color-6">{{ env('APP_NAME') }} © Todos direitos reservados.</p>
+            <p class="footer-copy font-2-m color-0">{{ env('APP_NAME') }} © Todos direitos reservados.</p>
         </div>
     </footer>
 

@@ -17,6 +17,8 @@
     --color-p3: #a66f00;
     --color-p4: #664400;
     --color-p5: #332200;
+    --color-p6: #ff6500;
+    --color-p7: #ff5400;
 }
 
 .color-0 {
@@ -72,4 +74,10 @@
 }
 .color-p5 {
     color: var(--color-p5);
+}
+.color-p6 {
+    color: var(--color-p6);
+}
+.color-p7 {
+    color: var(--color-p7);
 }
