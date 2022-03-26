@@ -18,6 +18,11 @@ class AdminController extends Controller
 {
     public function index()
     {
+
+        if (Auth::user()->hasRole('Estagiário')) {
+            return redirect()->route('admin.curriculum.show');
+        }
+
         $onlineUsers = User::online()->get()->count();
         $administrators = User::role('Administrador')->get()->count();
         $affiliates = User::role('Franquiado')->get()->count();

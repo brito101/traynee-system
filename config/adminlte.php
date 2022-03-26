@@ -244,6 +244,13 @@ return [
             'text' => 'search',
         ],
         //Custom menus
+        //Curriculo Trainee
+        [
+            'text'        => 'Visualizar Currículo',
+            'url'         => 'admin/curriculum',
+            'icon'        => 'fas fa-fw fa-file-alt',
+            'can'         => 'Visualizar Currículo',
+        ],
         /** Franchisees / Companies / Trainess */
         [
             'text'        => 'Meu Usuário',
@@ -334,12 +341,6 @@ return [
             'url'         => 'admin/composing',
             'icon'        => 'fas fa-fw fa-file-contract',
             'can'         => 'Editar Redação',
-        ],
-        [
-            'text'        => 'Visualizar Currículo',
-            'url'         => 'admin/curriculum',
-            'icon'        => 'fas fa-fw fa-file-alt',
-            'can'         => 'Visualizar Currículo',
         ],
         [
             'text'        => 'Usuários',

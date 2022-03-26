@@ -155,7 +155,9 @@
                     </div>
                 @endif
 
-                @if (Auth::user()->hasRole('Estagiário'))
+                {{-- Ocultado o visual do estagiário na dash, o redirecionando para o currículo pertencente ao mesmo por solicitação do contratante --}}
+
+                {{-- @if (Auth::user()->hasRole('Estagiário'))
                     <div class="col-12 col-sm-6 col-md-4">
                         <div class="info-box mb-3">
                             <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-building"></i></span>
@@ -217,7 +219,7 @@
                             </div>
                         </div>
                     </div>
-                @endif
+                @endif --}}
             </div>
 
             @if (Auth::user()->hasRole('Programador|Administrador|Franquiado'))
