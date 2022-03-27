@@ -227,6 +227,7 @@ return [
         'historic' => 'histórico escolar',
         'declaration' => 'declaração da instituição de ensino',
         'residence' => 'comprovante de residência',
+        'courses' => 'cursos',
     ],
 
 ];

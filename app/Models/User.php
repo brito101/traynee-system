@@ -127,7 +127,7 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
-    public function acadmics()
+    public function academics()
     {
         return $this->hasMany(Academic::class);
     }

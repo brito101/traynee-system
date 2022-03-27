@@ -581,6 +581,26 @@ return [
             'can'         => 'Visualizar Estagiários',
         ],
         [
+            'text'        => 'Vagas',
+            'url'         => '#',
+            'icon'        => 'fas fa-fw fa-briefcase',
+            'can'         => 'Acessar Vagas',
+            'submenu' => [
+                [
+                    'text' => 'Listagem de Vagas',
+                    'url'  => 'admin/vacancies',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                    'can'  => 'Listar Vagas',
+                ],
+                [
+                    'text' => 'Cadastro de Vagas',
+                    'url'  => 'admin/vacancies/create',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                    'can'  => 'Criar Posts',
+                ]
+            ]
+        ],
+        [
             'text'        => 'Blog',
             'url'         => '#',
             'icon'        => 'fas fa-fw fa-blog',
@@ -601,27 +621,7 @@ return [
             ]
 
         ],
-        [
-            'text'        => 'Vagas',
-            'url'         => '#',
-            'icon'        => 'fas fa-fw fa-briefcase',
-            'can'         => 'Acessar Vagas',
-            'submenu' => [
-                [
-                    'text' => 'Listagem de Vagas',
-                    'url'  => 'admin/vacancies',
-                    'icon' => 'fas fa-fw fa-chevron-right',
-                    'can'  => 'Listar Vagas',
-                ],
-                [
-                    'text' => 'Cadastro de Vagas',
-                    'url'  => 'admin/vacancies/create',
-                    'icon' => 'fas fa-fw fa-chevron-right',
-                    'can'  => 'Criar Posts',
-                ]
-            ]
 
-        ],
     ],
 
     /*
@@ -821,6 +821,21 @@ return [
                     'type' => 'css',
                     'asset' => true,
                     'location' => 'vendor/summernote/summernote-bs4.min.css',
+                ],
+            ],
+        ],
+        'BootstrapSelect' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/bootstrap-select/dist/js/bootstrap-select.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/bootstrap-select/dist/css/bootstrap-select.min.css',
                 ],
             ],
         ],

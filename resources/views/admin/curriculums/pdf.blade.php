@@ -81,7 +81,7 @@
                             <h3 class="card-title">Informações Acadêmicas</h3>
                         </div>
                         <div class="card-body">
-                            @foreach ($user->acadmics as $academic)
+                            @foreach ($user->academics as $academic)
                                 <div class="post">
                                     <div class="user-block ml-n5 mr-5">
                                         <span class="username">

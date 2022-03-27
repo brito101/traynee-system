@@ -14,7 +14,7 @@
                     Escolha a sua vaga</a>
             </div>
             <picture data-anime="800" class="fadeInDown">
-                <img src="{{ asset('site/img/fotos/introduction.jpg') }}" width="1280" height="1600"
+                <img src="{{ asset('site/img/fotos/introduction.webp') }}" width="1280" height="1600"
                     alt="Sucesso em seu estágio">
             </picture>
         </div>
@@ -31,7 +31,7 @@
                                 <img src="{{ url('storage/vacancies/' . $vacancy->brand_facebook) }}"
                                     alt="{{ $vacancy->title }}" width="920" height="1040">
                             @else
-                                <img src="{{ asset('/site/img/fotos/vacancy-' . $loop->index . '.jpg') }}"
+                                <img src="{{ asset('/site/img/fotos/vacancy-' . $loop->index . '.webp') }}"
                                     alt="{{ $vacancy->title }}" width="920" height="1040">
                             @endif
                             <h3 class="font-1-xl">{{ $vacancy->title }}</h3>
@@ -75,7 +75,7 @@
                 </div>
             </div>
             <div class="description-image">
-                <img src="{{ asset('site/img/fotos/tecnology.jpg') }}" width="1200" height="1920" alt="">
+                <img src="{{ asset('site/img/fotos/tecnology.webp') }}" width="1200" height="1920" alt="">
             </div>
         </div>
     </article>
@@ -97,7 +97,7 @@
 
     <section class="testimonial" aria-label="Depoimento">
         <div>
-            <img src="{{ asset('site/img/fotos/business.jpg') }}" width="1560" height="1360"
+            <img src="{{ asset('site/img/fotos/business.webp') }}" width="1560" height="1360"
                 alt="Pessoas comemorando negócio fechado">
         </div>
         <div class="testimonial-content">
@@ -130,7 +130,7 @@
                                         <img src="{{ url('storage/posts/' . $post->brand_twitter) }}" width="920"
                                             height="1040" alt="{{ $post->title }}">
                                     @else
-                                        <img src="{{ asset('/site/img/fotos/vacancy-' . $loop->index . '.jpg') }}"
+                                        <img src="{{ asset('/site/img/fotos/vacancy-' . $loop->index . '.webp') }}"
                                             alt="{{ $vacancy->title }}" width="920" height="1040">
                                     @endif
                                 </li>
@@ -153,7 +153,7 @@
                                         <img src="{{ url('storage/posts/' . $post->brand_twitter) }}" width="920"
                                             height="1040" alt="{{ $post->title }}">
                                     @else
-                                        <img src="{{ asset('/site/img/fotos/vacancy-' . $loop->index . '.jpg') }}"
+                                        <img src="{{ asset('/site/img/fotos/vacancy-' . $loop->index . '.webp') }}"
                                             alt="{{ $vacancy->title }}" width="920" height="1040">
                                     @endif
                                 </li>

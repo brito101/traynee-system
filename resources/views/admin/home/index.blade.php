@@ -5,7 +5,7 @@
     @section('plugins.Chartjs', true)
 @endif
 
-@if (Auth::user()->hasRole('Empresário|Estagiário'))
+@if (Auth::user()->hasRole('Franquiado'))
     @section('plugins.Datatables', true)
     @section('plugins.DatatablesPlugins', true)
 @endif
@@ -92,6 +92,15 @@
                 @if (Auth::user()->hasRole('Empresário'))
                     <div class="col-12 col-sm-6 col-md-4">
                         <div class="info-box mb-3">
+                            <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-user-cog"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Time</span>
+                                <span class="info-box-number">{{ $businessmen }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="info-box mb-3">
                             <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-briefcase"></i></span>
                             <div class="info-box-content">
                                 <span class="info-box-text">Vagas</span>
@@ -106,50 +115,6 @@
                             <div class="info-box-content">
                                 <span class="info-box-text">Estagiários</span>
                                 <span class="info-box-number">{{ $trainee->count() }}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4">
-                        <div class="info-box mb-3">
-                            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-check"></i></span>
-                            <div class="info-box-content">
-                                <span class="info-box-text">Candidatos</span>
-                                <span class="info-box-number">
-                                    {{ $candidates->whereIn('vacancy_id', $companies->vacancy->pluck('id'))->count() }}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    @php
-                        $heads = [['label' => 'ID', 'width' => 5], 'Nome', 'Cursando', 'Gênero', 'Idade', 'Cidade', ['label' => 'Visualizar', 'no-export' => true, 'width' => 10]];
-
-                        $list = [];
-
-                        foreach ($trainee as $person) {
-                            $list[] = [$person->id, $person->name, $person->acadmics->pluck('name')->implode('/'), $person->genre['name'], $person->age(), $person->city . '-' . $person->state, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Visualizar" href="admin/trainee/' . $person->id . '"><i class="fa fa-lg fa-fw fa-eye"></i></a>'];
-                        }
-
-                        $config = [
-                            'data' => $list,
-                            'order' => [[0, 'asc']],
-                            'columns' => [null, null, null, null, null, null, ['orderable' => false]],
-                            'language' => ['url' => asset('vendor/datatables/js/pt-BR.json')],
-                        ];
-                    @endphp
-
-                    <div class="col-12">
-                        @include('components.alert')
-
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="d-flex flex-wrap justify-content-between col-12 align-content-center">
-                                    <h3 class="card-title align-self-center">Estagiários Cadastrados</h3>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <x-adminlte-datatable id="table1" :heads="$heads" :heads="$heads" :config="$config" striped
-                                    hoverable beautify with-buttons />
                             </div>
                         </div>
                     </div>
@@ -354,9 +319,9 @@
                                 <span class="badge badge-danger">
                                     {{ $total = $trainee->where('created_at', '>=', date('Y-m-d'))->count() }}
                                     @if ($total == 1)
-                                        membro novo
+                                        estagiário novo
                                     @else
-                                        membros novos
+                                        estagiários novos
                                     @endif
                                 </span>
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -380,11 +345,11 @@
                                                 alt="{{ $person->name }}">
                                         @endif
 
-                                        @if (Auth::user()->hasRole('Empresário'))
+                                        @if (Auth::user()->hasPermissionTo('Visualizar Estagiários'))
                                             <a class="users-list-name"
                                                 href="{{ route('admin.trainee.show', ['id' => $person->id]) }}">{{ $person->name }}</a>
                                         @else
-                                            <a class="users-list-name" href="#">{{ $person->name }}</a>
+                                            <p class="users-list-name mb-n1" href="#">{{ $person->name }}</p>
                                         @endif
 
 
@@ -395,7 +360,7 @@
                             </ul>
                         </div>
 
-                        @if (!Auth::user()->hasRole('Estagiário'))
+                        @if (Auth::user()->hasRole('Franquiado|Administrador|Programador'))
                             <div class="card-footer text-center">
                                 <a href="{{ route('admin.trainees.index') }}">Visualizar Todos</a>
                             </div>

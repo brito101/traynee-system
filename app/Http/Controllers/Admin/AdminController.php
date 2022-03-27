@@ -34,7 +34,7 @@ class AdminController extends Controller
             $businessmen = User::role('Empresário')->where('affiliation_id', Auth::user()->affiliation_id)->count();
         } elseif (Auth::user()->hasRole('Empresário')) {
             $companies = Company::where('id', Auth::user()->company_id)->first();
-            $businessmen = null;
+            $businessmen = User::role('Empresário')->where('company_id', Auth::user()->company_id)->count();
         } else {
             $companies = Company::all();
             $businessmen = User::role('Empresário')->count();

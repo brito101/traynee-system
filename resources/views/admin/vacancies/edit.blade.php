@@ -4,6 +4,7 @@
 @section('plugins.Summernote', true)
 @section('plugins.select2', true)
 @section('plugins.BsCustomFileInput', true)
+@section('plugins.BootstrapSelect', true)
 
 @section('content')
 
@@ -49,11 +50,26 @@
                                             name="title" value="{{ old('title') ?? $vacancy->title }}" required>
                                     </div>
 
+                                    @php
+                                        $config = [
+                                            'title' => 'Selecione múltiplas opções...',
+                                            'liveSearch' => true,
+                                            'liveSearchPlaceholder' => 'Pesquisar...',
+                                            'showTick' => true,
+                                            'actionsBox' => true,
+                                        ];
+                                    @endphp
+
                                     <div class="col-12 col-md-6 form-group px-0 pl-md-2">
-                                        <label for="courses">Cursos de interesse</label>
-                                        <input type="text" class="form-control" id="courses"
-                                            placeholder="Informática, idiomas etc" name="courses"
-                                            value="{{ old('courses') ?? $vacancy->courses }}" required>
+                                        <x-adminlte-select-bs id="courses" name="courses[]" label="Cursos de interesse"
+                                            :config="$config" multiple class="border border-1 h-100">
+                                            @foreach ($courses as $course)
+                                                <option data-icon="text-info"
+                                                    {{ str_contains(old('courses'), $course->name) == true? 'selected': (str_contains($vacancy->courses, $course->name) == true? 'selected': '') }}>
+                                                    {{ $course->name }}
+                                                </option>
+                                            @endforeach
+                                        </x-adminlte-select-bs>
                                     </div>
                                 </div>
 
@@ -61,7 +77,6 @@
                                     <div class="col-12 col-md-6 form-group px-0 pr-md-2">
                                         <label for="scholarity_id">Escolaridade</label>
                                         <x-adminlte-select2 name="scholarity_id">
-                                            <option value="">Não Informado</option>
                                             @foreach ($scholarities as $scholarity)
                                                 <option
                                                     {{ old('scholarity_id') == $scholarity->id? 'selected': ($vacancy->scholarity_id == $scholarity->id? 'selected': '') }}
@@ -116,9 +131,24 @@
 
                                     <div class="col-12 col-md-6 form-group px-0 pl-md-2">
                                         <label for="period">Período</label>
-                                        <input type="text" class="form-control" id="period"
-                                            placeholder="Meio período, noturno etc" name="period"
-                                            value="{{ old('period') ?? $vacancy->period }}">
+                                        <x-adminlte-select2 name="period">
+                                            <option
+                                                {{ old('period') == 'Comercial' ? 'selected' : ($vacancy->period == 'Comercial' ? 'selected' : '') }}
+                                                value="Comercial">
+                                                Comercial</option>
+                                            <option
+                                                {{ old('period') == 'Manhã' ? 'selected' : ($vacancy->period == 'Manhã' ? 'selected' : '') }}
+                                                value="Manhã">
+                                                Manhã</option>
+                                            <option
+                                                {{ old('period') == 'Tarde' ? 'selected' : ($vacancy->period == 'Tarde' ? 'selected' : '') }}
+                                                value="Tarde">
+                                                Tarde</option>
+                                            <option
+                                                {{ old('period') == 'Noite' ? 'selected' : ($vacancy->period == 'Noite' ? 'selected' : '') }}
+                                                value="Noite">
+                                                Noite</option>
+                                        </x-adminlte-select2>
                                     </div>
                                 </div>
 
@@ -151,6 +181,8 @@
                                             value="{{ old('state') ?? $vacancy->state }}" required>
                                     </div>
                                 </div>
+
+                                <h5 class="text-muted">Imagens para redes sociais (opcional)</h5>
 
                                 <div class="d-flex flex-wrap justify-content-between">
                                     <div class="col-12 form-group px-0 d-flex flex-wrap">

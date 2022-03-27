@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\VacancyRequest;
 use App\Models\Candidate;
+use App\Models\Course;
 use App\Models\Scholarity;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
@@ -39,8 +40,9 @@ class VacancyController extends Controller
             abort(403, 'Acesso não autorizado');
         }
 
+        $courses = Course::all();
         $scholarities = Scholarity::all();
-        return view('admin.vacancies.create', compact('scholarities'));
+        return view('admin.vacancies.create', compact('scholarities', 'courses'));
     }
 
     /**
@@ -59,6 +61,9 @@ class VacancyController extends Controller
         $data = $request->all();
         $data['user_id'] = auth()->user()->id;
         $data['company_id'] = auth()->user()->company_id;
+
+        $courses = implode(', ', $request->courses);
+        $data['courses'] = $courses;
 
         /** Facebook */
         if ($request->hasFile('brand_facebook') && $request->file('brand_facebook')->isValid()) {
@@ -149,8 +154,9 @@ class VacancyController extends Controller
             abort(403, 'Acesso não autorizado');
         }
 
+        $courses = Course::all();
         $scholarities = Scholarity::all();
-        return view('admin.vacancies.edit', compact('vacancy', 'scholarities'));
+        return view('admin.vacancies.edit', compact('vacancy', 'scholarities', 'courses'));
     }
 
     /**
@@ -169,6 +175,9 @@ class VacancyController extends Controller
         $data = $request->all();
         $data['company_id'] = auth()->user()->company_id;
         $data['user_id'] = auth()->user()->id;
+
+        $courses = implode(', ', $request->courses);
+        $data['courses'] = $courses;
 
         $vacancy = Vacancy::where('id', $id)
             ->where('company_id', Auth::user()->company_id)->first();
