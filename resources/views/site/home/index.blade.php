@@ -27,8 +27,14 @@
                 @foreach ($vacancies as $vacancy)
                     <li>
                         <a href="{{ $vacancy->slug }}">
-                            @if ($vacancy->brand_facebook)
+                            @if ($vacancy->brand_facebook != null)
                                 <img src="{{ url('storage/vacancies/' . $vacancy->brand_facebook) }}"
+                                    alt="{{ $vacancy->title }}" width="920" height="1040">
+                            @elseif ($vacancy->brand_instagram != null)
+                                <img src="{{ url('storage/vacancies/' . $vacancy->brand_instagram) }}"
+                                    alt="{{ $vacancy->title }}" width="920" height="1040">
+                            @elseif ($vacancy->brand_twitter != null)
+                                <img src="{{ url('storage/vacancies/' . $vacancy->brand_twitter) }}"
                                     alt="{{ $vacancy->title }}" width="920" height="1040">
                             @else
                                 <img src="{{ asset('/site/img/fotos/vacancy-' . $loop->index . '.webp') }}"
@@ -82,7 +88,7 @@
 
     @if ($companies->count())
         <section class="partners" aria-label="Nossos Parceiros">
-            <h2 class="container font-1-xxl">nossos parceiros<span class="color-p1">.</span></h2>
+            <h2 class="container font-1-xxl">Nossos parceiros<span class="color-p1">.</span></h2>
             <ul>
                 @foreach ($companies as $company)
                     @if ($company->logo)
@@ -120,18 +126,21 @@
                             <h3 class="font-1-xl color-6">{{ $post->title }}</h3>
                             <ul class="font-2-m color-0">
                                 <li>
-                                    @if ($post->brand_facebook != null)
-                                        <img src="{{ url('storage/posts/' . $post->brand_facebook) }}" width="920"
-                                            height="1040" alt="{{ $post->title }}">
+                                    @if ($post->cover != null)
+                                        <img src="{{ url('storage/posts/' . $post->cover) }}" width="560" height="390"
+                                            alt="{{ $post->title }}">
+                                    @elseif ($post->brand_facebook != null)
+                                        <img src="{{ url('storage/posts/' . $post->brand_facebook) }}" width="560"
+                                            height="390" alt="{{ $post->title }}">
                                     @elseif ($post->brand_instagram != null)
-                                        <img src="{{ url('storage/posts/' . $post->brand_instagram) }}" width="920"
-                                            height="1040" alt="{{ $post->title }}">
+                                        <img src="{{ url('storage/posts/' . $post->brand_instagram) }}" width="560"
+                                            height="390" alt="{{ $post->title }}">
                                     @elseif ($post->brand_twitter != null)
-                                        <img src="{{ url('storage/posts/' . $post->brand_twitter) }}" width="920"
-                                            height="1040" alt="{{ $post->title }}">
+                                        <img src="{{ url('storage/posts/' . $post->brand_twitter) }}" width="560"
+                                            height="390" alt="{{ $post->title }}">
                                     @else
                                         <img src="{{ asset('/site/img/fotos/vacancy-' . $loop->index . '.webp') }}"
-                                            alt="{{ $vacancy->title }}" width="920" height="1040">
+                                            alt="{{ $vacancy->title }}" width="560" height="390">
                                     @endif
                                 </li>
                                 <li>{{ $post->headline }}</li>
@@ -143,18 +152,21 @@
                             <h3 class="font-1-xl color-p1">{{ $post->title }}</h3>
                             <ul class="font-2-m color-0">
                                 <li>
-                                    @if ($post->brand_facebook != null)
-                                        <img src="{{ url('storage/posts/' . $post->brand_facebook) }}" width="920"
-                                            height="1040" alt="{{ $post->title }}">
+                                    @if ($post->cover != null)
+                                        <img src="{{ url('storage/posts/' . $post->cover) }}" width="560" height="390"
+                                            alt="{{ $post->title }}">
+                                    @elseif ($post->brand_facebook != null)
+                                        <img src="{{ url('storage/posts/' . $post->brand_facebook) }}" width="560"
+                                            height="390" alt="{{ $post->title }}">
                                     @elseif ($post->brand_instagram != null)
-                                        <img src="{{ url('storage/posts/' . $post->brand_instagram) }}" width="920"
-                                            height="1040" alt="{{ $post->title }}">
+                                        <img src="{{ url('storage/posts/' . $post->brand_instagram) }}" width="560"
+                                            height="390" alt="{{ $post->title }}">
                                     @elseif ($post->brand_twitter != null)
-                                        <img src="{{ url('storage/posts/' . $post->brand_twitter) }}" width="920"
-                                            height="1040" alt="{{ $post->title }}">
+                                        <img src="{{ url('storage/posts/' . $post->brand_twitter) }}" width="560"
+                                            height="390" alt="{{ $post->title }}">
                                     @else
                                         <img src="{{ asset('/site/img/fotos/vacancy-' . $loop->index . '.webp') }}"
-                                            alt="{{ $vacancy->title }}" width="920" height="1040">
+                                            alt="{{ $vacancy->title }}" width="560" height="390">
                                     @endif
                                 </li>
                                 <li>{{ $post->headline }}</li>

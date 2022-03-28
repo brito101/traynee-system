@@ -22,7 +22,8 @@ class Post extends Model
         'brand_twitter',
         'company_id',
         'user_id',
-        'views'
+        'views',
+        'cover'
     ];
 
     public function user()

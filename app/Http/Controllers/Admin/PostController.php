@@ -55,60 +55,26 @@ class PostController extends Controller
         $data['user_id'] = auth()->user()->id;
         $data['company_id'] = auth()->user()->company_id;
 
-        /** Facebook */
-        if ($request->hasFile('brand_facebook') && $request->file('brand_facebook')->isValid()) {
-            $name = Str::slug(mb_substr($data['title'], 0, 100)) . '-facebook' . time();
-            $extenstion = $request->brand_facebook->extension();
-            $nameFile = "{$name}.{$extenstion}";
+        $files = array('cover', 'brand_facebook', 'brand_instagram', 'brand_twitter');
+        foreach ($files as $file) {
+            if ($request->hasFile($file) && $request->file($file)->isValid()) {
+                $name = Str::slug(mb_substr($data['title'], 0, 100)) . '-' . $file . time();
 
-            $data['brand_facebook'] = $nameFile;
+                $extenstion = $request->$file->extension();
+                $nameFile = "{$name}.{$extenstion}";
 
-            $upload = $request->brand_facebook->storeAs('posts', $nameFile);
+                $data[$file] = $nameFile;
 
-            if (!$upload)
-                return redirect()
-                    ->back()
-                    ->withInput()
-                    ->with('error', 'Falha ao fazer o upload da imagem');
-        }
+                $upload = $request->$file->storeAs('posts', $nameFile);
 
-        /** Instagram */
-        if ($request->hasFile('brand_instagram') && $request->file('brand_instagram')->isValid()) {
-            $name = Str::slug(mb_substr($data['title'], 0, 100)) . '-instagram' . time();
-
-            $extenstion = $request->brand_instagram->extension();
-            $nameFile = "{$name}.{$extenstion}";
-
-            $data['brand_instagram'] = $nameFile;
-
-            $upload = $request->brand_instagram->storeAs('posts', $nameFile);
-
-            if (!$upload)
-                return redirect()
-                    ->back()
-                    ->withInput()
-                    ->with('error', 'Falha ao fazer o upload da imagem');
-        }
-
-        /** Twitter */
-        if ($request->hasFile('brand_twitter') && $request->file('brand_twitter')->isValid()) {
-            $name = Str::slug(mb_substr($data['title'], 0, 100)) . '-twitter' . time();
-
-            $extenstion = $request->brand_twitter->extension();
-            $nameFile = "{$name}.{$extenstion}";
-
-            $data['brand_twitter'] = $nameFile;
-
-            $upload = $request->brand_twitter->storeAs('posts', $nameFile);
-
-            if (!$upload) {
-                return redirect()
-                    ->back()
-                    ->withInput()
-                    ->with('error', 'Falha ao fazer o upload da imagem');
+                if (!$upload) {
+                    return redirect()
+                        ->back()
+                        ->withInput()
+                        ->with('error', 'Falha ao fazer o upload da imagem');
+                }
             }
         }
-
         $post = Post::create($data);
 
         if ($post->save()) {
@@ -172,75 +138,29 @@ class PostController extends Controller
             abort(403, 'Acesso não autorizado');
         }
 
-        /** Facebook */
-        if ($request->hasFile('brand_facebook') && $request->file('brand_facebook')->isValid()) {
-            $name = Str::slug(mb_substr($post['title'], 0, 100)) . '-facebook' . time();
-            $imagePath = storage_path() . '/app/public/posts/' . $post->brand_facebook;
+        $files = array('cover', 'brand_facebook', 'brand_instagram', 'brand_twitter');
+        foreach ($files as $file) {
+            if ($request->hasFile($file) && $request->file($file)->isValid()) {
+                $name = Str::slug(mb_substr($post['title'], 0, 100)) . '-' . $file . time();
+                $imagePath = storage_path() . '/app/public/posts/' . $post->$file;
 
-            if (File::isFile($imagePath)) {
-                unlink($imagePath);
-            }
+                if (File::isFile($imagePath)) {
+                    unlink($imagePath);
+                }
 
-            $extenstion = $request->brand_facebook->extension();
-            $nameFile = "{$name}.{$extenstion}";
+                $extenstion = $request->$file->extension();
+                $nameFile = "{$name}.{$extenstion}";
 
-            $data['brand_facebook'] = $nameFile;
+                $data[$file] = $nameFile;
 
-            $upload = $request->brand_facebook->storeAs('posts', $nameFile);
+                $upload = $request->$file->storeAs('posts', $nameFile);
 
-            if (!$upload) {
-                return redirect()
-                    ->back()
-                    ->withInput()
-                    ->with('error', 'Falha ao fazer o upload da imagem');
-            }
-        }
-
-        /** Instagram */
-        if ($request->hasFile('brand_instagram') && $request->file('brand_instagram')->isValid()) {
-            $name = Str::slug(mb_substr($data['title'], 0, 100)) . '-instagram' . time();
-            $imagePath = storage_path() . '/app/public/posts/' . $post->brand_instagram;
-
-            if (File::isFile($imagePath)) {
-                unlink($imagePath);
-            }
-
-            $extenstion = $request->brand_instagram->extension();
-            $nameFile = "{$name}.{$extenstion}";
-
-            $data['brand_instagram'] = $nameFile;
-
-            $upload = $request->brand_instagram->storeAs('posts', $nameFile);
-
-            if (!$upload) {
-                return redirect()
-                    ->back()
-                    ->withInput()
-                    ->with('error', 'Falha ao fazer o upload da imagem');
-            }
-        }
-
-        /** Twitter */
-        if ($request->hasFile('brand_twitter') && $request->file('brand_twitter')->isValid()) {
-            $name = Str::slug(mb_substr($data['title'], 0, 100)) . '-twitter' . time();
-            $imagePath = storage_path() . '/app/public/posts/' . $post->brand_twitter;
-
-            if (File::isFile($imagePath)) {
-                unlink($imagePath);
-            }
-
-            $extenstion = $request->brand_twitter->extension();
-            $nameFile = "{$name}.{$extenstion}";
-
-            $data['brand_twitter'] = $nameFile;
-
-            $upload = $request->brand_twitter->storeAs('posts', $nameFile);
-
-            if (!$upload) {
-                return redirect()
-                    ->back()
-                    ->withInput()
-                    ->with('error', 'Falha ao fazer o upload da imagem');
+                if (!$upload) {
+                    return redirect()
+                        ->back()
+                        ->withInput()
+                        ->with('error', 'Falha ao fazer o upload da imagem');
+                }
             }
         }
 

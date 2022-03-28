@@ -982,6 +982,10 @@ img[src$=".jpg"] {
 }
 .post-item ul img {
   margin-left: -21px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 560px;
+  height: 390px;
 }
 
 .post-item li {

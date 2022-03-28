@@ -53,6 +53,14 @@
                                     </div>
                                 </div>
 
+                                <div class="col-12 form-group px-0 d-flex flex-wrap">
+                                    <div class="col-md-12 px-0">
+                                        <x-adminlte-input-file name="cover"
+                                            label="Foto de Capa (recomendável 1200 x 630 pixels)"
+                                            placeholder="Selecione uma imagem..." legend="Selecionar" />
+                                    </div>
+                                </div>
+
                                 <div class="d-flex flex-wrap justify-content-between">
                                     <div class="col-12 col-md-12 form-group px-0">
                                         @php
@@ -78,6 +86,8 @@
                                         </x-adminlte-text-editor>
                                     </div>
                                 </div>
+
+                                <h5 class="text-muted">Imganes de Compartilhamento (opcional)</h5>
 
                                 <div class="col-12 form-group px-0 d-flex flex-wrap">
                                     <div class="col-md-12 px-0">

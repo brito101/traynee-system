@@ -228,6 +228,7 @@ return [
         'declaration' => 'declaração da instituição de ensino',
         'residence' => 'comprovante de residência',
         'courses' => 'cursos',
+        'cover' => 'imagem de capa',
     ],
 
 ];
