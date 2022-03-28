@@ -68,4 +68,13 @@ class Vacancy extends Model
             return '<i data-vacancy="candidate" data-id="' . $this->id . '" class="text-danger fa fa-lg fa-thumbs-down candidate" style="cursor: pointer" title="Clique para se candidatar"></i>';
         }
     }
+
+    public function courses()
+    {
+        $courses = $this->courses;
+        $courses_arr = explode(',', $courses);
+        $last = array_pop($courses_arr);
+        $courses = implode(',', $courses_arr) . ' e' . $last;
+        return $courses;
+    }
 }

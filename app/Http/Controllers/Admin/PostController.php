@@ -197,11 +197,18 @@ class PostController extends Controller
         if (empty($post->id)) {
             abort(403, 'Acesso não autorizado');
         }
+
+        $imagePathCover = storage_path() . '/app/public/posts/' . $post->cover;
         $imagePathFacebook = storage_path() . '/app/public/posts/' . $post->brand_facebook;
         $imagePathInstagram = storage_path() . '/app/public/posts/' . $post->brand_instagram;
         $imagePathTwitter = storage_path() . '/app/public/posts/' . $post->brand_twitter;
 
         if ($post->delete()) {
+            if (File::isFile($imagePathCover)) {
+                unlink($imagePathFacebook);
+                $post->brand_facebook = null;
+                $post->update();
+            }
 
             if (File::isFile($imagePathFacebook)) {
                 unlink($imagePathFacebook);

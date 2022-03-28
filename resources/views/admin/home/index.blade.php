@@ -5,7 +5,7 @@
     @section('plugins.Chartjs', true)
 @endif
 
-@if (Auth::user()->hasRole('Franquiado'))
+@if (Auth::user()->hasRole('Programador|Administrador|Franquiado'))
     @section('plugins.Datatables', true)
     @section('plugins.DatatablesPlugins', true)
 @endif
@@ -104,8 +104,7 @@
                             <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-briefcase"></i></span>
                             <div class="info-box-content">
                                 <span class="info-box-text">Vagas</span>
-                                <span
-                                    class="info-box-number">{{ $vacancies->where('company_id', Auth::user()->company_id)->count() }}</span>
+                                <span class="info-box-number">{{ $vacancies }}</span>
                             </div>
                         </div>
                     </div>
@@ -188,6 +187,41 @@
             </div>
 
             @if (Auth::user()->hasRole('Programador|Administrador|Franquiado'))
+                <div class="row px-0">
+                    @php
+                        $heads = [['label' => 'ID', 'width' => 5], 'Título', 'Empresa', 'Nível', 'Cursos', 'Período', 'Cidade', ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
+
+                        $list = [];
+
+                        foreach ($vacancies as $vacancy) {
+                            $list[] = [$vacancy->id, $vacancy->title, $vacancy->company['alias_name'], $vacancy->scholarity['name'], $vacancy->courses(), $vacancy->period, $vacancy->city . '-' . $vacancy->state, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Visualizar" href="admin/vacancies/' . $vacancy->id . '"><i class="fa fa-lg fa-fw fa-eye"></i></a>'];
+                        }
+
+                        $config = [
+                            'data' => $list,
+                            'order' => [[0, 'asc']],
+                            'columns' => [null, null, null, null, null, null, null, ['orderable' => false]],
+                            'language' => ['url' => asset('vendor/datatables/js/pt-BR.json')],
+                        ];
+                    @endphp
+
+                    <div class="col-12">
+                        @include('components.alert')
+
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="d-flex flex-wrap justify-content-between col-12 align-content-center">
+                                    <h3 class="card-title align-self-center">Vagas Disponíveis</h3>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <x-adminlte-datatable id="table1" :heads="$heads" :heads="$heads" :config="$config" striped
+                                    hoverable beautify with-buttons class="traineeGrid" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row px-0">
 
                     <div class="col-12 col-lg-6">

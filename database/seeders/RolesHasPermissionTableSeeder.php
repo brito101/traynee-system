@@ -498,6 +498,19 @@ class RolesHasPermissionTableSeeder extends Seeder
                 'permission_id' => 67,
                 'role_id' => 5
             ],
+            /** Visualizar Vagas */
+            [
+                'permission_id' => 68,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 68,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 68,
+                'role_id' => 3
+            ],
         ]);
     }
 }

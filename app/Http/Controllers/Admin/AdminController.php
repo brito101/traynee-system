@@ -32,16 +32,18 @@ class AdminController extends Controller
         if (Auth::user()->hasRole('Franquiado')) {
             $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
             $businessmen = User::role('Empresário')->where('affiliation_id', Auth::user()->affiliation_id)->count();
+            $vacancies = Vacancy::whereIn('company_id', $companies->pluck('id'))->get();
         } elseif (Auth::user()->hasRole('Empresário')) {
             $companies = Company::where('id', Auth::user()->company_id)->first();
             $businessmen = User::role('Empresário')->where('company_id', Auth::user()->company_id)->count();
+            $vacancies = Vacancy::where('company_id', Auth::user()->company_id)->count();
         } else {
             $companies = Company::all();
+            $vacancies = Vacancy::all();
             $businessmen = User::role('Empresário')->count();
         }
 
         $candidates = Candidate::all();
-        $vacancies = Vacancy::all();
         $trainee = User::role('Estagiário')->orderBy('created_at', 'desc')->get();
 
         $posts = Post::orderBy('created_at', 'desc')->take(6)->get();

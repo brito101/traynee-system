@@ -12,12 +12,7 @@
     $list = [];
 
     foreach ($vacancies as $vacancy) {
-        $courses = $vacancy->courses;
-        $courses_arr = explode(',', $courses);
-        $last = array_pop($courses_arr);
-        $courses = implode(',', $courses_arr) . ' e' . $last;
-
-        $list[] = [$vacancy->id, $vacancy->title, $vacancy->user['name'], $courses, $vacancy->period, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="vacancies/' . $vacancy->id . '/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="vacancies/destroy/' . $vacancy->id . '" onclick="return confirm(\'Confirma a exclusão desta vaga?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
+        $list[] = [$vacancy->id, $vacancy->title, $vacancy->user['name'], $vacancy->courses(), $vacancy->period, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="vacancies/' . $vacancy->id . '/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="vacancies/destroy/' . $vacancy->id . '" onclick="return confirm(\'Confirma a exclusão desta vaga?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
     }
 
     $config = [

@@ -326,7 +326,7 @@ class VacancyController extends Controller
 
     public function show($id)
     {
-        if (!Auth::user()->hasRole('Estagiário')) {
+        if (!Auth::user()->hasPermissionTo('Visualizar Vagas')) {
             abort(403, 'Acesso não autorizado');
         }
 
@@ -335,9 +335,6 @@ class VacancyController extends Controller
         if (empty($vacancy->id)) {
             abort(403, 'Acesso não autorizado');
         }
-
-        $vacancy->views += 1;
-        $vacancy->update();
 
         $candidate = Candidate::where('vacancy_id', $vacancy->id)
             ->where('user_id', Auth::user()->id)->first();
