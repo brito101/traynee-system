@@ -93,7 +93,7 @@
                                         </div>
 
                                         <div class="col-12 col-md-6 form-group px-0 pl-md-2">
-                                            <label for="team_work">Trablho em Equipe</label>
+                                            <label for="team_work">Traaslho em Equipe</label>
                                             <x-adminlte-select2 name="team_work" required>
                                                 <option
                                                     {{ old('team_work') == 'Sou líder de equipe'? 'selected': ($user->team_work == 'Sou líder de equipe'? 'selected': '') }}
@@ -145,7 +145,7 @@
                                                     <div class='col-12 align-self-center mt-3 mb-n3 d-flex px-0'>
                                                         <div
                                                             class=' embed-responsive
-                                                                                                                                                        embed-responsive-16by9'>
+                                                                                                                                                            embed-responsive-16by9'>
                                                             <iframe class="embed-responsive-item rounded"
                                                                 src="{{ Str::replace('https://www.youtube.com/watch?v=', 'https://www.youtube.com/embed/', $user->video) }}"
                                                                 title="YouTube video player" frameborder="0"

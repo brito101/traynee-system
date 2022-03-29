@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AffiliationController;
 use App\Http\Controllers\Admin\CandidateController;
 use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Admin\CompatibilityController;
 use App\Http\Controllers\Admin\ComposingController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CurriculumController;
@@ -102,6 +103,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/franchisees/edit/brand-images', [AffiliationController::class, 'brandImagesStore'])->name('franchise.brand.store');
         Route::get('/franchisees/destroy/{id}', [AffiliationController::class, 'destroy']);
         Route::resource('franchisees', AffiliationController::class);
+        Route::get('compatibility', [CompatibilityController::class, 'index'])->name('compatibility.index');
 
         /**
          * Companies
@@ -121,6 +123,7 @@ Route::group(['middleware' => ['auth']], function () {
         /** Vacancies */
         Route::get('/vacancies/destroy/{id}', [VacancyController::class, 'destroy']);
         Route::resource('vacancies', VacancyController::class);
+
 
         /**
          * Configurations

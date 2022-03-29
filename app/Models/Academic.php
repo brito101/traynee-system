@@ -23,10 +23,16 @@ class Academic extends Model
         'graduation',
         'availability',
         'user_id',
+        'course_id',
     ];
 
     public function scholarity()
     {
         return $this->belongsTo(Scholarity::class);
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
     }
 }

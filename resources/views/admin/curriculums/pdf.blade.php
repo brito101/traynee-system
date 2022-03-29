@@ -93,6 +93,7 @@
 
                                     <div>
                                         <ul>
+                                            <li>Área: {{ $academic->course['name'] }}</li>
                                             <li>Nível: {{ $academic->scholarity['name'] }}</li>
                                             <li>Período/Ano: {{ $academic->year }}</li>
                                             <li>Instituição: {{ $academic->institution }}</li>
@@ -116,12 +117,11 @@
                                         <span class="username">
                                             <a href="#" class="text-decoration-none">{{ $extra->name }}</a>
                                         </span>
-                                        <span class="description">Tipo:
-                                            {{ $extra->course['name'] }}</span>
                                     </div>
 
                                     <div>
                                         <ul>
+                                            <li>Área: {{ $extra->course['name'] }}</li>
                                             <li>Nível: {{ $extra->level }}</li>
                                             <li>Instituição: {{ $extra->institution }}</li>
                                         </ul>

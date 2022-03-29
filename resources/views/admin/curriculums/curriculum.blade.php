@@ -112,6 +112,7 @@
 
                                             <div>
                                                 <ul>
+                                                    <li>Área: {{ $academic->course['name'] }}</li>
                                                     <li>Nível: {{ $academic->scholarity['name'] }}</li>
                                                     <li>Período/Ano: {{ $academic->year }}</li>
                                                     <li>Instituição: {{ $academic->institution }}</li>
@@ -130,12 +131,11 @@
                                                 <span class="username">
                                                     <a href="#">{{ $extra->name }}</a>
                                                 </span>
-                                                <span class="description">Tipo:
-                                                    {{ $extra->course['name'] }}</span>
                                             </div>
 
                                             <div>
                                                 <ul>
+                                                    <li>Área: {{ $extra->course['name'] }}</li>
                                                     <li>Nível: {{ $extra->level }}</li>
                                                     <li>Instituição: {{ $extra->institution }}</li>
                                                 </ul>
@@ -284,7 +284,7 @@
                                     <div class='col-12 align-self-center mt-3 mb-n3 d-flex px-0'>
                                         <div
                                             class=' embed-responsive
-                                                                                                                                                                                embed-responsive-16by9'>
+                                                                                                                                                                                            embed-responsive-16by9'>
                                             <iframe class="embed-responsive-item rounded"
                                                 src="{{ Str::replace('https://www.youtube.com/watch?v=', 'https://www.youtube.com/embed/', $user->video) }}"
                                                 title="YouTube video player" frameborder="0"

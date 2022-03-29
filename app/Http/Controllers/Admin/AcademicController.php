@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AcademicRequest;
 use App\Models\Academic;
+use App\Models\Course;
 use App\Models\Scholarity;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -38,8 +39,8 @@ class AcademicController extends Controller
         }
 
         $scholarities = Scholarity::all();
-
-        return view('admin.academics.create', compact('scholarities'));
+        $courses = Course::all();
+        return view('admin.academics.create', compact('scholarities', 'courses'));
     }
 
     /**
@@ -82,14 +83,14 @@ class AcademicController extends Controller
             abort(403, 'Acesso não autorizado');
         }
 
-        $scholarities = Scholarity::all();
-
         $academic = Academic::where('id', $id)->where('user_id', Auth::user()->id)->first();
         if (empty($academic->id)) {
             abort(403, 'Acesso não autorizado');
         }
 
-        return view('admin.academics.edit', compact('scholarities', 'academic'));
+        $scholarities = Scholarity::all();
+        $courses = Course::all();
+        return view('admin.academics.edit', compact('scholarities', 'academic', 'courses'));
     }
 
     /**

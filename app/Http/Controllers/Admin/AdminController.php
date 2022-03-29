@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\Affiliation;
-use App\Models\Candidate;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Vacancy;
@@ -43,7 +42,6 @@ class AdminController extends Controller
             $businessmen = User::role('Empresário')->count();
         }
 
-        $candidates = Candidate::all();
         $trainee = User::role('Estagiário')->orderBy('created_at', 'desc')->get();
 
         $posts = Post::orderBy('created_at', 'desc')->take(6)->get();
@@ -96,7 +94,6 @@ class AdminController extends Controller
             'trainee',
             'vacancies',
             'posts',
-            'candidates',
             'onlineUsers',
             'access',
             'chart',

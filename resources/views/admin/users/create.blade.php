@@ -84,7 +84,7 @@
                                             </x-adminlte-select2>
                                         </div>
                                         <div class="col-12 col-md-6 form-group px-0 pl-md-2">
-                                            <label for="team_work">Trablho em Equipe</label>
+                                            <label for="team_work">Traaslho em Equipe</label>
                                             <x-adminlte-select2 name="team_work">
                                                 <option {{ old('team_work') == 'Sou líder de equipe' ? 'selected' : '' }}
                                                     value="Sou líder de equipe">Sou líder de equipe</option>
