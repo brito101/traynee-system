@@ -444,6 +444,31 @@ return [
 
         ],
         [
+            'text'        => 'Estagiários',
+            'url'         => '#',
+            'icon'        => 'fas fa-fw fa-users',
+            'can'         => 'Visualizar Estagiários',
+            'submenu' => [
+                [
+                    'text'        => 'Listagem de Estagiários',
+                    'url'         => 'admin/trainees',
+                    'icon'        => 'fas fa-fw fa-chevron-right',
+                ],
+                [
+                    'text'        => 'Compatibilidade',
+                    'url'         => 'admin/compatibility',
+                    'icon'        => 'fas fa-fw fa-chevron-right',
+                    'can'         => 'Visualizar Compatibilidade'
+                ],
+                [
+                    'text'        => 'Relatório',
+                    'url'         => 'admin/report',
+                    'icon'        => 'fas fa-fw fa-chevron-right',
+                    'can'         => 'Visualizar Relatório de Compatibilidade'
+                ],
+            ]
+        ],
+        [
             'text'    => 'Configurações',
             'icon'    => 'fas fa-fw fa-cogs',
             'can'     => 'Acessar Configurações',
@@ -573,12 +598,6 @@ return [
                     'can'         => 'Editar Empresa'
                 ]
             ]
-        ],
-        [
-            'text'        => 'Estagiários',
-            'url'         => 'admin/trainees',
-            'icon'        => 'fas fa-fw fa-users',
-            'can'         => 'Visualizar Estagiários',
         ],
         [
             'text'        => 'Vagas',

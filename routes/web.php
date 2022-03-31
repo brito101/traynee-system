@@ -104,6 +104,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/franchisees/destroy/{id}', [AffiliationController::class, 'destroy']);
         Route::resource('franchisees', AffiliationController::class);
         Route::get('compatibility', [CompatibilityController::class, 'index'])->name('compatibility.index');
+        Route::get('report', [CompatibilityController::class, 'report'])->name('compatibility.report');
+        Route::get('report-pdf', [CompatibilityController::class, 'reportPdf'])->name('compatibility.report.pdf');
 
         /**
          * Companies

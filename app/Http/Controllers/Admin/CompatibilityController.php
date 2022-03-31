@@ -23,10 +23,17 @@ class CompatibilityController extends Controller
 
     public function index()
     {
+        if (!Auth::user()->hasPermissionTo('Visualizar Compatibilidade')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
         if (Auth::user()->hasRole('Franquiado')) {
             $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
             $vacancies = Vacancy::whereIn('company_id', $companies->pluck('id'))->get();
-            $trainees = User::role('Estagiário')->orderBy('created_at', 'desc')->get();
+            $trainees = User::role('Estagiário')->orderBy('created_at', 'desc')->paginate(10);
+        } else {
+            $vacancies = Vacancy::all();
+            $trainees = User::role('Estagiário')->orderBy('created_at', 'desc')->paginate(10);
         }
 
         $chart = new \stdClass();
@@ -91,72 +98,141 @@ class CompatibilityController extends Controller
             $finalList[] = $listData;
         }
 
-        return view('admin.compatibility.index', compact('chart', 'finalList'));
+        return view('admin.compatibility.index', compact('chart', 'finalList', 'trainees'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function report()
     {
-        //
+        if (!Auth::user()->hasPermissionTo('Visualizar Relatório de Compatibilidade')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        if (Auth::user()->hasRole('Franquiado')) {
+            $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
+            $vacancies = Vacancy::whereIn('company_id', $companies->pluck('id'))->get();
+            $trainees = User::role('Estagiário')->orderBy('created_at', 'desc')->paginate(9);
+        } else {
+            $vacancies = Vacancy::all();
+            $trainees = User::role('Estagiário')->orderBy('created_at', 'desc')->paginate(9);
+        }
+
+        foreach ($trainees as $trainee) {
+            foreach ($vacancies as $vacancy) {
+
+                $listAcadmics = [];
+                $academics = Academic::where('user_id', $trainee->id)->get();
+                foreach ($academics as $academic) {
+                    $listAcadmics['area'] = $academic->course['name'];
+                }
+
+                $listExtraCourses = [];
+                $extras = Extra::where('user_id', $trainee->id)->get();
+                foreach ($extras as $extra) {
+                    $listExtraCourses['area'] = $extra->course['name'];
+                }
+
+                $points = 0;
+
+                /** curso acadêmicos */
+                foreach (array_values($listAcadmics) as $val) {
+                    if (strpos($vacancy->courses, $val) !== false) {
+                        $points += 1;
+                    }
+                }
+
+                /** curso extracurricular */
+                foreach (array_values($listExtraCourses) as $val) {
+                    if (strpos($vacancy->courses, $val) !== false) {
+                        $points += 1;
+                    }
+                }
+
+                /** escolaridade */
+                if (strpos(implode(", ", array_values($trainee->academics->pluck('scholarity_id')->toArray())), (string)$vacancy->scholarity_id) !== false) {
+                    $points += 1;
+                }
+
+                /** disponibilidade */
+                if (strpos(implode(", ", array_values($trainee->academics->pluck('availability')->toArray())), $vacancy->period) !== false) {
+                    $points += 1;
+                }
+                /** cidade */
+                if ($vacancy->city == $trainee->city) {
+                    $points  += 1;
+                }
+
+                $total = $points * 20;
+                $vacancy->total = $total;
+            }
+        }
+
+        return view('admin.compatibility.report', compact('trainees', 'vacancies'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function reportPdf()
     {
-        //
-    }
+        if (!Auth::user()->hasPermissionTo('Visualizar Relatório de Compatibilidade')) {
+            abort(403, 'Acesso não autorizado');
+        }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        if (Auth::user()->hasRole('Franquiado')) {
+            $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
+            $vacancies = Vacancy::whereIn('company_id', $companies->pluck('id'))->get();
+            $trainees = User::role('Estagiário')->orderBy('created_at', 'desc')->paginate(9);
+        } else {
+            $vacancies = Vacancy::all();
+            $trainees = User::role('Estagiário')->orderBy('created_at', 'desc')->paginate(9);
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        foreach ($trainees as $trainee) {
+            foreach ($vacancies as $vacancy) {
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+                $listAcadmics = [];
+                $academics = Academic::where('user_id', $trainee->id)->get();
+                foreach ($academics as $academic) {
+                    $listAcadmics['area'] = $academic->course['name'];
+                }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+                $listExtraCourses = [];
+                $extras = Extra::where('user_id', $trainee->id)->get();
+                foreach ($extras as $extra) {
+                    $listExtraCourses['area'] = $extra->course['name'];
+                }
+
+                $points = 0;
+
+                /** curso acadêmicos */
+                foreach (array_values($listAcadmics) as $val) {
+                    if (strpos($vacancy->courses, $val) !== false) {
+                        $points += 1;
+                    }
+                }
+
+                /** curso extracurricular */
+                foreach (array_values($listExtraCourses) as $val) {
+                    if (strpos($vacancy->courses, $val) !== false) {
+                        $points += 1;
+                    }
+                }
+
+                /** escolaridade */
+                if (strpos(implode(", ", array_values($trainee->academics->pluck('scholarity_id')->toArray())), (string)$vacancy->scholarity_id) !== false) {
+                    $points += 1;
+                }
+
+                /** disponibilidade */
+                if (strpos(implode(", ", array_values($trainee->academics->pluck('availability')->toArray())), $vacancy->period) !== false) {
+                    $points += 1;
+                }
+                /** cidade */
+                if ($vacancy->city == $trainee->city) {
+                    $points  += 1;
+                }
+
+                $total = $points * 20;
+                $vacancy->total = $total;
+            }
+        }
+        return view('admin.compatibility.pdf', compact('trainees', 'vacancies'));
     }
 }

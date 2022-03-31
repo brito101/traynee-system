@@ -23,8 +23,8 @@
         <div class="container-fluid">
             <div class="row">
 
-                <div class="col-12">
-                    <div class="card card-primary card-outline">
+                <div class="col-12 d-flex flex-wrap justify-content-between">
+                    <div class="card card-primary card-outline col-4">
                         <div class="card-body box-profile">
                             <div class="text-center">
                                 <img class="profile-user-img img-fluid img-circle"
@@ -37,7 +37,7 @@
                         </div>
                     </div>
 
-                    <div class="card card-primary">
+                    <div class="card card-primary col-8">
                         <div class="card-header">
                             <h3 class="card-title">Sobre mim</h3>
                         </div>

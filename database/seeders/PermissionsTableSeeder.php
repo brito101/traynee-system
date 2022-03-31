@@ -372,6 +372,16 @@ class PermissionsTableSeeder extends Seeder
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
+            [
+                'name' => 'Visualizar Compatibilidade',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Visualizar Relatório de Compatibilidade',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
 
         ]);
     }
