@@ -382,6 +382,17 @@ class PermissionsTableSeeder extends Seeder
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
+            [
+                'name' => 'Cursos de Instituições',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Visualizar Cursos de Instituições',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+
 
         ]);
     }

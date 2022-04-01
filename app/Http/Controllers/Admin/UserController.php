@@ -61,7 +61,7 @@ class UserController extends Controller
             $companies = Company::all();
             $affiliations = Affiliation::all();
         } elseif (Auth::user()->hasRole('Franquiado')) {
-            $roles = Role::whereIn('name', ['Franquiado', 'Empresário'])->get();
+            $roles = Role::whereIn('name', ['Franquiado', 'Empresário', 'Instituição de Ensino'])->get();
             $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
             $affiliations = [];
         } else {
@@ -158,7 +158,7 @@ class UserController extends Controller
             $affiliations = Affiliation::all();
             $user = User::where('id', $id)->first();
         } elseif (Auth::user()->hasRole('Franquiado')) {
-            $roles = Role::whereIn('name', ['Franquiado', 'Empresário'])->get();
+            $roles = Role::whereIn('name', ['Franquiado', 'Empresário', 'Instituição de Ensino'])->get();
             $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
             $affiliations = [];
             $user = User::where('id', $id)

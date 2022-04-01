@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\ProfessionalController;
 use App\Http\Controllers\Admin\RequirimentController;
 use App\Http\Controllers\Admin\ScholarityController;
 use App\Http\Controllers\Admin\TraineeController;
+use App\Http\Controllers\Admin\UniversityController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserNetworkController;
 use App\Http\Controllers\Admin\VacancyController;
@@ -126,6 +127,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/vacancies/destroy/{id}', [VacancyController::class, 'destroy']);
         Route::resource('vacancies', VacancyController::class);
 
+        /**University */
+        /** Scholarities */
+        Route::get('/institution/destroy/{id}', [UniversityController::class, 'destroy']);
+        Route::resource('institution', UniversityController::class);
 
         /**
          * Configurations

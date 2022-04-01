@@ -441,7 +441,6 @@ return [
                     'can'  => 'Criar Empresas',
                 ]
             ]
-
         ],
         [
             'text'        => 'Estagiários',
@@ -467,6 +466,33 @@ return [
                     'can'         => 'Visualizar Relatório de Compatibilidade'
                 ],
             ]
+        ],
+        /** Cursos de Instituições */
+        [
+            'text'        => 'Cursos com Estágio',
+            'url'         => '#',
+            'icon'        => 'fa fa-fw fa-graduation-cap',
+            'can'         => 'Cursos de Instituições',
+            'submenu' => [
+                [
+                    'text' => 'Listagem de Cursos',
+                    'url'  => 'admin/institution',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                ],
+                [
+                    'text' => 'Cadastro de Cursos',
+                    'url'  => 'admin/institution/create',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                ]
+            ]
+        ],
+
+        /** Cursos de Instituições */
+        [
+            'text'        => 'Cursos com Estágio',
+            'url'         => 'admin/institution',
+            'icon'        => 'fa fa-fw fa-graduation-cap',
+            'can'         => 'Visualizar Cursos de Instituições',
         ],
         [
             'text'    => 'Configurações',

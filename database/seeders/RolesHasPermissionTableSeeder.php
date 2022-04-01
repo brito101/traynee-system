@@ -537,6 +537,25 @@ class RolesHasPermissionTableSeeder extends Seeder
                 'permission_id' => 70,
                 'role_id' => 3
             ],
+            /** Universidades */
+
+            [
+                'permission_id' => 71,
+                'role_id' => 6
+            ],
+
+            [
+                'permission_id' => 72,
+                'role_id' => 1
+            ],
+            [
+                'permission_id' => 72,
+                'role_id' => 2
+            ],
+            [
+                'permission_id' => 72,
+                'role_id' => 3
+            ],
         ]);
     }
 }
