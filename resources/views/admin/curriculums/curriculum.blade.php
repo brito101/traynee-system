@@ -22,6 +22,10 @@
     <div class="row d-flex justify-content-end container py-2 px-0">
         <a href="{{ route('admin.curriculum.pdf', ['id' => $user->id]) }}" target="_blank" class="btn btn-primary"><i
                 class="fa fa-print"></i> Imprimir Currículo</a>
+        @if (Auth::user()->hasRole('Franquiado'))
+            <a href="{{ route('admin.documents.show', ['id' => $user->id]) }}" class="ml-2 btn btn-info"><i
+                    class="fa fa-file-upload"></i> Doc. Comprobatórios</a>
+        @endif
     </div>
 
     <section class="content">
@@ -284,7 +288,7 @@
                                     <div class='col-12 align-self-center mt-3 mb-n3 d-flex px-0'>
                                         <div
                                             class=' embed-responsive
-                                                                                                                                                                                            embed-responsive-16by9'>
+                                                                                                                                                                                                                                        embed-responsive-16by9'>
                                             <iframe class="embed-responsive-item rounded"
                                                 src="{{ Str::replace('https://www.youtube.com/watch?v=', 'https://www.youtube.com/embed/', $user->video) }}"
                                                 title="YouTube video player" frameborder="0"

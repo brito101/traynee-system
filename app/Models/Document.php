@@ -21,4 +21,11 @@ class Document extends Model
         'residence',
         'user_id'
     ];
+
+    /**Relationships */
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

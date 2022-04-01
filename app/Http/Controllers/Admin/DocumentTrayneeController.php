@@ -95,4 +95,13 @@ class DocumentTrayneeController extends Controller
                 ->with('error', 'Erro ao Enviar!');
         }
     }
+
+    public function show($id)
+    {
+        if (!Auth::user()->hasRole('Franquiado')) {
+            abort(403, 'Acesso não autorizado');
+        }
+        $document = Document::where('user_id', $id)->first();
+        return view('admin.documents.show', compact('document'));
+    }
 }
