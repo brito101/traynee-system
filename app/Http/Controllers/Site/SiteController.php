@@ -22,4 +22,13 @@ class SiteController extends Controller
         $posts = Post::orderBy('created_at', 'desc')->take(2)->get();
         return view('site.home.index', compact('head', 'vacancies', 'companies', 'posts'));
     }
+
+    public function vacancy()
+    {
+        $head = new stdClass();
+        $head->title = env('APP_NAME');
+        $head->description = 'Confira as vagas disponíveis na ' .  env('APP_NAME');
+        $vacancies = Vacancy::orderBy('created_at', 'desc')->paginate(10);
+        return view('site.vacancy.index', compact('head', 'vacancies'));
+    }
 }

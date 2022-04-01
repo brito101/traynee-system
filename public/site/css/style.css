@@ -30,9 +30,6 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
-}
-
-img[src$=".jpg"] {
   border-radius: 4px;
 }
 
@@ -430,12 +427,49 @@ img[src$=".jpg"] {
   width: 18px;
   height: 10px;
   margin-left: 12px;
-  background: url("../../img/icones/seta.svg");
+  background: url("../img/icones/seta.svg");
   transition: transform 0.2s;
 }
 
 .button.arrow:hover::after {
   transform: translateX(4px);
+}
+
+.pagination {
+  margin: 20px auto 40px auto;
+  display: flex;
+  justify-content: center;
+}
+.pagination li {
+  color: #fff;
+  background-color: var(--color-10);
+  border: 1px solid var(--color-8);
+  font-weight: 600;
+  cursor: pointer;
+}
+.pagination li .page-link {
+  padding: 10px 20px;
+  display: inline-block;
+}
+.pagination li:first-of-type {
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+}
+.pagination li:last-of-type {
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.pagination li:hover {
+  background-color: var(--color-12);
+}
+.pagination li.active {
+  background-color: var(--color-p6);
+}
+.pagination li.active:hover {
+  background-color: var(--color-p7);
+}
+.pagination li span {
+  padding: 10px 20px;
 }
 
 @media (max-width: 600px) {
@@ -831,6 +865,10 @@ img[src$=".jpg"] {
     gap: 20px;
   }
 }
+.vacancies-bg-header {
+  background: linear-gradient(to right, var(--color-10) 0%, var(--color-11) 100%);
+}
+
 .vacancies-bg {
   background: linear-gradient(to right, var(--color-0) 30%, var(--color-11) 0%);
 }
@@ -841,7 +879,7 @@ img[src$=".jpg"] {
   gap: 40px;
   padding-top: 60px;
   padding-bottom: 60px;
-  background: url(".../img/dec/top-right.svg") no-repeat top 40px right 20px;
+  background: url("../img/dec/top-right.svg") no-repeat top 40px right 20px;
 }
 
 .vacancies-image {
@@ -882,7 +920,7 @@ img[src$=".jpg"] {
   display: block;
   width: 12px;
   height: 8px;
-  background-color: var(--color-p1);
+  background-color: var(--color-p6);
   margin-bottom: 8px;
 }
 
@@ -922,6 +960,10 @@ img[src$=".jpg"] {
   }
 }
 @media (max-width: 600px) {
+  .vacancies {
+    background: none;
+  }
+
   .vacancies-content {
     grid-template-columns: 1fr;
   }

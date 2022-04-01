@@ -30,6 +30,7 @@
             </a>
             <nav aria-label="primary">
                 <ul class="header-menu font-1-m color-0">
+                    <li><a href="{{ route('vacancy') }}">Vagas</a></li>
                     <li><a href="{{ route('admin.home') }}">Login</a></li>
                 </ul>
             </nav>
@@ -66,6 +67,7 @@
                 <nav>
                     <ul class="font-1-m color-3">
                         <li><a href="{{ route('admin.home') }}">Login</a></li>
+                        <li><a href="{{ route('vacancy') }}">Vagas</a></li>
                     </ul>
                 </nav>
             </div>

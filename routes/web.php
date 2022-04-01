@@ -162,5 +162,6 @@ Route::group(['middleware' => ['auth']], function () {
 /** Web */
 /** Home */
 Route::get('/', [SiteController::class, 'index'])->name('home');
+Route::get('/vagas', [SiteController::class, 'vacancy'])->name('vacancy');
 
 Auth::routes();

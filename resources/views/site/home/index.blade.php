@@ -10,7 +10,7 @@
                     Vagas com valor e qualidade para agregar conhecimento e alavacar a sua formação. Explore um mundo de
                     possibilidades na {{ env('APP_NAME') }}.
                 </p>
-                <a class="button fadeInDown" data-anime="600" href="#">
+                <a class="button fadeInDown" data-anime="600" href="{{ route('vacancy') }}">
                     Escolha a sua vaga</a>
             </div>
             <picture data-anime="800" class="fadeInDown">
@@ -47,7 +47,7 @@
                 @endforeach
             </ul>
             <div class="container button-container">
-                <a class="button secondary button-center" href="#">Todas as vagas</a>
+                <a class="button secondary button-center" href="{{ route('vacancy') }}">Todas as vagas</a>
             </div>
         </article>
     @endif

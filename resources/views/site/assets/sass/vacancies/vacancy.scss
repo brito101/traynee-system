@@ -1,3 +1,7 @@
+.vacancies-bg-header {
+    background: linear-gradient(to right, var(--color-10) 0%, var(--color-11) 100%);
+}
+
 .vacancies-bg {
     background: linear-gradient(to right, var(--color-0) 30%, var(--color-11) 0%);
 }
@@ -8,7 +12,7 @@
     gap: 40px;
     padding-top: 60px;
     padding-bottom: 60px;
-    background: url(".#{$imgPath}/dec/top-right.svg") no-repeat top 40px right 20px;
+    background: url("#{$imgPath}/dec/top-right.svg") no-repeat top 40px right 20px;
 }
 
 .vacancies-image {
@@ -49,7 +53,7 @@
     display: block;
     width: 12px;
     height: 8px;
-    background-color: var(--color-p1);
+    background-color: var(--color-p6);
     margin-bottom: 8px;
 }
 
@@ -89,6 +93,10 @@
 }
 
 @media (max-width: 600px) {
+    .vacancies {
+        background: none;
+    }
+
     .vacancies-content {
         grid-template-columns: 1fr;
     }
