@@ -10,7 +10,7 @@
                     Vagas com valor e qualidade para agregar conhecimento e alavacar a sua formação. Explore um mundo de
                     possibilidades na {{ env('APP_NAME') }}.
                 </p>
-                <a class="button fadeInDown" data-anime="600" href="{{ route('vacancy') }}">
+                <a class="button fadeInDown" data-anime="600" href="{{ route('vacancies') }}">
                     Escolha a sua vaga</a>
             </div>
             <picture data-anime="800" class="fadeInDown">
@@ -26,7 +26,7 @@
             <ul>
                 @foreach ($vacancies as $vacancy)
                     <li>
-                        <a href="{{ $vacancy->slug }}">
+                        <a href="{{ route('vacancy', ['slug' => $vacancy->slug]) }}">
                             @if ($vacancy->brand_facebook != null)
                                 <img src="{{ url('storage/vacancies/' . $vacancy->brand_facebook) }}"
                                     alt="{{ $vacancy->title }}" width="920" height="1040">
@@ -47,7 +47,7 @@
                 @endforeach
             </ul>
             <div class="container button-container">
-                <a class="button secondary button-center" href="{{ route('vacancy') }}">Todas as vagas</a>
+                <a class="button secondary button-center" href="{{ route('vacancies') }}">Todas as vagas</a>
             </div>
         </article>
     @endif

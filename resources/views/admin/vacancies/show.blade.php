@@ -73,7 +73,7 @@
                         <div class="d-flex flex-wrap justify-content-between col-12">
                             <div class="col-12 form-group px-0">
                                 <label>Descrição da vaga</label>
-                                {!! $vacancy->description !!}
+                                <p> {{ $vacancy->description }}</p>
                             </div>
                         </div>
                         @if ($vacancy->benefits)

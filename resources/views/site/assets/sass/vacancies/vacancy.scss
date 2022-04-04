@@ -37,9 +37,23 @@
     display: grid;
     grid-template-columns: 1fr auto;
     align-content: start;
+
+    .description {
+        padding-top: 60px;
+        word-break: break-word;
+        @media (max-width: 800px) {
+            padding-top: 0px;
+        }
+    }
+
+    .details {
+        padding-top: 40px;
+        text-transform: uppercase;
+    }
 }
 
 .vacancies h2,
+.vacancies h3,
 .vacancies p {
     grid-column: 1/-1;
 }
@@ -73,11 +87,30 @@
 .vacancies ul {
     display: grid;
     gap: 16px;
+    margin-top: 20px;
+    border-radius: 4px;
+    padding: 20px;
+    background-color: var(--color-p7);
 }
 
 .vacancies-content img {
     width: 24px;
     margin-right: 8px;
+}
+
+.signup-bg {
+    background: linear-gradient(
+        to top,
+        var(--color-12) 0%,
+        var(--color-12) 25%,
+        var(--color-11) 25%,
+        var(--color-11) 100%
+    );
+
+    p {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
 }
 
 @media (max-width: 800px) {
@@ -100,12 +133,19 @@
     .vacancies-content {
         grid-template-columns: 1fr;
     }
+
     .vacancies ul {
         font-size: 1rem;
-        grid-template-columns: 1fr 1fr;
         margin-bottom: 32px;
     }
+
     .vacancies a {
         place-self: start;
+    }
+}
+
+@media (max-width: 450px) {
+    .vacancies-content {
+        grid-template-columns: 1fr fit-content(20%);
     }
 }

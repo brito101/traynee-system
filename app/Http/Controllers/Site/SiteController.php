@@ -23,12 +23,25 @@ class SiteController extends Controller
         return view('site.home.index', compact('head', 'vacancies', 'companies', 'posts'));
     }
 
-    public function vacancy()
+    public function vacancies()
+    {
+        $head = new stdClass();
+        $head->title = env('APP_NAME') . ' - Vagas';
+        $head->description = 'Confira as vagas disponíveis na ' .  env('APP_NAME');
+        $vacancies = Vacancy::orderBy('created_at', 'desc')->paginate(10);
+        return view('site.vacancy.index', compact('head', 'vacancies'));
+    }
+
+    public function vacancy($slug)
     {
         $head = new stdClass();
         $head->title = env('APP_NAME');
         $head->description = 'Confira as vagas disponíveis na ' .  env('APP_NAME');
-        $vacancies = Vacancy::orderBy('created_at', 'desc')->paginate(10);
-        return view('site.vacancy.index', compact('head', 'vacancies'));
+        $vacancy = Vacancy::where('slug', $slug)->first();
+        if (empty($vacancy->id)) {
+            abort(404, 'Página não encontrada');
+        }
+
+        return view('site.vacancy.page', compact('head', 'vacancy'));
     }
 }

@@ -43,7 +43,7 @@
                             Período: {{ $vacancy->period }}
                         </li>
                     </ul>
-                    <a class="button arrow" href="#">Mais Sobre</a>
+                    <a class="button arrow" href="{{ route('vacancy', ['slug' => $vacancy->slug]) }}">Mais Sobre</a>
                 </div>
             </div>
             @if ($loop->iteration % 2 == 0)

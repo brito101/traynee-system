@@ -92,28 +92,10 @@
 
                                 <div class="d-flex flex-wrap justify-content-between">
                                     <div class="col-12 col-md-12 form-group px-0">
-                                        @php
-                                            $config = [
-                                                'height' => '300',
-                                                'toolbar' => [
-                                                    // [groupName, [list of button]]
-                                                    ['style', ['bold', 'italic', 'underline', 'clear']],
-                                                    ['font', ['strikethrough', 'superscript', 'subscript']],
-                                                    ['fontsize', ['fontsize']],
-                                                    ['color', ['color']],
-                                                    ['para', ['ul', 'ol', 'paragraph']],
-                                                    ['height', ['height']],
-                                                    ['table', ['table']],
-                                                    ['insert', ['link', 'picture', 'video']],
-                                                    ['view', ['fullscreen', 'codeview', 'help']],
-                                                ],
-                                            ];
-                                        @endphp
-                                        <x-adminlte-text-editor name="description" label="Descrição da vaga"
-                                            igroup-size="sm" placeholder="Escreva a descrição da vaga aqui..."
-                                            :config="$config">
+                                        <x-adminlte-textarea name="description" rows=10 label="Descrição da Vaga"
+                                            placeholder="Escreva a descrição da vaga aqui...">
                                             {{ old('description') }}
-                                        </x-adminlte-text-editor>
+                                        </x-adminlte-textarea>
                                     </div>
                                 </div>
 
