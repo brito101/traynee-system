@@ -30,8 +30,8 @@
                     <a class="button" href="{{ route('admin.home') }}">Inscreva-se!</a>
                 </div>
 
-                <h3 class="font-2-xs color-0 details">Informações</h3>
-                <ul class="font-2-s color-0">
+                <h3 class="font-2-xs color-0 details">Informações:</h3>
+                <ul class="font-2-s color-0 info">
                     <li>Escolaridade: {{ $vacancy->scholarity['name'] }}</li>
                     @if ($vacancy->experience)
                         <li>Experiência: {{ $vacancy->experience }}</li>
@@ -49,14 +49,15 @@
 
     <article class="signup-bg">
         <div class="post container">
-            <div class="post-image">
+            <div>
                 <img src="{{ asset('/site/img/fotos/signup.webp') }}" alt="Realize sua inscrição" width="500"
-                    height="899">
+                    height="700">
             </div>
             <div class="post-content">
-                <h2 class="font-1-xxl color-0">Ainda não possui sua <span class="color-p7">conta?</span>
+                <h2 class="font-1-xxl">Ainda não possui sua <span class="color-p7">conta?</span>
                 </h2>
-                <p class="font-2-l color-1">Inscreva-se na {{ env('APP_NAME') }} e concorra às melhores vagas do mercado.
+                <p class="font-2-l">Inscreva-se na {{ env('APP_NAME') }} e concorra às melhores vagas do
+                    mercado.
                 </p>
                 <a class="button" href="{{ route('register') }}">Cadastre-se agora!</a>
             </div>

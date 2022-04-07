@@ -215,8 +215,8 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <x-adminlte-datatable id="table1" :heads="$heads" :heads="$heads" :config="$config" striped
-                                    hoverable beautify with-buttons class="traineeGrid" />
+                                <x-adminlte-datatable id="table1" :heads="$heads" :heads="$heads" :config="$config"
+                                    striped hoverable beautify with-buttons class="traineeGrid" />
                             </div>
                         </div>
                     </div>
