@@ -467,6 +467,33 @@ return [
                 ],
             ]
         ],
+        /** Terms */
+        [
+            'text'        => 'Termos',
+            'url'         => '#',
+            'icon'        => 'fas fa-fw fa-file',
+            'can'         => 'Visualizar Termos',
+            'submenu' => [
+                [
+                    'text'        => 'Listagem de Termos',
+                    'url'         => 'admin/terms',
+                    'icon'        => 'fas fa-fw fa-chevron-right',
+                    'can'         => 'Listar Termos'
+                ],
+                [
+                    'text'        => 'Criar Termo',
+                    'url'         => 'admin/terms/create',
+                    'icon'        => 'fas fa-fw fa-chevron-right',
+                    'can'         => 'Criar Termos'
+                ],
+            ]
+        ],
+        [
+            'text'        => 'Gerar Termo',
+            'url'         => 'admin/term-generate',
+            'icon'        => 'fas fa-fw fa-file-contract',
+            'can'         => 'Gerar Termos'
+        ],
         /** Cursos de Instituições */
         [
             'text'        => 'Cursos com Estágio',

@@ -522,8 +522,7 @@
             }
         </script>
     @endif
-
-    @if (Auth::user()->hasRole('Estagiário'))
+    {{-- @if (Auth::user()->hasRole('Estagiário'))
         <script>
             $(window).on("load", function() {
                 $(".traineeGrid").on("click", function(e) {
@@ -550,5 +549,5 @@
                 });
             });
         </script>
-    @endif
+    @endif --}}
 @endsection

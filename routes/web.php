@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfessionalController;
 use App\Http\Controllers\Admin\RequirimentController;
 use App\Http\Controllers\Admin\ScholarityController;
+use App\Http\Controllers\Admin\TermController;
 use App\Http\Controllers\Admin\TraineeController;
 use App\Http\Controllers\Admin\UniversityController;
 use App\Http\Controllers\Admin\UserController;
@@ -132,6 +133,13 @@ Route::group(['middleware' => ['auth']], function () {
         /** Scholarities */
         Route::get('/institution/destroy/{id}', [UniversityController::class, 'destroy']);
         Route::resource('institution', UniversityController::class);
+
+        /** Administrator */
+        /** Terms */
+        Route::get('/term-generate', [TermController::class, 'termsGenerate'])->name('terms.generate');
+        Route::post('/terms-pdf', [TermController::class, 'termsPdf'])->name('terms.pdf');
+        Route::get('/terms/destroy/{id}', [TermController::class, 'destroy']);
+        Route::resource('terms', TermController::class);
 
         /**
          * Configurations
