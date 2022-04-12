@@ -73,6 +73,14 @@
                                     </div>
                                 </div>
 
+                                <div class="d-flex flex-wrap justify-content-between">
+                                    <div class="col-12 col-md-6 form-group px-0 pr-md-2">
+                                        <label for="advisor">Orientador</label>
+                                        <input type="text" class="form-control" id="advisor"
+                                            placeholder="Nome do Orientador" name="advisor" value="{{ old('advisor') }}">
+                                    </div>
+                                </div>
+
                             </div>
 
                             <div class="card-footer">

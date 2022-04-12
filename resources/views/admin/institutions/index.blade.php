@@ -7,35 +7,35 @@
 @section('content')
     @can('Cursos de Instituições')
         @php
-        $heads = [['label' => 'ID', 'width' => 5], 'Curso', 'Nível', 'Área', 'Escolaridade', ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
+        $heads = [['label' => 'ID', 'width' => 5], 'Curso', 'Orientador', 'Nível', 'Área', 'Escolaridade', ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
 
         $list = [];
 
         foreach ($courses as $course) {
-            $list[] = [$course->id, $course->name, $course->level, $course->course['name'], $course->scholarity['name'], '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="institution/' . $course->id . '/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="institution/destroy/' . $course->id . '" onclick="return confirm(\'Confirma a exclusão deste curso?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
+            $list[] = [$course->id, $course->name, $course->advisor, $course->level, $course->course['name'], $course->scholarity['name'], '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="institution/' . $course->id . '/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="institution/destroy/' . $course->id . '" onclick="return confirm(\'Confirma a exclusão deste curso?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
         }
 
         $config = [
             'data' => $list,
             'order' => [[0, 'asc']],
-            'columns' => [null, null, null, null, null, ['orderable' => false]],
+            'columns' => [null, null, null, null, null, null, ['orderable' => false]],
             'language' => ['url' => asset('vendor/datatables/js/pt-BR.json')],
         ];
         @endphp
     @else
         @php
-        $heads = [['label' => 'ID', 'width' => 5], 'Curso', 'Nível', 'Área', 'Escolaridade', 'Insituição'];
+        $heads = [['label' => 'ID', 'width' => 5], 'Curso', 'Orientador', 'Nível', 'Área', 'Escolaridade', 'Insituição'];
 
         $list = [];
 
         foreach ($courses as $course) {
-            $list[] = [$course->id, $course->name, $course->level, $course->course['name'], $course->scholarity['name'], $course->company['alias_name']];
+            $list[] = [$course->id, $course->advisor, $course->name, $course->level, $course->course['name'], $course->scholarity['name'], $course->company['alias_name']];
         }
 
         $config = [
             'data' => $list,
             'order' => [[0, 'asc']],
-            'columns' => [null, null, null, null, null, ['orderable' => false]],
+            'columns' => [null, null, null, null, null, null, ['orderable' => false]],
             'language' => ['url' => asset('vendor/datatables/js/pt-BR.json')],
         ];
         @endphp

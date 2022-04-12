@@ -229,6 +229,7 @@ return [
         'residence' => 'comprovante de residência',
         'courses' => 'cursos',
         'cover' => 'imagem de capa',
+        'advisor ' => 'orientador',
     ],
 
 ];

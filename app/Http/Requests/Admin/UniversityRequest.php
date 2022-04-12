@@ -27,7 +27,8 @@ class UniversityRequest extends FormRequest
             'name' => 'required|min:2|max:150',
             'level' => 'required',
             'scholarity_id' => 'required',
-            'course_id' => 'required'
+            'course_id' => 'required',
+            'advisor' => 'nullable|max:191',
         ];
     }
 }

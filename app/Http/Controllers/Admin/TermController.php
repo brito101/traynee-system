@@ -147,7 +147,7 @@ class TermController extends Controller
         }
 
         if (Auth::user()->hasRole('Franquiado')) {
-            $terms = Term::whereIn('participant_primary', ['Franquia', 'Empresa', 'Estagiário'])->get();
+            $terms = Term::whereIn('participant_primary', ['Franquia', 'Empresa', 'Estagiário', 'Instituição de Ensino'])->get();
         } else {
             $terms = Term::all();
         }

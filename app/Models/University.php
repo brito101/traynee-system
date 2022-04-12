@@ -18,7 +18,8 @@ class University extends Model
         'scholarity_id',
         'course_id',
         'company_id',
-        'user_id'
+        'user_id',
+        'advisor'
     ];
 
     /** Relationships */
