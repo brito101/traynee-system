@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\ExtraController;
 use App\Http\Controllers\Admin\GenreController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfessionalController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\RequirimentController;
 use App\Http\Controllers\Admin\ScholarityController;
 use App\Http\Controllers\Admin\TermController;
@@ -133,6 +134,10 @@ Route::group(['middleware' => ['auth']], function () {
         /** Scholarities */
         Route::get('/institution/destroy/{id}', [UniversityController::class, 'destroy']);
         Route::resource('institution', UniversityController::class);
+
+        /** Companies/University/Trainee */
+        Route::get('/reports/destroy/{id}', [ReportController::class, 'destroy']);
+        Route::resource('reports', ReportController::class);
 
         /** Administrator */
         /** Terms */

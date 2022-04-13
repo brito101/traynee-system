@@ -230,6 +230,10 @@ return [
         'courses' => 'cursos',
         'cover' => 'imagem de capa',
         'advisor ' => 'orientador',
+        'type' => 'tipo',
+        'document' => 'documento',
+        'company_id' => 'empresa',
+        'trainee' => 'estagiario'
     ],
 
 ];

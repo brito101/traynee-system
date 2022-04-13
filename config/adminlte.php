@@ -522,6 +522,12 @@ return [
             'can'         => 'Visualizar Cursos de Instituições',
         ],
         [
+            'text'        => 'Relatório de Atividades',
+            'url'         => 'admin/reports',
+            'icon'        => 'fas fa-fw fa-file-download',
+            'can'         => 'Visualizar Relatórios',
+        ],
+        [
             'text'    => 'Configurações',
             'icon'    => 'fas fa-fw fa-cogs',
             'can'     => 'Acessar Configurações',
@@ -689,6 +695,27 @@ return [
                     'url'  => 'admin/posts/create',
                     'icon' => 'fas fa-fw fa-chevron-right',
                     'can'  => 'Criar Posts',
+                ]
+            ]
+
+        ],
+        [
+            'text'        => 'Relatório de Atividades',
+            'url'         => '#',
+            'icon'        => 'fas fa-fw fa-file-download',
+            'can'         => 'Acessar Relatórios',
+            'submenu' => [
+                [
+                    'text' => 'Listagem de Relatórios',
+                    'url'  => 'admin/reports',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                    'can'  => 'Acessar Relatórios',
+                ],
+                [
+                    'text' => 'Enviar Relatórios',
+                    'url'  => 'admin/reports/create',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                    'can'  => 'Enviar Relatórios',
                 ]
             ]
 
