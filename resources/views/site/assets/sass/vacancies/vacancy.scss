@@ -33,26 +33,6 @@
     border-radius: 4px 0 0 4px;
 }
 
-.vacancies-content {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-content: start;
-
-    .description {
-        padding-top: 60px;
-        word-break: break-word;
-        grid-template-columns: 1fr;
-        @media (max-width: 800px) {
-            padding-top: 0px;
-        }
-    }
-
-    .details {
-        padding-top: 40px;
-        text-transform: uppercase;
-    }
-}
-
 .vacancies h2,
 .vacancies h3,
 .vacancies p {
@@ -152,8 +132,33 @@
     }
 }
 
-@media (max-width: 450px) {
-    .vacancies-content {
-        grid-template-columns: 1fr fit-content(20%);
+.vacancies-content {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-content: start;
+
+    @media (max-width: 450px) {
+        grid-template-columns: none;
+    }
+
+    .description {
+        padding-top: 60px;
+        word-break: break-word;
+        grid-template-columns: 1fr;
+        @media (max-width: 800px) {
+            padding-top: 0px;
+        }
+    }
+
+    .details {
+        padding-top: 40px;
+        text-transform: uppercase;
+    }
+
+    .vacancy-list {
+        padding-top: 0;
+        padding-left: 0;
+        margin: 0;
+        display: block;
     }
 }

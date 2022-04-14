@@ -37,7 +37,7 @@
                             <strong>{{ $vacancy->courses() }}</strong>
                         </p>
 
-                        <ul class="font-1-m {{ $loop->iteration % 2 == 0 ? 'color-1' : 'color-11' }} ">
+                        <ul class="font-1-m {{ $loop->iteration % 2 == 0 ? 'color-1' : 'color-11' }} vacancy-list">
                             <li>
                                 Cidade: {{ $vacancy->city }}-{{ $vacancy->state }}
                             </li>

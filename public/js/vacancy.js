@@ -1,1 +1,3 @@
-$(document).ready((function(){$("#state").inputmask("AA")}));
+$(document).ready(function () {
+    $("#state").inputmask("AA");
+});
