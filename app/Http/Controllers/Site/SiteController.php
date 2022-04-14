@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Models\Affiliation;
 use App\Models\Company;
 use App\Models\Post;
 use App\Models\Vacancy;
@@ -18,9 +19,10 @@ class SiteController extends Controller
         $head->title = env('APP_NAME');
         $head->description = 'A melhor agência de estágios do Brasil';
         $companies = Company::all();
+        $franchisees = Affiliation::all();
         $vacancies = Vacancy::orderBy('created_at', 'desc')->take(3)->get();
         $posts = Post::orderBy('created_at', 'desc')->take(2)->get();
-        return view('site.home.index', compact('head', 'vacancies', 'companies', 'posts'));
+        return view('site.home.index', compact('head', 'vacancies', 'companies', 'posts', 'franchisees'));
     }
 
     public function vacancies()

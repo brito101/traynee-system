@@ -73,8 +73,14 @@ class Vacancy extends Model
     {
         $courses = $this->courses;
         $courses_arr = explode(',', $courses);
-        $last = array_pop($courses_arr);
-        $courses = implode(',', $courses_arr) . ' e' . $last;
-        return $courses;
+        if (count($courses_arr) > 1) {
+            $last = array_pop($courses_arr);
+            $courses = implode(',', $courses_arr) . ' e' . $last;
+            return $courses;
+        } else {
+            $last = array_pop($courses_arr);
+            $courses = implode(',', $courses_arr) . $last;
+            return $courses;
+        }
     }
 }

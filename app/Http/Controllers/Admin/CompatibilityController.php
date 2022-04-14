@@ -37,9 +37,10 @@ class CompatibilityController extends Controller
         }
 
         $chart = new \stdClass();
+        $chart->trainee = [];
 
         foreach ($trainees as $trainee) {
-            $vacancyData  = [];
+            $data  = [];
             foreach ($vacancies as $vacancy) {
 
                 $listAcadmics = [];

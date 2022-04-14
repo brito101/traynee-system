@@ -86,10 +86,20 @@
         </div>
     </article>
 
-    @if ($companies->count())
-        <section class="partners" aria-label="Nossos Parceiros">
-            <h2 class="container font-1-xxl">Nossos parceiros<span class="color-p1">.</span></h2>
-            <ul>
+
+    <section class="partners" aria-label="Nossos Parceiros">
+        <h2 class="container font-1-xxl">Nossos parceiros<span class="color-p1">.</span></h2>
+        <ul>
+            @if ($franchisees->count())
+                @foreach ($franchisees as $franchise)
+                    @if ($franchise->logo)
+                        <li><img src="{{ url('storage/affiliations/' . $franchise->logo) }}"
+                                alt="{{ $franchise->alias_name }}" width="100" height="100">
+                        </li>
+                    @endif
+                @endforeach
+            @endif
+            @if ($companies->count())
                 @foreach ($companies as $company)
                     @if ($company->logo)
                         <li><img src="{{ url('storage/companies/' . $company->logo) }}"
@@ -97,9 +107,10 @@
                         </li>
                     @endif
                 @endforeach
-            </ul>
-        </section>
-    @endif
+            @endif
+        </ul>
+    </section>
+
 
     <section class="testimonial" aria-label="Depoimento">
         <div>

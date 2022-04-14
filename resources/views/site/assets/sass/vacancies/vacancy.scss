@@ -41,6 +41,7 @@
     .description {
         padding-top: 60px;
         word-break: break-word;
+        grid-template-columns: 1fr;
         @media (max-width: 800px) {
             padding-top: 0px;
         }
