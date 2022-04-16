@@ -26,7 +26,7 @@ class ReportRequest extends FormRequest
         return [
             'title' => 'required|min:1|max:191',
             'type' => 'required|min:1|max:191',
-            'document' => 'required|min:1|max:191',
+            'document' => 'required|file|max:1024',
             'institution' => 'required|min:1',
             'trainee' => 'required|min:1',
         ];

@@ -41,7 +41,8 @@ class Company extends Model
         'brand_facebook',
         'brand_instagram',
         'brand_twitter',
-        'affiliation_id'
+        'affiliation_id',
+        'institution'
     ];
 
     public function vacancy()

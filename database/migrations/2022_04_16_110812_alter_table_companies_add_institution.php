@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterTablePostsAddCover extends Migration
+class AlterTableCompaniesAddInstitution extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AlterTablePostsAddCover extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->string('cover', 100)->nullable();
+        Schema::table('companies', function (Blueprint $table) {
+            $table->string('institution')->nullable()->default('Não');
         });
     }
 
@@ -25,8 +25,8 @@ class AlterTablePostsAddCover extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->dropColumn('cover');
+        Schema::table('companies', function (Blueprint $table) {
+            $table->dropColumn('institution');
         });
     }
 }

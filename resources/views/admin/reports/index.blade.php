@@ -1,57 +1,57 @@
 @extends('adminlte::page')
 
-@section('title', '- Relatórios de Atividades')
+@section('title', '- Relatórios de Estágio')
 @section('plugins.Datatables', true)
 @section('plugins.DatatablesPlugins', true)
 
 @section('content')
-    @can('Enviar Relatórios')
+    @if (Auth::user()->hasPermissionTo('Enviar Relatórios'))
         @php
-        $heads = [['label' => 'ID', 'width' => 5], 'Título', 'Arquivo', 'Empresa', 'Insituição de Ensino', 'Estagiário', ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
+            $heads = [['label' => 'ID', 'width' => 5], 'Título', 'Autor', 'Empresa', 'Insituição de Ensino', 'Estagiário', ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
 
-        $list = [];
+            $list = [];
 
-        foreach ($reports as $report) {
-            $list[] = [$report->id, $report->title, $report->document, $report->company_id, $report->institution, $report->trainee, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="reports/' . $report->id . '/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="reports/destroy/' . $report->id . '" onclick="return confirm(\'Confirma a exclusão deste relatório?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
-        }
+            foreach ($reports as $report) {
+                $list[] = [$report->id, $report->title, $report->editorName(), $report->company['alias_name'], $report->institutionName(), $report->traineeName(), '<nobr>' . $report->link()];
+            }
 
-        $config = [
-            'data' => $list,
-            'order' => [[0, 'asc']],
-            'columns' => [null, null, null, null, null, null, ['orderable' => false]],
-            'language' => ['url' => asset('vendor/datatables/js/pt-BR.json')],
-        ];
+            $config = [
+                'data' => $list,
+                'order' => [[0, 'asc']],
+                'columns' => [null, null, null, null, null, null, ['orderable' => false]],
+                'language' => ['url' => asset('vendor/datatables/js/pt-BR.json')],
+            ];
         @endphp
     @else
         @php
-        $heads = [['label' => 'ID', 'width' => 5], 'Título', 'Arquivo', 'Empresa', 'Insituição de Ensino', 'Estagiário'];
+            $heads = [['label' => 'ID', 'width' => 5], 'Título', 'Autor', 'Empresa', 'Insituição de Ensino', 'Estagiário', ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
 
-        $list = [];
+            $list = [];
 
-        foreach ($reports as $report) {
-            $list[] = [$report->id, $report->title, $report->document, $report->company_id, $report->institution, $report->trainee];
-        }
+            foreach ($reports as $report) {
+                $list[] = [$report->id, $report->title, $report->editorName(), $report->company['alias_name'], $report->institutionName(), $report->traineeName(), $report->link()];
+            }
 
-        $config = [
-            'data' => $list,
-            'order' => [[0, 'asc']],
-            'columns' => [null, null, null, null, null, null],
-            'language' => ['url' => asset('vendor/datatables/js/pt-BR.json')],
-        ];
+            $config = [
+                'data' => $list,
+                'order' => [[0, 'asc']],
+                'columns' => [null, null, null, null, null, null, ['orderable' => false]],
+                'language' => ['url' => asset('vendor/datatables/js/pt-BR.json')],
+            ];
         @endphp
-    @endcan
+    @endif
 
 
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1><i class="fa fa-fw fa-file-download"></i> Relatórios de Atividades</h1>
+                    <h1><i class="fa fa-fw fa-file-download"></i> Relatórios de Estágio</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Relatórios de Atividades</li>
+                        <li class="breadcrumb-item active">Relatórios de Estágio</li>
                     </ol>
                 </div>
             </div>

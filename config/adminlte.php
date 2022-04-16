@@ -700,7 +700,7 @@ return [
 
         ],
         [
-            'text'        => 'Relatório de Atividades',
+            'text'        => 'Relatório de Estágio',
             'url'         => '#',
             'icon'        => 'fas fa-fw fa-file-download',
             'can'         => 'Acessar Relatórios',

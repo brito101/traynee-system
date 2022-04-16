@@ -74,6 +74,16 @@
                                         <input type="email" class="form-control" id="email" placeholder="E-mail"
                                             name="email" value="{{ old('email') }}" required>
                                     </div>
+
+                                    @if (Auth::user()->hasRole('Programador|Administrador|Franquiado'))
+                                        <div class="col-12 col-md-6 form-group px-0 pl-md-2">
+                                            <label for="institution">Instituição de Ensino?</label>
+                                            <x-adminlte-select2 name="institution" required>
+                                                <option {{ old('institution') == 'Não' ? 'selected' : '' }}>Não</option>
+                                                <option {{ old('institution') == 'Sim' ? 'selected' : '' }}>Sim</option>
+                                            </x-adminlte-select2>
+                                        </div>
+                                    @endif
                                 </div>
 
                                 <div class="d-flex flex-wrap justify-content-between">
