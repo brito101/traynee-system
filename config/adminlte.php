@@ -522,7 +522,7 @@ return [
             'can'         => 'Visualizar Cursos de Instituições',
         ],
         [
-            'text'        => 'Relatório de Atividades',
+            'text'        => 'Relatórios de Estágio',
             'url'         => 'admin/reports',
             'icon'        => 'fas fa-fw fa-file-download',
             'can'         => 'Visualizar Relatórios',
@@ -719,6 +719,24 @@ return [
                 ]
             ]
 
+        ],
+        [
+            'text'        => 'Pesquisa Salarial',
+            'url'         => '#',
+            'icon'        => 'fa fa-fw fa-money-bill-wave',
+            'can'         => 'Visualizar Pesquisa Salarial',
+            'submenu' => [
+                [
+                    'text' => 'Listagem de Salários',
+                    'url'  => 'admin/salary-list',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                ],
+                [
+                    'text' => 'Cadastro de Salários',
+                    'url'  => 'admin/salary-list/create',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                ]
+            ]
         ],
 
     ],

@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\CurriculumController;
 use App\Http\Controllers\Admin\DocumentController;
 use App\Http\Controllers\Admin\DocumentTrayneeController;
 use App\Http\Controllers\Admin\ExtraController;
+use App\Http\Controllers\Admin\FeeController;
 use App\Http\Controllers\Admin\GenreController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfessionalController;
@@ -129,6 +130,9 @@ Route::group(['middleware' => ['auth']], function () {
         /** Vacancies */
         Route::get('/vacancies/destroy/{id}', [VacancyController::class, 'destroy']);
         Route::resource('vacancies', VacancyController::class);
+        /** Salary Search */
+        Route::get('/salary-list/destroy/{id}', [FeeController::class, 'destroy']);
+        Route::resource('salary-list', FeeController::class);
 
         /**University */
         /** Scholarities */

@@ -233,7 +233,9 @@ return [
         'type' => 'tipo',
         'document' => 'documento',
         'company_id' => 'empresa',
-        'trainee' => 'estagiario'
+        'trainee' => 'estagiario',
+        'salary' => 'salário',
+        'benefits' => 'benefícios',
     ],
 
 ];

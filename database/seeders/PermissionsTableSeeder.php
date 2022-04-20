@@ -439,6 +439,33 @@ class PermissionsTableSeeder extends Seeder
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
+            /** Salary Search */
+            [
+                'name' => 'Visualizar Pesquisa Salarial',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Listar Pesquisa Salarial',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Criar Pesquisa Salarial',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Editar Pesquisa Salarial',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Excluir Pesquisa Salarial',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+
         ]);
     }
 }
