@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\DocumentTrayneeController;
 use App\Http\Controllers\Admin\ExtraController;
 use App\Http\Controllers\Admin\FeeController;
 use App\Http\Controllers\Admin\GenreController;
+use App\Http\Controllers\Admin\Payment\PlanController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfessionalController;
 use App\Http\Controllers\Admin\ReportController;
@@ -29,6 +30,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserNetworkController;
 use App\Http\Controllers\Admin\VacancyController;
 use App\Http\Controllers\Site\SiteController;
+use App\Services\PagarmeRequestService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +44,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// Route::get('/pagarme', function () {
+//     $pagarmService = new PagarmeRequestService();
+//     $costumers = $pagarmService->getCustomers();
+//     dd($costumers);
+// });
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('admin', [AdminController::class, 'index'])->name('admin.home');
@@ -149,6 +157,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/terms-pdf', [TermController::class, 'termsPdf'])->name('terms.pdf');
         Route::get('/terms/destroy/{id}', [TermController::class, 'destroy']);
         Route::resource('terms', TermController::class);
+
+        /**
+         * Payments
+         */
+        /** Plans */
+        Route::resource('payment/plans', PlanController::class);
 
         /**
          * Configurations

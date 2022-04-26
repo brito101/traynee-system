@@ -528,6 +528,27 @@ return [
             'can'         => 'Visualizar Relatórios',
         ],
         [
+            'text'    => 'Pagamento',
+            'icon'    => 'fas fa-fw fa-money-bill-wave',
+            'can'     => 'Acessar Pagamento',
+            'submenu' => [
+                [
+                    'text' => 'Planos de Pagamento',
+                    'url'  => '#',
+                    'icon'    => 'fas fa-fw fa-money-check',
+                    'can'     => 'Acessar Planos de Pagamento',
+                    'submenu' => [
+                        [
+                            'text' => 'Listagem de Planos',
+                            'url'  => 'admin/payment/plans',
+                            'icon'    => 'fas fa-fw fa-chevron-right',
+                            'can'     => 'Listar Planos de Pagamento',
+                        ],
+                    ]
+                ],
+            ]
+        ],
+        [
             'text'    => 'Configurações',
             'icon'    => 'fas fa-fw fa-cogs',
             'can'     => 'Acessar Configurações',
