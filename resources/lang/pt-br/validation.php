@@ -236,6 +236,10 @@ return [
         'trainee' => 'estagiario',
         'salary' => 'salário',
         'benefits' => 'benefícios',
+        'days' => 'prazo em dias',
+        'trial_days' => 'tempo de teste',
+        'amount' => 'valor',
+        'payment_methods' => 'métodos de pagamento',
     ],
 
 ];

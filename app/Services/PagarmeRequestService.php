@@ -154,14 +154,16 @@ class PagarmeRequestService extends BaseRequestService
         return $this->post('subscriptions', $data);
     }
 
-    public function createPlan($amount, $days, $name, $payment_methods = null, $trial_days = null)
+    public function createPlan($amount, $interval, $name, $payment_methods = null, $trial_days = null)
     {
         $data = [
             'amount' => $amount,
-            'days' => $days,
+            'interval' => $interval,
             'name' => $name,
             'payment_methods' => !is_null($payment_methods) ? $this->getPaymentMethods($payment_methods) : null,
-            'trial_days' => $trial_days
+            'trial_days' => $trial_days,
+            'pricing_scheme' => ['price' => (int)$amount],
+            'quantity' => 1
         ];
 
         return $this->post('plans', $data);
