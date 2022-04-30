@@ -540,7 +540,7 @@ return [
                     'submenu' => [
                         [
                             'text' => 'Listagem de Planos',
-                            'url'  => 'admin/payment/plans',
+                            'url'  => '#',
                             'icon'    => 'fas fa-fw fa-chevron-right',
                             'can'     => 'Listar Planos de Pagamento',
                         ],

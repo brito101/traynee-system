@@ -11,10 +11,11 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Shetabit\Visitor\Traits\Visitor;
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, Visitor, SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, Visitor, SoftDeletes, Billable;
 
     protected $dates = ['deleted_at'];
 
