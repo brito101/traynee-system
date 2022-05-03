@@ -465,24 +465,34 @@ class PermissionsTableSeeder extends Seeder
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
-            /** Planos de Pagamento */
+            /** Pagamento */
             [
                 'name' => 'Acessar Pagamento',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
             [
-                'name' => 'Acessar Planos de Pagamento',
+                'name' => 'Acessar Produtos',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
             [
-                'name' => 'Listar Planos de Pagamento',
+                'name' => 'Listar Produtos',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
             [
-                'name' => 'Criar Planos de Pagamento',
+                'name' => 'Criar Produtos',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Editar Produtos',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+            [
+                'name' => 'Excluir Produtos',
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],

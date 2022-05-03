@@ -656,7 +656,7 @@ class RolesHasPermissionTableSeeder extends Seeder
                 'permission_id' => 85,
                 'role_id' => 4,
             ],
-            /** Planos de Pagamento */
+            /** Pagamento */
             [
                 'permission_id' => 86,
                 'role_id' => 1,
@@ -689,7 +689,22 @@ class RolesHasPermissionTableSeeder extends Seeder
                 'permission_id' => 89,
                 'role_id' => 2,
             ],
-
+            [
+                'permission_id' => 90,
+                'role_id' => 1,
+            ],
+            [
+                'permission_id' => 90,
+                'role_id' => 2,
+            ],
+            [
+                'permission_id' => 91,
+                'role_id' => 1,
+            ],
+            [
+                'permission_id' => 91,
+                'role_id' => 2,
+            ],
         ]);
     }
 }

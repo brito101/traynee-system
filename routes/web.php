@@ -17,9 +17,10 @@ use App\Http\Controllers\Admin\DocumentTrayneeController;
 use App\Http\Controllers\Admin\ExtraController;
 use App\Http\Controllers\Admin\FeeController;
 use App\Http\Controllers\Admin\GenreController;
+use App\Http\Controllers\Admin\Payment\ClientController;
+use App\Http\Controllers\Admin\Payment\ProductController;
 use App\Http\Controllers\Admin\Payment\SubscriptionController;
 use App\Http\Controllers\Admin\PostController;
-use App\Http\Controllers\Admin\ProfessionalController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\RequirimentController;
 use App\Http\Controllers\Admin\ScholarityController;
@@ -167,8 +168,12 @@ Route::group(['middleware' => ['auth']], function () {
         /**
          * Payments
          */
-        Route::get('/payments/subscription', [SubscriptionController::class, 'index'])->name('subscription.index');
-        Route::post('/payments/subscription/order-post', [SubscriptionController::class, 'orderPost'])->name('subscription.orderPost');
+        /** Clients */
+        Route::resource('payments/clients', ClientController::class);
+
+        /** Produtos */
+        Route::get('/payments/products/destroy/{id}', [ProductController::class, 'destroy']);
+        Route::resource('payments/products', ProductController::class);
 
 
         /**

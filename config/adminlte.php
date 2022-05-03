@@ -533,16 +533,22 @@ return [
             'can'     => 'Acessar Pagamento',
             'submenu' => [
                 [
-                    'text' => 'Planos de Pagamento',
+                    'text' => 'Produtos',
                     'url'  => '#',
-                    'icon'    => 'fas fa-fw fa-money-check',
-                    'can'     => 'Acessar Planos de Pagamento',
+                    'icon'    => 'fas fa-fw fa-box',
+                    'can'     => 'Acessar Produtos',
                     'submenu' => [
                         [
-                            'text' => 'Listagem de Planos',
-                            'url'  => '#',
+                            'text' => 'Listagem de Produtos',
+                            'url'  => 'admin/payments/products',
                             'icon'    => 'fas fa-fw fa-chevron-right',
-                            'can'     => 'Listar Planos de Pagamento',
+                            'can'     => 'Listar Produtos',
+                        ],
+                        [
+                            'text' => 'Criar Produto',
+                            'url'  => 'admin/payments/products/create',
+                            'icon'    => 'fas fa-fw fa-chevron-right',
+                            'can'     => 'Criar Produtos',
                         ],
                     ]
                 ],
