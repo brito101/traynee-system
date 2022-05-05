@@ -467,6 +467,33 @@ return [
                 ],
             ]
         ],
+        [
+            'text'    => 'Financeiro',
+            'icon'    => 'fas fa-fw fa-money-bill-wave',
+            'can'     => 'Acessar Pagamento',
+            'submenu' => [
+                [
+                    'text' => 'Produtos',
+                    'url'  => '#',
+                    'icon'    => 'fas fa-fw fa-box',
+                    'can'     => 'Acessar Produtos',
+                    'submenu' => [
+                        [
+                            'text' => 'Listagem de Produtos',
+                            'url'  => 'admin/payments/products',
+                            'icon'    => 'fas fa-fw fa-chevron-right',
+                            'can'     => 'Listar Produtos',
+                        ],
+                        [
+                            'text' => 'Criar Produto',
+                            'url'  => 'admin/payments/products/create',
+                            'icon'    => 'fas fa-fw fa-chevron-right',
+                            'can'     => 'Criar Produtos',
+                        ],
+                    ]
+                ],
+            ]
+        ],
         /** Terms */
         [
             'text'        => 'Termos',
@@ -526,33 +553,6 @@ return [
             'url'         => 'admin/reports',
             'icon'        => 'fas fa-fw fa-file-download',
             'can'         => 'Visualizar Relatórios',
-        ],
-        [
-            'text'    => 'Pagamento',
-            'icon'    => 'fas fa-fw fa-money-bill-wave',
-            'can'     => 'Acessar Pagamento',
-            'submenu' => [
-                [
-                    'text' => 'Produtos',
-                    'url'  => '#',
-                    'icon'    => 'fas fa-fw fa-box',
-                    'can'     => 'Acessar Produtos',
-                    'submenu' => [
-                        [
-                            'text' => 'Listagem de Produtos',
-                            'url'  => 'admin/payments/products',
-                            'icon'    => 'fas fa-fw fa-chevron-right',
-                            'can'     => 'Listar Produtos',
-                        ],
-                        [
-                            'text' => 'Criar Produto',
-                            'url'  => 'admin/payments/products/create',
-                            'icon'    => 'fas fa-fw fa-chevron-right',
-                            'can'     => 'Criar Produtos',
-                        ],
-                    ]
-                ],
-            ]
         ],
         [
             'text'    => 'Configurações',
@@ -703,6 +703,20 @@ return [
                     'icon' => 'fas fa-fw fa-chevron-right',
                     'can'  => 'Criar Posts',
                 ]
+            ]
+        ],
+        [
+            'text'        => 'Produtos',
+            'url'         => '#',
+            'icon'        => 'fas fa-fw fa-box',
+            'can'         => 'Visualizar Produtos',
+            'submenu' => [
+                [
+                    'text' => 'Listagem de Produtos',
+                    'url'  => 'admin/products/show',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                    'can'  => 'Visualizar Produtos',
+                ],
             ]
         ],
         [

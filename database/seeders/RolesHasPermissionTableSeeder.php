@@ -705,6 +705,11 @@ class RolesHasPermissionTableSeeder extends Seeder
                 'permission_id' => 91,
                 'role_id' => 2,
             ],
+            /** Produtos */
+            [
+                'permission_id' => 92,
+                'role_id' => 4,
+            ],
         ]);
     }
 }

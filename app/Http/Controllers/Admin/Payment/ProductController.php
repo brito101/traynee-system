@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Admin\Payment;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProductRequest;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Stripe\Customer;
+use Stripe\Stripe;
 
 class ProductController extends Controller
 {
@@ -22,6 +25,29 @@ class ProductController extends Controller
         }
         $products = Product::all();
         return view('admin.payments.products.index', compact('products'));
+    }
+
+    public function show(Request $request)
+    {
+        if (!Auth::user()->hasPermissionTo('Visualizar Produtos')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        if (isset($request['reponse']) && $request['reponse'] == 'cancel') {
+            return redirect()
+                ->route('admin.productCheckout')
+                ->with('error', 'Pagamento cancelado!');
+        }
+
+        if (isset($request['reponse']) && $request['reponse'] == 'success') {
+            return redirect()
+                ->route('admin.productCheckout')
+                ->with('success', 'Pagamento Efetuado com sucesso!');
+        }
+
+        $trainees = User::role('Estagiário')->orderBy('name', 'desc')->get();
+        $products = Product::paginate(9);
+        return view('admin.products.index', compact('products', 'trainees'));
     }
 
     /**
@@ -144,5 +170,43 @@ class ProductController extends Controller
                 ->back()
                 ->with('error', 'Erro ao excluir!');
         }
+    }
+
+    public function productCheckout(Request $request)
+    {
+
+        if (!Auth::user()->hasPermissionTo('Visualizar Produtos')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $product = Product::where('id', $request['product'])->first();
+
+        if (empty($product->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $trainne = User::where('id', $request['trainne'])->first();
+
+        if (empty($trainne->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        if (!$trainne->hasRole('Estagiário')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $user = Auth::user();
+        if (is_null($user->stripe_id)) {
+            $stripeCustomer = $user->createAsStripeCustomer();
+        }
+
+        return $user->checkout($product->price_id, [
+            'success_url' => route('admin.productCheckout', [
+                'reponse' => 'success'
+            ]),
+            'cancel_url' => route('admin.productCheckout', [
+                'reponse' => 'cancel'
+            ]),
+        ]);
     }
 }

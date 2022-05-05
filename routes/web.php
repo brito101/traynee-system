@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\Payment\ClientController;
 use App\Http\Controllers\Admin\Payment\ProductController;
 use App\Http\Controllers\Admin\Payment\SubscriptionController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\ProfessionalController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\RequirimentController;
 use App\Http\Controllers\Admin\ScholarityController;
@@ -32,6 +33,7 @@ use App\Http\Controllers\Admin\UserNetworkController;
 use App\Http\Controllers\Admin\VacancyController;
 use App\Http\Controllers\Site\SiteController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -135,6 +137,9 @@ Route::group(['middleware' => ['auth']], function () {
         /** Salary Search */
         Route::get('/salary-list/destroy/{id}', [FeeController::class, 'destroy']);
         Route::resource('salary-list', FeeController::class);
+        /** Products */
+        Route::post('products-checkout', [ProductController::class, 'productCheckout'])->name('productCheckout');
+        Route::get('products-checkout', [ProductController::class, 'show']);
 
         /**University */
         /** Scholarities */
