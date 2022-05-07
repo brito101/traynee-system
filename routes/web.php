@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ACL\RoleController;
 use App\Http\Controllers\Admin\AddressController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AffiliationController;
+use App\Http\Controllers\Admin\AllocationController;
 use App\Http\Controllers\Admin\CandidateController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\CompatibilityController;
@@ -115,6 +116,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('compatibility', [CompatibilityController::class, 'index'])->name('compatibility.index');
         Route::get('report', [CompatibilityController::class, 'report'])->name('compatibility.report');
         Route::get('report-pdf', [CompatibilityController::class, 'reportPdf'])->name('compatibility.report.pdf');
+        /** Allocation */
+        Route::get('/allocations/destroy/{id}', [AllocationController::class, 'destroy']);
+        Route::resource('allocations', AllocationController::class);
 
         /**
          * Companies

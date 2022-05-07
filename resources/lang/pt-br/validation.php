@@ -233,13 +233,15 @@ return [
         'type' => 'tipo',
         'document' => 'documento',
         'company_id' => 'empresa',
-        'trainee' => 'estagiario',
+        'trainee' => 'estagiário',
         'salary' => 'salário',
         'benefits' => 'benefícios',
         'days' => 'prazo em dias',
         'trial_days' => 'tempo de teste',
         'amount' => 'valor',
         'payment_methods' => 'métodos de pagamento',
+        'init' => 'início',
+        'finish' => 'término'
     ],
 
 ];

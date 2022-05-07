@@ -468,6 +468,25 @@ return [
             ]
         ],
         [
+            'text'        => 'Estagiários x Empresas',
+            'url'         => '#',
+            'icon'        => 'fa fa-fw fa-handshake',
+            'can'         => 'Acessar Alocações',
+            'submenu' => [
+                [
+                    'text' => 'Vínculos',
+                    'url'  => 'admin/allocations',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                ],
+                [
+                    'text' => 'Cadastro de Vínculo',
+                    'url'  => 'admin/allocations/create',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                ]
+            ]
+        ],
+
+        [
             'text'    => 'Financeiro',
             'icon'    => 'fas fa-fw fa-money-bill-wave',
             'can'     => 'Acessar Pagamento',
