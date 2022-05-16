@@ -661,55 +661,55 @@ class RolesHasPermissionTableSeeder extends Seeder
                 'permission_id' => 86,
                 'role_id' => 1,
             ],
-            [
-                'permission_id' => 86,
-                'role_id' => 2,
-            ],
+            // [
+            //     'permission_id' => 86,
+            //     'role_id' => 2,
+            // ],
             [
                 'permission_id' => 87,
                 'role_id' => 1,
             ],
-            [
-                'permission_id' => 87,
-                'role_id' => 2,
-            ],
+            // [
+            //     'permission_id' => 87,
+            //     'role_id' => 2,
+            // ],
             [
                 'permission_id' => 88,
                 'role_id' => 1,
             ],
-            [
-                'permission_id' => 88,
-                'role_id' => 2,
-            ],
+            // [
+            //     'permission_id' => 88,
+            //     'role_id' => 2,
+            // ],
             [
                 'permission_id' => 89,
                 'role_id' => 1,
             ],
-            [
-                'permission_id' => 89,
-                'role_id' => 2,
-            ],
+            // [
+            //     'permission_id' => 89,
+            //     'role_id' => 2,
+            // ],
             [
                 'permission_id' => 90,
                 'role_id' => 1,
             ],
-            [
-                'permission_id' => 90,
-                'role_id' => 2,
-            ],
+            // [
+            //     'permission_id' => 90,
+            //     'role_id' => 2,
+            // ],
             [
                 'permission_id' => 91,
                 'role_id' => 1,
             ],
-            [
-                'permission_id' => 91,
-                'role_id' => 2,
-            ],
+            // [
+            //     'permission_id' => 91,
+            //     'role_id' => 2,
+            // ],
             /** Produtos */
-            [
-                'permission_id' => 92,
-                'role_id' => 4,
-            ],
+            // [
+            //     'permission_id' => 92,
+            //     'role_id' => 4,
+            // ],
             /** Alocações */
             [
                 'permission_id' => 93,

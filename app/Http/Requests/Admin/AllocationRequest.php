@@ -20,8 +20,8 @@ class AllocationRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'init' => Carbon::createFromFormat('d/m/Y', $this->reading_date)->format('Y-m-d'),
-            'finish' => Carbon::createFromFormat('d/m/Y', $this->reading_date_next)->format('Y-m-d')
+            'init' => Carbon::createFromFormat('d/m/Y', $this->init)->format('Y-m-d'),
+            'finish' => Carbon::createFromFormat('d/m/Y', $this->finish)->format('Y-m-d')
         ]);
     }
 

@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\AllocationRequest;
+use App\Models\Allocation;
+use App\Models\Company;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AllocationController extends Controller
 {
@@ -14,7 +19,12 @@ class AllocationController extends Controller
      */
     public function index()
     {
-        //
+        if (!Auth::user()->hasPermissionTo('Listar Alocações')) {
+            abort(403, 'Acesso não autorizado');
+        }
+        $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->pluck('id');
+        $allocations = Allocation::whereIn('company_id', $companies)->get();
+        return view('admin.allocations.index', compact('allocations'));
     }
 
     /**
@@ -24,7 +34,15 @@ class AllocationController extends Controller
      */
     public function create()
     {
-        //
+        if (!Auth::user()->hasPermissionTo('Criar Alocações')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $allocations = Allocation::all()->pluck('trainee');
+        $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
+        $trainees =  User::role('Estagiário')->whereNotIn('id', $allocations)->orderBy('created_at', 'desc')->get();
+
+        return view('admin.allocations.create', compact('companies', 'trainees'));
     }
 
     /**
@@ -33,20 +51,26 @@ class AllocationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AllocationRequest $request)
     {
-        //
-    }
+        if (!Auth::user()->hasPermissionTo('Criar Alocações')) {
+            abort(403, 'Acesso não autorizado');
+        }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $data = $request->all();
+        $data['editor'] = Auth::user()->id;
+        $allocation = Allocation::create($data);
+
+        if ($allocation->save()) {
+            return redirect()
+                ->route('admin.allocations.index')
+                ->with('success', 'Cadastro realizado!');
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', 'Erro ao cadastrar!');
+        }
     }
 
     /**
@@ -57,7 +81,16 @@ class AllocationController extends Controller
      */
     public function edit($id)
     {
-        //
+        if (!Auth::user()->hasPermissionTo('Editar Alocações')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
+        $allocation = Allocation::where('id', $id)->where('company_id', $companies->pluck('id'))->first();
+        if (empty($allocation->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
+        return view('admin.allocations.edit', compact('allocation', 'companies'));
     }
 
     /**
@@ -67,9 +100,32 @@ class AllocationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AllocationRequest $request, $id)
     {
-        //
+        if (!Auth::user()->hasPermissionTo('Editar Alocações')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $data = $request->all();
+        $data['editor'] = Auth::user()->id;
+
+        $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
+        $allocation = Allocation::where('id', $id)->where('company_id', $companies->pluck('id'))->first();
+
+        if (empty($allocation->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        if ($allocation->update($data)) {
+            return redirect()
+                ->route('admin.allocations.index')
+                ->with('success', 'Atualização realizada!');
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', 'Erro ao atualizar!');
+        }
     }
 
     /**
@@ -80,6 +136,25 @@ class AllocationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (!Auth::user()->hasPermissionTo('Excluir Alocações')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
+        $allocation = Allocation::where('id', $id)->where('company_id', $companies->pluck('id'))->first();
+
+        if (empty($allocation->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        if ($allocation->delete()) {
+            return redirect()
+                ->route('admin.allocations.index')
+                ->with('success', 'Exclusão realizada!');
+        } else {
+            return redirect()
+                ->back()
+                ->with('error', 'Erro ao excluir!');
+        }
     }
 }

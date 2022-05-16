@@ -468,18 +468,18 @@ return [
             ]
         ],
         [
-            'text'        => 'Estagiários x Empresas',
+            'text'        => 'Alocação de Vagas',
             'url'         => '#',
             'icon'        => 'fa fa-fw fa-handshake',
             'can'         => 'Acessar Alocações',
             'submenu' => [
                 [
-                    'text' => 'Vínculos',
+                    'text' => 'Alocações',
                     'url'  => 'admin/allocations',
                     'icon' => 'fas fa-fw fa-chevron-right',
                 ],
                 [
-                    'text' => 'Cadastro de Vínculo',
+                    'text' => 'Cadastro de Alocação',
                     'url'  => 'admin/allocations/create',
                     'icon' => 'fas fa-fw fa-chevron-right',
                 ]

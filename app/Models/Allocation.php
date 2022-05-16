@@ -20,4 +20,26 @@ class Allocation extends Model
         'init',
         'finish'
     ];
+
+    /** Accessors */
+    public function getInitAttribute($value)
+    {
+        return date("d/m/Y", strtotime($value));
+    }
+
+    public function getFinishAttribute($value)
+    {
+        return date("d/m/Y", strtotime($value));
+    }
+
+    /** Relationships */
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'trainee', 'id');
+    }
 }
