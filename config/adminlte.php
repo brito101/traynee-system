@@ -442,6 +442,27 @@ return [
                 ]
             ]
         ],
+        /** Universidades */
+        [
+            'text'        => 'Universidades',
+            'url'         => '#',
+            'icon'        => 'fas fa-fw fa-school',
+            'can'         => 'Acessar Empresas',
+            'submenu' => [
+                [
+                    'text' => 'Listagem de Universidades',
+                    'url'  => 'admin/educational-institutions',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                    'can'  => 'Listar Empresas',
+                ],
+                [
+                    'text' => 'Cadastro de Universidade',
+                    'url'  => 'admin/educational-institutions/create',
+                    'icon' => 'fas fa-fw fa-chevron-right',
+                    'can'  => 'Criar Empresas',
+                ]
+            ]
+        ],
         [
             'text'        => 'Estagiários',
             'url'         => '#',

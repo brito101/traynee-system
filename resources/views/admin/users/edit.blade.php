@@ -81,7 +81,7 @@
                                             <label for="vehicle">Veículo</label>
                                             <x-adminlte-select2 name="vehicle" required>
                                                 <option
-                                                    {{ old('vehicle') == 'Não possuo veículo'? 'selected': ($user->vehicle == 'Não possuo veículo'? 'selected': '') }}
+                                                    {{ old('vehicle') == 'Não possuo veículo' ? 'selected' : ($user->vehicle == 'Não possuo veículo' ? 'selected' : '') }}
                                                     value="Não possuo veículo">Não possuo veículo</option>
                                                 <option
                                                     {{ old('vehicle') == 'Possuo carro' ? 'selected' : ($user->vehicle == 'Possuo carro' ? 'selected' : '') }}
@@ -96,17 +96,17 @@
                                             <label for="team_work">Traaslho em Equipe</label>
                                             <x-adminlte-select2 name="team_work" required>
                                                 <option
-                                                    {{ old('team_work') == 'Sou líder de equipe'? 'selected': ($user->team_work == 'Sou líder de equipe'? 'selected': '') }}
+                                                    {{ old('team_work') == 'Sou líder de equipe' ? 'selected' : ($user->team_work == 'Sou líder de equipe' ? 'selected' : '') }}
                                                     value="Sou líder de equipe">Sou líder de equipe</option>
                                                 <option
-                                                    {{ old('team_work') == 'Trabalho muito bem em equipe'? 'selected': ($user->team_work == 'Trabalho muito bem em equipe'? 'selected': '') }}
+                                                    {{ old('team_work') == 'Trabalho muito bem em equipe' ? 'selected' : ($user->team_work == 'Trabalho muito bem em equipe' ? 'selected' : '') }}
                                                     value="Trabalho muito bem em equipe">Trabalho muito bem em equipe
                                                 </option>
                                                 <option
-                                                    {{ old('team_work') == 'Sou bom em uma equipe'? 'selected': ($user->team_work == 'Sou bom em uma equipe'? 'selected': '') }}
+                                                    {{ old('team_work') == 'Sou bom em uma equipe' ? 'selected' : ($user->team_work == 'Sou bom em uma equipe' ? 'selected' : '') }}
                                                     value="Sou bom em uma equipe">Sou bom em uma equipe</option>
                                                 <option
-                                                    {{ old('team_work') == 'Trabalho melhor sozinho'? 'selected': ($user->team_work == 'Trabalho melhor sozinho'? 'selected': '') }}
+                                                    {{ old('team_work') == 'Trabalho melhor sozinho' ? 'selected' : ($user->team_work == 'Trabalho melhor sozinho' ? 'selected' : '') }}
                                                     value="Trabalho melhor sozinho">Trabalho melhor sozinho</option>
                                                 <option
                                                     {{ old('team_work') == 'Indiferente' ? 'selected' : ($user->team_work == 'Indiferente' ? 'selected' : '') }}
@@ -145,7 +145,7 @@
                                                     <div class='col-12 align-self-center mt-3 mb-n3 d-flex px-0'>
                                                         <div
                                                             class=' embed-responsive
-                                                                                                                                                            embed-responsive-16by9'>
+                                                                                                                                                                embed-responsive-16by9'>
                                                             <iframe class="embed-responsive-item rounded"
                                                                 src="{{ Str::replace('https://www.youtube.com/watch?v=', 'https://www.youtube.com/embed/', $user->video) }}"
                                                                 title="YouTube video player" frameborder="0"
@@ -193,7 +193,7 @@
                                                     <option value="">Não Informado</option>
                                                     @foreach ($affiliations as $affiliation)
                                                         <option
-                                                            {{ old('affiliation_id') == $affiliation->id? 'selected': ($user->affiliation_id == $affiliation->id? 'selected': '') }}
+                                                            {{ old('affiliation_id') == $affiliation->id ? 'selected' : ($user->affiliation_id == $affiliation->id ? 'selected' : '') }}
                                                             value="{{ $affiliation->id }}">{{ $affiliation->alias_name }}
                                                         </option>
                                                     @endforeach
@@ -202,7 +202,7 @@
                                         @endcan
                                         @can('Atribuir Empresas')
                                             <div
-                                                class="col-12 col-md-6 form-group px-0 {{ Auth::user()->hasPermissionTo('Atribuir Perfis') ? 'pr-md-2' : 'pl-md-2' }}">
+                                                class="col-12 col-md-6 form-group px-0 {{ Auth::user()->hasPermissionTo('Atribuir Perfis') ? 'pl-md-2' : 'pr-md-2' }}">
                                                 <label for="company_id">Empresa</label>
                                                 <x-adminlte-select2 name="company_id">
                                                     <option value="">Não Informado</option>

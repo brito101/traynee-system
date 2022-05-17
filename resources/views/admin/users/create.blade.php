@@ -148,7 +148,7 @@
                                     @endcan
                                     @can('Atribuir Empresas')
                                         <div
-                                            class="col-12 col-md-6 form-group px-0 {{ Auth::user()->hasPermissionTo('Atribuir Perfis') ? 'pl-md-2' : 'pr-md-2' }}">
+                                            class="col-12 col-md-6 form-group px-0 {{ Auth::user()->hasPermissionTo('Atribuir Perfis') ? 'pr-md-2' : 'pl-md-2' }}">
                                             <label for="company_id">Empresa</label>
                                             <x-adminlte-select2 name="company_id">
                                                 <option value="">Não Informado</option>

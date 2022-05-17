@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\DocumentTrayneeController;
 use App\Http\Controllers\Admin\ExtraController;
 use App\Http\Controllers\Admin\FeeController;
 use App\Http\Controllers\Admin\GenreController;
+use App\Http\Controllers\Admin\InstitutionSchoolController;
 use App\Http\Controllers\Admin\Payment\ClientController;
 use App\Http\Controllers\Admin\Payment\ProductController;
 use App\Http\Controllers\Admin\Payment\SubscriptionController;
@@ -132,6 +133,20 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/company/edit/brand-images', [CompanyController::class, 'brandImagesStore'])->name('company.brand.store');
         Route::get('/companies/destroy/{id}', [CompanyController::class, 'destroy']);
         Route::resource('companies', CompanyController::class);
+
+        /**
+         * Educational Institution
+         * */
+        Route::get('/educational-institution/edit', [InstitutionSchoolController::class, 'edit'])->name('educational.institution.edit');
+        Route::get('/educational-institution/edit/social-network', [InstitutionSchoolController::class, 'socialNetwork'])->name('educational.institution.social');
+        Route::put('/educational-institution/edit/social-network', [InstitutionSchoolController::class, 'socialNetworkStore'])->name('educational.institution.social.store');
+        Route::get('/educational-institution/edit/resume', [InstitutionSchoolController::class, 'resume'])->name('educational.institution.resume');
+        Route::put('/educational-institution/edit/resume', [InstitutionSchoolController::class, 'resumeStore'])->name('educational.institution.resume.store');
+        Route::get('/educational-institution/edit/brand-images', [InstitutionSchoolController::class, 'brandImages'])->name('educational.institution.brand');
+        Route::put('/educational-institution/edit/brand-images', [InstitutionSchoolController::class, 'brandImagesStore'])->name('educational.institution.brand.store');
+        Route::get('/educational-institutions/destroy/{id}', [InstitutionSchoolController::class, 'destroy']);
+        Route::resource('educational-institutions', InstitutionSchoolController::class);
+
         /** Blog */
         Route::get('/posts/destroy/{id}', [PostController::class, 'destroy']);
         Route::resource('posts', PostController::class);

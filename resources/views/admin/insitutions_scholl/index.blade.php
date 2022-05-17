@@ -1,25 +1,25 @@
 @extends('adminlte::page')
 
-@section('title', '- Alocação de Vagas')
+@section('title', '- Universidades')
 @section('plugins.Datatables', true)
 @section('plugins.DatatablesPlugins', true)
 
 @section('content')
-    @if (auth()->user()->can('Editar Alocações') &&
-        auth()->user()->can('Excluir Alocações'))
+    @if (auth()->user()->can('Editar Empresas') &&
+        auth()->user()->can('Excluir Empresas'))
         @php
-            $heads = [['label' => 'ID', 'width' => 5], 'Estagiário', 'Universidade', 'Empresa', 'Início', 'Fim', ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
+            $heads = [['label' => 'ID', 'width' => 5], 'Nome', 'CNPJ', 'E-mail', ['label' => 'Telefone', 'width' => 20], ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
 
             $list = [];
 
-            foreach ($allocations as $allocation) {
-                $list[] = [$allocation->id, $allocation->user['name'] . ' (' . $allocation->user['email'] . ')', $allocation->getUniversity()->alias_name, $allocation->company['alias_name'], $allocation->init, $allocation->finish, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="allocations/' . $allocation->id . '/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="allocations/destroy/' . $allocation->id . '" onclick="return confirm(\'Confirma a exclusão desta alocação?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
+            foreach ($companies as $company) {
+                $list[] = [$company->id, $company->alias_name, $company->document_company, $company->email, $company->telephone, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="educational-institutions/' . $company->id . '/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="educational-institutions/destroy/' . $company->id . '" onclick="return confirm(\'Confirma a exclusão desta universidade?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
             }
 
             $config = [
                 'data' => $list,
                 'order' => [[0, 'asc']],
-                'columns' => [null, null, null, null, null, null, ['orderable' => false]],
+                'columns' => [null, null, null, null, null, ['orderable' => false]],
                 'language' => ['url' => asset('vendor/datatables/js/pt-BR.json')],
             ];
         @endphp
@@ -29,8 +29,8 @@
 
             $list = [];
 
-            foreach ($allocations as $allocation) {
-                $list[] = [$allocation->id, $allocation->company_id, $allocation->trainee, $allocation->init, $allocation->finish];
+            foreach ($companies as $company) {
+                $list[] = [$company->id, $company->alias_name, $company->document_company, $company->email, $company->telephone];
             }
 
             $config = [
@@ -46,12 +46,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1><i class="fa fa-fw fa-handshake"></i> Alocações</h1>
+                    <h1><i class="fa fa-fw fa-school"></i> Universidades</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Alocações</li>
+                        <li class="breadcrumb-item active">Universidades</li>
                     </ol>
                 </div>
             </div>
@@ -67,10 +67,10 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex flex-wrap justify-content-between col-12 align-content-center">
-                                <h3 class="card-title align-self-center">Alocações Cadastradas</h3>
-                                @can('Criar Alocações')
-                                    <a href="{{ route('admin.allocations.create') }}" title="Nova Alocação"
-                                        class="btn btn-success"><i class="fas fa-fw fa-plus"></i>Nova Alocação</a>
+                                <h3 class="card-title align-self-center">Universidades Cadastradas</h3>
+                                @can('Criar Empresas')
+                                    <a href="{{ route('admin.educational-institutions.create') }}" title="Nova Universidade"
+                                        class="btn btn-success"><i class="fas fa-fw fa-plus"></i>Nova Universidade</a>
                                 @endcan
                             </div>
                         </div>

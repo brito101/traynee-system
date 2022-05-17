@@ -15,6 +15,7 @@ class Allocation extends Model
     protected $fillable = [
         'affiliation_id',
         'company_id',
+        'university',
         'trainee',
         'editor',
         'init',
@@ -41,5 +42,12 @@ class Allocation extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'trainee', 'id');
+    }
+
+    /** Aux */
+    public function getUniversity()
+    {
+        $company = Company::where('id', $this->university)->first();
+        return $company;
     }
 }

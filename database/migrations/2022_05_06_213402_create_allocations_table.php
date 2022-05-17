@@ -25,6 +25,12 @@ class CreateAllocationsTable extends Migration
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->unsignedBigInteger('university');
+            $table->foreign('university')
+                ->references('id')
+                ->on('companies')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->unsignedBigInteger('trainee');
             $table->foreign('trainee')
                 ->references('id')

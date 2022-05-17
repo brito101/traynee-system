@@ -37,7 +37,23 @@
 
                         <form method="POST" action="{{ route('admin.allocations.store') }}">
                             @csrf
+
                             <div class="card-body">
+                                <div class="d-flex flex-wrap justify-content-between">
+
+                                    <div class="col-12 form-group px-0">
+                                        <label for="trainee">Estagiário</label>
+                                        <x-adminlte-select2 name="trainee">
+                                            @foreach ($trainees as $trainee)
+                                                <option {{ old('trainee') == $trainee->id ? 'selected' : '' }}
+                                                    value="{{ $trainee->id }}">{{ $trainee->name }} -
+                                                    ({{ $trainee->email }})
+                                                </option>
+                                            @endforeach
+                                        </x-adminlte-select2>
+                                    </div>
+                                </div>
+
                                 <div class="d-flex flex-wrap justify-content-between">
                                     <div class="col-12 col-md-6 form-group px-0 pr-md-2">
                                         <label for="company_id">Empresa</label>
@@ -49,16 +65,16 @@
                                         </x-adminlte-select2>
                                     </div>
                                     <div class="col-12 col-md-6 form-group px-0 pl-md-2">
-                                        <label for="trainee">Estagiário</label>
-                                        <x-adminlte-select2 name="trainee">
-                                            @foreach ($trainees as $trainee)
-                                                <option {{ old('trainee') == $trainee->id ? 'selected' : '' }}
-                                                    value="{{ $trainee->id }}">{{ $trainee->name }} -
-                                                    ({{ $trainee->email }})
+                                        <label for="university">Universidade</label>
+                                        <x-adminlte-select2 name="university">
+                                            @foreach ($institutions as $institution)
+                                                <option {{ old('university') == $institution->id ? 'selected' : '' }}
+                                                    value="{{ $institution->id }}">{{ $institution->alias_name }}
                                                 </option>
                                             @endforeach
                                         </x-adminlte-select2>
                                     </div>
+
                                 </div>
 
                                 <div class="d-flex flex-wrap justify-content-between">

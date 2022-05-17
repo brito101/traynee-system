@@ -2,7 +2,7 @@
 @section('plugins.select2', true)
 @section('plugins.BsCustomFileInput', true)
 
-@section('title', '- Cadastro de Empresa')
+@section('title', '- Cadastro de Universidade')
 
 @section('content')
 
@@ -10,12 +10,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1><i class="far fa-fw fa-building"></i> Nova Empresa</h1>
+                    <h1><i class="fa fa-fw fa-school"></i> Nova Universidade</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('admin.companies.index') }}">Empresas</a></li>
+                        <li class="breadcrumb-item"><a
+                                href="{{ route('admin.educational-institutions.index') }}">Universidades</a></li>
                         <li class="breadcrumb-item active">Nova Empresa</li>
                     </ol>
                 </div>
@@ -35,7 +36,8 @@
                             <h3 class="card-title">Dados Cadastrais da Empresa</h3>
                         </div>
 
-                        <form method="POST" action="{{ route('admin.companies.store') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('admin.educational-institutions.store') }}"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
 

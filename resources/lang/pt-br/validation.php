@@ -241,7 +241,8 @@ return [
         'amount' => 'valor',
         'payment_methods' => 'métodos de pagamento',
         'init' => 'início',
-        'finish' => 'término'
+        'finish' => 'término',
+        'university' => 'universidade'
     ],
 
 ];

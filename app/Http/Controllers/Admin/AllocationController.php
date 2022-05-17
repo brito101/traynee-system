@@ -39,10 +39,15 @@ class AllocationController extends Controller
         }
 
         $allocations = Allocation::all()->pluck('trainee');
-        $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
+        $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)
+            ->where('institution', 'Não')
+            ->get();
+        $institutions = Company::where('affiliation_id', Auth::user()->affiliation_id)
+            ->where('institution', 'Sim')
+            ->get();
         $trainees =  User::role('Estagiário')->whereNotIn('id', $allocations)->orderBy('created_at', 'desc')->get();
 
-        return view('admin.allocations.create', compact('companies', 'trainees'));
+        return view('admin.allocations.create', compact('companies', 'trainees', 'institutions'));
     }
 
     /**
@@ -85,12 +90,17 @@ class AllocationController extends Controller
             abort(403, 'Acesso não autorizado');
         }
 
-        $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
+        $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)
+            ->where('institution', 'Não')
+            ->get();
+        $institutions = Company::where('affiliation_id', Auth::user()->affiliation_id)
+            ->where('institution', 'Sim')
+            ->get();
         $allocation = Allocation::where('id', $id)->where('company_id', $companies->pluck('id'))->first();
         if (empty($allocation->id)) {
             abort(403, 'Acesso não autorizado');
         }
-        return view('admin.allocations.edit', compact('allocation', 'companies'));
+        return view('admin.allocations.edit', compact('allocation', 'companies', 'institutions'));
     }
 
     /**
@@ -140,7 +150,9 @@ class AllocationController extends Controller
             abort(403, 'Acesso não autorizado');
         }
 
-        $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
+        $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)
+            ->where('institution', 'Não')
+            ->get();
         $allocation = Allocation::where('id', $id)->where('company_id', $companies->pluck('id'))->first();
 
         if (empty($allocation->id)) {

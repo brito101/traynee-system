@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
-class CompanyController extends Controller
+class InstitutionSchoolController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,15 +25,15 @@ class CompanyController extends Controller
             abort(403, 'Acesso não autorizado');
         }
 
-        $companies = Company::where('institution', 'Não')->get();
+        $companies = Company::where('institution', 'Sim')->get();
 
         if (Auth::user()->hasRole('Franquiado')) {
             $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)
-                ->where('institution', 'Não')
+                ->where('institution', 'Sim')
                 ->get();
         }
 
-        return view('admin.companies.index', compact('companies'));
+        return view('admin.insitutions_scholl.index', compact('companies'));
     }
 
     /**
@@ -49,7 +49,7 @@ class CompanyController extends Controller
 
         $affiliates = Affiliation::all();
 
-        return view('admin.companies.create', compact('affiliates'));
+        return view('admin.insitutions_scholl.create', compact('affiliates'));
     }
 
     /**
@@ -65,7 +65,7 @@ class CompanyController extends Controller
         }
         $data = $request->all();
         $data['user_id'] = auth()->user()->id;
-        $data['institution'] = 'Não';
+        $data['institution'] = 'Sim';
 
         if (Auth::user()->hasRole('Franquiado')) {
             $data['affiliation_id'] = auth()->user()->affiliation_id;
@@ -90,7 +90,7 @@ class CompanyController extends Controller
 
         if ($company->save()) {
             return redirect()
-                ->route('admin.companies.index')
+                ->route('admin.educational-institutions.index')
                 ->with('success', 'Cadastro realizado!');
         } else {
             return redirect()
@@ -120,12 +120,12 @@ class CompanyController extends Controller
             $id = Auth::user()->company_id;
         }
 
-        $company = Company::where('id', $id)->where('institution', 'Não')->first();
+        $company = Company::where('id', $id)->where('institution', 'Sim')->first();
 
         if (Auth::user()->hasRole('Franquiado')) {
             $company = Company::where('id', $id)
                 ->where('affiliation_id', Auth::user()->affiliation_id)
-                ->where('institution', 'Não')
+                ->where('institution', 'Sim')
                 ->first();
         }
 
@@ -134,7 +134,7 @@ class CompanyController extends Controller
         if (empty($company->id)) {
             abort(403, 'Acesso não autorizado');
         }
-        return view('admin.companies.edit', compact('company', 'affiliates'));
+        return view('admin.insitutions_scholl.edit', compact('company', 'affiliates'));
     }
 
     /**
@@ -158,14 +158,14 @@ class CompanyController extends Controller
 
         if (Auth::user()->hasPermissionTo('Editar Empresa')) {
             $company = Company::where('id', Auth::user()->company_id)
-                ->where('institution', 'Não')
+                ->where('institution', 'Sim')
                 ->first();
         }
 
         if (Auth::user()->hasRole('Franquiado')) {
             $company = Company::where('id', $id)
                 ->where('affiliation_id', Auth::user()->affiliation_id)
-                ->where('institution', 'Não')
+                ->where('institution', 'Sim')
                 ->first();
             $data['affiliation_id'] = auth()->user()->affiliation_id;
         }
@@ -186,7 +186,7 @@ class CompanyController extends Controller
             $nameFile = "{$name}.{$extenstion}";
 
             $data['logo'] = $nameFile;
-            $data['institution'] = 'Não';
+            $data['institution'] = 'Sim';
 
 
             $upload = $request->logo->storeAs('companies', $nameFile);
@@ -202,11 +202,11 @@ class CompanyController extends Controller
         if ($company->update($data)) {
             if (Auth::user()->hasPermissionTo('Editar Empresa')) {
                 return redirect()
-                    ->route('admin.company.edit')
+                    ->route('admin.educational-institutions.edit')
                     ->with('success', 'Atualização realizada!');
             } else {
                 return redirect()
-                    ->route('admin.companies.index')
+                    ->route('admin.educational-institutions.index')
                     ->with('success', 'Atualização realizada!');
             }
         } else {
@@ -227,7 +227,7 @@ class CompanyController extends Controller
         if (empty($company->id)) {
             abort(403, 'Acesso não autorizado');
         }
-        return view('admin.companies.social', compact('company'));
+        return view('admin.insitutions_scholl.social', compact('company'));
     }
 
     public function socialNetworkStore(CompanyBrandRequest $request)
@@ -245,7 +245,7 @@ class CompanyController extends Controller
 
         if ($company->update($data)) {
             return redirect()
-                ->route('admin.company.social')
+                ->route('admin.educational-institutions.social')
                 ->with('success', 'Atualização realizada!');
         } else {
             return redirect()
@@ -262,12 +262,12 @@ class CompanyController extends Controller
         }
 
         $company = Company::where('id', Auth::user()->company_id)
-            ->where('institution', 'Não')
+            ->where('institution', 'Sim')
             ->first();
         if (empty($company->id)) {
             abort(403, 'Acesso não autorizado');
         }
-        return view('admin.companies.resume', compact('company'));
+        return view('admin.insitutions_scholl.resume', compact('company'));
     }
 
 
@@ -280,7 +280,7 @@ class CompanyController extends Controller
         }
 
         $company = Company::where('id', Auth::user()->company_id)
-            ->where('institution', 'Não')
+            ->where('institution', 'Sim')
             ->first();
         if (empty($company->id)) {
             abort(403, 'Acesso não autorizado');
@@ -288,7 +288,7 @@ class CompanyController extends Controller
 
         if ($company->update($data)) {
             return redirect()
-                ->route('admin.company.resume')
+                ->route('admin.educational-institutions.resume')
                 ->with('success', 'Edição realizada!');
         } else {
             return redirect()
@@ -305,12 +305,12 @@ class CompanyController extends Controller
         }
 
         $company = Company::where('id', Auth::user()->company_id)
-            ->where('institution', 'Não')
+            ->where('institution', 'Sim')
             ->first();
         if (empty($company->id)) {
             abort(403, 'Acesso não autorizado');
         }
-        return view('admin.companies.brand', compact('company'));
+        return view('admin.insitutions_scholl.brand', compact('company'));
     }
 
     public function brandImagesStore(CompanyBrandRequest $request)
@@ -322,7 +322,7 @@ class CompanyController extends Controller
         }
 
         $company = Company::where('id', Auth::user()->company_id)
-            ->where('institution', 'Não')
+            ->where('institution', 'Sim')
             ->first();
         if (empty($company->id)) {
             abort(403, 'Acesso não autorizado');
@@ -402,7 +402,7 @@ class CompanyController extends Controller
 
         if ($company->update($data)) {
             return redirect()
-                ->route('admin.company.brand')
+                ->route('admin.educational-institutions.brand')
                 ->with('success', 'Edição realizada!');
         } else {
             return redirect()
@@ -424,13 +424,13 @@ class CompanyController extends Controller
             abort(403, 'Acesso não autorizado');
         }
         $company = Company::where('id', $id)
-            ->where('institution', 'Não')
+            ->where('institution', 'Sim')
             ->first();
 
         if (Auth::user()->hasRole('Franquiado')) {
             $company = Company::where('id', $id)
                 ->where('affiliation_id', Auth::user()->affiliation_id)
-                ->where('institution', 'Não')
+                ->where('institution', 'Sim')
                 ->first();
         }
 
@@ -468,7 +468,7 @@ class CompanyController extends Controller
             }
 
             return redirect()
-                ->route('admin.companies.index')
+                ->route('admin.educational-institutions.index')
                 ->with('success', 'Exclusão realizada!');
         } else {
             return redirect()

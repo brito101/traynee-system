@@ -34,6 +34,7 @@ class AllocationRequest extends FormRequest
     {
         return [
             'company_id' => 'required|min:1',
+            'university' => 'required|min:1',
             'trainee' => 'required|min:1',
             'init' => 'required|date_format:Y-m-d',
             'finish' => 'nullable|date_format:Y-m-d',

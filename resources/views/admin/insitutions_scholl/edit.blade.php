@@ -3,9 +3,9 @@
 @section('plugins.BsCustomFileInput', true)
 
 @can('Editar Empresas')
-    @section('title', '- Editar Empresa')
+    @section('title', '- Editar Universidade')
 @else
-@section('title', '- Dados da Empresa')
+@section('title', '- Dados da Universidade')
 @endcan
 
 @section('content')
@@ -14,20 +14,23 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                @can('Editar Empresas')
-                    <h1><i class="far fa-fw fa-building"></i> Editar Empresa</h1>
-                @else
-                    <h1><i class="far fa-fw fa-building"></i> Dados da Empresa</h1>
-                @endcan
+                <h1><i class="fa fa-fw fa-school"></i>
+                    @can('Editar Empresas')
+                        Editar Universidade
+                    @else
+                        Dados da Universidade
+                    @endcan
+                </h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
                     @can('Editar Empresas')
-                        <li class="breadcrumb-item"><a href="{{ route('admin.companies.index') }}">Empresas</a></li>
-                        <li class="breadcrumb-item active">Editar Empresa</li>
+                        <li class="breadcrumb-item"><a
+                                href="{{ route('admin.educational-institutions.index') }}">Universidades</a></li>
+                        <li class="breadcrumb-item active">Editar Universidade</li>
                     @else
-                        <li class="breadcrumb-item active">Dados da Empresa</li>
+                        <li class="breadcrumb-item active">Dados da Universidade</li>
                     @endcan
                 </ol>
             </div>
@@ -47,7 +50,8 @@
                         <h3 class="card-title">Dados Cadastrais da Empresa</h3>
                     </div>
 
-                    <form method="POST" action="{{ route('admin.companies.update', ['company' => $company->id]) }}"
+                    <form method="POST"
+                        action="{{ route('admin.educational-institutions.update', ['educational_institution' => $company->id]) }}"
                         enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
