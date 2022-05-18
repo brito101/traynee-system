@@ -21,17 +21,8 @@ mix.js("resources/js/app.js", "public/js")
     .scripts(["resources/js/phone.js"], "public/js/phone.js")
     .scripts(["resources/js/payment.js"], "public/js/payment.js")
     /** Web */
-    .copy("resources/views/site/assets/img", "public/site/img")
-    .sass("resources/views/site/assets/sass/style.scss", "public/site/css")
+
     .options({
         processCssUrls: false,
     })
-    .scripts(
-        ["resources/views/site/assets/js/plugins/simple-anime.js"],
-        "public/site/js/plugins/simple-anime.js"
-    )
-    .scripts(
-        ["resources/views/site/assets/js/script.js"],
-        "public/site/js/script.js"
-    )
     .sourceMaps();

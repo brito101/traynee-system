@@ -8,12 +8,8 @@
     <title>{{ $head->title ?? env('APP_NAME') }}</title>
     <meta name="description" content="{{ $head->description }}">
     <link rel="icon" href="{{ asset('img/favicon.svg') }}" type="image/svg+xml">
-    <link rel="preload" href="{{ asset('site/css/style.css') }}" as="style">
-    <link rel="stylesheet" href="{{ asset('site/css/style.css') }}">
-
-    <script>
-        document.documentElement.classList.add('js');
-    </script>
+    <link rel="preload" href="{{ asset('css/app.css') }}" as="style">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,60 +19,64 @@
 </head>
 
 <body>
-    <header class="header-bg">
-        <div class="header container font-1-xl color-0">
-            <a href="{{ route('home') }}">
-                {{ env('APP_NAME') }}
-            </a>
-            <nav aria-label="primary">
-                <ul class="header-menu font-1-m color-0">
-                    <li><a href="{{ route('vacancies') }}">Vagas</a></li>
-                    <li><a href="{{ route('admin.home') }}">Login</a></li>
-                </ul>
-            </nav>
+    <div class="row col-12">
+        <div class="container">
+            <header>
+                <nav class="navbar navbar-marketing navbar-expand-lg bg-white navbar-light">
+                    <div class="container">
+                        <a class="navbar-brand text-primary" href="{{ route('home') }} "><img
+                                src="{{ asset('img/favicon.svg') }}"></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+                        <div class="collapse navbar-collapse d-flex flex-wrap justify-content-between"
+                            id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-auto me-lg-5">
+                                <li class="nav-item"><a class="nav-link"
+                                        href="https://evoestagios.com.br/">Home</a></li>
+                                <!-- <li class="nav-item"><a class="nav-link" href="o-que-fazemos">O que Fazemos?</a></li> -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="https://evoestagios.com.br/o-que-fazemos"
+                                        id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        O que fazemos?
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item"
+                                            href="https://evoestagios.com.br/cadastro-estudantes">Estudantes</a>
+                                        <a class="dropdown-item"
+                                            href="https://evoestagios.com.br/cadastro-empresa">Empresas</a>
+                                    </div>
+                                </li>
+
+                                <li class="nav-item"><a class="nav-link"
+                                        href="https://evoestagios.com.br/vagas">Vagas</a></li>
+                                <li class="nav-item"><a class="nav-link"
+                                        href="https://evoestagios.com.br/unidades">Unidades</a></li>
+                                <li class="nav-item"><a class="nav-link"
+                                        href="https://evoestagios.com.br/blog">Blog</a></li>
+
+
+                            </ul>
+                            <div>
+                                <a class="btn-primary btn rounded-pill px-2 ms-lg-2 btn-franqueado"
+                                    href="https://evoestagios.com.br/seja-um-franqueado">Seja um Franqueado</a>
+                                <a class="btn-primary btn rounded-pill px-2 ms-lg-2 btn-aluno"
+                                    href="https://areafranqueado.evoestagios.com.br/" target="_blank">Área do
+                                    Franqueado</a>
+                                <a class="btn-primary btn rounded-pill px-2 ms-lg-2 btn-estudante"
+                                    href="https://evoestagios.com.br/cadastro_de_curriculo/area-estagiario/autenticacao_usuarios.php"
+                                    target="_blank">Área do Estudante</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </header>
         </div>
-    </header>
+    </div>
 
     @yield('content')
 
-    <footer class="footer-bg">
-        <div class="footer container">
-            <span class="font-1-xl color-0">{{ env('APP_NAME') }}</span>
-            <div class="footer-contact">
-                <h3 class="font-2-l-b color-0">Contato</h3>
-                <ul class="font-2-m color-3">
-                    <li><a href="tel:+5521992247968">+55 21 9922479-68-9999</a></li>
-                    <li><a href="mailto:contato@trayneesystem.com.br">contato@trayneesystem.com.br</a></li>
-                    <li>Rio de Janeiro - RJ</li>
-                </ul>
-                <div class="footer-network">
-                    <a href="#">
-                        <img src="{{ asset('site/img/redes/instagram.svg') }}" width="32" height="32"
-                            alt="Instagram">
-                    </a>
-                    <a href="#">
-                        <img src="{{ asset('site/img/redes/facebook.svg') }}" width="32" height="32" alt="Facebook">
-                    </a>
-                    <a href="#">
-                        <img src="{{ asset('site/img/redes/youtube.svg') }}" width="32" height="32" alt="Youtube">
-                    </a>
-                </div>
-            </div>
-            <div class="footer-informacoes">
-                <h3 class="font-2-l-b color-0">Informações</h3>
-                <nav>
-                    <ul class="font-1-m color-3">
-                        <li><a href="{{ route('admin.home') }}">Login</a></li>
-                        <li><a href="{{ route('vacancies') }}">Vagas</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <p class="footer-copy font-2-m color-0">{{ env('APP_NAME') }} © Todos direitos reservados.</p>
-        </div>
-    </footer>
-
-    <script src="{{ asset('site/js/plugins/simple-anime.js') }}"></script>
-    <script src="{{ asset('site/js/script.js') }}"></script>
 </body>
 
 </html>
