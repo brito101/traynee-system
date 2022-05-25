@@ -5,3 +5,19 @@ $body-bg: #f8fafc;
 $font-family-sans-serif: "Nunito", sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
+
+//Master
+.app-btn-header-width {
+    width: 150px;
+}
+//Home
+.app-text-shadow {
+    text-shadow: 3px 5px 2px #474747;
+}
+
+.app-banner-img {
+    object-fit: cover;
+    max-height: 350px;
+    opacity: 0.75;
+    filter: brightness(33%);
+}
