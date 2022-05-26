@@ -14,9 +14,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,900&family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
 </head>
 
-<body class="overflow-hidden">
+<body>
     <h1 class="d-none">{{ env('APP_NAME') }}</h1>
     <div class="row">
         <header class="col-12">

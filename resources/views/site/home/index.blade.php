@@ -60,7 +60,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <section class="bg-white py-5">
+                <section class="bg-white pt-5">
                     <h2 class="text-uppercase text-center fw-bold">O que faz a {{ env('APP_NAME') }}</h2>
                     <article class="container py-3 text-muted">
                         <h3 class="d-none">Descrição</h3>
@@ -91,13 +91,130 @@
                             tendo
                             assertividade na entrega dos candidatos às vagas.</p>
                     </article>
+                </section>
+
+                <section class="container py-5 px-0">
                     <div class="d-flex flex-wrap justify-content-center container">
-                        <div class="card col-4"></div>
-                        <div class="card col-4"></div>
-                        <div class="card col-4"></div>
+                        <div class="col-12 col-lg-4 pe-lg-2 text-center">
+                            <div class="card shadow-lg">
+                                <div class="card-header bg-primary d-flex">
+                                    <i class="fa fa-bullseye fa-4x text-white"></i>
+                                    <h3 class="text-white mt-3 ms-3">Missão</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p>Proporcionar ao jovem a oportunidade de iniciar a carreira profissional.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4 my-4 my-lg-0 px-lg-2 text-center">
+                            <div class="card shadow-lg">
+                                <div class="card-header bg-primary d-flex">
+                                    <i class="fa fa-binoculars fa-4x text-white"></i>
+                                    <h3 class="text-white mt-3 ms-3">Visão</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p>Ser referência no mercado como uma empresa que integra e desenvolve os jovens para o
+                                        mercado de trabalho.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4 ps-lg-2 text-center">
+                            <div class="card shadow-lg">
+                                <div class="card-header bg-primary d-flex">
+                                    <i class="fa fa-rocket fa-4x text-white"></i>
+                                    <h3 class="text-white mt-3 ms-3">Valores</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p>Ética, Integração, Inovação, Assertividade e Agilidade.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
             </div>
         </div>
+    </div>
+
+    <div class="bg-dark row px-0 py-5">
+        <section>
+            <h2 class="d-none">Detalhes</h2>
+            <div class="container d-flex flex-wrap mb-lg-3">
+                <div class="col-12 col-lg-4 my-4 my-lg-0 px-lg-2 text-center">
+                    <div class="card shadow-lg border-0">
+                        <div class="card-header bg-danger d-flex">
+                            <i class="fa fa-chart-line fa-4x text-white"></i>
+                            <h3 class="text-white mt-3 ms-3">Lucratividade</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>Alta Lucratividade</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-4 my-4 my-lg-0 px-lg-2 text-center">
+                    <div class="card shadow-lg border-0">
+                        <div class="card-header bg-danger d-flex">
+                            <i class="fa fa-compress-arrows-alt fa-4x text-white"></i>
+                            <h3 class="text-white mt-3 ms-3">Concorrência</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>Segmento com pouca concorrência e os que atendem são carentes em serviço de inovação</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-4 my-4 my-lg-0 px-lg-2 text-center">
+                    <div class="card shadow-lg border-0">
+                        <div class="card-header bg-danger d-flex">
+                            <i class="fa fa-money-bill fa-4x text-white"></i>
+                            <h3 class="text-white mt-3 ms-3">Investimento</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>Baixo investimento - Rápido retorno</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container d-flex flex-wrap">
+
+                <div class="col-12 col-lg-4 my-4 my-lg-0 px-lg-2 text-center">
+                    <div class="card shadow-lg border-0">
+                        <div class="card-header bg-danger d-flex">
+                            <i class="fa fa-spinner fa-4x text-white"></i>
+                            <h3 class="text-white mt-3 ms-3">Recorrência</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>Contrato de estágio tem durabilidade de dois anos</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-4 my-4 my-lg-0 px-lg-2 text-center">
+                    <div class="card shadow-lg border-0">
+                        <div class="card-header bg-danger d-flex">
+                            <i class="fa fa-handshake fa-4x text-white"></i>
+                            <h3 class="text-white mt-3 ms-3">Clientes</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>Nossos clientes são empresas com riscos baixíssimos de inadimplência</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-4 my-4 my-lg-0 px-lg-2 text-center">
+                    <div class="card shadow-lg border-0">
+                        <div class="card-header bg-danger d-flex">
+                            <i class="fa fa-arrow-up fa-4x text-white"></i>
+                            <h3 class="text-white mt-3 ms-3">Mercado</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>Mercado em crescente expansãp</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
     </div>
 @endsection
