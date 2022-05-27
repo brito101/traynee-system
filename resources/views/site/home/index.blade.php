@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <section class="bg-white pt-5">
+    <section class="bg-white pt-5 px-4 px-md-0">
         <h2 class="text-uppercase text-center fw-bold">O que faz a {{ env('APP_NAME') }}</h2>
         <article class="container py-3 text-muted">
             <h3 class="d-none">Descrição</h3>
@@ -61,7 +61,7 @@
         </article>
     </section>
 
-    <section class="container py-5">
+    <section class="container py-5 px-4 px-md-0">
         <div class="d-flex flex-wrap justify-content-center container">
             <div class="col-12 col-lg-4 pe-lg-2 text-center">
                 <div class="card shadow-lg">
@@ -102,7 +102,7 @@
 
     <section class="bg-dark py-5">
         <h2 class="text-center py-3 h1 text-white">Vagas</h2>
-        <div class="container d-flex flex-wrap mb-lg-3 justify-content-center">
+        <div class="container d-flex flex-wrap mb-lg-3 justify-content-center px-4 px-md-0">
 
             @foreach ($vacancies as $vacancy)
                 <div class="col-12 col-lg-4 my-4 my-lg-0 p-lg-2 text-center">
@@ -127,7 +127,7 @@
     <section class="bg-light py-5">
         <h2 class="d-none">Vantagens</h2>
 
-        <div class="container d-flex flex-wrap mb-lg-3">
+        <div class="container d-flex flex-wrap mb-lg-3 px-4 px-md-0">
             <div class="col-12 col-lg-4 my-4 my-lg-0 px-lg-2 text-center">
                 <div class="card shadow-lg border-0">
                     <div class="card-header bg-success d-flex">
