@@ -65,7 +65,7 @@
                                             :config="$config" multiple class="border border-1 h-100">
                                             @foreach ($courses as $course)
                                                 <option data-icon="text-info"
-                                                    {{ str_contains(old('courses'), $course->name) == true? 'selected': (str_contains($vacancy->courses, $course->name) == true? 'selected': '') }}>
+                                                    {{ str_contains(old('courses'), $course->name) == true ? 'selected' : (str_contains($vacancy->courses, $course->name) == true ? 'selected' : '') }}>
                                                     {{ $course->name }}
                                                 </option>
                                             @endforeach
@@ -79,7 +79,7 @@
                                         <x-adminlte-select2 name="scholarity_id">
                                             @foreach ($scholarities as $scholarity)
                                                 <option
-                                                    {{ old('scholarity_id') == $scholarity->id? 'selected': ($vacancy->scholarity_id == $scholarity->id? 'selected': '') }}
+                                                    {{ old('scholarity_id') == $scholarity->id ? 'selected' : ($vacancy->scholarity_id == $scholarity->id ? 'selected' : '') }}
                                                     value="{{ $scholarity->id }}">{{ $scholarity->name }}
                                                 </option>
                                             @endforeach
@@ -178,7 +178,7 @@
 
                                         @if ($vacancy->brand_facebook != null)
                                             <div
-                                                class='col-12 col-md-3 align-self-center mt-3 d-flex justify-content-center justify-content-md-end px-0'>
+                                                class='col-12 col-md-3 align-self-center mt-3 d-flex  justify-content-center justify-content-md-end px-0'>
                                                 <img src="{{ url('storage/vacancies/' . $vacancy->brand_facebook) }}"
                                                     alt="Imagem para o Facebook" style="max-width: 80%;"
                                                     class="img-thumbnail d-block">
