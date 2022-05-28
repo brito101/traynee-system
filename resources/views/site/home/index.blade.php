@@ -104,7 +104,7 @@
         <h2 class="text-center py-3 h1 text-white">Vagas</h2>
         <div class="container d-flex flex-wrap mb-lg-3 justify-content-center px-4 px-md-0">
 
-            @foreach ($vacancies as $vacancy)
+            @forelse ($vacancies as $vacancy)
                 <div class="col-12 col-lg-4 my-4 my-lg-0 p-lg-2 text-center">
                     <div class="card shadow-lg border-0">
                         <img class="card-img-top"
@@ -119,7 +119,18 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <div class="col-12 col-lg-4 my-4 my-lg-0 p-lg-2 text-center">
+                    <div class="card shadow-lg border-0">
+                        <img class="card-img-top" src="{{ asset('img/hanshake-1400x700.jpg') }}" alt="Vagas">
+                        <div class="card-body">
+                            <h5 class="card-title">Em breve!</h5>
+                            <p class="card-text" style="height: 50px;">Estamos preparando as melhores vagas para você!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            @endforelse
 
         </div>
     </section>
@@ -130,9 +141,9 @@
         <div class="container d-flex flex-wrap mb-lg-3 px-4 px-md-0">
             <div class="col-12 col-lg-4 my-4 my-lg-0 px-lg-2 text-center">
                 <div class="card shadow-lg border-0">
-                    <div class="card-header bg-success d-flex">
-                        <i class="fa fa-chart-line fa-4x text-white"></i>
-                        <h3 class="text-white mt-3 ms-3">Lucratividade</h3>
+                    <div class="card-header bg-warning d-flex">
+                        <i class="fa fa-chart-line fa-4x"></i>
+                        <h3 class="mt-3 ms-3">Lucratividade</h3>
                     </div>
                     <div class="card-body">
                         <p>Alta Lucratividade</p>
@@ -142,9 +153,9 @@
 
             <div class="col-12 col-lg-4 my-4 my-lg-0 px-lg-2 text-center">
                 <div class="card shadow-lg border-0">
-                    <div class="card-header bg-success d-flex">
-                        <i class="fa fa-compress-arrows-alt fa-4x text-white"></i>
-                        <h3 class="text-white mt-3 ms-3">Concorrência</h3>
+                    <div class="card-header bg-warning d-flex">
+                        <i class="fa fa-compress-arrows-alt fa-4x"></i>
+                        <h3 class="mt-3 ms-3">Concorrência</h3>
                     </div>
                     <div class="card-body">
                         <p>Segmento com pouca concorrência e os que atendem são carentes em serviço de inovação</p>
@@ -154,9 +165,9 @@
 
             <div class="col-12 col-lg-4 my-4 my-lg-0 px-lg-2 text-center">
                 <div class="card shadow-lg border-0">
-                    <div class="card-header bg-success d-flex">
-                        <i class="fa fa-money-bill fa-4x text-white"></i>
-                        <h3 class="text-white mt-3 ms-3">Investimento</h3>
+                    <div class="card-header bg-warning d-flex">
+                        <i class="fa fa-money-bill fa-4x"></i>
+                        <h3 class="mt-3 ms-3">Investimento</h3>
                     </div>
                     <div class="card-body">
                         <p>Baixo investimento - Rápido retorno</p>
@@ -169,9 +180,9 @@
 
             <div class="col-12 col-lg-4 my-4 my-lg-0 px-lg-2 text-center">
                 <div class="card shadow-lg border-0">
-                    <div class="card-header bg-success d-flex">
-                        <i class="fa fa-spinner fa-4x text-white"></i>
-                        <h3 class="text-white mt-3 ms-3">Recorrência</h3>
+                    <div class="card-header bg-warning d-flex">
+                        <i class="fa fa-spinner fa-4x"></i>
+                        <h3 class="mt-3 ms-3">Recorrência</h3>
                     </div>
                     <div class="card-body">
                         <p>Contrato de estágio tem durabilidade de dois anos</p>
@@ -180,10 +191,10 @@
             </div>
 
             <div class="col-12 col-lg-4 my-4 my-lg-0 px-lg-2 text-center">
-                <div class="card shadow-lg success-0">
-                    <div class="card-header bg-success d-flex">
-                        <i class="fa fa-handshake fa-4x text-white"></i>
-                        <h3 class="text-white mt-3 ms-3">Clientes</h3>
+                <div class="card shadow-lg border-0">
+                    <div class="card-header bg-warning d-flex">
+                        <i class="fa fa-handshake fa-4x"></i>
+                        <h3 class="mt-3 ms-3">Clientes</h3>
                     </div>
                     <div class="card-body">
                         <p>Nossos clientes são empresas com riscos baixíssimos de inadimplência</p>
@@ -193,9 +204,9 @@
 
             <div class="col-12 col-lg-4 my-4 my-lg-0 px-lg-2 text-center">
                 <div class="card shadow-lg border-0">
-                    <div class="card-header bg-success d-flex">
-                        <i class="fa fa-arrow-up fa-4x text-white"></i>
-                        <h3 class="text-white mt-3 ms-3">Mercado</h3>
+                    <div class="card-header bg-warning d-flex">
+                        <i class="fa fa-arrow-up fa-4x"></i>
+                        <h3 class="mt-3 ms-3">Mercado</h3>
                     </div>
                     <div class="card-body">
                         <p>Mercado em crescente expansãp</p>
@@ -203,6 +214,41 @@
                 </div>
             </div>
 
+        </div>
+    </section>
+
+    <section class="bg-primary py-5">
+        <h2 class="text-center py-3 h1 text-white">Blog</h2>
+        <div class="container d-flex flex-wrap mb-lg-3 justify-content-center px-4 px-md-0">
+
+            @forelse ($posts as $post)
+                <div class="col-12 col-lg-4 my-4 my-lg-0 p-lg-2 text-center">
+                    <div class="card shadow-lg border-0">
+                        <img class="card-img-top"
+                            src="{{ $post->brand_facebook ? url('storage/posts/' . $post->brand_facebook) : asset('img/post-1152x768.jpg') }}"
+                            alt="{{ $post->title }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $post->title }}</h5>
+                            <p class="card-text" style="height: 50px;">
+                                {{ Str::limit($post->headline, 80) }}
+                            </p>
+                            <a href="#" class="btn btn-danger">Veja
+                                mais</a>
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <div class="col-12 col-lg-4 my-4 my-lg-0 p-lg-2 text-center">
+                    <div class="card shadow-lg border-0">
+                        <img class="card-img-top" src="{{ asset('img/hanshake-1400x700.jpg') }}" alt="Vagas">
+                        <div class="card-body">
+                            <h5 class="card-title">Em breve!</h5>
+                            <p class="card-text" style="height: 50px;">Estamos excelentes postagens para você!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            @endforelse
         </div>
     </section>
 @endsection

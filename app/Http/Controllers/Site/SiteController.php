@@ -18,11 +18,9 @@ class SiteController extends Controller
         $head = new stdClass();
         $head->title = env('APP_NAME');
         $head->description = 'A melhor agência de estágios do Brasil';
-        $companies = Company::all();
-        $franchisees = Affiliation::all();
         $vacancies = Vacancy::orderBy('created_at', 'desc')->take(6)->get();
         $posts = Post::orderBy('created_at', 'desc')->take(2)->get();
-        return view('site.home.index', compact('head', 'vacancies', 'companies', 'posts', 'franchisees'));
+        return view('site.home.index', compact('head', 'vacancies', 'posts'));
     }
 
     public function vacancies()
