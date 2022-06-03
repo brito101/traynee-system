@@ -1581,8 +1581,8 @@ Inner Banner
 }
 
 .inner-banner .inner-title {
-    padding-top: 150px;
-    padding-bottom: 150px;
+    padding-top: 30px;
+    padding-bottom: 30px;
     position: relative;
     z-index: 1;
 }
@@ -2068,6 +2068,7 @@ Services Area
     border-radius: 10px;
     position: relative;
     z-index: 1;
+    height: 430px;
     margin-bottom: 30px;
 }
 
@@ -2101,6 +2102,12 @@ Services Area
     transition: 0.7s;
 }
 
+.services-card a img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
 .services-card i {
     color: #0071dc;
     font-size: 60px;
@@ -2127,6 +2134,7 @@ Services Area
     margin-bottom: 12px;
     -webkit-transition: 0.7s;
     transition: 0.7s;
+    height: 50px;
 }
 
 .services-card .learn-btn {
@@ -2542,10 +2550,10 @@ Work Area
 }
 
 .work-process-card-two .number-title {
-    font-size: 30px;
+    font-size: 50px;
     color: #0071dc;
     font-weight: 600;
-    margin-bottom: 10px;
+    // margin-bottom: 10px;
     display: block;
 }
 
@@ -4441,6 +4449,9 @@ Blog Area End
 
 .blog-card .blog-img img {
     border-radius: 5px;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
 }
 
 .blog-card .blog-img .blog-tag {
@@ -4752,6 +4763,9 @@ Blog Area End
 .blog-article .blog-article-img {
     margin-bottom: 30px;
     position: relative;
+    object-fit: cover;
+    width: 100%;
+    height: auto;
 }
 
 .blog-article .blog-article-img img {
@@ -5158,9 +5172,9 @@ Blog Area End
 }
 
 .side-bar-widget .side-bar-categories ul li a span {
-    right: 30px;
+    right: 10px;
     position: absolute;
-    top: 10px;
+    // top: 10px;
     color: #444444;
 }
 
@@ -5209,19 +5223,20 @@ Blog Area End
     background-position: center center !important;
     position: relative;
     background-color: #070b3b;
+    object-fit: cover;
 }
 
-.side-bar-widget .widget-popular-post .item .thumb .full-image.bg1 {
-    background-image: url(../images/blog/blog-details.jpg);
-}
+// .side-bar-widget .widget-popular-post .item .thumb .full-image.bg1 {
+//     background-image: url(../images/blog/blog-details.jpg);
+// }
 
-.side-bar-widget .widget-popular-post .item .thumb .full-image.bg2 {
-    background-image: url(../images/blog/blog-img2.jpg);
-}
+// .side-bar-widget .widget-popular-post .item .thumb .full-image.bg2 {
+//     background-image: url(../images/blog/blog-img2.jpg);
+// }
 
-.side-bar-widget .widget-popular-post .item .thumb .full-image.bg3 {
-    background-image: url(../images/blog/blog-img3.jpg);
-}
+// .side-bar-widget .widget-popular-post .item .thumb .full-image.bg3 {
+//     background-image: url(../images/blog/blog-img3.jpg);
+// }
 
 .side-bar-widget .widget-popular-post .item .thumb .full-image.bg4 {
     background-image: url(../images/blog/blog-img1.jpg);
@@ -5608,7 +5623,7 @@ Pagination Area
 .pagination-area .page-numbers {
     width: 40px;
     height: 40px;
-    line-height: 40px;
+    // line-height: 40px;
     color: #0071dc;
     background-color: transparent;
     border: 1px solid #0071dc;

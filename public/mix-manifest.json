@@ -1,6 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/img/about-img5.png": "/img/about-img5.png",
     "/img/favicon.svg": "/img/favicon.svg",
     "/img/hanshake-1400x700.jpg": "/img/hanshake-1400x700.jpg",
     "/img/hanshake.jpg": "/img/hanshake.jpg",
@@ -12,6 +13,8 @@
     "/img/smile.jpg": "/img/smile.jpg",
     "/img/talk-1400x700.jpg": "/img/talk-1400x700.jpg",
     "/img/talk.jpg": "/img/talk.jpg",
+    "/img/tecnology.webp": "/img/tecnology.webp",
+    "/img/trainee.png": "/img/trainee.png",
     "/js/company.js": "/js/company.js",
     "/js/vacancy.js": "/js/vacancy.js",
     "/js/address.js": "/js/address.js",

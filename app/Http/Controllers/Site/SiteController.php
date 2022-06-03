@@ -8,40 +8,49 @@ use App\Models\Company;
 use App\Models\Post;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
-use stdClass;
+use Meta;
 
 class SiteController extends Controller
 {
 
     public function index()
     {
-        $head = new stdClass();
-        $head->title = env('APP_NAME');
-        $head->description = 'A melhor agência de estágios do Brasil';
-        $vacancies = Vacancy::orderBy('created_at', 'desc')->take(6)->get();
-        $posts = Post::orderBy('created_at', 'desc')->take(2)->get();
-        return view('site.home.index', compact('head', 'vacancies', 'posts'));
+        Meta::set('title', env('APP_NAME'));
+        Meta::set('robots', 'index,follow');
+        Meta::set('description', 'AGENTE INTEGRADOR entre Escola/Universidade e empresa');
+        Meta::set('image', asset('img/hanshake-1400x700.jpg'));
+        $vacancies = Vacancy::orderBy('created_at', 'desc')->take(3)->get();
+        $posts = Post::orderBy('created_at', 'desc')->take(3)->get();
+        return view('site.home.index', compact('vacancies', 'posts'));
     }
 
     public function vacancies()
     {
-        $head = new stdClass();
-        $head->title = env('APP_NAME') . ' - Vagas';
-        $head->description = 'Confira as vagas disponíveis na ' .  env('APP_NAME');
-        $vacancies = Vacancy::orderBy('created_at', 'desc')->paginate(10);
-        return view('site.vacancy.index', compact('head', 'vacancies'));
+        Meta::set('title', env('APP_NAME') . ' - Vagas');
+        Meta::set('robots', 'index,follow');
+        Meta::set('description', 'Vagas de estágio dissponíveis na ' . env('APP_NAME'));
+        Meta::set('image', asset('img/hanshake-1400x700.jpg'));
+        $vacancies = Vacancy::orderBy('created_at', 'desc')->paginate(9);
+        return view('site.vacancies.index', compact('vacancies'));
     }
 
     public function vacancy($slug)
     {
-        $head = new stdClass();
-        $head->title = env('APP_NAME');
-        $head->description = 'Confira as vagas disponíveis na ' .  env('APP_NAME');
+
         $vacancy = Vacancy::where('slug', $slug)->first();
         if (empty($vacancy->id)) {
             abort(404, 'Página não encontrada');
         }
 
-        return view('site.vacancy.page', compact('head', 'vacancy'));
+        $vacancy->views += 1;
+        $vacancy->update();
+
+        $vacancies = Vacancy::whereNotIn('id', [$vacancy->id])->inRandomOrder()->limit(3)->get();
+
+        Meta::set('title', env('APP_NAME') . ' - ' . $vacancy->title);
+        Meta::set('robots', 'index,follow');
+        Meta::set('description', $vacancy->description);
+        Meta::set('image', $vacancy->brand_facebook ? url('storage/vacancies/' . $vacancy->brand_facebook) : asset('img/hanshake-1400x700.jpg'));
+        return view('site.vacancies.item', compact('vacancy', 'vacancies'));
     }
 }

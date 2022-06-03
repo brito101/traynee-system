@@ -48,7 +48,7 @@
 
                     <x-adminlte-profile-widget name="{{ $vacancy->company['alias_name'] }}" theme="lightblue"
                         desc="{{ $vacancy->company['city'] . '-' . $vacancy->company['state'] . '. Tel: ' . $vacancy->company['telephone'] }}"
-                        img="{{ $vacancy->company['logo']? url('storage/companies/' . $vacancy->company['logo']): asset('/vendor/adminlte/dist/img/logo.png') }}"
+                        img="{{ $vacancy->company['logo'] ? url('storage/companies/' . $vacancy->company['logo']) : asset('/vendor/adminlte/dist/img/logo.png') }}"
                         class="bg-with">
 
                         {{-- <x-adminlte-profile-row-item icon="fas fa-fw fa-user-friends" title="Candidatos"

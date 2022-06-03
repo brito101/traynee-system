@@ -4,14 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $head->title ?? env('APP_NAME') }}</title>
-    <meta name="description" content="{{ $head->description }}">
-    <link rel="icon" href="{{ asset('img/favicon.svg') }}" type="image/svg+xml">
     <link rel="preload" href="{{ asset('css/app.css') }}" as="style">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('site/css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('site/boxicons/css/boxicons.min.css') }}">
     <link rel="icon" href="{{ asset('img/favicon.svg') }}" type="image/svg+xml">
+    @metas
 </head>
 
 <body>
@@ -108,7 +106,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('vacancies') }}"
-                                    class="nav-link {{ Route::currentRouteName() == 'vacancies' ? 'active' : '' }}">
+                                    class="nav-link {{ Route::currentRouteName() == 'vacancies' || Route::currentRouteName() == 'vacancy' ? 'active' : '' }}">
                                     Vagas
                                 </a>
                             </li>
@@ -273,7 +271,7 @@
                 <div class="copy-right-text">
                     <p>
                         Copyright © 2022-{{ date('Y') }} {{ env('APP_NAME') }}. Todos os direitos reservados.
-                        <a href="https://rodrigobrito.dev.br" target="_blank">By Rodrigo Brito</a>
+                        <a href="https://rodrigobrito.dev.br" target="_blank">Desenvolvido por Rodrigo Brito</a>
                     </p>
                 </div>
             </div>
