@@ -118,6 +118,17 @@
                         @endif
 
                     </div>
+                    <div class="d-flex justify-content-start gap-2">
+                        <div class="banner-btn">
+                            <a href="{{ route('register') }}" class="default-btn btn-bg-two border-radius-5">Crie sua
+                                Conta<i class='bx bx-chevron-right'></i></a>
+                        </div>
+                        <div class="banner-btn">
+                            <a href="{{ route('admin.documents.edit') }}"
+                                class="default-btn btn-bg-two border-radius-5">Cadastre seu
+                                currículo <i class='bx bx-chevron-right'></i></a>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-lg-4">
@@ -148,6 +159,7 @@
                                 @empty
                                     <p>Em breve...</p>
                                 @endforelse
+
                             </div>
                         </div>
                     </div>

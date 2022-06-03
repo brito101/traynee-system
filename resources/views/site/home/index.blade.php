@@ -12,7 +12,8 @@
                                 <h1>Estudante</h1>
                                 <p>As melhores empresas buscam os melhores talentos na {{ env('APP_NAME') }}.</p>
                                 <div class="banner-btn">
-                                    <a href="#" class="default-btn btn-bg-two border-radius-5">Cadastre seu
+                                    <a href="{{ route('admin.documents.edit') }}"
+                                        class="default-btn btn-bg-two border-radius-5">Cadastre seu
                                         currículo <i class='bx bx-chevron-right'></i></a>
                                 </div>
                             </div>
