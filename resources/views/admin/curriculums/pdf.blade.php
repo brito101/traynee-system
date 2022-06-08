@@ -87,7 +87,7 @@
                                         <span class="username">
                                             <a href="#" class="text-decoration-none">{{ $academic->name }}</a>
                                         </span>
-                                        <span class="description">Formatura:
+                                        <span class="description">Previsão Formatura:
                                             {{ $academic->graduation }}</span>
                                     </div>
 

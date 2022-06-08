@@ -319,20 +319,28 @@ return [
             ]
         ],
         [
-            'text'        => 'Necessidades Especiais',
+            'text'        => 'Info. Complementares',
             'url'         => '#',
-            'icon'        => 'fas fa-fw fa-wheelchair',
+            'icon'        => 'fas fa-fw fa-plus',
             'can'         => 'Editar Necessidades Especiais',
             'submenu' => [
                 [
-                    'text' => 'Listagem de Necessidades',
-                    'url'  => 'admin/requiriments',
-                    'icon' => 'fas fa-fw fa-chevron-right',
-                ],
-                [
-                    'text' => 'Cadastro de Necessidades',
-                    'url'  => 'admin/requiriments/create',
-                    'icon' => 'fas fa-fw fa-chevron-right',
+                    'text'        => 'Necessidades Especiais',
+                    'url'         => '#',
+                    'icon'        => 'fas fa-fw fa-wheelchair',
+                    'can'         => 'Editar Necessidades Especiais',
+                    'submenu' => [
+                        [
+                            'text' => 'Listagem de Necessidades',
+                            'url'  => 'admin/requiriments',
+                            'icon' => 'fas fa-fw fa-chevron-right',
+                        ],
+                        [
+                            'text' => 'Cadastro de Necessidades',
+                            'url'  => 'admin/requiriments/create',
+                            'icon' => 'fas fa-fw fa-chevron-right',
+                        ],
+                    ]
                 ],
             ]
         ],

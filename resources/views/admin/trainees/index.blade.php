@@ -19,6 +19,35 @@
         </div>
     </section>
 
+    <div class="card card-solid">
+        <div class="card-header">
+            <i class="fas fa-fw fa-search"></i> Pesquisa de Estagiários Cadastrados
+        </div>
+        <form method="POST" action="{{ route('admin.trainees.search') }}">
+            @csrf
+            <div class="card-body pb-0">
+                <div class="d-flex flex-wrap justify-content-start">
+                    <div class="col-12 col-md-6 form-group px-0 pr-2">
+                        <label for="complex_id">Nome</label>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Nome do Estagiário"
+                            value="{{ old('name') }}">
+                    </div>
+
+                    <div class="col-12 col-md-6 form-group px-0 pl-2">
+                        <label for="complex_id">Formação Acadêmica</label>
+                        <input type="text" id="academics" name="academics" class="form-control"
+                            placeholder="nome da formação acadêmica" value="{{ old('academics') }}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Pequisar</button>
+                <a href="{{ route('admin.trainees.index') }}" class="btn btn-secondary">Limpar</a>
+            </div>
+        </form>
+    </div>
+
     <section class="content">
 
         <div class="card card-solid">

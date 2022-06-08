@@ -110,7 +110,7 @@
                                                 <span class="username">
                                                     <a href="#">{{ $academic->name }}</a>
                                                 </span>
-                                                <span class="description">Formatura:
+                                                <span class="description">Previsão de Formatura:
                                                     {{ $academic->graduation }}</span>
                                             </div>
 
@@ -288,7 +288,7 @@
                                     <div class='col-12 align-self-center mt-3 mb-n3 d-flex px-0'>
                                         <div
                                             class=' embed-responsive
-                                                                                                                                                                                                                                                embed-responsive-16by9'>
+                                                                                                                                                                                                                                                    embed-responsive-16by9'>
                                             <iframe class="embed-responsive-item rounded"
                                                 src="{{ Str::replace('https://www.youtube.com/watch?v=', 'https://www.youtube.com/embed/', $user->video) }}"
                                                 title="YouTube video player" frameborder="0"

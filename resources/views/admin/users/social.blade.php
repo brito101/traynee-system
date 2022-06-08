@@ -44,13 +44,13 @@
                                         <label for="facebook">Facebook</label>
                                         <input type="url" class="form-control" id="facebook"
                                             placeholder="https://www.facebook.com/..." name="facebook"
-                                            value="{{ old('facebook') ?? ($user->facebook ? $user->facebook : '') }}">
+                                            value="{{ old('facebook') ?? ($user->facebook ? $user->facebook : 'https://www.facebook.com/') }}">
                                     </div>
                                     <div class="col-12 col-md-6 form-group px-0 pl-md-2">
                                         <label for="instagram">Instagram</label>
                                         <input type="url" class="form-control" id="instagram"
                                             placeholder="https://www.instagram.com/..." name="instagram"
-                                            value="{{ old('instagram') ?? ($user->instagram ? $user->instagram : '') }}">
+                                            value="{{ old('instagram') ?? ($user->instagram ? $user->instagram : 'https://www.instagram.com/') }}">
                                     </div>
                                 </div>
 
@@ -59,13 +59,13 @@
                                         <label for="twitter">Twitter</label>
                                         <input type="url" class="form-control" id="twitter"
                                             placeholder="https://www.twitter.com/..." name="twitter"
-                                            value="{{ old('twitter') ?? ($user->twitter ? $user->twitter : '') }}">
+                                            value="{{ old('twitter') ?? ($user->twitter ? $user->twitter : 'https://www.twitter.com/') }}">
                                     </div>
                                     <div class="col-12 col-md-6 form-group px-0 pl-md-2">
                                         <label for="linkedin">Linkedin</label>
                                         <input type="url" class="form-control" id="linkedin"
                                             placeholder="https://www.linkedin.com/in/..." name="linkedin"
-                                            value="{{ old('linkedin') ?? ($user->linkedin ? $user->linkedin : '') }}">
+                                            value="{{ old('linkedin') ?? ($user->linkedin ? $user->linkedin : 'https://www.linkedin.com/in/') }}">
                                     </div>
                                 </div>
 
@@ -74,13 +74,13 @@
                                         <label for="youtube">YouTube</label>
                                         <input type="url" class="form-control" id="youtube"
                                             placeholder="https://www.youtube.com/c/..." name="youtube"
-                                            value="{{ old('youtube') ?? ($user->youtube ? $user->youtube : '') }}">
+                                            value="{{ old('youtube') ?? ($user->youtube ? $user->youtube : 'https://www.youtube.com/c/') }}">
                                     </div>
                                     <div class="col-12 col-md-6 form-group px-0 pl-md-2">
                                         <label for="whatsapp">WhatsApp</label>
                                         <input type="url" class="form-control" id="whatsapp"
                                             placeholder="https://api.whatsapp.com/send?phone=..." name="whatsapp"
-                                            value="{{ old('whatsapp') ?? ($user->whatsapp ? $user->whatsapp : '') }}">
+                                            value="{{ old('whatsapp') ?? ($user->whatsapp ? $user->whatsapp : 'https://api.whatsapp.com/send?phone=') }}">
                                     </div>
                                 </div>
 
@@ -89,13 +89,13 @@
                                         <label for="telegram">Telegram</label>
                                         <input type="url" class="form-control" id="telegram"
                                             placeholder="https://t.me/@..." name="telegram"
-                                            value="{{ old('telegram') ?? ($user->telegram ? $user->telegram : '') }}">
+                                            value="{{ old('telegram') ?? ($user->telegram ? $user->telegram : 'https://t.me/@') }}">
                                     </div>
                                     <div class="col-12 col-md-6 form-group px-0 pl-md-2">
                                         <label for="discord">Discord</label>
                                         <input type="url" class="form-control" id="discord"
                                             placeholder="https://discord.com/channels/..." name="discord"
-                                            value="{{ old('discord') ?? ($user->discord ? $user->discord : '') }}">
+                                            value="{{ old('discord') ?? ($user->discord ? $user->discord : 'https://discord.com/channels/') }}">
                                     </div>
                                 </div>
 

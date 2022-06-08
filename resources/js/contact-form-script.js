@@ -6,7 +6,7 @@
             if (event.isDefaultPrevented()) {
                 // handle the invalid form...
                 formError();
-                submitMSG(false, "Did you fill up the form properly?");
+                submitMSG(false, "Por favor, preencha todos os campos.");
             } else {
                 // everything looks good!
                 event.preventDefault();
@@ -15,16 +15,17 @@
         });
 
     function submitForm() {
-        // Initiate Variables With Form Content
         var name = $("#name").val();
         var email = $("#email").val();
         var msg_subject = $("#msg_subject").val();
         var phone_number = $("#phone_number").val();
         var message = $("#message").val();
 
-        $.ajax({
-            type: "POST",
-            url: "assets/php/form-process.php",
+        $.post({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url:  $("#contactForm").attr('action'),
             data:
                 "name=" +
                 name +
@@ -49,7 +50,7 @@
 
     function formSuccess() {
         $("#contactForm")[0].reset();
-        submitMSG(true, "Message Submitted!");
+        submitMSG(true, "Messagem Enviada! Retornaremos seu contato em breve.");
     }
 
     function formError() {

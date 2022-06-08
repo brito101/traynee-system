@@ -93,7 +93,7 @@
                                         </div>
 
                                         <div class="col-12 col-md-6 form-group px-0 pl-md-2">
-                                            <label for="team_work">Traaslho em Equipe</label>
+                                            <label for="team_work">Trabalho em Equipe</label>
                                             <x-adminlte-select2 name="team_work" required>
                                                 <option
                                                     {{ old('team_work') == 'Sou líder de equipe' ? 'selected' : ($user->team_work == 'Sou líder de equipe' ? 'selected' : '') }}
@@ -120,7 +120,8 @@
                                     <div class="col-12 col-md-6 form-group px-0 pr-md-2 d-flex flex-wrap">
 
                                         <div class="col-12 px-0">
-                                            <x-adminlte-input-file name="photo" label="Foto"
+                                            <x-adminlte-input-file name="photo"
+                                                label="Foto (formatos: jpg, jpeg, gif, svg ou webp com tamanho máximo de 1MB e dimensões máximas de 1800x1800px)"
                                                 placeholder="Selecione uma imagem..." legend="Selecionar" />
                                         </div>
 
@@ -145,7 +146,7 @@
                                                     <div class='col-12 align-self-center mt-3 mb-n3 d-flex px-0'>
                                                         <div
                                                             class=' embed-responsive
-                                                                                                                                                                embed-responsive-16by9'>
+                                                                                                                                                                                embed-responsive-16by9'>
                                                             <iframe class="embed-responsive-item rounded"
                                                                 src="{{ Str::replace('https://www.youtube.com/watch?v=', 'https://www.youtube.com/embed/', $user->video) }}"
                                                                 title="YouTube video player" frameborder="0"

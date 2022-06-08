@@ -84,7 +84,7 @@
                                             </x-adminlte-select2>
                                         </div>
                                         <div class="col-12 col-md-6 form-group px-0 pl-md-2">
-                                            <label for="team_work">Traaslho em Equipe</label>
+                                            <label for="team_work">Trabalho em Equipe</label>
                                             <x-adminlte-select2 name="team_work">
                                                 <option {{ old('team_work') == 'Sou líder de equipe' ? 'selected' : '' }}
                                                     value="Sou líder de equipe">Sou líder de equipe</option>
@@ -107,7 +107,8 @@
 
                                 <div class="d-flex flex-wrap justify-content-between">
                                     <div class="col-12 col-md-6 form-group px-0 pr-md-2">
-                                        <x-adminlte-input-file name="photo" label="Foto"
+                                        <x-adminlte-input-file name="photo"
+                                            label="Foto (formatos: jpg, jpeg, gif, svg ou webp com tamanho máximo de 1MB e dimensões máximas de 1800x1800px)"
                                             placeholder="Selecione uma imagem..." legend="Selecionar" />
                                     </div>
 

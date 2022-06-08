@@ -96,6 +96,7 @@ Route::group(['middleware' => ['auth']], function () {
         /** Company */
         /** Trainees */
         Route::get('/trainees', [TraineeController::class, 'index'])->name('trainees.index');
+        Route::post('/trainees-search', [TraineeController::class, 'indexSearch'])->name('trainees.search');
         Route::get('/trainees/{id}', [TraineeController::class, 'vacancy'])->name('trainees.vacancy');
         Route::get('/trainee/{id}', [TraineeController::class, 'show'])->name('trainee.show');
         Route::get('/documents', [DocumentTrayneeController::class, 'edit'])->name('documents.edit');
@@ -217,7 +218,13 @@ Route::group(['middleware' => ['auth']], function () {
 /** Web */
 /** Home */
 Route::get('/', [SiteController::class, 'index'])->name('home');
+/** Vacancy */
 Route::get('/vagas', [SiteController::class, 'vacancies'])->name('vacancies');
 Route::get('/vaga/{slug}', [SiteController::class, 'vacancy'])->name('vacancy');
+/** Contact */
+Route::get('/contato', [SiteController::class, 'contact'])->name('contact');
+Route::post('/sendEmail', [SiteController::class, 'sendEmail'])->name('sendEmail');
+/** Police */
+Route::get('/politica-de-privacidade', [SiteController::class, 'police'])->name('police');
 
 Auth::routes();

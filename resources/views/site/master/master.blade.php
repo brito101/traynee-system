@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('site/css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('site/boxicons/css/boxicons.min.css') }}">
     <link rel="icon" href="{{ asset('img/favicon.svg') }}" type="image/svg+xml">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @metas
 </head>
 
@@ -131,11 +132,19 @@
                                 </a>
                             </li>
 
+                            <li class="nav-item">
+                                <a href="{{ route('contact') }}"
+                                    class="nav-link {{ Route::currentRouteName() == 'contact' ? 'active' : '' }}">
+                                    Contato
+                                </a>
+                            </li>
+
                         </ul>
                         <div class="nav-side d-display">
                             <div class="nav-side-item">
                                 <div class="get-btn">
-                                    <a href="#" class="default-btn btn-bg-two border-radius-5">Login
+                                    <a href="{{ route('admin.home') }}"
+                                        class="default-btn btn-bg-two border-radius-5">Login
                                         <i class='bx bx-chevron-right'></i></a>
                                 </div>
                             </div>
@@ -212,6 +221,12 @@
                                         Blog
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('contact') }}">
+                                        <i class='bx bx-chevron-right'></i>
+                                        Contato
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -229,6 +244,12 @@
                                     <a href="#" target="_blank">
                                         <i class='bx bx-chevron-right'></i>
                                         Empresas
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('police') }}">
+                                        <i class='bx bx-chevron-right'></i>
+                                        Política de Privacidade
                                     </a>
                                 </li>
                             </ul>

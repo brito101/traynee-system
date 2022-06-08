@@ -28,7 +28,7 @@ class TermRequest extends FormRequest
             'type' => 'required|min:1|max:191',
             'participant_primary' => 'required|min:1|max:191',
             'participant_secondary' => 'required|min:1|max:191',
-            'content' => 'required|min:1|max:1500',
+            'content' => 'required|max:4096',
         ];
     }
 }

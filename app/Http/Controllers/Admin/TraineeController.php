@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Academic;
 use App\Models\User;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
@@ -22,6 +23,24 @@ class TraineeController extends Controller
         }
 
         $trainees = User::role('Estagiário')->orderBy('created_at', 'desc')->paginate(9);
+        return view('admin.trainees.index', compact('trainees'));
+    }
+
+    public function indexSearch(Request $request)
+    {
+        if (!Auth::user()->hasPermissionTo('Visualizar Estagiários')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        if ($request['academics']) {
+            $academics = Academic::where('name', 'like', '%' . $request['academics'] . '%')->pluck('user_id');
+        } else {
+            $academics = Academic::all()->pluck('user_id');
+        }
+
+        $trainees = User::role('Estagiário')
+            ->where('name', 'like', '%' . $request['name'] . '%')->orderBy('created_at', 'desc')->whereIn('id', $academics)->paginate(1000000);
+
         return view('admin.trainees.index', compact('trainees'));
     }
 
