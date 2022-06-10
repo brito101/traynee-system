@@ -120,8 +120,8 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="#"
-                                    class="nav-link {{ Route::currentRouteName() == 'blog' ? 'active' : '' }}">
+                                <a href="{{ route('posts') }}"
+                                    class="nav-link {{ Route::currentRouteName() == 'posts' || Route::currentRouteName() == 'post' ? 'active' : '' }}">
                                     Blog
                                 </a>
                             </li>
@@ -204,25 +204,25 @@
                             <h3>Links</h3>
                             <ul class="footer-list">
                                 <li>
-                                    <a href="{{ route('vacancies') }}" target="_blank">
+                                    <a href="{{ route('vacancies') }}" title="Vagas">
                                         <i class='bx bx-chevron-right'></i>
                                         Vagas
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" target="_blank">
+                                    <a href="#" title="Unidades">
                                         <i class='bx bx-chevron-right'></i>
                                         Unidades
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" target="_blank">
+                                    <a href="{{ route('posts') }}" title="Blog">
                                         <i class='bx bx-chevron-right'></i>
                                         Blog
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('contact') }}">
+                                    <a href="{{ route('contact') }}" title="Contato">
                                         <i class='bx bx-chevron-right'></i>
                                         Contato
                                     </a>
@@ -235,19 +235,19 @@
                             <h3>O que fazemos?</h3>
                             <ul class="footer-list">
                                 <li>
-                                    <a href="#" target="_blank">
+                                    <a href="#" title="Estudantes">
                                         <i class='bx bx-chevron-right'></i>
                                         Estudantes
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" target="_blank">
+                                    <a href="#" title="Empresas">
                                         <i class='bx bx-chevron-right'></i>
                                         Empresas
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('police') }}">
+                                    <a href="{{ route('police') }}" title="Política de Privacidade">
                                         <i class='bx bx-chevron-right'></i>
                                         Política de Privacidade
                                     </a>

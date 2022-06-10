@@ -30,7 +30,7 @@ class SiteController extends Controller
     {
         Meta::set('title', env('APP_NAME') . ' - Vagas');
         Meta::set('robots', 'index,follow');
-        Meta::set('description', 'Vagas de estágio dissponíveis na ' . env('APP_NAME'));
+        Meta::set('description', 'Vagas de estágio disponíveis na ' . env('APP_NAME'));
         Meta::set('image', asset('img/hanshake-1400x700.jpg'));
         $vacancies = Vacancy::orderBy('created_at', 'desc')->paginate(9);
         return view('site.vacancies.index', compact('vacancies'));
@@ -51,9 +51,39 @@ class SiteController extends Controller
 
         Meta::set('title', env('APP_NAME') . ' - ' . $vacancy->title);
         Meta::set('robots', 'index,follow');
-        Meta::set('description', $vacancy->description);
+        Meta::set('description', $vacancy->title . ' - ' . $vacancy->city . '-' . $vacancy->state);
         Meta::set('image', $vacancy->brand_facebook ? url('storage/vacancies/' . $vacancy->brand_facebook) : asset('img/hanshake-1400x700.jpg'));
         return view('site.vacancies.item', compact('vacancy', 'vacancies'));
+    }
+
+    public function posts()
+    {
+        Meta::set('title', env('APP_NAME') . ' - Blog');
+        Meta::set('robots', 'index,follow');
+        Meta::set('description', 'Confira as últimas postagens na ' . env('APP_NAME'));
+        Meta::set('image', asset('img/post-1152x768.jpg'));
+        $posts = Post::orderBy('created_at', 'desc')->paginate(9);
+        return view('site.blog.index', compact('posts'));
+    }
+
+    public function post($slug)
+    {
+
+        $post = Post::where('slug', $slug)->first();
+        if (empty($post->id)) {
+            abort(404, 'Página não encontrada');
+        }
+
+        $post->views += 1;
+        $post->update();
+
+        $posts = Post::whereNotIn('id', [$post->id])->inRandomOrder()->limit(3)->get();
+
+        Meta::set('title', env('APP_NAME') . ' - ' . $post->title);
+        Meta::set('robots', 'index,follow');
+        Meta::set('description', $post->headline);
+        Meta::set('image', $post->brand_facebook ? url('storage/posts/' . $post->brand_facebook) : asset('img/post-1152x768.jpg'));
+        return view('site.blog.item', compact('post', 'posts'));
     }
 
     public function police()

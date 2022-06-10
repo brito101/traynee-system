@@ -266,7 +266,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="blog-item">
                             <div class="blog-img3">
-                                <a href="#">
+                                <a href="{{ route('post', ['slug' => $post->slug]) }}">
                                     <img src="{{ $post->brand_facebook ? url('storage/posts/' . $post->brand_facebook) : asset('img/post-1152x768.jpg') }}"
                                         alt="{{ $post->title }}">
                                 </a>
@@ -300,10 +300,11 @@
                             </div>
                             <div class="content">
                                 <h3>
-                                    <a href="#">{{ $post->title }}</a>
+                                    <a href="{{ route('post', ['slug' => $post->slug]) }}">{{ $post->title }}</a>
                                 </h3>
                                 <p> {{ Str::limit($post->headline, 80) }}</p>
-                                <a href="#" class="read-btn">Veja Mais <i class='bx bx-chevron-right'></i></a>
+                                <a href="{{ route('post', ['slug' => $post->slug]) }}" class="read-btn">Veja Mais
+                                    <i class='bx bx-chevron-right'></i></a>
                             </div>
                         </div>
                     </div>
