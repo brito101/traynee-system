@@ -1,7 +1,10 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/img/404-error.jpg": "/img/404-error.jpg",
+    "/img/about-img1.jpg": "/img/about-img1.jpg",
     "/img/about-img5.png": "/img/about-img5.png",
+    "/img/choose-img.jpg": "/img/choose-img.jpg",
     "/img/favicon.svg": "/img/favicon.svg",
     "/img/hanshake-1400x700.jpg": "/img/hanshake-1400x700.jpg",
     "/img/hanshake.jpg": "/img/hanshake.jpg",
@@ -11,6 +14,7 @@
     "/img/shape4.png": "/img/shape4.png",
     "/img/smile-1400x700.jpg": "/img/smile-1400x700.jpg",
     "/img/smile.jpg": "/img/smile.jpg",
+    "/img/steps.png": "/img/steps.png",
     "/img/talk-1400x700.jpg": "/img/talk-1400x700.jpg",
     "/img/talk.jpg": "/img/talk.jpg",
     "/img/tecnology.webp": "/img/tecnology.webp",

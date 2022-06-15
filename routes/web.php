@@ -218,6 +218,8 @@ Route::group(['middleware' => ['auth']], function () {
 /** Web */
 /** Home */
 Route::get('/', [SiteController::class, 'index'])->name('home');
+/** Company */
+Route::get('/empresas', [SiteController::class, 'company'])->name('company');
 /** Vacancy */
 Route::get('/vagas', [SiteController::class, 'vacancies'])->name('vacancies');
 Route::get('/vaga/{slug}', [SiteController::class, 'vacancy'])->name('vacancy');
@@ -229,5 +231,10 @@ Route::get('/contato', [SiteController::class, 'contact'])->name('contact');
 Route::post('/sendEmail', [SiteController::class, 'sendEmail'])->name('sendEmail');
 /** Police */
 Route::get('/politica-de-privacidade', [SiteController::class, 'police'])->name('police');
+
+/** 404 */
+Route::fallback(function () {
+    return view("site.404");
+});
 
 Auth::routes();

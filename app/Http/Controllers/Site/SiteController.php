@@ -26,6 +26,15 @@ class SiteController extends Controller
         return view('site.home.index', compact('vacancies', 'posts'));
     }
 
+    public function company()
+    {
+        Meta::set('title', env('APP_NAME'));
+        Meta::set('robots', 'index,follow');
+        Meta::set('description', 'Empresas');
+        Meta::set('image', asset('img/hanshake-1400x700.jpg'));
+        return view('site.company.index');
+    }
+
     public function vacancies()
     {
         Meta::set('title', env('APP_NAME') . ' - Vagas');

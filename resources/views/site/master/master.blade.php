@@ -88,7 +88,8 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="#"
+                                    class="nav-link {{ Route::currentRouteName() == 'company' || Route::currentRouteName() == 'student' ? 'active' : '' }}">
                                     O que fazemos?
                                     <i class='bx bx-caret-down'></i>
                                 </a>
@@ -99,7 +100,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
+                                        <a href="{{ route('company') }}" class="nav-link">
                                             Empresas
                                         </a>
                                     </li>
@@ -112,12 +113,12 @@
                                 </a>
                             </li>
 
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a href="#"
                                     class="nav-link {{ Route::currentRouteName() == 'units' ? 'active' : '' }}">
                                     Unidades
                                 </a>
-                            </li>
+                            </li> --}}
 
                             <li class="nav-item">
                                 <a href="{{ route('posts') }}"
@@ -209,12 +210,12 @@
                                         Vagas
                                     </a>
                                 </li>
-                                <li>
+                                {{-- <li>
                                     <a href="#" title="Unidades">
                                         <i class='bx bx-chevron-right'></i>
                                         Unidades
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li>
                                     <a href="{{ route('posts') }}" title="Blog">
                                         <i class='bx bx-chevron-right'></i>
@@ -241,7 +242,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" title="Empresas">
+                                    <a href="{{ route('company') }}" title="Empresas">
                                         <i class='bx bx-chevron-right'></i>
                                         Empresas
                                     </a>
