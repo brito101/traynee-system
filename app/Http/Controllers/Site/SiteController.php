@@ -28,11 +28,22 @@ class SiteController extends Controller
 
     public function company()
     {
-        Meta::set('title', env('APP_NAME'));
+        Meta::set('title', env('APP_NAME') . ' - Empresas');
         Meta::set('robots', 'index,follow');
-        Meta::set('description', 'Empresas');
+        Meta::set('description', 'Os melhores talentos para a sua empresa.');
         Meta::set('image', asset('img/hanshake-1400x700.jpg'));
         return view('site.company.index');
+    }
+
+    public function student()
+    {
+        Meta::set('title', env('APP_NAME') . ' - Estudantes');
+        Meta::set('robots', 'index,follow');
+        Meta::set('description', 'Dê um passo em direção ao sucesso!');
+        Meta::set('image', asset('img/hanshake-1400x700.jpg'));
+
+        $vacancies = Vacancy::inRandomOrder()->limit(10)->get();
+        return view('site.students.index', compact('vacancies'));
     }
 
     public function vacancies()

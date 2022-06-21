@@ -95,7 +95,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
+                                        <a href="{{ route('student') }}" class="nav-link">
                                             Estudantes
                                         </a>
                                     </li>
@@ -236,7 +236,7 @@
                             <h3>O que fazemos?</h3>
                             <ul class="footer-list">
                                 <li>
-                                    <a href="#" title="Estudantes">
+                                    <a href="{{ route('student') }}" title="Estudantes">
                                         <i class='bx bx-chevron-right'></i>
                                         Estudantes
                                     </a>
@@ -316,7 +316,6 @@
     <script src="{{ asset('site/js/jquery.nice-select.min.js') }}"></script>
     <script src="{{ asset('site/js/wow.min.js') }}"></script>
     <script src="{{ asset('site/js/mainmenu.js') }}"></script>
-    <script src="{{ asset('site/js/jquery.ajaxchimp.min.js') }}"></script>
     <script src="{{ asset('site/js/form-validator.min.js') }}"></script>
     <script src="{{ asset('site/js/contact-form-script.js') }}"></script>
     <script src="{{ asset('site/js/custom.js') }}"></script>

@@ -220,6 +220,8 @@ Route::group(['middleware' => ['auth']], function () {
 Route::get('/', [SiteController::class, 'index'])->name('home');
 /** Company */
 Route::get('/empresas', [SiteController::class, 'company'])->name('company');
+/** Students */
+Route::get('/estudantes', [SiteController::class, 'student'])->name('student');
 /** Vacancy */
 Route::get('/vagas', [SiteController::class, 'vacancies'])->name('vacancies');
 Route::get('/vaga/{slug}', [SiteController::class, 'vacancy'])->name('vacancy');

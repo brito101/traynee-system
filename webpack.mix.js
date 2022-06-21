@@ -1,4 +1,5 @@
 const mix = require("laravel-mix");
+require('laravel-mix-purgecss');
 
 /*
  |--------------------------------------------------------------------------
@@ -44,7 +45,6 @@ mix.js("resources/js/app.js", "public/js")
         "public/site/js"
     )
     .copy("resources/js/wow.min.js", "public/site/js")
-    .copy("resources/js/jquery.ajaxchimp.min.js", "public/site/js")
     .copy("resources/js/form-validator.min.js", "public/site/js")
     .scripts(["resources/js/mainmenu.js"], "public/site/js/mainmenu.js")
     .scripts(
@@ -56,4 +56,5 @@ mix.js("resources/js/app.js", "public/js")
     .options({
         processCssUrls: false,
     })
-    .sourceMaps();
+    .sourceMaps()
+    .purgeCss();
