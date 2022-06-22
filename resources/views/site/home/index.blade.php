@@ -12,7 +12,7 @@
                                 <h1>Estudante</h1>
                                 <p>As melhores empresas buscam os melhores talentos na {{ env('APP_NAME') }}.</p>
                                 <div class="banner-btn">
-                                    <a href="{{ route('admin.documents.edit') }}"
+                                    <a href="{{ route('student') }}"
                                         class="default-btn btn-bg-two border-radius-5">Cadastre seu
                                         currículo <i class='bx bx-chevron-right'></i></a>
                                 </div>
@@ -30,8 +30,9 @@
                                 <h1>Empresas</h1>
                                 <p>Cadastre-se para contratar os melhores talentos do mercado.</p>
                                 <div class="banner-btn">
-                                    <a href="#" class="default-btn btn-bg-one border-radius-5 text-dark">Cadastre-se <i
-                                            class='bx bx-chevron-right'></i></a>
+                                    <a href="{{ route('company') }}"
+                                        class="default-btn btn-bg-one border-radius-5 text-dark">Cadastre-se
+                                        <i class='bx bx-chevron-right'></i></a>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +48,8 @@
                                 <h1>Seja um Franqueado</h1>
                                 <p>Já somos mais de 100 unidades espalhadas pelo Brasil em menos de 1ano.</p>
                                 <div class="banner-btn">
-                                    <a href="#" class="default-btn btn-bg-two border-radius-5">Conheça Agora! <i
+                                    <a href="{{ route('franches') }}"
+                                        class="default-btn btn-bg-two border-radius-5">Conheça Agora! <i
                                             class='bx bx-chevron-right'></i></a>
                                 </div>
                             </div>
@@ -94,7 +96,7 @@
                     <div class="work-process-rightside">
                         <div class="section-title">
                             <span class="sp-color1">Nosso Processo de Trabalho</span>
-                            <h2>Somos uma empresa (AGENTE INTEGRADOR entre Escola/Universidade e empresa)
+                            <h2>Somos uma empresa (AGENTE INTEGRADOR entre Escola/Universidade e Empresa)
                                 Baseada na Lei de estágio 11.788</h2>
                             <p>Consideramos o estágio um ato educativo escolar, desenvolvido no ambiente de trabalho,
                                 que

@@ -225,9 +225,11 @@ Route::get('/estudantes', [SiteController::class, 'student'])->name('student');
 /** Vacancy */
 Route::get('/vagas', [SiteController::class, 'vacancies'])->name('vacancies');
 Route::get('/vaga/{slug}', [SiteController::class, 'vacancy'])->name('vacancy');
-/** Posts */
+/** Blog */
 Route::get('/blog', [SiteController::class, 'posts'])->name('posts');
 Route::get('/blog/{slug}', [SiteController::class, 'post'])->name('post');
+/** Franches */
+Route::get('/franquias', [SiteController::class, 'franches'])->name('franches');
 /** Contact */
 Route::get('/contato', [SiteController::class, 'contact'])->name('contact');
 Route::post('/sendEmail', [SiteController::class, 'sendEmail'])->name('sendEmail');

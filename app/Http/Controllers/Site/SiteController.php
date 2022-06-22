@@ -19,7 +19,7 @@ class SiteController extends Controller
     {
         Meta::set('title', env('APP_NAME'));
         Meta::set('robots', 'index,follow');
-        Meta::set('description', 'AGENTE INTEGRADOR entre Escola/Universidade e empresa');
+        Meta::set('description', 'AGENTE INTEGRADOR entre Escola/Universidade e Empresa');
         Meta::set('image', asset('img/hanshake-1400x700.jpg'));
         $vacancies = Vacancy::orderBy('created_at', 'desc')->take(3)->get();
         $posts = Post::orderBy('created_at', 'desc')->take(3)->get();
@@ -44,6 +44,15 @@ class SiteController extends Controller
 
         $vacancies = Vacancy::inRandomOrder()->limit(10)->get();
         return view('site.students.index', compact('vacancies'));
+    }
+
+    public function franches()
+    {
+        Meta::set('title', env('APP_NAME') . ' - Seja um Franquiado');
+        Meta::set('robots', 'index,follow');
+        Meta::set('description', 'A melhor Franquia de Estágios!');
+        Meta::set('image', asset('img/hanshake-1400x700.jpg'));
+        return view('site.franches.index',);
     }
 
     public function vacancies()

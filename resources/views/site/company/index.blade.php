@@ -123,7 +123,7 @@
                 <span class="sp-color2">Vantagens</span>
                 <h2>Procurando uma vantagem? As nossas são verdadeiramente proeminentes!</h2>
             </div>
-            <div class="row pt-45">
+            <div class="row pt-45 d-flex justify-content-center">
                 <div class="col-lg-3 col-sm-6">
                     <div class="security-card">
                         <i class="bx bx-down-arrow-alt"></i>
@@ -181,7 +181,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="security-card">
                         <i class="bx bxs-school"></i>
-                        <h3>Convênios com Universidades-Estagiários dos cursos</h3>
+                        <h3>Convênios com Universidades</h3>
                     </div>
                 </div>
             </div>
@@ -243,15 +243,17 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Empresa <span>*</span></label>
-                                        <input type="text" name="name" id="name" class="form-control" required=""
-                                            data-error="Por favor, informe o nome da Empresa" placeholder="Nome da Empresa">
+                                        <input type="text" name="name" id="name" class="form-control"
+                                            required="" data-error="Por favor, informe o nome da Empresa"
+                                            placeholder="Nome da Empresa">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>E-mail corporativo<span>*</span></label>
-                                        <input type="email" name="email" id="email" class="form-control" required=""
+                                        <input type="email" name="email" id="email" class="form-control"
+                                            required=""
                                             data-error="Por favor, informe um e-mail corporativo para contato"
                                             placeholder="E-mail">
                                         <div class="help-block with-errors"></div>
@@ -270,7 +272,8 @@
                                     <div class="form-group">
                                         <label>Assunto <span>*</span></label>
                                         <input type="text" name="msg_subject" id="msg_subject" class="form-control"
-                                            required="" data-error="Por favor, informe um assunto" placeholder="Assunto">
+                                            required="" data-error="Por favor, informe um assunto"
+                                            placeholder="Assunto">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>

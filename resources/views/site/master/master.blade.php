@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('site/css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('site/boxicons/css/boxicons.min.css') }}">
-    <link rel="icon" href="{{ asset('img/favicon.svg') }}" type="image/svg+xml">
+    <link rel="icon" href="{{ asset('img/favicon.png') }}" type="image/png">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @metas
 </head>
@@ -128,7 +128,8 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{{ route('franches') }}"
+                                    class="nav-link {{ Route::currentRouteName() == 'franches' ? 'active' : '' }}">
                                     Seja um franqueado
                                 </a>
                             </li>
@@ -245,6 +246,12 @@
                                     <a href="{{ route('company') }}" title="Empresas">
                                         <i class='bx bx-chevron-right'></i>
                                         Empresas
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('franches') }}" title="Franquias">
+                                        <i class='bx bx-chevron-right'></i>
+                                        Franquias
                                     </a>
                                 </li>
                                 <li>

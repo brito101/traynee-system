@@ -1205,7 +1205,7 @@ Main Banner Area
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url(../images/home-two.jpg);
+    background-image: url("../img/franchise.jpg");
 }
 
 .banner-area::before {
@@ -2295,7 +2295,7 @@ Services Area
 .services-item .content i {
     font-size: 60px;
     position: absolute;
-    top: 17px;
+    top: calc(50% - 30px);
     left: 20px;
     line-height: 1;
     color: #0071dc;
@@ -6565,7 +6565,7 @@ Home Page Six Css
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url(../img/home-six.jpg);
+    background-image: url("../img/home-six.jpg");
     overflow: hidden;
 }
 
