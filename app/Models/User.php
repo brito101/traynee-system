@@ -153,6 +153,12 @@ class User extends Authenticatable
         return $this->hasMany(Professional::class);
     }
 
+    public function evaluations()
+    {
+        return $this->hasMany(Evaluation::class, 'trainee');
+    }
+
+
     /** Aux */
     public function age()
     {

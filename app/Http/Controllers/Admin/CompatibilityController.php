@@ -30,7 +30,7 @@ class CompatibilityController extends Controller
         if (Auth::user()->hasRole('Franquiado')) {
             $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
             $vacancies = Vacancy::whereIn('company_id', $companies->pluck('id'))->get();
-            $trainees = User::role('Estagiário')->orderBy('created_at', 'desc')->paginate(10);
+            $trainees = User::role('Estagiário')->whereIn('state', $companies->pluck('state'))->orderBy('created_at', 'desc')->paginate(10);
         } else {
             $vacancies = Vacancy::all();
             $trainees = User::role('Estagiário')->orderBy('created_at', 'desc')->paginate(10);
@@ -80,9 +80,15 @@ class CompatibilityController extends Controller
                 if (strpos(implode(", ", array_values($trainee->academics->pluck('availability')->toArray())), $vacancy->period) !== false) {
                     $points += 1;
                 }
-                /** cidade */
+
+                /** estado */
+                if ($vacancy->state == $trainee->state) {
+                    $points  += 0.5;
+                }
+
+                /** cidade e estado */
                 if ($vacancy->city == $trainee->city) {
-                    $points  += 1;
+                    $points  += 0.5;
                 }
 
                 $total = $points * 20;
@@ -111,7 +117,7 @@ class CompatibilityController extends Controller
         if (Auth::user()->hasRole('Franquiado')) {
             $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
             $vacancies = Vacancy::whereIn('company_id', $companies->pluck('id'))->get();
-            $trainees = User::role('Estagiário')->orderBy('created_at', 'desc')->paginate(9);
+            $trainees = User::role('Estagiário')->whereIn('state', $companies->pluck('state'))->orderBy('created_at', 'desc')->paginate(9);
         } else {
             $vacancies = Vacancy::all();
             $trainees = User::role('Estagiário')->orderBy('created_at', 'desc')->paginate(9);
@@ -157,9 +163,15 @@ class CompatibilityController extends Controller
                 if (strpos(implode(", ", array_values($trainee->academics->pluck('availability')->toArray())), $vacancy->period) !== false) {
                     $points += 1;
                 }
-                /** cidade */
-                if ($vacancy->city == $trainee->city) {
-                    $points  += 1;
+
+                /** estado */
+                if ($vacancy->state == $trainee->state) {
+                    $points  += 0.5;
+                }
+
+                /** cidade e estado */
+                if ($vacancy->city == $trainee->city && $vacancy->state == $trainee->state) {
+                    $points  += 0.5;
                 }
 
                 $total = $points * 20;
@@ -179,7 +191,7 @@ class CompatibilityController extends Controller
         if (Auth::user()->hasRole('Franquiado')) {
             $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
             $vacancies = Vacancy::whereIn('company_id', $companies->pluck('id'))->get();
-            $trainees = User::role('Estagiário')->orderBy('created_at', 'desc')->paginate(9);
+            $trainees = User::role('Estagiário')->whereIn('state', $companies->pluck('state'))->orderBy('created_at', 'desc')->paginate(9);
         } else {
             $vacancies = Vacancy::all();
             $trainees = User::role('Estagiário')->orderBy('created_at', 'desc')->paginate(9);
@@ -225,9 +237,15 @@ class CompatibilityController extends Controller
                 if (strpos(implode(", ", array_values($trainee->academics->pluck('availability')->toArray())), $vacancy->period) !== false) {
                     $points += 1;
                 }
-                /** cidade */
+
+                /** estado */
+                if ($vacancy->state == $trainee->state) {
+                    $points  += 0.5;
+                }
+
+                /** cidade e estado */
                 if ($vacancy->city == $trainee->city) {
-                    $points  += 1;
+                    $points  += 0.5;
                 }
 
                 $total = $points * 20;

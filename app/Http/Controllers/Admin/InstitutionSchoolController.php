@@ -33,7 +33,7 @@ class InstitutionSchoolController extends Controller
                 ->get();
         }
 
-        return view('admin.insitutions_scholl.index', compact('companies'));
+        return view('admin.insitutions_school.index', compact('companies'));
     }
 
     /**
@@ -49,7 +49,7 @@ class InstitutionSchoolController extends Controller
 
         $affiliates = Affiliation::all();
 
-        return view('admin.insitutions_scholl.create', compact('affiliates'));
+        return view('admin.insitutions_school.create', compact('affiliates'));
     }
 
     /**
@@ -134,7 +134,7 @@ class InstitutionSchoolController extends Controller
         if (empty($company->id)) {
             abort(403, 'Acesso não autorizado');
         }
-        return view('admin.insitutions_scholl.edit', compact('company', 'affiliates'));
+        return view('admin.insitutions_school.edit', compact('company', 'affiliates'));
     }
 
     /**
@@ -227,7 +227,7 @@ class InstitutionSchoolController extends Controller
         if (empty($company->id)) {
             abort(403, 'Acesso não autorizado');
         }
-        return view('admin.insitutions_scholl.social', compact('company'));
+        return view('admin.insitutions_school.social', compact('company'));
     }
 
     public function socialNetworkStore(CompanyBrandRequest $request)
@@ -267,7 +267,7 @@ class InstitutionSchoolController extends Controller
         if (empty($company->id)) {
             abort(403, 'Acesso não autorizado');
         }
-        return view('admin.insitutions_scholl.resume', compact('company'));
+        return view('admin.insitutions_school.resume', compact('company'));
     }
 
 

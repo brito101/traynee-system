@@ -29,8 +29,8 @@
                 <div class="d-flex flex-wrap justify-content-start">
                     <div class="col-12 col-md-6 form-group px-0 pr-2">
                         <label for="complex_id">Nome</label>
-                        <input type="text" id="name" name="name" class="form-control" placeholder="Nome do Estagiário"
-                            value="{{ old('name') }}">
+                        <input type="text" id="name" name="name" class="form-control"
+                            placeholder="Nome do Estagiário" value="{{ old('name') }}">
                     </div>
 
                     <div class="col-12 col-md-6 form-group px-0 pl-2">
@@ -78,7 +78,8 @@
                                         <div class="col-5 text-center">
                                             @if ($trainee->photo)
                                                 <img src="{{ url('storage/users/' . $trainee->photo) }}"
-                                                    alt="{{ $trainee->name }}" class="img-circle img-fluid">
+                                                    alt="{{ $trainee->name }}" class="img-circle img-fluid"
+                                                    style="object-fit: cover; width: 100%; aspect-ratio: 1;">
                                             @else
                                                 <img src="{{ asset('vendor/adminlte/dist/img/avatar.png') }}"
                                                     alt="{{ $trainee->name }}" class="img-circle img-fluid">

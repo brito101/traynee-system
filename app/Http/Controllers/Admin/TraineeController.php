@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Academic;
+use App\Models\Company;
 use App\Models\User;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
@@ -22,7 +23,13 @@ class TraineeController extends Controller
             abort(403, 'Acesso não autorizado');
         }
 
-        $trainees = User::role('Estagiário')->orderBy('created_at', 'desc')->paginate(9);
+        if (Auth::user()->hasRole('Franquiado')) {
+            $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
+            $trainees = User::role('Estagiário')->whereIn('state', $companies->pluck('state'))->orderBy('created_at', 'desc')->paginate(9);
+        } else {
+            $trainees = User::role('Estagiário')->orderBy('created_at', 'desc')->paginate(9);
+        }
+
         return view('admin.trainees.index', compact('trainees'));
     }
 
@@ -38,8 +45,14 @@ class TraineeController extends Controller
             $academics = Academic::all()->pluck('user_id');
         }
 
-        $trainees = User::role('Estagiário')
-            ->where('name', 'like', '%' . $request['name'] . '%')->orderBy('created_at', 'desc')->whereIn('id', $academics)->paginate(1000000);
+        if (Auth::user()->hasRole('Franquiado')) {
+            $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
+            $trainees = User::role('Estagiário')
+                ->where('name', 'like', '%' . $request['name'] . '%')->orderBy('created_at', 'desc')->whereIn('id', $academics)->whereIn('state', $companies->pluck('state'))->paginate(1000000);
+        } else {
+            $trainees = User::role('Estagiário')
+                ->where('name', 'like', '%' . $request['name'] . '%')->orderBy('created_at', 'desc')->whereIn('id', $academics)->paginate(1000000);
+        }
 
         return view('admin.trainees.index', compact('trainees'));
     }

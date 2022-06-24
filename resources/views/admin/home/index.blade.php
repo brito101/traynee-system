@@ -373,7 +373,8 @@
                                     <li>
                                         @if ($person->photo)
                                             <img src="{{ url('storage/users/' . $person->photo) }}"
-                                                alt="{{ $person->name }}">
+                                                alt="{{ $person->name }}" class="img-circle img-fluid"
+                                                style="object-fit: cover; width: 100%; aspect-ratio: 1;">
                                         @else
                                             <img src="{{ asset('vendor/adminlte/dist/img/avatar.png') }}"
                                                 alt="{{ $person->name }}">

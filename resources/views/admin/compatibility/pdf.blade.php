@@ -29,24 +29,28 @@
                             </div>
                         </div>
 
-                        <div class="card-body d-flex flex-wrap justify-content-between">
+                        <div class="card-body d-flex flex-wrap justify-content-start">
                             @foreach ($trainees as $trainee)
-                                <x-adminlte-profile-widget name="{{ $trainee->name }}"
-                                    desc="{{ $trainee->academics->pluck('name')->implode('/') }}" theme=" lightblue"
-                                    class="col-6"
-                                    img="{{ $trainee->photo != null? url('storage/users/' . $trainee->photo): asset('/vendor/adminlte/dist/img/avatar.png') }}"
-                                    layout-type="classic">
-                                    <div class="badge badge-info">Vagas:</div>
-                                    @foreach ($vacancies as $vacancy)
-                                        <x-adminlte-profile-row-item class="text-center border-bottom border-secondary" />
-                                        <x-adminlte-profile-row-item title="Título" text="{{ $vacancy->title }}"
-                                            class="text-primary" />
-                                        <x-adminlte-profile-row-item title="Empresa"
-                                            text="{{ $vacancy->company['alias_name'] }}" class="text-primary" />
-                                        <x-adminlte-profile-row-item title="Compatibilidade" text="{{ $vacancy->total }}%"
-                                            class="text-primary" />
-                                    @endforeach
-                                </x-adminlte-profile-widget>
+                                <div class="col-4">
+                                    <x-adminlte-profile-widget name="{{ $trainee->name }}"
+                                        desc="{{ $trainee->academics->pluck('name')->implode('/') }}" theme=" lightblue"
+                                        img="{{ $trainee->photo != null ? url('storage/users/' . $trainee->photo) : asset('/vendor/adminlte/dist/img/avatar.png') }}"
+                                        layout-type="classic">
+                                        <div class="badge badge-info">Vagas:</div>
+                                        @foreach ($vacancies as $vacancy)
+                                            @if (!empty(array_intersect($vacancy->coursesId(), $trainee->academics->pluck('course_id')->toArray())))
+                                                <x-adminlte-profile-row-item
+                                                    class="text-center border-bottom border-secondary" />
+                                                <x-adminlte-profile-row-item title="Título" text="{{ $vacancy->title }}"
+                                                    class="text-primary" />
+                                                <x-adminlte-profile-row-item title="Empresa"
+                                                    text="{{ $vacancy->company['alias_name'] }}" class="text-primary" />
+                                                <x-adminlte-profile-row-item title="Compatibilidade"
+                                                    text="{{ $vacancy->total }}%" class="text-primary" />
+                                            @endif
+                                        @endforeach
+                                    </x-adminlte-profile-widget>
+                                </div>
                             @endforeach
 
                         </div>

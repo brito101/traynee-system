@@ -29,20 +29,23 @@ class AdminController extends Controller
 
 
         if (Auth::user()->hasRole('Franquiado')) {
-            $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
+            $companies = Company::where('institution', 'Não')->where('affiliation_id', Auth::user()->affiliation_id)->get();
             $businessmen = User::role('Empresário')->where('affiliation_id', Auth::user()->affiliation_id)->count();
             $vacancies = Vacancy::whereIn('company_id', $companies->pluck('id'))->get();
+            $trainee = User::role('Estagiário')->whereIn('state', $companies->pluck('state'))->orderBy('created_at', 'desc')->get();
         } elseif (Auth::user()->hasRole('Empresário')) {
-            $companies = Company::where('id', Auth::user()->company_id)->first();
+            $companies = Company::where('institution', 'Não')->where('id', Auth::user()->company_id)->first();
             $businessmen = User::role('Empresário')->where('company_id', Auth::user()->company_id)->count();
             $vacancies = Vacancy::where('company_id', Auth::user()->company_id)->count();
+            $trainee = User::role('Estagiário')->whereIn('state', $companies->pluck('state'))->orderBy('created_at', 'desc')->get();
         } else {
-            $companies = Company::all();
+            $companies = Company::where('institution', 'Não')->get();
             $vacancies = Vacancy::all();
             $businessmen = User::role('Empresário')->count();
+            $trainee = User::role('Estagiário')->orderBy('created_at', 'desc')->get();
         }
 
-        $trainee = User::role('Estagiário')->orderBy('created_at', 'desc')->get();
+        $trainee = User::role('Estagiário')->whereIn('state', $companies->pluck('state'))->orderBy('created_at', 'desc')->get();
 
         $posts = Post::orderBy('created_at', 'desc')->take(6)->get();
 

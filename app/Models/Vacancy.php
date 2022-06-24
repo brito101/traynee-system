@@ -83,4 +83,20 @@ class Vacancy extends Model
             return $courses;
         }
     }
+
+    public function coursesId()
+    {
+        $courses = $this->courses;
+        $courses_arr = explode(',', $courses);
+        $list = [];
+        if (count($courses_arr) > 1) {
+            foreach ($courses_arr as $item) {
+                $course = Course::where('name', ltrim($item))->first();
+                if ($course) {
+                    $list[] = $course->id;
+                }
+            }
+        }
+        return $list;
+    }
 }

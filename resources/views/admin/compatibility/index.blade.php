@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1><i class="fa fa-fw fa-chart-area"></i> Gráfico de Compatibilidade</h1>
+                    <h1><i class="fa fa-fw fa-chart-bar"></i> Gráfico de Compatibilidade</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -75,9 +75,9 @@
                     datasets: [
                         @foreach ($finalList as $list)
                             {
-                            label: "Vaga" + {!! json_encode($list['vacancy']) !!} ,
-                            backgroundColor:generateRandomColor(),
-                            data: {!! json_encode($list['values']) !!} ,
+                                label: "Vaga" + {!! json_encode($list['vacancy']) !!},
+                                backgroundColor: generateRandomColor(),
+                                data: {!! json_encode($list['values']) !!},
                             },
                         @endforeach
                     ]
