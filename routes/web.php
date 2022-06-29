@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CurriculumController;
 use App\Http\Controllers\Admin\DocumentController;
 use App\Http\Controllers\Admin\DocumentTrayneeController;
+use App\Http\Controllers\Admin\EvaluationController;
 use App\Http\Controllers\Admin\ExtraController;
 use App\Http\Controllers\Admin\FeeController;
 use App\Http\Controllers\Admin\GenreController;
@@ -121,6 +122,9 @@ Route::group(['middleware' => ['auth']], function () {
         /** Allocation */
         Route::get('/allocations/destroy/{id}', [AllocationController::class, 'destroy']);
         Route::resource('allocations', AllocationController::class);
+        /** Evaluations */
+        Route::get('/evaluations/destroy/{id}', [EvaluationController::class, 'destroy']);
+        Route::resource('evaluations', EvaluationController::class);
 
         /**
          * Companies

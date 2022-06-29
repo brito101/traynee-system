@@ -16,7 +16,7 @@ class CreateEvaluationsTable extends Migration
         Schema::create('evaluations', function (Blueprint $table) {
             $table->id();
             $table->string('status')->default('Aguradando'); //Aguardando - Liberado - Em análise - Aprovado - Reprovado
-            $table->foreignId('company_id')
+            $table->foreignId('vacancy_id')
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');

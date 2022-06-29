@@ -483,6 +483,12 @@ return [
                     'icon'        => 'fas fa-fw fa-chevron-right',
                 ],
                 [
+                    'text'        => 'Avaliações',
+                    'url'         => 'admin/evaluations',
+                    'icon'        => 'fas fa-fw fa-chevron-right',
+                    'can'         => 'Acessar Avaliações'
+                ],
+                [
                     'text'        => 'Gráfico',
                     'url'         => 'admin/compatibility',
                     'icon'        => 'fas fa-fw fa-chevron-right',
