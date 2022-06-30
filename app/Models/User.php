@@ -164,4 +164,56 @@ class User extends Authenticatable
     {
         return Carbon::parse($this->attributes['birth'])->age;
     }
+
+    public function compatibility(Vacancy $vacancy)
+    {
+        $listAcadmics = [];
+        $academics = Academic::where('user_id', $this->id)->get();
+        foreach ($academics as $academic) {
+            $listAcadmics['area'] = $academic->course['name'];
+        }
+
+        $listExtraCourses = [];
+        $extras = Extra::where('user_id', $this->id)->get();
+        foreach ($extras as $extra) {
+            $listExtraCourses['area'] = $extra->course['name'];
+        }
+
+        $points = 0;
+        /** curso acadêmicos */
+        foreach (array_values($listAcadmics) as $val) {
+            if (strpos($vacancy->courses, $val) !== false) {
+                $points += 1;
+            }
+        }
+
+        /** curso extracurricular */
+        foreach (array_values($listExtraCourses) as $val) {
+            if (strpos($vacancy->courses, $val) !== false) {
+                $points += 1;
+            }
+        }
+
+        /** escolaridade */
+        if (strpos(implode(", ", array_values($this->academics->pluck('scholarity_id')->toArray())), (string)$vacancy->scholarity_id) !== false) {
+            $points += 1;
+        }
+
+        /** disponibilidade */
+        if (strpos(implode(", ", array_values($this->academics->pluck('availability')->toArray())), $vacancy->period) !== false) {
+            $points += 1;
+        }
+
+        /** estado */
+        if ($vacancy->state == $this->state) {
+            $points  += 0.5;
+        }
+
+        /** cidade e estado */
+        if ($vacancy->city == $this->city) {
+            $points  += 0.5;
+        }
+
+        return $points * 20 . "%";
+    }
 }

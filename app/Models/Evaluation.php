@@ -12,7 +12,7 @@ class Evaluation extends Model
 
     protected $dates = ['deleted_at'];
 
-    protected $fillable = ['status', 'vacancy_id', 'trainee'];
+    protected $fillable = ['status', 'vacancy_id', 'trainee', 'editor'];
 
     /** Relationships */
     public function vacancy()

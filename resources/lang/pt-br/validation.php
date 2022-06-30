@@ -242,7 +242,8 @@ return [
         'payment_methods' => 'métodos de pagamento',
         'init' => 'início',
         'finish' => 'término',
-        'university' => 'universidade'
+        'university' => 'universidade',
+        'vacancy_id' => 'vaga'
     ],
 
 ];

@@ -14,7 +14,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('admin.allocations.index') }}">Alocações</a>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.evaluations.index') }}">Alocações</a>
                         </li>
                         <li class="breadcrumb-item active">Nova Alocação</li>
                     </ol>
@@ -35,7 +35,7 @@
                             <h3 class="card-title">Dados Cadastrais da Alocação</h3>
                         </div>
 
-                        <form method="POST" action="{{ route('admin.allocations.store') }}">
+                        <form method="POST" action="{{ route('admin.evaluations.store') }}">
                             @csrf
 
                             <div class="card-body">
@@ -55,40 +55,37 @@
                                 </div>
 
                                 <div class="d-flex flex-wrap justify-content-between">
-                                    <div class="col-12 col-md-6 form-group px-0 pr-md-2">
-                                        <label for="company_id">Empresa</label>
-                                        <x-adminlte-select2 name="company_id">
-                                            @foreach ($companies as $company)
-                                                <option {{ old('company_id') == $company->id ? 'selected' : '' }}
-                                                    value="{{ $company->id }}">{{ $company->alias_name }}</option>
-                                            @endforeach
-                                        </x-adminlte-select2>
-                                    </div>
-                                    <div class="col-12 col-md-6 form-group px-0 pl-md-2">
-                                        <label for="university">Universidade</label>
-                                        <x-adminlte-select2 name="university">
-                                            @foreach ($institutions as $institution)
-                                                <option {{ old('university') == $institution->id ? 'selected' : '' }}
-                                                    value="{{ $institution->id }}">{{ $institution->alias_name }}
+                                    <div class="col-12 form-group px-0 ">
+                                        <label for="vacancy_id">Vaga</label>
+                                        <x-adminlte-select2 name="vacancy_id">
+                                            @foreach ($vacancies as $vacancy)
+                                                <option {{ old('vacancy_id') == $vacancy->id ? 'selected' : '' }}
+                                                    value="{{ $vacancy->id }}">{{ $vacancy->title }} // Empresa:
+                                                    {{ $vacancy->company->alias_name }} // Compatibilidade:
+                                                    {{ $trainee->compatibility($vacancy) }}
                                                 </option>
                                             @endforeach
                                         </x-adminlte-select2>
                                     </div>
-
                                 </div>
 
                                 <div class="d-flex flex-wrap justify-content-between">
-                                    <div class="col-12 col-md-6 form-group px-0 pr-md-2">
-                                        <label for="init">Início</label>
-                                        <input type="text" class="form-control date" id="init"
-                                            placeholder="Data de Início da Alocação" name="init"
-                                            value="{{ old('init') }}" required>
-                                    </div>
-                                    <div class="col-12 col-md-6 form-group px-0 pl-md-2">
-                                        <label for="finish">Final</label>
-                                        <input type="text" class="form-control date" id="finish"
-                                            placeholder="Data Término da Alocação" name="finish"
-                                            value="{{ old('finish') }}" required>
+                                    <div class="col-12 form-group px-0 ">
+                                        <label for="status">Situação</label>
+                                        <x-adminlte-select2 name="status">
+                                            <option {{ old('status') == 'Aguardando' ? 'selected' : '' }}
+                                                value="Aguardando">Aguardando
+                                            </option>
+                                            <option {{ old('status') == 'Liberado' ? 'selected' : '' }} value="Liberado">
+                                                Liberado
+                                            </option>
+                                            <option {{ old('status') == 'Aprovado' ? 'selected' : '' }} value="Aprovado">
+                                                Aprovado
+                                            </option>
+                                            <option {{ old('status') == 'Reprovado' ? 'selected' : '' }}
+                                                value="Reprovado">Reprovado
+                                            </option>
+                                        </x-adminlte-select2>
                                     </div>
                                 </div>
                             </div>
