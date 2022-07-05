@@ -61,8 +61,7 @@
                                             @foreach ($vacancies as $vacancy)
                                                 <option {{ old('vacancy_id') == $vacancy->id ? 'selected' : '' }}
                                                     value="{{ $vacancy->id }}">{{ $vacancy->title }} // Empresa:
-                                                    {{ $vacancy->company->alias_name }} // Compatibilidade:
-                                                    {{ $trainee->compatibility($vacancy) }}
+                                                    {{ $vacancy->company->alias_name }}
                                                 </option>
                                             @endforeach
                                         </x-adminlte-select2>
@@ -100,11 +99,4 @@
             </div>
         </div>
     </section>
-@endsection
-
-@section('custom_js')
-    <script src="{{ asset('vendor/jquery/jquery.inputmask.bundle.min.js') }}"></script>
-    <script>
-        $('.date').inputmask("dd/mm/yyyy");
-    </script>
 @endsection

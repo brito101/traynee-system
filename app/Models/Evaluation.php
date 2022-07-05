@@ -24,7 +24,11 @@ class Evaluation extends Model
     public function getTrainee()
     {
         $trainee = User::find($this->trainee);
-        $pathImg = url('storage/users/' . $trainee->photo);
+        if ($trainee->photo) {
+            $pathImg = url('storage/users/' . $trainee->photo);
+        } else {
+            $pathImg = url('vendor/adminlte/dist/img/avatar.png');
+        }
         return "<p class=\"m-0 p-0\"><img src=\"{$pathImg}\" class=\"img-circle img-fluid elevation-2 mr-2\" style=\"object-fit: cover; aspect-ratio: 1; width: 50px;\">{$trainee->name} ({$trainee->email})</p>";
     }
 
@@ -80,5 +84,14 @@ class Evaluation extends Model
         }
 
         return $points * 20 . "%";
+    }
+
+    public function link()
+    {
+        if ($this->status == 'Aguardando') {
+            return '<a class="btn btn-xs btn-default text-success mx-1 shadow" title="Liberar" href="evaluations/release/' . $this->id . '"><i class="fa fa-lg fa-fw fa-thumbs-up"></i></a>';
+        } else {
+            return null;
+        }
     }
 }

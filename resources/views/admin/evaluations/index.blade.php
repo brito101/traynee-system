@@ -13,7 +13,7 @@
             $list = [];
 
             foreach ($evaluations as $evaluation) {
-                $list[] = [$evaluation->id, $evaluation->getTrainee(), $evaluation->vacancy->title, $evaluation->vacancy->company->alias_name, $evaluation->status, $evaluation->getCompability(), '<nobr>' . '<a class="btn btn-xs btn-default text-success mx-1 shadow" title="Liberar" href="evaluations/' . $evaluation->id . '/release"><i class="fa fa-lg fa-fw fa-thumbs-up"></i></a>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="evaluations/' . $evaluation->id . '/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="evaluations/destroy/' . $evaluation->id . '" onclick="return confirm(\'Confirma a exclusão desta alocação?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
+                $list[] = [$evaluation->id, $evaluation->getTrainee(), $evaluation->vacancy->title, $evaluation->vacancy->company->alias_name, $evaluation->status, $evaluation->getCompability(), '<nobr>' . $evaluation->link() . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="evaluations/' . $evaluation->id . '/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="evaluations/destroy/' . $evaluation->id . '" onclick="return confirm(\'Confirma a exclusão desta alocação?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
             }
 
             $config = [

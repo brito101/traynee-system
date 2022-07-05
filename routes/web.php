@@ -124,6 +124,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('allocations', AllocationController::class);
         /** Evaluations */
         Route::get('/evaluations/destroy/{id}', [EvaluationController::class, 'destroy']);
+        Route::get('/evaluations/release/{id}', [EvaluationController::class, 'release']);
         Route::resource('evaluations', EvaluationController::class);
 
         /**

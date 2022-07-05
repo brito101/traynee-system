@@ -105,17 +105,6 @@ class EvaluationController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -123,7 +112,25 @@ class EvaluationController extends Controller
      */
     public function edit($id)
     {
-        //
+        if (!Auth::user()->hasPermissionTo('Editar Avaliações')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        if (Auth::user()->hasRole('Franquiado')) {
+            $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
+            $trainees = User::role('Estagiário')->whereIn('state', $companies->pluck('state'))->orderBy('created_at', 'desc')->get();
+            $vacancies = Vacancy::whereIn('company_id', $companies->pluck('id'))->get();
+            $evaluation = Evaluation::where('id', $id)->whereIn('vacancy_id', $vacancies->pluck('id'))->whereIn('trainee', $trainees->pluck('id'))->first();
+        } else {
+            $evaluation = Evaluation::where('id', $id)->first();
+            $companies = Company::all();
+            $vacancies = Vacancy::whereIn('company_id', $companies->pluck('id'))->get();
+            $trainees = User::role('Estagiário')->get();
+        }
+        if (empty($evaluation->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
+        return view('admin.evaluations.edit', compact('evaluation', 'trainees', 'vacancies'));
     }
 
     /**
@@ -133,9 +140,42 @@ class EvaluationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EvaluationRequest $request, $id)
     {
-        //
+        if (!Auth::user()->hasPermissionTo('Editar Avaliações')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        if (Auth::user()->hasRole('Franquiado')) {
+            $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
+            $trainees = User::role('Estagiário')->whereIn('state', $companies->pluck('state'))->orderBy('created_at', 'desc')->get();
+            $vacancies = Vacancy::whereIn('company_id', $companies->pluck('id'))->get();
+            $evaluation = Evaluation::where('id', $id)->whereIn('vacancy_id', $vacancies->pluck('id'))->whereIn('trainee', $trainees->pluck('id'))->first();
+        } else {
+            $evaluation = Evaluation::where('id', $id)->first();
+            $companies = Company::all();
+            $vacancies = Vacancy::whereIn('company_id', $companies->pluck('id'))->get();
+            $trainees = User::role('Estagiário')->get();
+        }
+
+        if (empty($evaluation->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $data['editor'] = Auth::user()->id;
+
+        $data = $request->all();
+
+        if ($evaluation->update($data)) {
+            return redirect()
+                ->route('admin.evaluations.index')
+                ->with('success', 'Edição realizada!');
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', 'Erro ao editar!');
+        }
     }
 
     /**
@@ -167,6 +207,39 @@ class EvaluationController extends Controller
             return redirect()
                 ->route('admin.evaluations.index')
                 ->with('success', 'Exclusão realizada!');
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', 'Erro ao excluir!');
+        }
+    }
+
+    public function release($id)
+    {
+        if (!Auth::user()->hasPermissionTo('Editar Avaliações')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        if (Auth::user()->hasRole('Franquiado')) {
+            $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->pluck('id');
+        } else {
+            $companies = Company::all()->pluck('id');
+        }
+
+        $vacancies = Vacancy::whereIn('company_id', $companies)->pluck('id');
+        $evaluation = Evaluation::where('id', $id)->whereIn('vacancy_id',  $vacancies)->first();
+
+        if (empty($evaluation->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $data['status'] = 'Liberado';
+
+        if ($evaluation->update($data)) {
+            return redirect()
+                ->route('admin.evaluations.index')
+                ->with('success', 'Leberação realizada!');
         } else {
             return redirect()
                 ->back()
