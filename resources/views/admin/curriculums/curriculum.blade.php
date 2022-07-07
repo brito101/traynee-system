@@ -38,7 +38,7 @@
                             <div class="text-center">
                                 <img class="profile-user-img img-fluid img-circle"
                                     src="{{ $user->photo != null ? url('storage/users/' . $user->photo) : asset('/vendor/adminlte/dist/img/avatar.png') }}"
-                                    alt="{{ $user->name }}">
+                                    alt="{{ $user->name }}" style="object-fit: cover; aspect-ratio: 1;">
                             </div>
                             <h3 class="profile-username text-center">{{ $user->name }}</h3>
                             <p class="text-muted text-center">Tenho {{ $user->age() }} anos</p>
@@ -87,14 +87,14 @@
                     <div class="card">
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
-                                <li class="nav-item"><a class="nav-link active" href="#courses"
-                                        data-toggle="tab">Info. Acadêmicas</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#extracourses"
-                                        data-toggle="tab">Cursos Extracurriculares</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#experience"
-                                        data-toggle="tab">Exp. Profissional</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#composing"
-                                        data-toggle="tab">Redação</a></li>
+                                <li class="nav-item"><a class="nav-link active" href="#courses" data-toggle="tab">Info.
+                                        Acadêmicas</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#extracourses" data-toggle="tab">Cursos
+                                        Extracurriculares</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#experience" data-toggle="tab">Exp.
+                                        Profissional</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#composing" data-toggle="tab">Redação</a>
+                                </li>
                                 @if ($user->requiriment->count() > 0)
                                     <li class="nav-item"><a class="nav-link" href="#requiriments"
                                             data-toggle="tab">Necessidades Especiais</a></li>

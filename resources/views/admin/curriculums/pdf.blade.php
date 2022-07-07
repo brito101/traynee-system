@@ -29,7 +29,7 @@
                             <div class="text-center">
                                 <img class="profile-user-img img-fluid img-circle"
                                     src="{{ $user->photo != null ? url('storage/users/' . $user->photo) : asset('/vendor/adminlte/dist/img/avatar.png') }}"
-                                    alt="{{ $user->name }}">
+                                    alt="{{ $user->name }}" style="object-fit: cover; aspect-ratio: 1; width: 50px;">
                             </div>
                             <h3 class="profile-username text-center">{{ $user->name }}</h3>
                             <p class="text-muted text-center">Tenho {{ $user->age() }} anos</p>
