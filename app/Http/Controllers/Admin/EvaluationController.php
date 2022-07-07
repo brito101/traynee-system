@@ -26,14 +26,18 @@ class EvaluationController extends Controller
 
         if (Auth::user()->hasRole('Franquiado')) {
             $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->pluck('id');
+            $vacancies = Vacancy::whereIn('company_id', $companies)->pluck('id');
+            $evaluations = Evaluation::whereIn('vacancy_id', $vacancies)->get();
         } elseif (Auth::user()->hasRole('Empresário')) {
             $companies = Company::where('id', Auth::user()->company_id)->pluck('id');
+            $vacancies = Vacancy::whereIn('company_id', $companies)->pluck('id');
+            $evaluations = Evaluation::whereIn('vacancy_id', $vacancies)->where('status', '!=', 'Aguardando')->get();
         } else {
             $companies = Company::all()->pluck('id');
+            $vacancies = Vacancy::whereIn('company_id', $companies)->pluck('id');
+            $evaluations = Evaluation::whereIn('vacancy_id', $vacancies)->get();
         }
 
-        $vacancies = Vacancy::whereIn('company_id', $companies)->pluck('id');
-        $evaluations = Evaluation::whereIn('vacancy_id', $vacancies)->get();
         return view('admin.evaluations.index', compact('evaluations'));
     }
 
@@ -239,12 +243,210 @@ class EvaluationController extends Controller
         if ($evaluation->update($data)) {
             return redirect()
                 ->route('admin.evaluations.index')
-                ->with('success', 'Leberação realizada!');
+                ->with('success', 'Liberação realizada!');
         } else {
             return redirect()
                 ->back()
                 ->withInput()
-                ->with('error', 'Erro ao excluir!');
+                ->with('error', 'Erro ao liberar!');
+        }
+    }
+
+    public function analysis($id)
+    {
+        if (!Auth::user()->hasPermissionTo('Editar Avaliações')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        if (Auth::user()->hasRole('Empresário')) {
+            $companies = Company::where('id', Auth::user()->company_id)->pluck('id');
+        } else {
+            $companies = Company::all()->pluck('id');
+        }
+
+        $vacancies = Vacancy::whereIn('company_id', $companies)->pluck('id');
+        $evaluation = Evaluation::where('id', $id)->whereIn('vacancy_id',  $vacancies)->first();
+
+        if (empty($evaluation->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $data['status'] = 'Em análise';
+
+        if ($evaluation->update($data)) {
+            return redirect()
+                ->route('admin.evaluations.index')
+                ->with('success', 'Status alterado para "Em análise"!');
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', 'Erro ao atualizar status!');
+        }
+    }
+
+    public function underContract($id)
+    {
+        if (!Auth::user()->hasPermissionTo('Editar Avaliações')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        if (Auth::user()->hasRole('Empresário')) {
+            $companies = Company::where('id', Auth::user()->company_id)->pluck('id');
+        } else {
+            $companies = Company::all()->pluck('id');
+        }
+
+        $vacancies = Vacancy::whereIn('company_id', $companies)->pluck('id');
+        $evaluation = Evaluation::where('id', $id)->whereIn('vacancy_id',  $vacancies)->first();
+
+        if (empty($evaluation->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $data['status'] = 'Em contratação';
+
+        if ($evaluation->update($data)) {
+            return redirect()
+                ->route('admin.evaluations.index')
+                ->with('success', 'Status alterado para "Em contratação"!');
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', 'Erro ao atualizar status!');
+        }
+    }
+
+    public function hired($id)
+    {
+        if (!Auth::user()->hasPermissionTo('Editar Avaliações')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        if (Auth::user()->hasRole('Empresário')) {
+            $companies = Company::where('id', Auth::user()->company_id)->pluck('id');
+        } else {
+            $companies = Company::all()->pluck('id');
+        }
+
+        $vacancies = Vacancy::whereIn('company_id', $companies)->pluck('id');
+        $evaluation = Evaluation::where('id', $id)->whereIn('vacancy_id',  $vacancies)->first();
+
+        if (empty($evaluation->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $data['status'] = 'Contratado';
+
+        if ($evaluation->update($data)) {
+            return redirect()
+                ->route('admin.evaluations.index')
+                ->with('success', 'Status alterado para "Contratado"!');
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', 'Erro ao atualizar status!');
+        }
+    }
+
+    public function contractConcluded($id)
+    {
+        if (!Auth::user()->hasPermissionTo('Editar Avaliações')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        if (Auth::user()->hasRole('Empresário')) {
+            $companies = Company::where('id', Auth::user()->company_id)->pluck('id');
+        } else {
+            $companies = Company::all()->pluck('id');
+        }
+
+        $vacancies = Vacancy::whereIn('company_id', $companies)->pluck('id');
+        $evaluation = Evaluation::where('id', $id)->whereIn('vacancy_id',  $vacancies)->first();
+
+        if (empty($evaluation->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $data['status'] = 'Contrato concluído';
+
+        if ($evaluation->update($data)) {
+            return redirect()
+                ->route('admin.evaluations.index')
+                ->with('success', 'Status alterado para "Contrato concluído"!');
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', 'Erro ao atualizar status!');
+        }
+    }
+
+    public function contractCanceled($id)
+    {
+        if (!Auth::user()->hasPermissionTo('Editar Avaliações')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        if (Auth::user()->hasRole('Empresário')) {
+            $companies = Company::where('id', Auth::user()->company_id)->pluck('id');
+        } else {
+            $companies = Company::all()->pluck('id');
+        }
+
+        $vacancies = Vacancy::whereIn('company_id', $companies)->pluck('id');
+        $evaluation = Evaluation::where('id', $id)->whereIn('vacancy_id',  $vacancies)->first();
+
+        if (empty($evaluation->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $data['status'] = 'Contrato cancelado';
+
+        if ($evaluation->update($data)) {
+            return redirect()
+                ->route('admin.evaluations.index')
+                ->with('success', 'Status alterado para "Contrato cancelado"!');
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', 'Erro ao atualizar status!');
+        }
+    }
+
+    public function incompatible($id)
+    {
+        if (!Auth::user()->hasPermissionTo('Editar Avaliações')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        if (Auth::user()->hasRole('Empresário')) {
+            $companies = Company::where('id', Auth::user()->company_id)->pluck('id');
+        } else {
+            $companies = Company::all()->pluck('id');
+        }
+
+        $vacancies = Vacancy::whereIn('company_id', $companies)->pluck('id');
+        $evaluation = Evaluation::where('id', $id)->whereIn('vacancy_id',  $vacancies)->first();
+
+        if (empty($evaluation->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $data['status'] = 'Incompatível';
+
+        if ($evaluation->update($data)) {
+            return redirect()
+                ->route('admin.evaluations.index')
+                ->with('success', 'Status alterado para "Incompatível"!');
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', 'Erro ao atualizar status!');
         }
     }
 }

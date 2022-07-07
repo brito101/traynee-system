@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Evaluation extends Model
 {
@@ -88,8 +89,67 @@ class Evaluation extends Model
 
     public function link()
     {
-        if ($this->status == 'Aguardando') {
+        if ($this->status == 'Aguardando' && Auth::user()->hasRole('Franquiado')) {
             return '<a class="btn btn-xs btn-default text-success mx-1 shadow" title="Liberar" href="evaluations/release/' . $this->id . '"><i class="fa fa-lg fa-fw fa-thumbs-up"></i></a>';
+        } elseif (Auth::user()->hasRole('Empresário')) {
+            if ($this->status == 'Em análise') {
+                return '
+                <a class="btn btn-xs btn-default text-info mx-1 shadow" title="Em contratação" href="evaluations/under-contract/' . $this->id . '"><i class="fas fa-fw fa-briefcase"></i></a>
+                <a class="btn btn-xs btn-default text-success mx-1 shadow" title="Contratado" href="evaluations/hired/' . $this->id . '"><i class="fas fa-fw fa-handshake"></i></a>
+                <a class="btn btn-xs btn-default text-orange mx-1 shadow" title="Contrato concluído" href="evaluations/contract-concluded/' . $this->id . '"><i class="fas fa-fw fa-clipboard-check"></i></a>
+                <a class="btn btn-xs btn-default text-gray mx-1 shadow" title="Contrato cancelado" href="evaluations/contract-canceled/' . $this->id . '"><i class="fas fa-fw fa-clipboard"></i></a>
+                <a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Incompatível" href="evaluations/incompatible/' . $this->id . '"><i class="fas fa-fw fa-ban"></i></a>
+                ';
+            } elseif ($this->status == 'Em contratação') {
+                return '
+                <a class="btn btn-xs btn-default text-secondary mx-1 shadow" title="Em Análise" href="evaluations/analysis/' . $this->id . '"><i class="fa fa-lg fa-fw fa-clock"></i></a>
+                <a class="btn btn-xs btn-default text-success mx-1 shadow" title="Contratado" href="evaluations/hired/' . $this->id . '"><i class="fas fa-fw fa-handshake"></i></a>
+                <a class="btn btn-xs btn-default text-orange mx-1 shadow" title="Contrato concluído" href="evaluations/contract-concluded/' . $this->id . '"><i class="fas fa-fw fa-clipboard-check"></i></a>
+                <a class="btn btn-xs btn-default text-gray mx-1 shadow" title="Contrato cancelado" href="evaluations/contract-canceled/' . $this->id . '"><i class="fas fa-fw fa-clipboard"></i></a>
+                <a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Incompatível" href="evaluations/incompatible/' . $this->id . '"><i class="fas fa-fw fa-ban"></i></a>
+                ';
+            } elseif ($this->status == 'Contratado') {
+                return '
+                <a class="btn btn-xs btn-default text-secondary mx-1 shadow" title="Em Análise" href="evaluations/analysis/' . $this->id . '"><i class="fa fa-lg fa-fw fa-clock"></i></a>
+                <a class="btn btn-xs btn-default text-info mx-1 shadow" title="Em contratação" href="evaluations/under-contract/' . $this->id . '"><i class="fas fa-fw fa-briefcase"></i></a>
+                <a class="btn btn-xs btn-default text-orange mx-1 shadow" title="Contrato concluído" href="evaluations/contract-concluded/' . $this->id . '"><i class="fas fa-fw fa-clipboard-check"></i></a>
+                <a class="btn btn-xs btn-default text-gray mx-1 shadow" title="Contrato cancelado" href="evaluations/contract-canceled/' . $this->id . '"><i class="fas fa-fw fa-clipboard"></i></a>
+                <a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Incompatível" href="evaluations/incompatible/' . $this->id . '"><i class="fas fa-fw fa-ban"></i></a>
+                ';
+            } elseif ($this->status == 'Contrato concluído') {
+                return '
+                <a class="btn btn-xs btn-default text-secondary mx-1 shadow" title="Em Análise" href="evaluations/analysis/' . $this->id . '"><i class="fa fa-lg fa-fw fa-clock"></i></a>
+                <a class="btn btn-xs btn-default text-info mx-1 shadow" title="Em contratação" href="evaluations/under-contract/' . $this->id . '"><i class="fas fa-fw fa-briefcase"></i></a>
+                <a class="btn btn-xs btn-default text-success mx-1 shadow" title="Contratado" href="evaluations/hired/' . $this->id . '"><i class="fas fa-fw fa-handshake"></i></a>
+                <a class="btn btn-xs btn-default text-gray mx-1 shadow" title="Contrato cancelado" href="evaluations/contract-canceled/' . $this->id . '"><i class="fas fa-fw fa-clipboard"></i></a>
+                <a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Incompatível" href="evaluations/incompatible/' . $this->id . '"><i class="fas fa-fw fa-ban"></i></a>
+                ';
+            } elseif ($this->status == 'Contrato cancelado') {
+                return '
+                <a class="btn btn-xs btn-default text-secondary mx-1 shadow" title="Em Análise" href="evaluations/analysis/' . $this->id . '"><i class="fa fa-lg fa-fw fa-clock"></i></a>
+                <a class="btn btn-xs btn-default text-info mx-1 shadow" title="Em contratação" href="evaluations/under-contract/' . $this->id . '"><i class="fas fa-fw fa-briefcase"></i></a>
+                <a class="btn btn-xs btn-default text-success mx-1 shadow" title="Contratado" href="evaluations/hired/' . $this->id . '"><i class="fas fa-fw fa-handshake"></i></a>
+                <a class="btn btn-xs btn-default text-orange mx-1 shadow" title="Contrato concluído" href="evaluations/contract-concluded/' . $this->id . '"><i class="fas fa-fw fa-clipboard-check"></i></a>
+                <a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Incompatível" href="evaluations/incompatible/' . $this->id . '"><i class="fas fa-fw fa-ban"></i></a>
+                ';
+            } elseif ($this->status == 'Incompatível') {
+                return '
+                <a class="btn btn-xs btn-default text-secondary mx-1 shadow" title="Em Análise" href="evaluations/analysis/' . $this->id . '"><i class="fa fa-lg fa-fw fa-clock"></i></a>
+                <a class="btn btn-xs btn-default text-info mx-1 shadow" title="Em contratação" href="evaluations/under-contract/' . $this->id . '"><i class="fas fa-fw fa-briefcase"></i></a>
+                <a class="btn btn-xs btn-default text-success mx-1 shadow" title="Contratado" href="evaluations/hired/' . $this->id . '"><i class="fas fa-fw fa-handshake"></i></a>
+                <a class="btn btn-xs btn-default text-orange mx-1 shadow" title="Contrato concluído" href="evaluations/contract-concluded/' . $this->id . '"><i class="fas fa-fw fa-clipboard-check"></i></a>
+                <a class="btn btn-xs btn-default text-gray mx-1 shadow" title="Contrato cancelado" href="evaluations/contract-canceled/' . $this->id . '"><i class="fas fa-fw fa-clipboard"></i></a>
+                ';
+            } else {
+                return '
+                <a class="btn btn-xs btn-default text-secondary mx-1 shadow" title="Em Análise" href="evaluations/analysis/' . $this->id . '"><i class="fa fa-lg fa-fw fa-clock"></i></a>
+                <a class="btn btn-xs btn-default text-info mx-1 shadow" title="Em contratação" href="evaluations/under-contract/' . $this->id . '"><i class="fas fa-fw fa-briefcase"></i></a>
+                <a class="btn btn-xs btn-default text-success mx-1 shadow" title="Contratado" href="evaluations/hired/' . $this->id . '"><i class="fas fa-fw fa-handshake"></i></a>
+                <a class="btn btn-xs btn-default text-orange mx-1 shadow" title="Contrato concluído" href="evaluations/contract-concluded/' . $this->id . '"><i class="fas fa-fw fa-clipboard-check"></i></a>
+                <a class="btn btn-xs btn-default text-gray mx-1 shadow" title="Contrato cancelado" href="evaluations/contract-canceled/' . $this->id . '"><i class="fas fa-fw fa-clipboard"></i></a>
+                <a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Incompatível" href="evaluations/incompatible/' . $this->id . '"><i class="fas fa-fw fa-ban"></i></a>
+                ';
+            }
         } else {
             return null;
         }

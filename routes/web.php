@@ -120,11 +120,17 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('report', [CompatibilityController::class, 'report'])->name('compatibility.report');
         Route::get('report-pdf', [CompatibilityController::class, 'reportPdf'])->name('compatibility.report.pdf');
         /** Allocation */
-        Route::get('/allocations/destroy/{id}', [AllocationController::class, 'destroy']);
-        Route::resource('allocations', AllocationController::class);
+        // Route::get('/allocations/destroy/{id}', [AllocationController::class, 'destroy']);
+        // Route::resource('allocations', AllocationController::class);
         /** Evaluations */
         Route::get('/evaluations/destroy/{id}', [EvaluationController::class, 'destroy']);
         Route::get('/evaluations/release/{id}', [EvaluationController::class, 'release']);
+        Route::get('/evaluations/analysis/{id}', [EvaluationController::class, 'analysis']);
+        Route::get('/evaluations/under-contract/{id}', [EvaluationController::class, 'underContract']);
+        Route::get('/evaluations/hired/{id}', [EvaluationController::class, 'hired']);
+        Route::get('/evaluations/contract-concluded/{id}', [EvaluationController::class, 'contractConcluded']);
+        Route::get('/evaluations/contract-canceled/{id}', [EvaluationController::class, 'contractCanceled']);
+        Route::get('/evaluations/incompatible/{id}', [EvaluationController::class, 'incompatible']);
         Route::resource('evaluations', EvaluationController::class);
 
         /**

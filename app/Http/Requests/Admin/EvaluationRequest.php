@@ -26,7 +26,7 @@ class EvaluationRequest extends FormRequest
         return [
             'trainee' => 'required',
             'vacancy_id' => 'required',
-            'status' => 'nullable|in:Aguardando,Liberado,Em análise,Aprovado,Reprovado|max:100'
+            'status' => 'nullable|in:Aguardando,Liberado,Em análise,Em contratação,Contratado,Contrato concluído,Contrato cancelado,Incompatível|max:100'
         ];
     }
 }

@@ -86,13 +86,33 @@
                                                 Liberado
                                             </option>
                                             <option
-                                                {{ old('status') == 'Aprovado' ? 'selected' : ($evaluation->status == 'Aprovado' ? 'selected' : '') }}
-                                                value="Aprovado">
-                                                Aprovado
+                                                {{ old('status') == 'Em análise' ? 'selected' : ($evaluation->status == 'Em análise' ? 'selected' : '') }}
+                                                value="Em análise">
+                                                Em análise
                                             </option>
                                             <option
-                                                {{ old('status') == 'Reprovado' ? 'selected' : ($evaluation->status == 'Reprovado' ? 'selected' : '') }}
-                                                value="Reprovado">Reprovado
+                                                {{ old('status') == 'Em contratação' ? 'selected' : ($evaluation->status == 'Em contratação' ? 'selected' : '') }}
+                                                value="Em contratação">Em contratação
+                                            </option>
+                                            <option
+                                                {{ old('status') == 'Contratado' ? 'selected' : ($evaluation->status == 'Contratado' ? 'selected' : '') }}
+                                                value="Contratado">
+                                                Contratado
+                                            </option>
+                                            <option
+                                                {{ old('status') == 'Contrato concluído' ? 'selected' : ($evaluation->status == 'Contrato concluído' ? 'selected' : '') }}
+                                                value="Contrato concluído">
+                                                Contrato concluído
+                                            </option>
+                                            <option
+                                                {{ old('status') == 'Contrato cancelado' ? 'selected' : ($evaluation->status == 'Contrato cancelado' ? 'selected' : '') }}
+                                                value="Contrato cancelado">
+                                                Contrato cancelado
+                                            </option>
+                                            <option
+                                                {{ old('status') == 'Incompatível' ? 'selected' : ($evaluation->status == 'Incompatível' ? 'selected' : '') }}
+                                                value="Incompatível">
+                                                Incompatível
                                             </option>
                                         </x-adminlte-select2>
                                     </div>

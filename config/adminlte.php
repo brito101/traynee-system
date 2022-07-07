@@ -475,12 +475,13 @@ return [
             'text'        => 'Compatibilidade',
             'url'         => '#',
             'icon'        => 'fas fa-fw fa-chart-bar',
-            'can'         => 'Visualizar Estagiários',
+            'can'         => 'Acessar Avaliações',
             'submenu' => [
                 [
                     'text'        => 'Listagem de Estagiários',
                     'url'         => 'admin/trainees',
                     'icon'        => 'fas fa-fw fa-chevron-right',
+                    'can'         => 'Visualizar Estagiários'
                 ],
                 [
                     'text'        => 'Avaliações',
@@ -502,24 +503,24 @@ return [
                 ],
             ]
         ],
-        [
-            'text'        => 'Alocação de Vagas',
-            'url'         => '#',
-            'icon'        => 'fa fa-fw fa-handshake',
-            'can'         => 'Acessar Alocações',
-            'submenu' => [
-                [
-                    'text' => 'Alocações',
-                    'url'  => 'admin/allocations',
-                    'icon' => 'fas fa-fw fa-chevron-right',
-                ],
-                [
-                    'text' => 'Cadastro de Alocação',
-                    'url'  => 'admin/allocations/create',
-                    'icon' => 'fas fa-fw fa-chevron-right',
-                ]
-            ]
-        ],
+        // [
+        //     'text'        => 'Alocação de Vagas',
+        //     'url'         => '#',
+        //     'icon'        => 'fa fa-fw fa-handshake',
+        //     'can'         => 'Acessar Alocações',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'Alocações',
+        //             'url'  => 'admin/allocations',
+        //             'icon' => 'fas fa-fw fa-chevron-right',
+        //         ],
+        //         [
+        //             'text' => 'Cadastro de Alocação',
+        //             'url'  => 'admin/allocations/create',
+        //             'icon' => 'fas fa-fw fa-chevron-right',
+        //         ]
+        //     ]
+        // ],
 
         [
             'text'    => 'Financeiro',

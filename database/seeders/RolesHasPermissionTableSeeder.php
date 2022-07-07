@@ -493,6 +493,10 @@ class RolesHasPermissionTableSeeder extends Seeder
                 'permission_id' => 66,
                 'role_id' => 3
             ],
+            [
+                'permission_id' => 66,
+                'role_id' => 4
+            ],
             /** Trainee */
             [
                 'permission_id' => 67,

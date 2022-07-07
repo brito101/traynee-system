@@ -71,18 +71,30 @@
                                 <div class="d-flex flex-wrap justify-content-between">
                                     <div class="col-12 form-group px-0 ">
                                         <label for="status">Situação</label>
+
                                         <x-adminlte-select2 name="status">
                                             <option {{ old('status') == 'Aguardando' ? 'selected' : '' }}
                                                 value="Aguardando">Aguardando
                                             </option>
-                                            <option {{ old('status') == 'Liberado' ? 'selected' : '' }} value="Liberado">
-                                                Liberado
+                                            <option {{ old('status') == 'Em análise' ? 'selected' : '' }}
+                                                value="Em análise">
+                                                Em análise
                                             </option>
-                                            <option {{ old('status') == 'Aprovado' ? 'selected' : '' }} value="Aprovado">
-                                                Aprovado
+                                            <option {{ old('status') == 'Em contratação' ? 'selected' : '' }}
+                                                value="Em contratação">
+                                                Em contratação
                                             </option>
-                                            <option {{ old('status') == 'Reprovado' ? 'selected' : '' }}
-                                                value="Reprovado">Reprovado
+                                            <option {{ old('status') == 'Contratado' ? 'selected' : '' }}
+                                                value="Contratado">Contratado
+                                            </option>
+                                            <option {{ old('status') == 'Contrato concluído' ? 'selected' : '' }}
+                                                value="Contrato concluído">Contrato concluído
+                                            </option>
+                                            <option {{ old('status') == 'Contrato cancelado' ? 'selected' : '' }}
+                                                value="Contrato cancelado">Contrato cancelado
+                                            </option>
+                                            <option {{ old('status') == 'Incompatível' ? 'selected' : '' }}
+                                                value="Incompatível">Incompatível
                                             </option>
                                         </x-adminlte-select2>
                                     </div>
