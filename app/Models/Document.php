@@ -19,7 +19,10 @@ class Document extends Model
         'historic',
         'declaration',
         'residence',
-        'user_id'
+        'user_id',
+        'status',
+        'company_id',
+        'editor'
     ];
 
     /**Relationships */

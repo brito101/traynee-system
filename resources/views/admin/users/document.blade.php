@@ -72,7 +72,8 @@
                                                 value="Divorciado">Divorciado</option>
                                             <option {{ old('civil_status') == 'Solteiro' ? 'selected' : '' }}
                                                 value="Viúvo">Viúvo</option>
-                                            <option {{ old('civil_status') == 'Viúvo' ? 'selected' : '' }} value="Viúvo">
+                                            <option {{ old('civil_status') == 'Viúvo' ? 'selected' : '' }}
+                                                value="Viúvo">
                                                 Viúvo</option>
                                         </x-adminlte-select2>
                                     </div>
@@ -110,8 +111,9 @@
                                 <div class="d-flex flex-wrap justify-content-between">
                                     <div class="col-12 col-md-6 form-group px-0 pr-md-2">
                                         <label for="issuer">Orgão Emissor</label>
-                                        <input type="text" class="form-control" id="issuer" placeholder="Orgão Emissor"
-                                            name="issuer" value="{{ old('issuer') ?? $user->issuer }}" required>
+                                        <input type="text" class="form-control" id="issuer"
+                                            placeholder="Orgão Emissor" name="issuer"
+                                            value="{{ old('issuer') ?? $user->issuer }}" required>
                                     </div>
                                     <div class="col-12 col-md-6 form-group px-0 pl-md-2">
                                         <label for="document_registry">Data de Emissão</label>
@@ -130,8 +132,9 @@
                                     </div>
                                     <div class="col-12 col-md-6 form-group px-0 pl-md-2">
                                         <label for="serie">Nº de Série</label>
-                                        <input type="text" class="form-control" id="serie" placeholder="Nº de Série"
-                                            name="serie" value="{{ old('serie') ?? $user->serie }}">
+                                        <input type="text" class="form-control" id="serie"
+                                            placeholder="Nº de Série" name="serie"
+                                            value="{{ old('serie') ?? $user->serie }}">
                                     </div>
                                 </div>
 

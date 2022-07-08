@@ -472,9 +472,9 @@ return [
             ]
         ],
         [
-            'text'        => 'Compatibilidade',
+            'text'        => 'Estagiários',
             'url'         => '#',
-            'icon'        => 'fas fa-fw fa-chart-bar',
+            'icon'        => 'fas fa-fw fa-graduation-cap',
             'can'         => 'Acessar Avaliações',
             'submenu' => [
                 [
@@ -500,6 +500,11 @@ return [
                     'url'         => 'admin/report',
                     'icon'        => 'fas fa-fw fa-chevron-right',
                     'can'         => 'Visualizar Relatório de Compatibilidade'
+                ],
+                [
+                    'text'        => 'Doc. Comprobatórios',
+                    'url'         => 'admin/trainee/documents',
+                    'icon'        => 'fas fa-fw fa-chevron-right',
                 ],
             ]
         ],

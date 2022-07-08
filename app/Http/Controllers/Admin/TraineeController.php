@@ -26,6 +26,9 @@ class TraineeController extends Controller
         if (Auth::user()->hasRole('Franquiado')) {
             $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
             $trainees = User::role('Estagiário')->whereIn('state', $companies->pluck('state'))->orderBy('created_at', 'desc')->paginate(9);
+        } elseif (Auth::user()->hasRole('Empresário')) {
+            $companies = Company::where('id', Auth::user()->company_id)->get();
+            $trainees = User::role('Estagiário')->whereIn('state', $companies->pluck('state'))->orderBy('created_at', 'desc')->paginate(9);
         } else {
             $trainees = User::role('Estagiário')->orderBy('created_at', 'desc')->paginate(9);
         }
@@ -48,7 +51,10 @@ class TraineeController extends Controller
         if (Auth::user()->hasRole('Franquiado')) {
             $companies = Company::where('affiliation_id', Auth::user()->affiliation_id)->get();
             $trainees = User::role('Estagiário')
-                ->where('name', 'like', '%' . $request['name'] . '%')->orderBy('created_at', 'desc')->whereIn('id', $academics)->whereIn('state', $companies->pluck('state'))->paginate(1000000);
+                ->where('name', 'like', '%' . $request['name'] . '%')->whereIn('id', $academics)->whereIn('state', $companies->pluck('state'))->orderBy('created_at', 'desc')->paginate(1000000);
+        } elseif (Auth::user()->hasRole('Empresário')) {
+            $companies = Company::where('id', Auth::user()->company_id)->get();
+            $trainees = User::role('Estagiário')->where('name', 'like', '%' . $request['name'] . '%')->whereIn('id', $academics)->whereIn('state', $companies->pluck('state'))->orderBy('created_at', 'desc')->paginate(9);
         } else {
             $trainees = User::role('Estagiário')
                 ->where('name', 'like', '%' . $request['name'] . '%')->orderBy('created_at', 'desc')->whereIn('id', $academics)->paginate(1000000);

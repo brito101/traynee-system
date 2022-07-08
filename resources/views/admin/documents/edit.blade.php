@@ -31,7 +31,7 @@
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
                             <h3 class="card-title">Envio de Documentos Comprobatórios nos formatos jpg, png, jpeg,svg
-                                ou pdf com tamanh máximo de 1MB</h3>
+                                ou pdf com tamanho máximo de 1MB</h3>
                         </div>
 
                         <form method="POST" action="{{ route('admin.documents.store') }}" enctype="multipart/form-data">

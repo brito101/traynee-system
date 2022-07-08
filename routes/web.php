@@ -103,6 +103,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/documents', [DocumentTrayneeController::class, 'edit'])->name('documents.edit');
         Route::put('/documents', [DocumentTrayneeController::class, 'store'])->name('documents.store');
         Route::get('/documents/{id}', [DocumentTrayneeController::class, 'show'])->name('documents.show');
+        Route::get('/documents/trainees', [DocumentTrayneeController::class, 'companyDocument'])->name('company.document');
 
         /**
          * Francheeses

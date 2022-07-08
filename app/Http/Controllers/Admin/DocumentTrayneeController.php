@@ -104,4 +104,11 @@ class DocumentTrayneeController extends Controller
         $document = Document::where('user_id', $id)->first();
         return view('admin.documents.show', compact('document'));
     }
+
+    public function companyDocument()
+    {
+        if (!Auth::user()->hasRole('Empresário')) {
+            abort(403, 'Acesso não autorizado');
+        }
+    }
 }
