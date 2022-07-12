@@ -808,6 +808,11 @@ class RolesHasPermissionTableSeeder extends Seeder
                 'permission_id' => 102,
                 'role_id' => 3,
             ],
+            /** Gerenciar documentos comprobatórios */
+            [
+                'permission_id' => 103,
+                'role_id' => 4,
+            ],
         ]);
     }
 }

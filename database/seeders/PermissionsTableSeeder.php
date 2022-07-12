@@ -554,6 +554,13 @@ class PermissionsTableSeeder extends Seeder
                 'guard_name' => 'web',
                 'created_at' => new DateTime('now')
             ],
+            /** Empresários */
+            [
+                'name' => 'Gerenciar Documentos Comprobatórios',
+                'guard_name' => 'web',
+                'created_at' => new DateTime('now')
+            ],
+
         ]);
     }
 }

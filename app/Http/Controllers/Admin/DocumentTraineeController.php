@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\DocumentTrayneeRequest;
 use App\Models\Document;
+use App\Models\Evaluation;
+use App\Models\Vacancy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
-class DocumentTrayneeController extends Controller
+class DocumentTraineeController extends Controller
 {
     /**
      * Show the form for creating a new resource.
@@ -107,8 +109,14 @@ class DocumentTrayneeController extends Controller
 
     public function companyDocument()
     {
-        if (!Auth::user()->hasRole('Empresário')) {
+        if (!Auth::user()->hasPermissionTo('Gerenciar Documentos Comprobatórios')) {
             abort(403, 'Acesso não autorizado');
         }
+
+        $vacancies = Vacancy::where('company_id', Auth::user()->company_id)->pluck('id');
+        $evaluations = Evaluation::whereIn('vacancy_id', $vacancies)->pluck('trainee');
+        $documents = Document::whereIn('user_id', $evaluations)->get();
+
+        return view('admin.compatibility.documents', compact('documents'));
     }
 }

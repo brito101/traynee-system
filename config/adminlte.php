@@ -503,8 +503,9 @@ return [
                 ],
                 [
                     'text'        => 'Doc. Comprobatórios',
-                    'url'         => 'admin/trainee/documents',
+                    'url'         => 'admin/documents-trainees',
                     'icon'        => 'fas fa-fw fa-chevron-right',
+                    'can'         => 'Gerenciar Documentos Comprobatórios'
                 ],
             ]
         ],

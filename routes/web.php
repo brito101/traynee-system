@@ -14,7 +14,7 @@ use App\Http\Controllers\Admin\ComposingController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CurriculumController;
 use App\Http\Controllers\Admin\DocumentController;
-use App\Http\Controllers\Admin\DocumentTrayneeController;
+use App\Http\Controllers\Admin\DocumentTraineeController;
 use App\Http\Controllers\Admin\EvaluationController;
 use App\Http\Controllers\Admin\ExtraController;
 use App\Http\Controllers\Admin\FeeController;
@@ -100,10 +100,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/trainees-search', [TraineeController::class, 'indexSearch'])->name('trainees.search');
         Route::get('/trainees/{id}', [TraineeController::class, 'vacancy'])->name('trainees.vacancy');
         Route::get('/trainee/{id}', [TraineeController::class, 'show'])->name('trainee.show');
-        Route::get('/documents', [DocumentTrayneeController::class, 'edit'])->name('documents.edit');
-        Route::put('/documents', [DocumentTrayneeController::class, 'store'])->name('documents.store');
-        Route::get('/documents/{id}', [DocumentTrayneeController::class, 'show'])->name('documents.show');
-        Route::get('/documents/trainees', [DocumentTrayneeController::class, 'companyDocument'])->name('company.document');
+        Route::get('/documents', [DocumentTraineeController::class, 'edit'])->name('documents.edit');
+        Route::put('/documents', [DocumentTraineeController::class, 'store'])->name('documents.store');
+        Route::get('/documents/{id}', [DocumentTraineeController::class, 'show'])->name('documents.show');
+        Route::get('/documents-trainees', [DocumentTraineeController::class, 'companyDocument'])->name('company.document');
+
 
         /**
          * Francheeses
