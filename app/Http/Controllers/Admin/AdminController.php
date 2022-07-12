@@ -8,10 +8,10 @@ use App\Models\Affiliation;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Vacancy;
+use App\Models\Views\Visit;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
-use Shetabit\Visitor\Models\Visit;
 
 class AdminController extends Controller
 {
@@ -22,10 +22,10 @@ class AdminController extends Controller
             return redirect()->route('admin.curriculum.show');
         }
 
-        $onlineUsers = User::online()->get()->count();
-        $administrators = User::role('Administrador')->get()->count();
-        $affiliates = User::role('Franquiado')->get()->count();
-        $affiliations = Affiliation::all()->count();
+        $onlineUsers = User::online()->count();
+        $administrators = User::role('Administrador')->count();
+        $affiliates = User::role('Franquiado')->count();
+        $affiliations = Affiliation::count();
 
 
         if (Auth::user()->hasRole('Franquiado')) {
@@ -45,23 +45,21 @@ class AdminController extends Controller
             $trainee = User::role('Estagiário')->orderBy('created_at', 'desc')->get();
         }
 
-        $trainee = User::role('Estagiário')->whereIn('state', $companies->pluck('state'))->orderBy('created_at', 'desc')->get();
-
         $posts = Post::orderBy('created_at', 'desc')->take(6)->get();
 
         $access = Visit::where('created_at', '>=', date("Y-m-d"))
             ->where('url', '!=', route('admin.home.chart'))
             ->get();
-
-        $accessYesterday = Visit::where('created_at', '>=', Carbon::now()->subDays(1))
-            ->where('created_at', '<', Carbon::now())
+        $accessYesterday = Visit::where('created_at', '>=', date("Y-m-d", strtotime('-1 day')))
+            ->where('created_at', '<', date("Y-m-d"))
             ->where('url', '!=', route('admin.home.chart'))
-            ->get();
+            ->count();
 
-        if ($accessYesterday->count() > 0) {
-            $percent = number_format((($access->count() - $accessYesterday->count()) / $access->count() * 100), 2, ",", ".");
-        } else {
-            $percent = 0;
+        $totalDaily = $access->count();
+
+        $percent = 0;
+        if ($accessYesterday > 0) {
+            $percent = number_format((($totalDaily - $accessYesterday) / $totalDaily * 100), 2, ",", ".");
         }
 
         /**Visitor Chart */
@@ -111,15 +109,16 @@ class AdminController extends Controller
         $access = Visit::where('created_at', '>=', date("Y-m-d"))
             ->where('url', '!=', route('admin.home.chart'))
             ->get();
-        $accessYesterday = Visit::where('created_at', '>=', Carbon::now()->subDays(1))
-            ->where('created_at', '<', Carbon::now())
+        $accessYesterday = Visit::where('created_at', '>=', date("Y-m-d", strtotime('-1 day')))
+            ->where('created_at', '<', date("Y-m-d"))
             ->where('url', '!=', route('admin.home.chart'))
-            ->get();
+            ->count();
 
-        if ($accessYesterday->count() > 0) {
-            $percent = number_format((($access->count() - $accessYesterday->count()) / $access->count() * 100), 2, ",", ".");
-        } else {
-            $percent = 0;
+        $totalDaily = $access->count();
+
+        $percent = 0;
+        if ($accessYesterday > 0) {
+            $percent = number_format((($totalDaily - $accessYesterday) / $totalDaily * 100), 2, ",", ".");
         }
 
         /**Visitor Chart */

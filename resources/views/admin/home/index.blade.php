@@ -459,7 +459,7 @@
                             percentclass.removeClass('text-danger');
                             percenticon.removeClass('fa-arrow-up');
                             percenticon.removeClass('fa-arrow-down');
-                            if (data.percent > 0) {
+                            if (parseInt(data.percent) > 0) {
                                 percentclass.addClass('text-success');
                                 percenticon.addClass('fa-arrow-up');
                             } else {
