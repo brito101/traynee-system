@@ -10,6 +10,9 @@ use App\Models\Vacancy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Zip;
+use Illuminate\Support\Str;
 
 class DocumentTraineeController extends Controller
 {
@@ -65,8 +68,8 @@ class DocumentTraineeController extends Controller
                     }
                 }
 
-                $extenstion = $request->$doc->extension();
-                $nameFile = "{$name}.{$extenstion}";
+                $extension = $request->$doc->extension();
+                $nameFile = "{$name}.{$extension}";
 
                 $data[$doc] = $nameFile;
 
@@ -118,5 +121,31 @@ class DocumentTraineeController extends Controller
         $documents = Document::whereIn('user_id', $evaluations)->get();
 
         return view('admin.compatibility.documents', compact('documents'));
+    }
+
+    public function downloadDocument($id)
+    {
+        $document = Document::where('id', $id)->first();
+        if (empty($document->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $document_person = storage_path() . '/app/public/documents/' . $document->document_person;
+        $document_registry = storage_path() . '/app/public/documents/' . $document->document_registry;
+        $registration = storage_path() . '/app/public/documents/' . $document->registration;
+        $historic  = storage_path() . '/app/public/documents/' . $document->historic;
+        $declaration  = storage_path() . '/app/public/documents/' . $document->declaration;
+        $residence  = storage_path() . '/app/public/documents/' . $document->residence;
+
+        $nameFile = Str::slug($document->user->name);
+        $zip = Zip::create('documentos-' . $nameFile . '.zip')
+            ->add($document_person)
+            ->add($document_registry)
+            ->add($registration)
+            ->add($historic)
+            ->add($declaration)
+            ->add($residence);
+
+        return $zip;
     }
 }

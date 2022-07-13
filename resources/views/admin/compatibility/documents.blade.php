@@ -12,7 +12,7 @@
     $list = [];
 
     foreach ($documents as $document) {
-        $list[] = [$document->id, $document->user->name, $document->user->document_person, $document->user->email, $document->status, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Download" href="#"><i class="fa fa-lg fa-fw fa-download"></i></a>' . '<a class="btn btn-xs btn-default text-success mx-1 shadow" title="Aprovar" href="#"><i class="fa fa-lg fa-fw fa-thumbs-up"></i></a>'];
+        $list[] = [$document->id, $document->user->name, $document->user->document_person, $document->user->email, $document->status, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Download" href="documents-trainees/download/' . $document->id .'"><i class="fa fa-lg fa-fw fa-download"></i></a>' . '<a class="btn btn-xs btn-default text-success mx-1 shadow" title="Aprovar" href="#"><i class="fa fa-lg fa-fw fa-thumbs-up"></i></a>'];
     }
 
     $config = [
