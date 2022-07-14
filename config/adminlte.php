@@ -352,8 +352,14 @@ return [
         ],
         [
             'text'        => 'Doc. Comprobatórios',
-            'url'         => 'admin/documents',
+            'url'         => 'admin/documents-upload',
             'icon'        => 'fa fa-fw fa-file-upload',
+            'can'         => 'Enviar Documentos Comprobatórios',
+        ],
+        [
+            'text'        => 'Avaliação Documental',
+            'url'         => 'admin/documents-status',
+            'icon'        => 'fa fa-fw fa-check',
             'can'         => 'Enviar Documentos Comprobatórios',
         ],
         [

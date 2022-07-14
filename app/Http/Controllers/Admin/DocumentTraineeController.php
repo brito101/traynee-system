@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\DocumentTrayneeRequest;
 use App\Models\Document;
+use App\Models\DocumentStatus;
 use App\Models\Evaluation;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
@@ -125,6 +126,10 @@ class DocumentTraineeController extends Controller
 
     public function downloadDocument($id)
     {
+        if (!Auth::user()->hasPermissionTo('Gerenciar Documentos Comprobatórios')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
         $document = Document::where('id', $id)->first();
         if (empty($document->id)) {
             abort(403, 'Acesso não autorizado');
@@ -147,5 +152,107 @@ class DocumentTraineeController extends Controller
             ->add($residence);
 
         return $zip;
+    }
+
+    public function approveDocument($id)
+    {
+        if (!Auth::user()->hasPermissionTo('Gerenciar Documentos Comprobatórios')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $document = Document::where('id', $id)->first();
+        if (empty($document->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $documentStatus = DocumentStatus::where('document_id', $document->id)->where('company_id', Auth::user()->company_id)->first();
+
+        $data = [
+            'document_id' => $document->id,
+            'status' => 'Aprovado',
+            'company_id' => Auth::user()->company_id,
+        ];
+
+        if (empty($documentStatus->id)) {
+            $newDocumentStatus = DocumentStatus::create($data);
+        } else {
+            $documentStatus->update($data);
+        }
+
+        return redirect()
+            ->back()
+            ->with('success', 'Status alterado para "Aprovado"!');
+    }
+
+    public function failDocument($id)
+    {
+        if (!Auth::user()->hasPermissionTo('Gerenciar Documentos Comprobatórios')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $document = Document::where('id', $id)->first();
+        if (empty($document->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $documentStatus = DocumentStatus::where('document_id', $document->id)->where('company_id', Auth::user()->company_id)->first();
+
+        $data = [
+            'document_id' => $document->id,
+            'status' => 'Reprovado',
+            'company_id' => Auth::user()->company_id,
+        ];
+
+        if (empty($documentStatus->id)) {
+            $newDocumentStatus = DocumentStatus::create($data);
+        } else {
+            $documentStatus->update($data);
+        }
+
+        return redirect()
+            ->back()
+            ->with('success', 'Status alterado para "Reprovado"!');
+    }
+
+    public function waitingDocument($id)
+    {
+        if (!Auth::user()->hasPermissionTo('Gerenciar Documentos Comprobatórios')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $document = Document::where('id', $id)->first();
+        if (empty($document->id)) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $documentStatus = DocumentStatus::where('document_id', $document->id)->where('company_id', Auth::user()->company_id)->first();
+
+        $data = [
+            'document_id' => $document->id,
+            'status' => 'Aguardando',
+            'company_id' => Auth::user()->company_id,
+        ];
+
+        if (empty($documentStatus->id)) {
+            $newDocumentStatus = DocumentStatus::create($data);
+        } else {
+            $documentStatus->update($data);
+        }
+
+        return redirect()
+            ->back()
+            ->with('success', 'Status alterado para "Aguardando"!');
+    }
+
+    public function showStatus()
+    {
+        if (!Auth::user()->hasPermissionTo('Enviar Documentos Comprobatórios')) {
+            abort(403, 'Acesso não autorizado');
+        }
+
+        $documents = Document::where('user_id', Auth::user()->id)->pluck('id');
+        $documentsStatus = DocumentStatus::whereIn('id', $documents)->get();
+
+        return view('admin.documents.index', compact('documentsStatus'));
     }
 }

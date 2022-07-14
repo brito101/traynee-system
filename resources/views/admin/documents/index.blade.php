@@ -1,24 +1,24 @@
 @extends('adminlte::page')
 
-@section('title', '- Documentação Comprobatória')
+@section('title', '- Avaliação Documental')
 @section('plugins.Datatables', true)
 @section('plugins.DatatablesPlugins', true)
 
 @section('content')
 
     @php
-    $heads = [['label' => 'ID', 'width' => 5], 'Estagiário', 'CPF', 'E-mail', 'Status', ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
+    $heads = [['label' => 'ID', 'width' => 5], 'Empresa', 'Status'];
 
     $list = [];
 
-    foreach ($documents as $document) {
-        $list[] = [$document->id, $document->user->name, $document->user->document_person, $document->user->email, $document->documentStatus(), '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Download" href="documents-trainees/download/' . $document->id .'"><i class="fa fa-lg fa-fw fa-download"></i></a>' . $document->links()];
+    foreach ($documentsStatus as $document) {
+        $list[] = [$document->id, $document->company->alias_name, $document->status];
     }
 
     $config = [
         'data' => $list,
         'order' => [[0, 'asc']],
-        'columns' => [null, null, null, null, null, ['orderable' => false]],
+        'columns' => [null, null, ['orderable' => false]],
         'language' => ['url' => asset('vendor/datatables/js/pt-BR.json')],
     ];
     @endphp
@@ -28,7 +28,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1><i class="fas fa-fw fa-file-upload"></i>Documentos Comprobatórios</h1>
+                    <h1><i class="fas fa-fw fa-check"></i>Avaliação Documental<h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">

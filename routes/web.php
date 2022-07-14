@@ -100,11 +100,15 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/trainees-search', [TraineeController::class, 'indexSearch'])->name('trainees.search');
         Route::get('/trainees/{id}', [TraineeController::class, 'vacancy'])->name('trainees.vacancy');
         Route::get('/trainee/{id}', [TraineeController::class, 'show'])->name('trainee.show');
-        Route::get('/documents', [DocumentTraineeController::class, 'edit'])->name('documents.edit');
-        Route::put('/documents', [DocumentTraineeController::class, 'store'])->name('documents.store');
+        Route::get('/documents-status', [DocumentTraineeController::class, 'showStatus'])->name('documents.status');
+        Route::get('/documents-upload', [DocumentTraineeController::class, 'edit'])->name('documents.edit');
+        Route::put('/documents-upload', [DocumentTraineeController::class, 'store'])->name('documents.store');
         Route::get('/documents/{id}', [DocumentTraineeController::class, 'show'])->name('documents.show');
         Route::get('/documents-trainees', [DocumentTraineeController::class, 'companyDocument'])->name('company.document');
         Route::get('/documents-trainees/download/{id}', [DocumentTraineeController::class, 'downloadDocument'])->name('company.document');
+        Route::get('/documents-trainees/approve/{id}', [DocumentTraineeController::class, 'approveDocument'])->name('company.document.approve');
+        Route::get('/documents-trainees/fail/{id}', [DocumentTraineeController::class, 'failDocument'])->name('company.document.fail');
+        Route::get('/documents-trainees/waiting/{id}', [DocumentTraineeController::class, 'waitingDocument'])->name('company.document.waiting');
 
         /**
          * Francheeses
