@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\TermRequest;
 use App\Models\Term;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class TermController extends Controller
 {
@@ -51,6 +52,31 @@ class TermController extends Controller
 
         $data = $request->all();
         $data['user_id'] = Auth::user()->id;
+
+        $content = $request->content;
+        $dom = new \DOMDocument();
+        $dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $imageFile = $dom->getElementsByTagName('img');
+
+        foreach ($imageFile as $item => $image) {
+            $img = $image->getAttribute('src');
+            if (filter_var($img, FILTER_VALIDATE_URL) == false) {
+                list($type, $img) = explode(';', $img);
+                list(, $img) = explode(',', $img);
+                $imageData = base64_decode($img);
+                $image_name =  Str::slug($request->title) . '-' . time() . $item . '.png';
+                $path = storage_path() . '/app/public/upload/' . $image_name;
+                file_put_contents($path, $imageData);
+                $image->removeAttribute('src');
+                $image->removeAttribute('data-filename');
+                $image->setAttribute('alt', $request->title);
+                $image->setAttribute('src', url('storage/upload/' . $image_name));
+            }
+        }
+
+        $content = $dom->saveHTML();
+        $data['content'] = $content;
+
         $term = Term::create($data);
 
         if ($term->save()) {
@@ -102,6 +128,31 @@ class TermController extends Controller
         if (empty($term->id)) {
             abort(403, 'Acesso não autorizado');
         }
+
+        $content = $request->content;
+        $dom = new \DOMDocument();
+        $dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $imageFile = $dom->getElementsByTagName('img');
+
+        foreach ($imageFile as $item => $image) {
+            $img = $image->getAttribute('src');
+            if (filter_var($img, FILTER_VALIDATE_URL) == false) {
+                list($type, $img) = explode(';', $img);
+                list(, $img) = explode(',', $img);
+                $imageData = base64_decode($img);
+                $image_name =  Str::slug($request->title) . '-' . time() . $item . '.png';
+                $path = storage_path() . '/app/public/upload/' . $image_name;
+                file_put_contents($path, $imageData);
+                $image->removeAttribute('src');
+                $image->removeAttribute('data-filename');
+                $image->setAttribute('alt', $request->title);
+                $image->setAttribute('src', url('storage/upload/' . $image_name));
+            }
+        }
+
+        $content = $dom->saveHTML();
+        $data['content'] = $content;
+
         if ($term->update($data)) {
             return redirect()
                 ->route('admin.terms.index')

@@ -101,9 +101,12 @@
                                                     ['fontsize', ['fontsize']],
                                                     ['color', ['color']],
                                                     ['para', ['ul', 'ol', 'paragraph']],
+                                                    ['imagesize', ['imageSize100', 'imageSize50', 'imageSize25']],
+                                                    ['float', ['floatLeft', 'floatRight', 'floatNone']],
+                                                    ['remove', ['removeMedia']],
                                                     ['height', ['height']],
                                                     ['table', ['table']],
-                                                    ['insert', ['link']],
+                                                    ['insert', ['link', 'picture', 'video']],
                                                     ['view', ['fullscreen', 'codeview', 'help']],
                                                 ],
                                             ];
