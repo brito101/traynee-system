@@ -31,7 +31,8 @@ class Vacancy extends Model
         'brand_twitter',
         'company_id',
         'user_id',
-        'views'
+        'views',
+        'intended'
     ];
 
     /** Relationships */

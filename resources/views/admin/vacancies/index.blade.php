@@ -7,18 +7,18 @@
 @section('content')
 
     @php
-    $heads = [['label' => 'ID', 'width' => 5], 'Título', 'Autor', 'Cursos de Interesse', 'Período', ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
+    $heads = [['label' => 'ID', 'width' => 5], 'Título', 'Autor', 'Cursos de Interesse', 'Período', 'Destinada para', ['label' => 'Ações', 'no-export' => true, 'width' => 10]];
 
     $list = [];
 
     foreach ($vacancies as $vacancy) {
-        $list[] = [$vacancy->id, $vacancy->title, $vacancy->user['name'], $vacancy->courses(), $vacancy->period, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="vacancies/' . $vacancy->id . '/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="vacancies/destroy/' . $vacancy->id . '" onclick="return confirm(\'Confirma a exclusão desta vaga?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
+        $list[] = [$vacancy->id, $vacancy->title, $vacancy->user['name'], $vacancy->courses(), $vacancy->period, $vacancy->intended, '<nobr>' . '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" href="vacancies/' . $vacancy->id . '/edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>' . '<a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir" href="vacancies/destroy/' . $vacancy->id . '" onclick="return confirm(\'Confirma a exclusão desta vaga?\')"><i class="fa fa-lg fa-fw fa-trash"></i></a>'];
     }
 
     $config = [
         'data' => $list,
         'order' => [[0, 'asc']],
-        'columns' => [null, null, null, null, null, ['orderable' => false]],
+        'columns' => [null, null, null, null, null, null, ['orderable' => false]],
         'language' => ['url' => asset('vendor/datatables/js/pt-BR.json')],
     ];
     @endphp
@@ -56,8 +56,8 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <x-adminlte-datatable id="table1" :heads="$heads" :heads="$heads" :config="$config" striped
-                                hoverable beautify with-buttons />
+                            <x-adminlte-datatable id="table1" :heads="$heads" :heads="$heads" :config="$config"
+                                striped hoverable beautify with-buttons />
                         </div>
                     </div>
                 </div>

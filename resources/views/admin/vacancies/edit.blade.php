@@ -46,8 +46,9 @@
                                 <div class="d-flex flex-wrap justify-content-between">
                                     <div class="col-12 col-md-6 form-group px-0 pr-md-2">
                                         <label for="title">Título</label>
-                                        <input type="text" class="form-control" id="title" placeholder="Título da Vaga"
-                                            name="title" value="{{ old('title') ?? $vacancy->title }}" required>
+                                        <input type="text" class="form-control" id="title"
+                                            placeholder="Título da Vaga" name="title"
+                                            value="{{ old('title') ?? $vacancy->title }}" required>
                                     </div>
 
                                     @php
@@ -74,7 +75,7 @@
                                 </div>
 
                                 <div class="d-flex flex-wrap justify-content-between">
-                                    <div class="col-12 col-md-6 form-group px-0 pr-md-2">
+                                    <div class="col-12 col-md-4 form-group px-0 pr-md-2">
                                         <label for="scholarity_id">Escolaridade</label>
                                         <x-adminlte-select2 name="scholarity_id">
                                             @foreach ($scholarities as $scholarity)
@@ -86,7 +87,25 @@
                                         </x-adminlte-select2>
                                     </div>
 
-                                    <div class="col-12 col-md-6 form-group px-0 pl-md-2">
+                                    <div class="col-12 col-md-4 form-group px-0 px-md-2">
+                                        <label for="intended">Destinada para</label>
+                                        <x-adminlte-select2 name="intended">
+                                            <option
+                                                {{ old('intended') == 'Estágio' ? 'selected' : ($vacancy->intended == 'Estágio' ? 'selected' : '') }}
+                                                value="Estágio">Estágio
+                                            </option>
+                                            <option
+                                                {{ old('intended') == 'Emprego' ? 'selected' : ($vacancy->intended == 'Emprego' ? 'selected' : '') }}
+                                                value="Emprego">Emprego
+                                            </option>
+                                            <option
+                                                {{ old('intended') == 'Estágio ou Emprego' ? 'selected' : ($vacancy->intended == 'Estágio ou Emprego' ? 'selected' : '') }}
+                                                value="Estágio ou Emprego">Estágio ou Emprego
+                                            </option>
+                                        </x-adminlte-select2>
+                                    </div>
+
+                                    <div class="col-12 col-md-4 form-group px-0 pl-md-2">
                                         <label for="experience">Experiência</label>
                                         <input type="text" class="form-control" id="experience"
                                             placeholder="Sem experiência, parcial etc" name="experience"
@@ -154,14 +173,14 @@
                                 <div class="d-flex flex-wrap justify-content-between">
                                     <div class="col-12 col-md-6 form-group px-0 pr-md-2">
                                         <label for="city">Cidade</label>
-                                        <input type="text" class="form-control" id="city" placeholder="Cidade" name="city"
-                                            value="{{ old('city') ?? $vacancy->city }}" required>
+                                        <input type="text" class="form-control" id="city" placeholder="Cidade"
+                                            name="city" value="{{ old('city') ?? $vacancy->city }}" required>
                                     </div>
 
                                     <div class="col-12 col-md-6 form-group px-0 pl-md-2">
                                         <label for="state">Estado</label>
-                                        <input type="text" class="form-control" id="state" placeholder="UF" name="state"
-                                            value="{{ old('state') ?? $vacancy->state }}" required>
+                                        <input type="text" class="form-control" id="state" placeholder="UF"
+                                            name="state" value="{{ old('state') ?? $vacancy->state }}" required>
                                     </div>
                                 </div>
 

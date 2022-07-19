@@ -243,7 +243,8 @@ return [
         'init' => 'início',
         'finish' => 'término',
         'university' => 'universidade',
-        'vacancy_id' => 'vaga'
+        'vacancy_id' => 'vaga',
+        'intended' => 'destinada para'
     ],
 
 ];

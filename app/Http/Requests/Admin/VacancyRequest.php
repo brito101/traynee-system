@@ -37,7 +37,8 @@ class VacancyRequest extends FormRequest
             'city' => 'required|max:100',
             'brand_facebook' => 'image|mimes:jpg,png,jpeg,gif,svg,webp|max:1024|dimensions:max_width=1800,max_height=1800',
             'brand_instagram' => 'image|mimes:jpg,png,jpeg,gif,svg,webp|max:1024|dimensions:max_width=1800,max_height=1800',
-            'brand_twitter' => 'image|mimes:jpg,png,jpeg,gif,svg,webp|max:1024|dimensions:max_width=1800,max_height=1800'
+            'brand_twitter' => 'image|mimes:jpg,png,jpeg,gif,svg,webp|max:1024|dimensions:max_width=1800,max_height=1800',
+            'intended' => 'nullable|in:Estágio,Emprego,Estágio ou Emprego|min:3|max:100',
         ];
     }
 }
