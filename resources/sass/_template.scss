@@ -16,6 +16,11 @@ a {
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
     text-decoration: none;
+
+    &.disabled {
+        pointer-events: none;
+        cursor: default;
+    }
 }
 
 a:hover,

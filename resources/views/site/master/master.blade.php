@@ -108,9 +108,22 @@
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('vacancies') }}"
-                                    class="nav-link {{ Route::currentRouteName() == 'vacancies' || Route::currentRouteName() == 'vacancy' ? 'active' : '' }}">
+                                    class="nav-link {{ Route::currentRouteName() == 'vacancies' || Route::currentRouteName() == 'vacancy' || Route::currentRouteName() == 'vacancies.internship' || Route::currentRouteName() == 'vacancies.job' ? 'active' : '' }}">
                                     Vagas
+                                    <i class='bx bx-caret-down'></i>
                                 </a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item">
+                                        <a href="{{ route('vacancies.internship') }}" class="nav-link">
+                                            Estágio
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('vacancies.job') }}" class="nav-link">
+                                            Emprego
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
 
                             {{-- <li class="nav-item">

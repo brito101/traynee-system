@@ -241,6 +241,8 @@ Route::get('/empresas', [SiteController::class, 'company'])->name('company');
 Route::get('/estudantes', [SiteController::class, 'student'])->name('student');
 /** Vacancy */
 Route::get('/vagas', [SiteController::class, 'vacancies'])->name('vacancies');
+Route::get('/vagas-estagio', [SiteController::class, 'vacanciesInternship'])->name('vacancies.internship');
+Route::get('/vagas-emprego', [SiteController::class, 'vacanciesJob'])->name('vacancies.job');
 Route::get('/vaga/{slug}', [SiteController::class, 'vacancy'])->name('vacancy');
 /** Blog */
 Route::get('/blog', [SiteController::class, 'posts'])->name('posts');

@@ -4,7 +4,7 @@
     <div class="inner-banner">
         <div class="container">
             <div class="inner-title text-center">
-                <h3>Vagas</h3>
+                <h3>Vagas {{ isset($type) ? 'de ' . $type : '' }}</h3>
             </div>
         </div>
     </div>
@@ -19,8 +19,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="blog-card">
                             <div class="blog-img">
-                                <a href="{{ route('vacancy', ['slug' => $vacancy->slug]) }}"
-                                    title="{{ $vacancy->title }}">
+                                <a href="{{ route('vacancy', ['slug' => $vacancy->slug]) }}" title="{{ $vacancy->title }}">
                                     <img src="{{ $vacancy->brand_facebook ? url('storage/vacancies/' . $vacancy->brand_facebook) : asset('img/hanshake-1400x700.jpg') }}"
                                         alt="{{ $vacancy->title }}">
                                 </a>

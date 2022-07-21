@@ -68,11 +68,18 @@
                                 <ul>
                                     <li>
                                         <div class="line-circle"></div>
-                                        <a href="#">Escolaridade<span>{{ $vacancy->scholarity['name'] }}</span></a>
+                                        <a href="#" class="disabled">Destinada
+                                            para:<span>{{ $vacancy->intended }}</span></a>
                                     </li>
                                     <li>
                                         <div class="line-circle"></div>
-                                        <a href="#">Experiência<span>{{ $vacancy->experience }}</span></a>
+                                        <a href="#"
+                                            class="disabled">Escolaridade<span>{{ $vacancy->scholarity['name'] }}</span></a>
+                                    </li>
+                                    <li>
+                                        <div class="line-circle"></div>
+                                        <a href="#"
+                                            class="disabled">Experiência<span>{{ $vacancy->experience }}</span></a>
                                     </li>
                                 </ul>
                             </div>
@@ -148,8 +155,7 @@
                                         </a>
                                         <div class="info">
                                             <h4 class="title-text">
-                                                <a href="{{ route('vacancy', ['slug' => $item->slug]) }}"
-                                                    target="_blank">
+                                                <a href="{{ route('vacancy', ['slug' => $item->slug]) }}" target="_blank">
                                                     {{ $item->title }}
                                                 </a>
                                             </h4>

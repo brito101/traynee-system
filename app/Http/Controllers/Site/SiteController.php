@@ -59,10 +59,32 @@ class SiteController extends Controller
     {
         Meta::set('title', env('APP_NAME') . ' - Vagas');
         Meta::set('robots', 'index,follow');
-        Meta::set('description', 'Vagas de estágio disponíveis na ' . env('APP_NAME'));
+        Meta::set('description', 'Vagas de estágio e emprego disponíveis na ' . env('APP_NAME'));
         Meta::set('image', asset('img/hanshake-1400x700.jpg'));
         $vacancies = Vacancy::orderBy('created_at', 'desc')->paginate(9);
         return view('site.vacancies.index', compact('vacancies'));
+    }
+
+    public function vacanciesInternship()
+    {
+        Meta::set('title', env('APP_NAME') . ' - Vagas de Estágio');
+        Meta::set('robots', 'index,follow');
+        Meta::set('description', 'Vagas de estágio disponíveis na ' . env('APP_NAME'));
+        Meta::set('image', asset('img/hanshake-1400x700.jpg'));
+        $vacancies = Vacancy::where('intended', 'Estágio')->orWhere('intended', 'Estágio ou Emprego')->orderBy('created_at', 'desc')->paginate(9);
+        $type = 'Estágio';
+        return view('site.vacancies.index', compact('vacancies', 'type'));
+    }
+
+    public function vacanciesJob()
+    {
+        Meta::set('title', env('APP_NAME') . ' - Vagas de Emprego');
+        Meta::set('robots', 'index,follow');
+        Meta::set('description', 'Vagas de emprego disponíveis na ' . env('APP_NAME'));
+        Meta::set('image', asset('img/hanshake-1400x700.jpg'));
+        $vacancies = Vacancy::where('intended', 'Emprego')->orWhere('intended', 'Estágio ou Emprego')->orderBy('created_at', 'desc')->paginate(9);
+        $type = 'Emprego';
+        return view('site.vacancies.index', compact('vacancies', 'type'));
     }
 
     public function vacancy($slug)
