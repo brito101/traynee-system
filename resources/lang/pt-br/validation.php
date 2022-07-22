@@ -244,7 +244,8 @@ return [
         'finish' => 'término',
         'university' => 'universidade',
         'vacancy_id' => 'vaga',
-        'intended' => 'destinada para'
+        'intended' => 'destinada para',
+        'available' => 'disponibilidade',
     ],
 
 ];
