@@ -12,5 +12,5 @@ class EadCourse extends Model
 
     protected $dates = ['deleted_at'];
 
-    protected $fillable = ['title', 'description', 'available', 'editor'];
+    protected $fillable = ['title', 'description', 'price', 'cover', 'available', 'editor'];
 }

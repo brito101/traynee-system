@@ -17,7 +17,9 @@ class CreateEadCoursesTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->boolean('available');
+            $table->boolean('available')->default(true);
+            $table->decimal('price')->default(0);
+            $table->string('cover')->nullable();
             $table->unsignedBigInteger('editor');
             $table->foreign('editor')
                 ->references('id')

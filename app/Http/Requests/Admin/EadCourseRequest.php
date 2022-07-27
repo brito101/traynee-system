@@ -26,6 +26,8 @@ class EadCourseRequest extends FormRequest
         return [
             'title' =>  'required|min:1|max:191',
             'description' => 'required|min:1|max:255',
+            'cover' => 'image|mimes:jpg,png,jpeg,gif,svg,webp|max:10240',
+            'price' => 'nullable|min:0|max:99999999|number',
             'available' => 'required|boolean',
         ];
     }

@@ -246,6 +246,7 @@ return [
         'vacancy_id' => 'vaga',
         'intended' => 'destinada para',
         'available' => 'disponibilidade',
+        'price' => 'preço',
     ],
 
 ];
